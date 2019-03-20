@@ -16,10 +16,13 @@
     <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
     <!--SEO-->
 
-    <meta name="keywords" content="null">
+    <meta name="keywords" content="编程">
 
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any ...">
+    <meta name="description" content="第五章编程题因为时间原因我就只做了前两个题，从第6章开始全部都做。 5.1输入2个整数，输出这2个之间（包括这两个）所有整数和 代码如下：
+#include
+#include
+using nam...">
 
 
 
@@ -31,7 +34,7 @@
     <!--Title-->
 
 
-<title>Hello World | 小奥の部落格</title>
+<title>C++ Primer Plus（第五版）第5章编程题答案 | 小奥の部落格</title>
 
 
     <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
@@ -123,6 +126,10 @@
                                 <a href="/archives/"><i class="fa "></i>Time Line</a>
                             </li>
                         
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
                     </ul>
                 </div>
             </div>
@@ -136,16 +143,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="Hello World">
+        <h1 id="C++ Primer Plus（第五版）第5章编程题答案">
             
-	            Hello World
+	            C++ Primer Plus（第五版）第5章编程题答案
             
         </h1>
         <div class="post-meta">
     
         <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-            
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
         </span>
     
 
@@ -153,6 +160,8 @@
         <span class="fa-wrap">
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
                 
             </span>
         </span>
@@ -162,7 +171,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2019/03/20</span>
+            <span class="date-meta">2018/10/18</span>
         </span>
         
     
@@ -172,15 +181,74 @@
     </div>
     
     <div class="post-body post-content">
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <p>第五章编程题因为时间原因我就只做了前两个题，从第6章开始全部都做。 5.1输入2个整数，输出这2个之间（包括这两个）所有整数和 代码如下：</p>
+<p>#include<iostream></iostream></p>
+<p>#include<cstring></cstring></p>
+<p>using namespace std;</p>
+<p>int main() {</p>
+<pre><code>int a, b;
+
+int sum = 0;
+
+cout &lt;&lt; &quot;Enter two number:&quot; &lt;&lt; endl;
+
+cin &gt;&gt; a &gt;&gt; b;
+
+if (a &lt; b)
+
+{
+
+       for (int i = a; i &lt;= b; i++)
+
+              sum += i;
+
+}
+
+else if (a &gt; b)
+
+{
+
+       for (int i = b; i &lt;= a; i++)
+
+              sum += i;
+
+}
+
+cout &lt;&lt; sum &lt;&lt; endl;
+
+system(&quot;pause&quot;);
+
+return 0;
+</code></pre><p>}</p>
+<p>  5.2 编写一个整数输入程序，每输入一个数，显示累计和，输入0停止</p>
+<p>#include<iostream></iostream></p>
+<p>#include<cstring></cstring></p>
+<p>using namespace std;</p>
+<p>int main() {</p>
+<pre><code>int i;
+
+int count=0;
+
+cout &lt;&lt; &quot;Enter number:&quot; &lt;&lt; endl;
+
+cin &gt;&gt; i;
+
+while (i != 0)
+
+{
+
+       count += i;
+
+       cout &lt;&lt;&quot;到目前的和为&quot; &lt;&lt; count &lt;&lt; endl;
+
+       cin &gt;&gt; i;
+
+}
+
+system(&quot;pause&quot;);
+
+return 0;
+</code></pre><p>}</p>
 
     </div>
     
@@ -218,41 +286,19 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2019/03/20/回溯法/" class="pre-post btn btn-default" title="回溯法">
+        <a href="/2018/10/26/c-primer-plus-ef-bc-88-e7-ac-ac-e4-ba-94-e7-89-88-ef-bc-89-e7-ac-ac6-e7-ab-a0-e7-bc-96-e7-a8-8b-e9-a2-98-e7-ad-94-e6-a1-88/" class="pre-post btn btn-default" title="C++ Primer Plus（第五版）第6章编程题答案">
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">回溯法</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第6章编程题答案</span>
         </a>
     
     
+        <a href="/2018/09/28/c-e5-bf-85-e8-af-bb-e4-b9-a6-e7-b1-8d-e6-8e-a8-e8-8d-90/" class="next-post btn btn-default" title="C++必读书籍推荐">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++必读书籍推荐</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
 </div>
 
-
-    <div id="comments">
-        
-	
-    <div id="vcomments" class="valine"></div>
-    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
-<script src="/assets/valine.min.js"></script>
-
-    <script>
-        new Valine({
-            av: AV,
-            el: '#vcomments',
-            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
-            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
-            placeholder: '说点什么吧',
-            notify: false,
-            verify: false,
-            avatar: 'mm',
-            meta: 'nick,mail'.split(','),
-            pageSize: '10',
-            path: window.location.pathname,
-            lang: 'zh-CN'.toLowerCase()
-        })
-    </script>
-
-
-    </div>
 
 
 
@@ -264,7 +310,7 @@
     <div class="widget">
         <h3 class="title">文章目录</h3>
         
-            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick-Start"><span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create-a-new-post"><span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run-server"><span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate-static-files"><span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy-to-remote-sites"><span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
+            <p>暂无目录</p>
         
     </div>
 </aside>

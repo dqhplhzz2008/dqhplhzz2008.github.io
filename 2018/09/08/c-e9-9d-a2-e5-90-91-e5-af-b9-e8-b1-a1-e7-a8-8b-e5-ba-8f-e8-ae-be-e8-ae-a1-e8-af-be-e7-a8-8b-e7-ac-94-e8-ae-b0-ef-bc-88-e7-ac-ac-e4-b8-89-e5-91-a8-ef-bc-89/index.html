@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="第一节 this指针1.C++**程序到C程序的翻译** 
+图1 从C++到C
+C++中的class在C语言中并不存在，因此可以用struct（结构体）来代替，成员变量也可以直接用域来代替，但是...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++面向对象程序设计课程笔记（第三周） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++面向对象程序设计课程笔记（第三周）">
+            
+	            C++面向对象程序设计课程笔记（第三周）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/09/08</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="第一节-this指针"><a href="#第一节-this指针" class="headerlink" title="第一节 this指针"></a>第一节 this指针</h2><p><strong>1.C++**</strong>程序到<strong><strong>C</strong></strong>程序的翻译** <img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/09/1.jpg" alt></p>
+<p>图1 从C++到C</p>
+<p>C++中的class在C语言中并不存在，因此可以用struct（结构体）来代替，成员变量也可以直接用域来代替，但是类中的成员函数却无法在C语言中直接表示，所以只能把SetPrice设置为全局函数。由于是全局函数，为了能让其使用结构体内的数据，故在SetPrice中增加了一个参数struct CCar *this，这样就可以在函数体中把p的值传递给结构体中的price，实现了跟成员函数一样的功能，同理，在main()中SetPrice函数执行也得把car的地址传递过去。 故，this的作用就是<strong>指向成员函数所作用的对象</strong>。 <strong>2.this**</strong>指针作用** （1）非静态成员函数中可以直接使用this来代表指向该函数作用的对象的指针。</p>
+<p><img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/09/2.jpg" alt></p>
+<p>图2 this指针作用</p>
+<p>在main()函数中，首先对对象c1执行了AddOne()函数，然后开始执行AddOne()，对c1中的real加1，然后执行对c1的Print()函数，这之后，返回一个this指针所指向对Complex对象（即c1）给c2。 对this指针再加深一个理解，如下例： class A { int i; public: void Hello() {cout&lt;&lt;””Hello”&lt;&lt;endl;} }; int main() { A *p=NULL; p-&gt;Hello(); } 系统会报错吗？答案是否定的，并且输出Hello。原因在于，虽然我们看着这个*p指向的空，但是实际上，由于C++在转换成C语言的时候，成员函数会被转换成全局函数并增加一个this指针的参数，即变为了 void Hello(A *this){cout &lt;&lt;”Hello”&lt;&lt;endl; 主函数中的p-&gt;Hello();也变成了Hello(p); 因此就算p为空指针，在这里传递给全局函数后并没有用到p做任何输出，所以直接输出了Hello。<strong>但如果我们在这个函数的输出时用到了成员变量**</strong>i<strong><strong>，那么成员函数在变换到全局函数的时候再来执行就用到了这个</strong></strong>this<strong><strong>所指向的对象，而此时</strong></strong>this<strong><strong>指向的</strong></strong>p<strong>**为空，所以报错。</strong> <strong>静态成员函数不能使用**</strong>this<strong>**指针，因为静态成员函数并不具体作用于某个对象，因此静态成员函数的真是的参数的个数，就是程序中写出的参数个数！</strong></p>
+<h2 id="第二节-静态成员变量"><a href="#第二节-静态成员变量" class="headerlink" title="第二节 静态成员变量"></a>第二节 静态成员变量</h2><p><strong>1.**</strong>静态成员基本概念<strong> 在定义前面加了static关键字的成员，称为静态成员。静态成员包括静态成员变量和静态成员函数两种。 普通成员变量每个对象有各自的一份，而静态成员变量一共就一份，</strong>为所有对象共享<strong>。 sizeof运算符在计算类的大小的时候不会计算静态成员变量。 普通成员函数必须具体作用于某个对象，而静态成员函数并</strong>不具体作用于某个对象<strong>。 因此静态成员</strong>不需要通过对象<strong>就能访问。 </strong>静态成员变量本质上是全局变量！！！<strong> </strong>静态成员函数本质上是全局函数！！！<strong> 设置静态成员的机制是将和某些类紧密相关的全局变量和函数写到类里面，看上去像一根整体，容易维护和理解。 </strong>2.<strong>**如何访问静态成员</strong> （1）类名::成员名 例如CRectangle::PrintTotal(); （2）对象名.成员名 例如CRectangle r; r.PrintTotal(); （3）指针-&gt;成员名 CRectangle <em>p=&r;p-&gt;PrintTotal(); （4）引用.成员名 CRectangle &amp;ref =r; int n = ref.nTotalNumber; <strong>必须在定义类的文件中对静态成员变量进行一次说明或初始化，否则编译能通过，链接不能通过。</strong> 在静态成员函数中，不能访问非静态成员变量，也不能调用非静态成员函数。 如下所示的写法，存在缺陷。 CRectangle::CRectangle(int w_,h_) { w = w_; h = h_; nTotalNumber++; nTotalArea += w</em> h; } CRectangle::~CRectangle(){ nTotalNumber–; nTotalArea -= w*h; } void CRectangle::PrintTotal(){ cout&lt;&lt;nTotalNumber&lt;&lt;”,”&lt;&lt;nTotalArea&lt;&lt;endl; } 在使用CRectangle类时，有时会调用复制构造函数生成临时的隐藏的CRectangle对象，比如：①我们调用了一个以CRectangle类对象作为参数的函数；②调用一个以CRectangle类对象作为返回值的函数。这个时候就如前面介绍复制构造函数时所说，会产生一个隐藏的临时对象（此函数没写复制构造函数，因此就算直接复制值过去，并没有执行Crectangle（int w_,int h_）），而这个临时对象在消亡的时候会调用析构函数，减少了nTotalNumber和nTotalArea的值，而它们这些对象在生成时却没有增加这两个值，由于这两个值是静态成员变量，所以实际上这两个值是减少了。 解决方案很显然就算写一个复制构造函数： CRectangle::CRectangle(CRectangle &amp;r) { w = r.w;h=r.h; nTotalNumber ++; nTotalArea += w*h; }</p>
+<h2 id="第三节-成员对象和封闭类"><a href="#第三节-成员对象和封闭类" class="headerlink" title="第三节 成员对象和封闭类"></a>第三节 成员对象和封闭类</h2><p><strong>1.**</strong>基本概念<strong> 有成员对象的类交封闭（enclosing）类。 有一个类的成员是其它类的对象，被称为成员对象。 如下例程： class CTyre { private: int radius; int width; public: CTyre(int r int w):radius(r),width(w){}//初始化列表，可以为每一个成员变量提供一个初始值。 }; class CEngine{}; class CCar{//封闭类 private: int price; Ctyre tyre;//成员对象 CEngine engine;//成员对象 public: CCar(int p, int tr,int tw); }; CCar::CCar(int p,int tr,int w):price(p),tyre(tr,w)//engine使用无参构造函数构造 {}; int main() { CCar car(20000,17,225); return 0; } 在这个例子，如果CCar类不定义构造函数，则CCar car;这个语句会报错，因为编译器不明白car.tyre该如何初始化。 </strong>任何生成封闭类对象的语句，都要让编译器明白，对象中的成员对象是如何初始化的。<strong> 具体做法是：</strong>通过封闭类的构造函数的初始化列表进行<strong>。 成员对象初始化列表中的参数可以是任意复杂的表达式，可以包括函数、变量，只要表达式中的函数或变量有定义就行。 </strong>2.<strong>**封闭类构造函数和析构函数的执行顺序</strong> （1）封闭类对象生成时，先执行所有对象成员的构造函数，然后才执行封闭类的构造函数； （2）对象成员的构造函数调用次序和对象成员在类中的说明次序一致，与它们在成员初始化列表中出现的次序无关； （3）当封闭类的对象消亡时，先执行封闭类的析构函数，然后再执行成员对象的析构函数。次序和构造函数的调用次序相反。 <strong>3.**</strong>封闭类的复制构造函数** 封闭类的对象，如果是用默认复制构造函数初始化的，那么它里面包含的成员对象，也会用复制构造函数初始化。 例如： Class A { public: A(){cout&lt;&lt;”default”&lt;&lt;endl;} A(A&amp;a){cout&lt;&lt;”copy”&lt;&lt;endl;} }; class B{A a;}; int main() { B b1,b2(b1); return 0; } 输出： default  copy 说明b2.a是用类A的复制构造函数初始化的，而且调用复制构造函数的实参就是b1.a。</p>
+<h2 id="第四节-友元（friends）"><a href="#第四节-友元（friends）" class="headerlink" title="第四节 友元（friends）"></a>第四节 友元（friends）</h2><p>友元分为友元函数和友元类两种。 <strong>1.**</strong>友元函数<strong> </strong>一个类的友元函数可以访问该类的私有成员（这说明友元函数不是这个类的成员函数<strong>） 可以将一个类的成员函数（包括构造、析构函数）说明为另一个类的友元。 Class B{ public: void function(); };   Class A{ friend void B::function(); }; 这就代表function()可以访问A里面的私有成员了。 </strong>2.<strong>**友元类</strong> 如果A是B的友元类，那么A的成员函数可以访问B的私有成员。 Class CCar { private: int price; friend class CDriver;//声明CDriver为友元类 }; class CDriver { public: CCar myCar; void ModifyCar(){ myCar.price += 1000; //因为CDriver是CCar的友元类，故可以访问其私有成员 } }; int main(){return 0;} <strong>友元类之间的关系不能传递，不能继承！</strong></p>
+<h2 id="第五节-常量对象、常量成员函数和常引用"><a href="#第五节-常量对象、常量成员函数和常引用" class="headerlink" title="第五节 常量对象、常量成员函数和常引用"></a>第五节 常量对象、常量成员函数和常引用</h2><p><strong>1.**</strong>常量成员函数<strong> 如果不希望某个对象值被改变，则定义该对象的时候可以在前面加const关键词。例如： class Sample{ private: int value; public: Sample(){} void SetValue(){} }; const Sample Obj;//常量对象 Obj.SetValue();//错误。常量对象只能使用构造函数、析构函数和右const说明的函数（const方法） 在类的成员函数说明后面加const关键字，则该成员函数为常量成员函数。常量成员函数执行期间不应修改其作用的对象。因此，在常量成员函数中不能修改成员变量的值（静态成员变量除外），也不能调用同类的非常量成员函数（静态成员函数除外）。 如下： class Sample{ public: int value; void func(){}; Sample(){} void GetValue() const; }; void Sample::GetValue() const{ value = 0;//wrong func();//wrong } int main(){ const Sample o; o.value = 100;//err常量对象不可被修改 o.func();//常量对象上面不能执行非常量成员函数 o.GetValue();//OK常量对象可以执行常量成员函数 return 0; } 需要注意，在Dev C++中，要为Sameple类编写无参构造函数才可以，在VS中不需要。 </strong>2.<strong>**常量成员函数的重载</strong> 两个成员函数，名字和参数表都一样，但是一个是const，一个不是，算重载。 <strong>3.**</strong>常引用** 引用前面加const称为常引用。不能通过常引用修改其引用的变量。 可以用对象的引用作为参数，如： class Sample{ }; void PrintfObj(Sample &amp; o){ } 对象引用作为函数的参数有一定风险性，若函数中不小心修改了形参o，则实参也跟着变。为了避免这个问题，我们可以用对象的常引用作为参数，这样就能确保不会出现无意中更改o值的语句了。 class Sample{ }; void PrintfObj(const Sample &amp; o){ }</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/09/11/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e8-af-be-e7-a8-8b-e7-ac-94-e8-ae-b0-ef-bc-88-e7-ac-ac-e5-9b-9b-e5-91-a8-ef-bc-89/" class="pre-post btn btn-default" title="C++面向对象程序设计课程笔记（第四周）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第四周）</span>
+        </a>
+    
+    
+        <a href="/2018/09/03/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e8-af-be-e7-a8-8b-e7-ac-94-e8-ae-b0-ef-bc-88-e7-ac-ac-e4-ba-8c-e5-91-a8-ef-bc-89/" class="next-post btn btn-default" title="C++面向对象程序设计课程笔记（第二周）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第二周）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一节-this指针"><span class="toc-text">第一节 this指针</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二节-静态成员变量"><span class="toc-text">第二节 静态成员变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三节-成员对象和封闭类"><span class="toc-text">第三节 成员对象和封闭类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四节-友元（friends）"><span class="toc-text">第四节 友元（friends）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五节-常量对象、常量成员函数和常引用"><span class="toc-text">第五节 常量对象、常量成员函数和常引用</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

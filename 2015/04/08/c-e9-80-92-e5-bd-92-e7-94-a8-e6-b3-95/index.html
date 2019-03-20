@@ -1,0 +1,302 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="很多初学者往往对递归迷惑不解，也在这上面花了不少的时间。其实教材上的例子很经典，只是它说的有一些唠叨了。初学者会看的头大的。编程是解决问题的，而现实中很多的问题都是比较简单的，没有象汉诺塔那么复...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++递归用法 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++递归用法">
+            
+	            C++递归用法
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2015/04/08</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>1442</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>很多初学者往往对递归迷惑不解，也在这上面花了不少的时间。其实教材上的例子很经典，只是它说的有一些唠叨了。初学者会看的头大的。编程是解决问题的，而现实中很多的问题都是比较简单的，没有象汉诺塔那么复杂。我们也不必追究递归到底是怎样实现的，我们只是要会用递归，会用递归来为我们解决一些问题，这就行了。 首先来看一个例子： 有一个Febonacci序列： 1,1,2,3,5,8,13,,21,34…….. 它的问题是：求这个序列中的第N个数。 由于它的函数原形是：f(N)=f(n-1)+f(n-2) 这用递归很容易就可以写出代码来，一点都不费事： int Febc(int n) { if(n&lt;3) return (1); else return (Febc(n-1)+Febc(n-2)); } 噢<del>~</del>也许你会说递归真是太简单了，简直就是一个数学模型嘛，呵呵。 其实，递归函数的工作过程就是自己调用自己。有一些问题用递归就很容易解决，简单的你自己都会吃惊。 我们做事情，一般都是从头开始的，而递归却是从末尾开始的。比如上面的函数吧，当n&gt;3时，它显然只能求助于n-1,n-2。而(n-1)&gt;2,(n-2)&gt;2时，它们就求助于：(n-1)-1,(n-1)-2;(n-2)-1,(n-2)-2;然后··············直到（n-k)&lt;3,(n-k-1)&lt;3时，函数Febc终于有了返回值1 了，它再从头开始计算，然后一直算到n 为止。 通过上面的例子，我们知道递归一定要有一个停止的条件，否则递归就不知道停止了。在上面的例子中， if(n&lt;3) return (1); 就是停止的条件。 然而，使用递归的代价是十分巨大的：它会消耗大量的内存！！递归循环时它用的是堆栈，而堆栈的资源是十分有限的。上面的例子你只能用一个很小的n值。如果n=20，即Febc(20)的话，它将调用Febc(N)函数10000多次！！！而上面一个例子用循环也是十分容易写的： /*using turboc2*/ int febc(int); main() { int n; scanf(“%d”,&amp;n); febc(N); } int febc(int n) { int a[3],i; a[0]=a[1]=a[2]=1; for(i=3;i&lt;=n;i++) a[i%3]=a[(i+1)%3]+a[(i+2)%3]; /<em>实现 Febc(I)=Febc(i-1)+Febc(i-2)</em>/ printf(“\n%d\n”,a[n%3]); } 有兴趣者不妨输入一个较大的n值，然后比较比较这二个函数计算的速度。当然， 如果你使用的n太大的话，递归可能发生错误。如果死机了可别骂我哦~~~ 我已经提醒过你了 ：） 现在我们再来看看一个求从1 加到100的循环： /*turboc2*/ main() { int i,n; for(i=1;i&lt;101;i++) n+=i; } 这很简单没什么可说的。 但是，你能不能写出相应的递归函数呢？ 下面就是递归（请注意了，这种做法不推荐！！ 我只是为了说明问题才这么写的。） /*using Turboc2*/ int a=0; int account(int); main() { account(100); printf(“%d”,a); } int account(int i) { if(i==1) return 1; /<em>停止条件</em>/ else return (n+f(n-1)); /<em>此句有问题</em>/ } 在C/C++的问题中，我曾经回答过这样的一个问题： 若一头小母牛，从出生起第四个年头开始每年生一头母牛，按此规律，第n年时有多少头母牛？ 请问如何用递归涵数求此问题？ 先写出函数表达式：f(N)=f(n-1)+f(n-3) 为什么f(N)=f(n-1)+f(n-3)呢，请看： f(N)-f(n-1)=f(n-3) 因为第n年要比n-1年多的牛，都是大于三岁的牛生的小牛，而f(n-3)正是那些在n年大于三岁的牛，然后它们在第n年生下相同数量的小牛。（请用BorlandC++3.1或其他C++编译器） #include&lt;iostream.h&gt; #include&lt;conio.h&gt; int cattle(int,int); void main() { int ct,n; cout&lt;&lt;”Please input the original cattle number:”&lt;&lt;endl; /<em>输入起始牛的数量</em>/ cin&gt;&gt;ct; cout&lt;&lt;”Input how many years it past:”&lt;&lt;endl; cin&gt;&gt;n; cout&lt;&lt;”You have “&lt;&lt;cattle(ct,n)&lt;&lt;” cattle now!”&lt;&lt;endl; getch(); } int cattle(int ct,int n) { if(n&lt;4) return (ct); /<em>停止条件</em>/ else return (cattle(ct,n-1)+cattle(ct,n-3)); /<em>实现递归</em>/ } 怎么样，很简单吧。 会用循环求解吗？ 递归在实际的编程中并不常用，但是在某些情况下，它是非常强有力而漂亮的工具。掌握它的原理时会十分有用的。 转自：   其它参考： 1、  <a href="http://www.nbrkb.net/lwt/jsjsj/sjjg&amp;sf/c++dgyf.htm" target="_blank" rel="noopener">http://www.nbrkb.net/lwt/jsjsj/sjjg&amp;sf/c++dgyf.htm</a> 2、  <a href="http://www.e-van.net/c-prog-hannuo.html" target="_blank" rel="noopener">http://www.e-van.net/c-prog-hannuo.html</a> 3、  <a href="http://www.cppblog.com/haosola/archive/2009/11/17/101163.aspx" target="_blank" rel="noopener">http://www.cppblog.com/haosola/archive/2009/11/17/101163.aspx</a> 4、  <a href="http://www.cnblogs.com/eslizn/archive/2011/05/29/2062043.html" target="_blank" rel="noopener">http://www.cnblogs.com/eslizn/archive/2011/05/29/2062043.html</a> 5、  <a href="http://edu.3gmgc.com/tuwenjiaocheng/C__/diwuzhang_hanshuyuyuchuli/455.html" target="_blank" rel="noopener">http://edu.3gmgc.com/tuwenjiaocheng/C__/diwuzhang_hanshuyuyuchuli/455.html</a> 6、  <a href="http://www.asp119.com/program/ccc/2010-09-25/570.html" target="_blank" rel="noopener">http://www.asp119.com/program/ccc/2010-09-25/570.html</a> 7、  <a href="http://comapp.ecjtu.jx.cn/view.php?id=45" target="_blank" rel="noopener">http://comapp.ecjtu.jx.cn/view.php?id=45</a> 8、  <a href="http://webservices.ctocio.com.cn/35/11398035.shtml" target="_blank" rel="noopener">http://webservices.ctocio.com.cn/35/11398035.shtml</a> 9、  <a href="http://www.gzu521.com/campus/article/it/200701/139273.htm" target="_blank" rel="noopener">http://www.gzu521.com/campus/article/it/200701/139273.htm</a> 转自：<a href="http://bbs.ikaka.com/showtopic-664019.aspx" target="_blank" rel="noopener">http://bbs.ikaka.com/showtopic-664019.aspx</a></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2015/04/08/e7-ac-ac-e5-9b-9b-e7-ab-a0-ef-bc-9a-e7-b1-bb-e4-b8-8e-e5-af-b9-e8-b1-a1-ef-bc-88-e4-b8-89-ef-bc-89-e6-9e-90-e6-9e-84-e5-87-bd-e6-95-b0/" class="pre-post btn btn-default" title="第四章：类与对象（三）析构函数">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">第四章：类与对象（三）析构函数</span>
+        </a>
+    
+    
+        <a href="/2015/04/08/e7-ac-ac-e5-9b-9b-e7-ab-a0-ef-bc-9a-e7-b1-bb-e4-b8-8e-e5-af-b9-e8-b1-a1-ef-bc-88-e4-ba-8c-ef-bc-89-e6-9e-84-e9-80-a0-e5-87-bd-e6-95-b0/" class="next-post btn btn-default" title="第四章：类与对象（二）构造函数">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">第四章：类与对象（二）构造函数</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

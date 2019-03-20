@@ -1,0 +1,470 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="题目1 二叉树的镜像题目描述操作给定的二叉树，将其变换为源二叉树的镜像。
+题目解析一定要考虑到两种特殊情况：
+
+二叉树为空
+二叉树的左子树为空且二叉树的右子树为空
+
+设计代码的时候一定要考虑代码...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>《剑指Offer》题目解析（6） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="《剑指Offer》题目解析（6）">
+            
+	            《剑指Offer》题目解析（6）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/05</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="题目1-二叉树的镜像"><a href="#题目1-二叉树的镜像" class="headerlink" title="题目1 二叉树的镜像"></a>题目1 二叉树的镜像</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>操作给定的二叉树，将其变换为源二叉树的镜像。</p>
+<h3 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h3><p>一定要考虑到两种特殊情况：</p>
+<ul>
+<li>二叉树为空</li>
+<li>二叉树的左子树为空且二叉树的右子树为空</li>
+</ul>
+<p>设计代码的时候一定要考虑代码的鲁棒性。所以需要设计到两个if语句，如果不在这两种特殊情况里面，再去新建一个TreeNode，然后交换进行做镜像。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>void Mirror(TreeNode *pRoot) {
+    if(pRoot == NULL)//特殊情况1
+        return;
+    //特殊情况2
+    if((pRoot-&gt;left == NULL)&amp;&amp;(pRoot-&gt;right == NULL))
+        return ;
+    TreeNode *tmp;
+    tmp=pRoot-&gt;left;
+    pRoot-&gt;left=pRoot-&gt;right;
+    pRoot-&gt;right=tmp;
+    if(pRoot-&gt;left)
+        Mirror(pRoot-&gt;left);
+    if(pRoot-&gt;right)
+        Mirror(pRoot-&gt;right);
+}
+</code></pre><h2 id="题目2-顺时针打印矩阵"><a href="#题目2-顺时针打印矩阵" class="headerlink" title="题目2 顺时针打印矩阵"></a>题目2 顺时针打印矩阵</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字，例如，如果输入如下4 X 4矩阵： 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 则依次打印出数字1,2,3,4,8,12,16,15,14,13,9,5,6,7,11,10.</p>
+<h3 id="题目解析-1"><a href="#题目解析-1" class="headerlink" title="题目解析"></a>题目解析</h3><p>用左上和右下的坐标定位出一次要旋转打印的数据，一次旋转打印结束后，往对角分别前进和后退一个单位。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre><code>vector&lt;int&gt; printMatrix(vector&lt;vector&lt;int&gt; &gt; matrix) {
+    vector&lt;int&gt; result;
+    int row=matrix.size();
+    int col=matrix[0].size();
+    if(row==0||col==0)
+        return result;
+    int left = 0,right = col-1,top=0,end =row-1;
+    while(left&lt;=right &amp;&amp; top&lt;= end)
+    {
+        //第一行从左往右
+        for(int i=left;i&lt;=right;i++)
+            result.push_back(matrix[top][i]);
+        //最右侧从上往下
+        if(top&lt;end)
+        {
+            for(int i=top+1;i&lt;=end;i++)
+                result.push_back(matrix[i][right]);
+        }
+        //最下侧从右往左
+        if(top&lt;end &amp;&amp; left&lt;right)
+        {
+            for(int i=right-1;i&gt;=left;i--)
+                result.push_back(matrix[end][i]);
+        }
+        //最左侧从下往上
+        if(top+1&lt;end &amp;&amp; left&lt;right)
+        {
+            for(int i=end-1;i&gt;=top+1;i--)
+                result.push_back(matrix[i][left]);
+        }
+        left++;
+        right--;
+        top++;
+        end--;
+    }
+    return result;
+}
+</code></pre><h2 id="题目3-包含min函数的栈"><a href="#题目3-包含min函数的栈" class="headerlink" title="题目3 包含min函数的栈"></a>题目3 包含min函数的栈</h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>定义栈的数据结构，请在该类型中实现一个能够得到栈中所含最小元素的min函数（时间复杂度应为O（1））。</p>
+<h3 id="题目解析-2"><a href="#题目解析-2" class="headerlink" title="题目解析"></a>题目解析</h3><p>我们需要一个辅助堆栈来得到我们所需要数据，因为只有一个堆栈的话，我们没办法比较得出最小值。加入我们的数据压入顺序是3,4,2,1。那么可以这样：</p>
+<p>步骤</p>
+<p>操作</p>
+<p>数据栈</p>
+<p>辅助栈</p>
+<p>最小值</p>
+<p>1</p>
+<p>压入3</p>
+<p>3</p>
+<p>3</p>
+<p>3</p>
+<p>2</p>
+<p>压入4</p>
+<p>3,4</p>
+<p>3,3</p>
+<p>3</p>
+<p>3</p>
+<p>压入2</p>
+<p>3,4,2</p>
+<p>3,3,2</p>
+<p>2</p>
+<p>4</p>
+<p>压入1</p>
+<p>3,4,2,1</p>
+<p>3,3,2,1</p>
+<p>1</p>
+<p>5</p>
+<p>弹出</p>
+<p>3,4,2</p>
+<p>3,3,2</p>
+<p>2</p>
+<p>6</p>
+<p>弹出</p>
+<p>3,4</p>
+<p>3,3</p>
+<p>3</p>
+<p>7</p>
+<p>压入0</p>
+<p>3,4,0</p>
+<p>3,3,0</p>
+<p>0</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><pre><code>stack&lt;int&gt; stack1,stack2;
+    void push(int value) {
+        stack1.push(value);
+        if(stack2.empty()||value&lt;stack2.top())
+            stack2.push(value);
+        else
+        {
+            stack2.push(stack2.top());
+        }
+    }
+
+    void pop() {
+
+        stack2.pop();
+        stack1.pop();
+
+    }
+
+    int top() {
+        return stack1.top();       
+    }
+
+    int min() {
+        return stack2.top();
+    }
+</code></pre><h2 id="题目4-栈的压入、弹出序列"><a href="#题目4-栈的压入、弹出序列" class="headerlink" title="题目4 栈的压入、弹出序列"></a>题目4 栈的压入、弹出序列</h2><h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入两个整数序列，第一个序列表示栈的压入顺序，请判断第二个序列是否可能为该栈的弹出顺序。假设压入栈的所有数字均不相等。例如序列1,2,3,4,5是某栈的压入顺序，序列4,5,3,2,1是该压栈序列对应的一个弹出序列，但4,3,5,1,2就不可能是该压栈序列的弹出序列。（注意：这两个序列的长度是相等的）</p>
+<h3 id="题目解析-3"><a href="#题目解析-3" class="headerlink" title="题目解析"></a>题目解析</h3><p>这个程序的代码思路跟我们手工做题的思路一样，所以也许不是复杂度最低的算法，它的思路是这样的： 1. 新建一个vector数组temp； 2. 然后将pushV的最头上的元素压入temp； 3. 判断该元素是否和popV中最上面的元素（即要被弹出的元素）是否相等，若不相等正则去执行第2步，直到找到相等的，然后temp里面的元素弹出； 4. 然后开始第2个元素的比较，步骤重复2和3，直到所有的完成。</p>
+<h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><pre><code>bool IsPopOrder(vector&lt;int&gt; pushV,vector&lt;int&gt; popV) {
+    bool result =false;
+    stack&lt;int&gt;temp;
+    int Index = 0;
+    for(int i=0;i&lt;pushV.size();i++)
+    {
+        temp.push(pushV[i]);
+        while(!temp.empty() &amp;&amp; temp.top()==popV[Index])
+        {
+            temp.pop();
+            ++Index;
+        }
+    }
+    result=temp.empty();
+    return result;
+
+}
+</code></pre><h2 id="题目5-从上往下打印二叉树"><a href="#题目5-从上往下打印二叉树" class="headerlink" title="题目5 从上往下打印二叉树"></a>题目5 从上往下打印二叉树</h2><h3 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h3><p>从上往下打印出二叉树的每个结点，同层结点从左至右打印。</p>
+<h3 id="题目解析-4"><a href="#题目解析-4" class="headerlink" title="题目解析"></a>题目解析</h3><p>这就是<strong>层序遍历</strong>。用层序遍历的法子，借助队列来实现。其实广度优先搜索也借鉴了层序遍历的思想。</p>
+<h3 id="代码-4"><a href="#代码-4" class="headerlink" title="代码"></a>代码</h3><pre><code>vector&lt;int&gt; PrintFromTopToBottom(TreeNode* root) {
+       vector&lt;int&gt; result;
+       queue&lt;TreeNode*&gt; q;
+       q.push(root);//把根结点push进去
+       if(root == NULL)//稳健性
+           return result;
+       while(!q.empty())
+       {
+           root=q.front();//获取到队列q的头元素
+           q.pop();
+           result.push_back(root-&gt;val);//把头元素的值送入result
+           if(root-&gt;left)//向左遍历
+               q.push(root-&gt;left);
+           if(root-&gt;right)//向右遍历
+               q.push(root-&gt;right);
+       }
+       return result;
+   }
+</code></pre>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/03/05/e3-80-8a-e5-89-91-e6-8c-87offer-e3-80-8b-e9-a2-98-e7-9b-ae-e8-a7-a3-e6-9e-90-ef-bc-887-ef-bc-89/" class="pre-post btn btn-default" title="《剑指Offer》题目解析（7）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">《剑指Offer》题目解析（7）</span>
+        </a>
+    
+    
+        <a href="/2019/03/04/e3-80-8a-e5-89-91-e6-8c-87offer-e3-80-8b-e9-a2-98-e7-9b-ae-e8-a7-a3-e6-9e-90-ef-bc-885-ef-bc-89/" class="next-post btn btn-default" title="《剑指Offer》题目解析（5）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">《剑指Offer》题目解析（5）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目1-二叉树的镜像"><span class="toc-text">题目1 二叉树的镜像</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目2-顺时针打印矩阵"><span class="toc-text">题目2 顺时针打印矩阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析-1"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-1"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目3-包含min函数的栈"><span class="toc-text">题目3 包含min函数的栈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-2"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析-2"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-2"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目4-栈的压入、弹出序列"><span class="toc-text">题目4 栈的压入、弹出序列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-3"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析-3"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-3"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目5-从上往下打印二叉树"><span class="toc-text">题目5 从上往下打印二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-4"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析-4"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-4"><span class="toc-text">代码</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

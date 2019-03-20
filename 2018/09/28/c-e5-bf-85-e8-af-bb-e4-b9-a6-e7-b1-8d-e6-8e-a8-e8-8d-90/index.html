@@ -1,0 +1,460 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="本文内容来自国外著名编程问答网站Stackoverflow评选的C++推荐书单！推荐大家看原版英文，但这些书大部分也都有中文版！ 本文全文转载自http://bestcbooks.com/rec...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++必读书籍推荐 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++必读书籍推荐">
+            
+	            C++必读书籍推荐
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/09/28</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>本文内容来自国外著名编程问答网站Stackoverflow评选的C++推荐书单！推荐大家看原版英文，但这些书大部分也都有中文版！ 本文全文转载自<a href="http://bestcbooks.com/recommended-cpp-books/，感谢原作者对于本篇文章的整理" target="_blank" rel="noopener">http://bestcbooks.com/recommended-cpp-books/，感谢原作者对于本篇文章的整理</a>~</p>
+<h2 id="手册类-–-所有级别"><a href="#手册类-–-所有级别" class="headerlink" title="手册类 – 所有级别"></a>手册类 – 所有级别</h2><ul>
+<li><strong>C++程序设计语言(The C++ Programming Language) 作者：Bjarne Stroustrup(更新到C++11)</strong>C++之父写的经典C++书籍。内容覆盖C++的所有东西，从语言内核到标准库、编程范式和语言哲学(这使得最新版突破1千页)。2013年5月出版的第四版涵盖了C++11的内容。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/the-cpp-programming-language-se-zh" target="_blank" rel="noopener">第三版（中文）</a>、<a href="http://bestcbooks.com/the-cpp-programming-language-4th" target="_blank" rel="noopener">第四版（英文）</a></p>
+</blockquote>
+<ul>
+<li><strong>C++标准程序库(C++ Standard Library Tutorial and Reference) 作者：Nicolai Josuttis (更新到C++11)</strong> 这本书是C++标准库（STL）的引导和手册。 2012年4月发行的第二版涵盖了C++11。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/the-cpp-standard-library" target="_blank" rel="noopener">第一版（中文）</a>、<a href="http://pan.baidu.com/s/11eX0Q" target="_blank" rel="noopener">第一版（英文）</a>、<a href="http://bestcbooks.com/the-cpp-standard-library-2-en" target="_blank" rel="noopener">第二版（英文）</a></p>
+</blockquote>
+<ul>
+<li><strong>The C++ IO Streams and Locales 作者：Angelika Langer and Klaus Kreft</strong> 除了这本书，市面上基本没有讲解streams and locales的书。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://pan.baidu.com/s/1cc38H" target="_blank" rel="noopener">96年版（英文）</a></p>
+</blockquote>
+<h4 id="C-11手册"><a href="#C-11手册" class="headerlink" title="C++ 11手册:"></a>C++ 11手册:</h4><ul>
+<li><strong>The C++ Standard (INCITS/ISO/IEC 14882-2011) 作者：C++标准委员会</strong> 这当然是C++最权威的标准。要注意的是，C++标准是提供给有足够精力和时间的专家级用户研究用的。国内估计很少有人看，在国外一般它的第一个发行版也非常贵($300+ US)，国外有人会买现在价值$30US的电子发行版。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://pan.baidu.com/s/1Bpe" target="_blank" rel="noopener">N3225（英文）</a></p>
+</blockquote>
+<ul>
+<li><strong>Overview of the New C++ (C++11/14) 作者：Scott Meyers(更新到C++11/C++14)</strong> 这是Scott Meyers开设的一个为期3天的C++课程的教材。Scott Meyers是C++社区最受尊敬的作者之一。虽然内容比较简短，但质量极高。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://pan.baidu.com/s/1sr4J6" target="_blank" rel="noopener">2011年版（英文）</a></p>
+</blockquote>
+<h2 id="初级"><a href="#初级" class="headerlink" title="初级"></a>初级</h2><h3 id="入门"><a href="#入门" class="headerlink" title="入门"></a>入门</h3><p>如果你是一个无编程经验的C++初学者，或者有其它语言经验的C++初学者，那强烈推荐下面的书籍。</p>
+<ul>
+<li><strong>C++ Primer <a href="http://bestcbooks.com/recommended-cpp-books/#fn:1" target="_blank" rel="noopener">1</a> 作者：Stanley Lippman, Josée Lajoie, and Barbara E. Moo (更新到C++11)</strong> 近1千页，本书透彻的介绍了C++，以浅显和详细的方式讲到C++语言差不多所有内容。2012年8月发行的第五版包含C++11的内容。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://pan.baidu.com/s/1oTIen" target="_blank" rel="noopener">第三版（中文）</a>、<a href="http://bestcbooks.com/cpp-primer-4" target="_blank" rel="noopener">第四版（中文）</a>、<a href="http://bestcbooks.com/cpp-primer-5th" target="_blank" rel="noopener">第五版（英文版）</a></p>
+</blockquote>
+<ul>
+<li><strong>Accelerated C++ 作者：Andrew Koenig and Barbara Moo</strong> 这本书覆盖了和C++ Primer一样的内容，但厚度只有C++ Primer的四分之一。这主要是因为本书面向的不是编程的初学者，而是有其它语言经验的C++初学者。对于初学者，本书学习曲线稍显陡峭，但对于能克服这一点的学习者而言，它确实非常紧凑的介绍了C++这门语言。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/accelerated-cpp" target="_blank" rel="noopener">中文版</a>，<a href="http://pan.baidu.com/s/1sr53X" target="_blank" rel="noopener">英文版</a></p>
+</blockquote>
+<ul>
+<li><strong>C++编程思想（Thinking in C++) 作者：Bruce Eckel</strong> 共两卷，第二卷主要将标准库，但还是不错的。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/thinking-in-cpp-v1" target="_blank" rel="noopener">第二版V1（英文版）</a>、<a href="http://bestcbooks.com/thinking-in-cpp-v2" target="_blank" rel="noopener">第二版V2（英文版）</a>、<a href="http://bestcbooks.com/thinking-in-cpp-volume-1-zh" target="_blank" rel="noopener">第二版V1（中文版）</a>、<a href="http://bestcbooks.com/thinking-in-cpp-volume-2-zh" target="_blank" rel="noopener">第二版V2（中文版）</a></p>
+</blockquote>
+<ul>
+<li><strong>C++程序设计原理与实践 （Programming: Principles and Practice Using C++ ）作者：Bjarne Stroustrup</strong> C++之父写的C++入门书籍。本书面向没有编程经验的初学者，但相信有编程经验的人也能从本书中学到不少东西。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/principles-and-practice-using-cpp" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<h3 id="最实用"><a href="#最实用" class="headerlink" title="最实用"></a>最实用</h3><ul>
+<li><strong>Effective C++ 作者：Scott Meyers</strong> 本书以瞄准成为C++程序员必读的第二本书籍而写，Scott Meyers成功了。早期的版本面向从C语言转过来的程序员。第三版修改为面向从类似Jave等语言转来的程序员。内容覆盖了50多个很容易记住的条款，每个条款深入浅出（并且有趣）讲到了你可能没有考虑过的C++规则。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://pan.baidu.com/s/1h2km6" target="_blank" rel="noopener">第二版（英文）</a>、<a href="http://bestcbooks.com/effective-cpp-3-en" target="_blank" rel="noopener">第三版（英文）</a>、<a href="http://bestcbooks.com/effective-cpp-3" target="_blank" rel="noopener">第三版（中文)</a></p>
+</blockquote>
+<ul>
+<li><strong>Effective STL 作者：Scott Meyers</strong> 讲解方式和Effective类似，但内容主要面向于STL。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/efeffective-stl" target="_blank" rel="noopener">中文版</a>，<a href="http://bestcbooks.com/effective-stl-en" target="_blank" rel="noopener">英文版</a></p>
+</blockquote>
+<h3 id="中级"><a href="#中级" class="headerlink" title="中级"></a>中级</h3><ul>
+<li><strong>More Effective C++ 作者：Scott Meyers</strong> 更多（深入）关于C++的规则。没有前一本Effective C++重要。但同样值得一读。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/more-effective-cpp" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>Exceptional C++ 作者：Herb Sutter</strong> 讲解方式为提出并解决一系列的C++难题。本书极其透彻的讲解了C++资源管理、异常安全和RAII。同时覆盖了一些较为深入的技术，比如：编译防火墙（pimpl idiom)、名字查找规则,、好的类设计和C++内存模型。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/exceptional-cpp-zh" target="_blank" rel="noopener">中文版</a>，<a href="http://bestcbooks.com/exceptional-cpp" target="_blank" rel="noopener">英文版</a></p>
+</blockquote>
+<ul>
+<li><strong>More Exceptional C++ 作者：Herb Sutter</strong> 讲到了Exceptional C++没有涉及到的更高级的异常安全技术, 同时讨论了高效的C++ OOP方式和如何正确的使用STL。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/more-exceptional-cpp" target="_blank" rel="noopener">中文版</a>，<a href="http://bestcbooks.com/more-exceptional-cpp-en" target="_blank" rel="noopener">英文版</a></p>
+</blockquote>
+<ul>
+<li><strong>Exceptional C++ Style 作者：Herb Sutter</strong> 讨论了泛型编程、最优化和资源管理。本书出彩之处在于谈到了如何用非成员函数和单职责原则编写模块化的C++代码。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/exceptional-cpp-style" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>C++编程规范(C++ Coding Standards) 作者：Herb Sutter and Andrei Alexandrescu</strong> “编程规范”这里并不是”代码缩进要用几个空格”。这本书包含了101个例子、惯用法、缺陷，通过这些可以帮助你编写正确、清晰高效的C++代码。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/cpp-coding-standards" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>C++ 模板完全指南(C++ Templates: The Complete Guide)作者：David Vandevoorde and Nicolai M. Josuttis</strong> 本书是关于C++11之前的模板的。它覆盖了从非常基础到最高级的元编程知识，解释了模板工作原理的细节(概念和实现方式）。并且讨论了大量的缺陷。附录中包含关于ODR和重载的精彩总结。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/cpp-templates" target="_blank" rel="noopener">中文版</a>、<a href="http://ultra.sdk.free.fr/docs/DxO/C++%20Templates%20The%20Complete%20Guide.pdf" target="_blank" rel="noopener">英文版</a></p>
+</blockquote>
+<h3 id="高级"><a href="#高级" class="headerlink" title="高级"></a>高级</h3><ul>
+<li><strong>C++设计新思维-泛型编程与设计模式之应用(Modern C++ Design ) 作者：Andrei Alexandrescu</strong> 泛型编程鼻祖级书籍。本书先介绍了基于策略（policy-based)的设计、type lists 和泛型编程基础， 然后讲到了许多有用的设计模式(包括small object allocators, functors, factories, visitors, and multimethods) 如何被高效、模块化、清晰的泛型代码实现。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/modern-cpp-design" target="_blank" rel="noopener">中文版</a>、<a href="http://f3.tiera.ru/other/DVD-009/Alexandrescu_A._Modern_C++_Design[c]_Generic_Programming_and_Design_Patterns_Applied_(2001" target="_blank" rel="noopener">英文版</a>(en)(271s).pdf)</p>
+</blockquote>
+<ul>
+<li><strong>C++模板元编程(C++ Template Metaprogramming)作者：David Abrahams and Aleksey Gurtovoy</strong> 更多的是讲解boost::mpl，想要深入理解mpl的可以看一下。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://pan.baidu.com/s/1ECjHz" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>C++ Concurrency In Action 作者：Anthony Williams</strong> 这本书主要内容是C++11的并发支持，包括线程库、原子(atomics)库、内存模型、锁和互斥量。同时也讲解了开发和调试多线程程序的一些难题。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/cpp-concurrency-in-action" target="_blank" rel="noopener">英文版</a></p>
+</blockquote>
+<ul>
+<li><strong>Advanced C++ Metaprogramming 作者：Davide Di Gennaro</strong> 前C++11时代TMP技术的手册级书籍。本书更侧重于工程实践。里面有大量的可能几乎无人知道但很实用的技术写成的代码。本书可能比Alexandrescu的书更值得读。对于资深的开发者来说，这是一个学习C++暗角技术的绝佳机会，通常这些技术要通过资深的编程经历才能获取。</li>
+</ul>
+<blockquote>
+<p>电子书：没找到</p>
+</blockquote>
+<h3 id="经典-古老"><a href="#经典-古老" class="headerlink" title="经典 / 古老"></a>经典 / 古老</h3><p>注意: 下列书中的部分内容可能有些过时</p>
+<ul>
+<li><strong>C++的设计与演化(The Design and Evolution of C++ )作者：Bjarne Stroustrup</strong> 如果你想知道为什么C++是今天这个样子，那么这本书将给你答案。本书覆盖C++标准化之前的一切东西。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/the-design-and-evolution-of-cpp-zh" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>C++沉思录(Ruminations on C++) 作者：Andrew Koenig and Barbara Moo</strong> 本书不是为了讲解具体的C++技术细节，而是如何通过C++编写出色的OO代码。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/ruminations-on-cpp" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>Advanced C++ Programming Styles and Idioms 作者：James Coplien</strong> 讲解了一些C++特有的惯用法. 它确实是一本不错的书籍，如果时间闲暇也可一读。不过它确实很老了，可能有些不符合现代的C++。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/advanced-cpp" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>大规模C++程序设计（Large Scale C++ Software Design） 作者：John Lakos</strong> 本书介绍了如何管理大规模C++软件项目的技术。很值得一读，除了有些过时以外。它是在C++98以前写的，缺少了好多对大规模项目重要的特性（比如名字空间）。假如你工作在一个大规模的C++项目中，你可能想要读它, 不过你需要注意那些不适用甚至错误的技术点。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://pan.baidu.com/s/1mlSRh" target="_blank" rel="noopener">中文版</a></p>
+</blockquote>
+<ul>
+<li><strong>深度探索C++对象模型 (Inside the C++ Object Model ) 作者：Stanley Lippman</strong> 如果你想知道虚函数是如何实现、多继承时基类是如何在内存中排布的和所有影响性能的东西，那么这本书会给你答案。不过这本书有好多低级的拼写排版错误，英文原版错误更多，侯捷翻译的版本中注明和纠正了很多，但本书绝对值得一读，你将明白编译器如何实现C++的对象模型。</li>
+</ul>
+<blockquote>
+<p>电子书：<a href="http://bestcbooks.com/inside-the-cpp-object-model-zh" target="_blank" rel="noopener">中文版</a>、<a href="http://bestcbooks.com/inside-the-cpp-object-model" target="_blank" rel="noopener">英文版</a></p>
+</blockquote>
+<hr>
+<ol>
+<li>不要和 C++ Primer Plus (Stephen Prata)搞混了。</li>
+</ol>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/10/18/c-primer-plus-ef-bc-88-e7-ac-ac-e4-ba-94-e7-89-88-ef-bc-89chapter5-e7-bc-96-e7-a8-8b-e9-a2-98-e6-95-b4-e7-90-86/" class="pre-post btn btn-default" title="C++ Primer Plus（第五版）第5章编程题答案">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第5章编程题答案</span>
+        </a>
+    
+    
+        <a href="/2018/09/23/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e8-af-be-e7-a8-8b-e7-ac-94-e8-ae-b0-ef-bc-88-e7-ac-ac-e5-8d-81-e5-91-a8-ef-bc-89/" class="next-post btn btn-default" title="C++面向对象程序设计课程笔记（第十周）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第十周）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#手册类-–-所有级别"><span class="toc-text">手册类 – 所有级别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#C-11手册"><span class="toc-text">C++ 11手册:</span></a></li></ol></li></ol><li class="toc-item toc-level-2"><a class="toc-link" href="#初级"><span class="toc-text">初级</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#入门"><span class="toc-text">入门</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#最实用"><span class="toc-text">最实用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#中级"><span class="toc-text">中级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#高级"><span class="toc-text">高级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#经典-古老"><span class="toc-text">经典 / 古老</span></a></li></ol></li>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

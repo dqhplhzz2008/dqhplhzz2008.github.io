@@ -1,0 +1,319 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="第一节 关联容器set/multiset/map/multimap 内部元素有序排列，新元素插入的位置决定于它的值，查找速度快。 除了各容器都有的函数外，还支持以下成员函数： find: 查找等...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++面向对象程序设计课程笔记（第九周）（上） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++面向对象程序设计课程笔记（第九周）（上）">
+            
+	            C++面向对象程序设计课程笔记（第九周）（上）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/09/21</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="第一节-关联容器"><a href="#第一节-关联容器" class="headerlink" title="第一节 关联容器"></a>第一节 关联容器</h2><p>set/multiset/map/multimap 内部元素有序排列，新元素插入的位置决定于它的值，查找速度快。 除了各容器都有的函数外，还支持以下成员函数： find: 查找等于某个值 的元素(x小于y和y小于x同时不成立即为相等) lower_bound : 查找某个下界 upper_bound : 查找某个上界 equal_range : 同时查找上界和下界 count :计算等于某个值的元素个数(x小于y和y小于x同时不成立即为相等) insert: 用以插入一个元素或一个区间</p>
+<h2 id="第二节-set和multiset"><a href="#第二节-set和multiset" class="headerlink" title="第二节 set和multiset"></a>第二节 set和multiset</h2><p><strong>预备知识：**</strong>pair<strong>**模板</strong> template<class \_t1, class \_t2> struct pair{ typedef _T1 first_type; typedef _T2 second_type; _T1 first; _T2 second; pair():first(),second(){}//如果first和second是对象的话，就用无参构造函数来初始化 pair(const _T1&amp;__a,const _T2&amp;__b):first(__a),second(__b){} //构造函数有两个静态变量__a和__b，分别用来初始化first和second template<class \_u1, class \_u2> pair(const pair&lt;_U1,_U2&gt;&amp;__p):first(__p.first),second(__p.second){} }; 第三个构造函数是一个函数模板，用以下例子来示例一下： pair&lt;int, int&gt; p(pair&lt;double, double&gt;(5.5,4.6)); //p.first = 5, p.second = 4 <strong>1.multiset</strong> template&lt;class Key, class Pred = less<key>, class A = allocator<key> &gt; class multiset {   …… }; 在这里面，Pred类型的变量决定了multiset中的元素“一个比另一个小”是怎么定义的。multiset运行过程中，比较两个元素x，y的大小的做法，就是生成一个Pred类型的变量，假定为op，若表达式op&lt;x,y&gt;返回值为true，则x比y小。<strong>Pred**</strong>的缺省值类型是<strong>**less<key></key></strong>。 less模板： template<class t> struct less : public binary_function&lt;T, T, bool&gt; { bool operator()(const T&amp; x, const T&amp; y) { return x &lt; y ; } const;   }; //less模板是靠 &lt; 来比较大小的 表2.1 multiset的成员函数</class></key></key></class></class></p>
+<p><strong>函数名</strong></p>
+<p><strong>作用</strong></p>
+<p>iterator find(const T &amp;val)</p>
+<p>在容器中查找值为val的元素，返回其迭代器。如果找不到，返回end()。</p>
+<p>iterator insert(const T &amp; val);</p>
+<p>将val插入到容器中并返回其迭代器。</p>
+<p>void insert( iterator first,iterator last);</p>
+<p>将区间[first,last)插入容器。</p>
+<p>int count(const T &amp; val);</p>
+<p>统计有多少个元素的值和val相等。</p>
+<p>iterator lower_bound(const T &amp; val);</p>
+<p>查找一个最大的位置it,使得[begin(),it)中所有的元素都比val小。（返回大于等于val的第一个数字的地址）</p>
+<p>iterator upper_bound(const T &amp; val);</p>
+<p>查找一个最小的位置it,使得[it,end())中所有的元素都比val大。（返回比val大的第一个数字的地址）</p>
+<p>pair&lt;iterator,iterator&gt;  equal_range(const T &amp; val);</p>
+<p>同时求得lower_bound和upper_bound。</p>
+<p>iterator erase(iterator it);</p>
+<p>删除it指向的元素，返回其后面的元素的迭代器(Visual studio 2010上如此，但是在C++标准和Dev C++中，返回值不是这样)。</p>
+<p><strong>（**</strong>1<strong><strong>）</strong></strong>multiset<strong>**的用法</strong> #include <set> using namespace std; class A {  }; int main()  { multiset<a> a; a.insert(A());//error } 主函数中第一句话没有什么问题，但是第二句话存在问题。因为multiset<a> a等价于multiset&lt;A, less<a>&gt; a，这样插入元素的时候，multiset会将插入元素同已有元素进行比较。由于a中的元素都是A类型的，插入的也是一个A类型的，所以需要对A类型的对象进行比较，这要求A的对象能用&lt;比较，即<strong>需要对**</strong>&lt;<strong>**进行重载</strong>。 例程： #include <iostream> #include <set> using namespace std; template<class t> void Print(T first, T last) { for(;first!=last;++first) cout&lt;&lt;*first&lt;&lt;” “; cout&lt;&lt; endl; } class A{ private: int n; public: A(int _n){n = _n;} friend bool operator&lt;(const A &amp;a1, const A &amp;a2){return a1.n&lt;a2.n;} friend ostream &amp; operator&lt;&lt;(ostream &amp; o, const A &amp;a2){o&lt;&lt;a2.n;return o;} friend class MyLess; }; struct MyLess{ bool operator ()(const A &amp; a1, const A &amp; a2)//按个位数比较 {return (a1.n%10)&lt;(a2.n%10);} }; typedef multiset<a> MSET1; typedef multiset&lt;A,MyLess&gt; MSET2;//MSET用MyLess::operator()比较大小 int main(){ const int SIZE = 6; A a[SIZE]={4,22,19,8,33,40}; MSET1 m1; m1.insert(a,a+SIZE); m1.insert(22); cout&lt;&lt;”1)”&lt;&lt;m1.count(22)&lt;&lt;endl;//output:1)2 cout&lt;&lt;”2)”&lt;&lt;Print(m1.begin(),m1.end());//output: 2)4 8 19 22 22 33 40 MSET1::iterator pp = m1.find(19); if(pp!=m1.end()) cout&lt;&lt;”found”&lt;&lt;endl; cout&lt;&lt;”3}”;cout&lt;&lt;*m1.lower_bound(22)&lt;&lt;”,”&lt;&lt;*m1.upper_bound(22)&lt;&lt;endl;//output:22 23 pp = m1.erase(m1.lower_bound(22),m1.upper_bound(22));//pp指向被删除元素的下一个元素 cout&lt;&lt;”4)”;Print(m1.begin(),m1.end());//输出4 8 19 33 40 cout&lt;&lt;”5)”;cout&lt;&lt;*p&gt;&gt;endl;//输出33 MSET2 m2; m2.insert(a,a+SIZE); cout&lt;&lt;”6)”;Print(m2.begin(),m2.end());//输出6)40 22 33 4 8 19 return 0; } 以上程序已弄明白，但是要多看看，理解下。 <strong>2.set</strong> template&lt;class Key, class Pred = less<key>, class A = allocator<key>&gt; class set{} 插入set中已有元素时，忽略插入。例程如下： #include <iostream> #include <set> using namespace std; int main() { typedef set<int>::iterator IT; int a[5] = { 3,4,6,1,2 }; set<int> st(a, a + 5); pair&lt;IT,bool&gt; result; result = st.insert(5); if (result.second) cout &lt;&lt; *result.first &lt;&lt; “inserted” &lt;&lt; endl; if (st.insert(5).second) cout &lt;&lt; *result.first &lt;&lt; endl; else cout &lt;&lt; *result.first &lt;&lt; “already exists” &lt;&lt; endl; pair&lt;IT, IT&gt;bounds = st.equal_range(4); cout &lt;&lt; *bounds.first &lt;&lt; “.” &lt;&lt; *bounds.second; system(“pause”); return 0; } 定义的result是一个pair类型的对象，其里面的first是IT类型，second是bool类型（pair类定义见本节的预备知识）。下面得到的result对象里面的IT就是迭代器指向5所在位置，而second的值为true（因为插入成功）。 if (st.insert(5).second)这句话实际上是先执行了st.insert(5)之后，判断其second值是false还是true。由于前面已经插入了5，所以这里肯定插入不成功，所以second肯定是false。  </int></int></set></iostream></key></key></a></class></set></iostream></a></a></a></set></p>
+<h2 id="第三节-map和multimap"><a href="#第三节-map和multimap" class="headerlink" title="第三节 map和multimap"></a>第三节 map和multimap</h2><p><strong>1.multimap</strong> template&lt;class Key, class T, class Pred = less<key>, class A = allocator<t>&gt; class multimap{ typedef pair<const key, t>value_type; };//Key代表关键字的类型 multimap中的元素由 &lt;关键字,值&gt;组成，每个元素是一个pair对象，关键字就是first成员变量,其类型是Key。 multimap 中允许多个元素的关键字相同。元素按照first成员变量从小到大排列，缺省情况下用 less<key> 定义关键字的“小于”关系。 例程： #include <iostream> #include <map> using namespace std; int main() { typedef multimap&lt;int, double, less<int>&gt; mmid; mmid pairs; cout &lt;&lt; “1)” &lt;&lt; pairs.count(15) &lt;&lt; endl; pairs.insert(mmid::value_type(15, 2.7));//typedef pair<const key, t>value_type pairs.insert(mmid::value_type(15, 99.3)); cout &lt;&lt; “2)” &lt;&lt; pairs.count(15) &lt;&lt; endl;//求关键字等于15的个数，应该输出 pairs.insert(mmid::value_type(30, 111.11)); pairs.insert(mmid::value_type(10, 22.22)); pairs.insert(mmid::value_type(25, 33.333)); pairs.insert(mmid::value_type(20, 9.3)); for (mmid::const_iterator i = pairs.begin(); i != pairs.end(); ++i) cout &lt;&lt; “(“ &lt;&lt; i-&gt;first &lt;&lt; “,” &lt;&lt; i-&gt;second &lt;&lt; “)” &lt;&lt; “,”; cout &lt;&lt; endl; system(“pause”); return 0; } <strong>multimap**</strong>例题：一个学生成绩录入和查询系统。<strong>接受以下两种输入： Add name id score Query score name是个字符串，中间没有空格，代表学生姓名。id是个整数，代表学号 。score是个整数，表示分数。学号不会重复，分数和姓名都可能重复。 两种输入交替出现。第一种输入表示要添加一个学生的信息，碰到这种输入，就记下学生的姓名、id和分数。第二种输入表示要查询，碰到这种输入 ，就输出已有记录中分数比score低的最高分获得者的姓名、学号和分数。如果有多个学生都满足条件，就输出学号最大的那个学生的信息。如果找不到满足条件的学生，则输出“Nobody”。 输入样例： Add Jack 12  78 Query 78 Query 81 Add Percy 9  81 Add Marry 8  81 Query 82 Add Tom 11 79 Query 80 Query 81 输出果样例： Nobody Jack 12 78 Percy 9 81 Tom 11 79 Tom 11 79 程序如下： #include <iostream> #include <map> #include <string> using namespace std; class CStudent { public: struct  CInfo { int id; string name; }; int score; CInfo info; }; typedef multimap&lt;int, CStudent::CInfo&gt; MAP_STD;//pair模板只允许first和second两个参数 int main() { MAP_STD mp; CStudent st; string cmd; while(cin&gt;&gt;cmd){ if (cmd == “Add”) { cin &gt;&gt; st.info.name &gt;&gt; st.info.id &gt;&gt; st.score; mp.insert(MAP_STD::value_type(st.score, st.info)); //mp.insert(make_pair(st.scorest.info));也可以 } else if (cmd == “Query”) { int score; cin &gt;&gt; score; MAP_STD::iterator p = mp.lower_bound(score); if (p != mp.begin()) { –p; score = p-&gt;first;//比要查询分数低的最高分 MAP_STD::iterator maxp = p;//已经是比分数低的最高分的位置 int maxId = p-&gt;second.id; for (; p != mp.begin() &amp;&amp; p-&gt;first == score; –p) { if (p-&gt;second.id &gt; maxId) { maxp = p; maxId = p-&gt;second.id; } } if (p-&gt;first == score) { if (p-&gt;second.id &gt; maxId) { maxp = p; maxId = p-&gt;second.id; } } cout &lt;&lt; maxp-&gt;second.name &lt;&lt; “ “ &lt;&lt; maxp-&gt;second.id &lt;&lt; “ “ &lt;&lt; maxp-&gt;first &lt;&lt; endl; } else cout &lt;&lt; “Nobody” &lt;&lt; endl; } } system(“pause”); return 0; } </string></map></iostream></strong>2.map** template&lt;class Key, class T, class Pred = less<key>, class A = allocator<t> &gt; class map { typedef pair<const key, t> value_type; }; map中的元素都是pair模板类对象。关键字（first成员变量）各不相同。元素按照关键字从小到大排列，缺省情况下用less<key>，即“&lt;”定义“小于”。 3.map的[]成员函数 若pairs为map模版类的对象， pairs[key] 返回对关键字等于key的元素的值(second成员变量）的引用。若没有关键字为key的元素，则会往pairs里插入一个关键字为key的元素，其值用无参构造函数初始化，并返回其值的引用。 如： map&lt;int, double&gt; pairs; 则 pairs[50]=5;会修改paris中关键字为50的元素，使其值变为5。若不存在关键字等于50的元素，则插入此元素，并使其值变为5。</key></const></t></key></const></int></map></iostream></key></const></t></key></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/09/21/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e8-af-be-e7-a8-8b-e7-ac-94-e8-ae-b0-ef-bc-88-e7-ac-ac-e4-b9-9d-e5-91-a8-ef-bc-89-ef-bc-88-e4-b8-8b-ef-bc-89/" class="pre-post btn btn-default" title="C++面向对象程序设计课程笔记（第九周）（下）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第九周）（下）</span>
+        </a>
+    
+    
+        <a href="/2018/09/18/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e8-af-be-e7-a8-8b-e7-ac-94-e8-ae-b0-ef-bc-88-e7-ac-ac-e5-85-ab-e5-91-a8-ef-bc-89/" class="next-post btn btn-default" title="C++面向对象程序设计课程笔记（第八周）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第八周）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一节-关联容器"><span class="toc-text">第一节 关联容器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二节-set和multiset"><span class="toc-text">第二节 set和multiset</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三节-map和multimap"><span class="toc-text">第三节 map和multimap</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

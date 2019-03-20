@@ -1,0 +1,309 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="第一节 运算符重载的基本概念C++预定义的运算符，只能用于基本数据类型的运算。基本数据类型包括：整型、实型、字符型、逻辑型等。 在数学上，两个复数可以直接进行+、-运算，但是在C++中，直接将+...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++面向对象程序设计课程笔记（第四周） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++面向对象程序设计课程笔记（第四周）">
+            
+	            C++面向对象程序设计课程笔记（第四周）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/09/11</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="第一节-运算符重载的基本概念"><a href="#第一节-运算符重载的基本概念" class="headerlink" title="第一节 运算符重载的基本概念"></a>第一节 运算符重载的基本概念</h2><p>C++预定义的运算符，只能用于基本数据类型的运算。基本数据类型包括：整型、实型、字符型、逻辑型等。 在数学上，两个复数可以直接进行+、-运算，但是在C++中，直接将+、-用在复数对象是不允许的。 有时候也会希望让对象也能通过运算符进行运算，这样代码更简洁、更容易理解，这个时候就需要运算符的重载了。 运算符重载的目的是：扩展C++中提供的运算符的适用范围，使之能作用于对象。 它的实质是<strong>函数重载</strong>。可以重载为普通函数，也可以成员函数。 把含运算符的表达式转换成对运算符函数的调用，把运算符的操作数转换成运算符函数的参数。 运算符被多次重载时，根据实参的类型决定调用哪个运算符函数。 运算符重载的形式： 返回值类型 operator 运算符(形参表) { //函数体 } 如下例： class Complex{ public: double real,imag; Complex(double r = 0.0, double i = 0.0):real(r),imag(i){ } Complex operator-(const Complex &amp; c); }; Complex operator+(const Complex &amp;a, const Complex &amp;b){ return Complex(a.real + b.real,a.imag + b.imag);//返回一个临时对象 } Complex Complex::operator-(const Complex &amp;c) { return Complex(real - c.real, imag - c.imag);//返回一个临时对象 } int main(){ Complex a(4,4),b(1,1),c; c = a + b;//等价于c = operator+(a,b); cout &lt;&lt; c.real &lt;&lt;”,” &lt;&lt;c.imag &lt;&lt; endl; cout&lt;&lt;(a-b).real &lt;&lt; “,” &lt;&lt; (a-b).imag &lt;&lt; endl; //a-b等价于a.operator-(b) return 0; }注意：<strong>重载为成员函数时，参数个数为运算符目数减一（另一个就是我调用这个成员函数的对象）；重载为普通函数时，参数个数为运算符目数。</strong>  </p>
+<h2 id="第二节-赋值运算符的重载"><a href="#第二节-赋值运算符的重载" class="headerlink" title="第二节 赋值运算符的重载"></a>第二节 赋值运算符的重载</h2><p><strong>1.**</strong>赋值运算符“<strong><strong>=</strong></strong>”的重载<strong> 有时候希望赋值运算符两边的类型可以不匹配，此时就需要重载赋值运算符“=”。赋值运算符“=”</strong>只能重载为成员函数<strong>。 例程如下： class String{ private: char <em> str;//指向动态分配的数组 public: String():str(new char[1]){str[0] = 0;} const char </em> c_str(){return str;}; String &amp; operator = (const char*s); String::~String(){delete [] str;} }; String &amp;String::operator = (const char *s) { //重载=以使obj=”hello”能够成立 delete[] str; str = new char[strlen(s)+1]; strcpy(str,s); return * this; }   int main() { String s; s = “Good luck,”;//等价于s.operator=(“Good Luck,”); cout&lt;&lt;s.c_str()&lt;&lt;endl; //String s2 = “hello!”;//这条语句不注释掉就会出错 s = “Shenzhou 8!”;//等价于s.operator=(“Shenzhou 8!”); cout &lt;&lt;s.c_str()&lt;&lt;endl; return 0; } 对重载函数进行解释。首先把str给delete掉，然后给str重新分配一个空间，大小为s字符串的大小+1，然后把s的值复制给str，返回一个本身的引用。要注意，“=”已经被重载，再编写String s2 = “hello!”后，=已经不是赋值语句，所以必然会出错。 </strong>2.<strong>**相关其它内容</strong> 如下代码： class String{ private: char <em> str;//指向动态分配的数组 public: String():str(new char[1]){str[0] = 0;} const char </em> c_str(){return str;}; String &amp; operator = (const char*s){ delete [] str; str = new char[strlen(s)+1]; strcpy(str,s); return * this; }; String::~String(){delete [] str;} }; 我们在主函数里面要实现下面功能： String S1,S2; S1=”this”; S2=”that”; S1=S2; 在没有重载“=”的时候，S1=S2也可以编译通过，因为它们类型完全相同的。但是，这个“=”会使S1每一点都和S2一样。那么，这会有什么问题呢？让我们一步一步分解来看。 首先执行String S1,S2；S1=”this”;S2=”that”;那么就会实现这样的效果：</p>
+<p><img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/09/21.jpg" alt></p>
+<p>图2.1 S1=”this”;S2=”that”;</p>
+<p>再执行S1=S2，我们发现成了这个样子： <img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/09/22.jpg" alt></p>
+<p>图2.2 S1=S2的结果</p>
+<pre><code>即S1实际上是指向了S2，两者实际上只指向的一个，原来S1的空间失去了指向，与我们想让S1中的内容（所指向的空间的内容）和S2一样的想法完全不一样。 如果S1对象消亡，析构函数将释放 S1.str 指向的空间，则S2消亡时还要释放一次，相当于delete S2了两次。 如果执行S1=&quot;other&quot;，会导致S2.str指向的地方被delete掉。所以重载之后，可以避免这样的问题。 考虑下面的语句： String s; s = &quot;Hello&quot;; s = s; 会有什么问题呢？我们重新看重载“=”的成员函数，发现函数第一句和就是把等号左侧对象的空间给delete掉了，这在普通的语句下没有什么问题，但是在这里，赋给等号左边对象值的那个对象也是它本身，这样delete掉之后，后面的strcpy函数就无法复制正确的值给左侧的对象了。为了解决这个问题，需要在这个重载成员函数的函数体开头添加以下语句： if(this == &amp;s) return *this; 接下来对operator=的返回值类型进行讨论。**当对运算符进行重载的时候，好的风格是应该尽量保留运算符原来的特性**。 我们考虑a=b=c，若是void，那么b=c返回值类型就是void，就没办法再执行a=操作了，所以可以用String类型。 再考虑(a=b)=c。先执行a=b，在C++里面，执行=的返回值是**左侧元素的引用**，所以(a=b)的结果是一个a的引用，对a的引用赋值为c，那么这个b毫无用处。因此不能用String，而是用String &amp;这样一个引用格式。this是当前对象的地址，那么\*this就是当前对象，这解释了为什么要用\*this的原因。 为String类编写复制构造函数的时候，会面临和“=”同样的问题（两个对象指向同一个空间），用他同样的方法处理： String(String &amp;s) { str = new char\[strlen(s.str)+1\]; strcpy(str,s.str); } 关于浅拷贝和深拷贝待补充
+</code></pre><h2 id="第三节-运算符重载为友元"><a href="#第三节-运算符重载为友元" class="headerlink" title="第三节 运算符重载为友元"></a>第三节 运算符重载为友元</h2><p>一般情况下，将运算符重载为类的成员函数是较好的选择。但有时，重载为成员函数并不能满足使用要求，重载为普通函数，又不能访问类的私有成员，所以需要将运算符重载为友元。 如下代码： class Complex { double real,imag; public: Complex(double r, double i):real(r),imag(i){}; <strong>Complex operator+(double r);</strong> }; Complex Complex::operator+(double r) { return Complex(real+r,imag); } 经过重载以后，c=c+5有意义，相当于c=c.operator+(5) 但是，c=5+c就会出错。所以，为了使得上述表达式成立，需要将+重载为普通函数，这样c=5+c就可以通过了。但是普通函数又不能访问私有成员，即不能计算c=c+5。这样，我们只能用重载为友元函数了。如下： class Complex { double real,imag; public: Complex(double r, double i):real(r),imag(i){}; friend Complex operator + (double r, const Complex &amp; c); }; Complex Complex::operator+(double r) { return Complex(real+r,imag); }</p>
+<h2 id="第四节-运算符重载实例：可变长整型数组"><a href="#第四节-运算符重载实例：可变长整型数组" class="headerlink" title="第四节 运算符重载实例：可变长整型数组"></a>第四节 运算符重载实例：可变长整型数组</h2><p>如下代码： int main(){//要编写可变长整型数组类，使之能如下使用 CArray a;//开始数组是空的 for(int i = 0; i &lt; 5;++i) a.push_back(i);//要用动态分配的内存来存放数组元素需要一个指针成员变量 CArray a2,a3 a2 = a;//要重载”=”，把a中的值复制给a2 for(int i = 0; i&lt;a.length;++i) cout&lt;&lt;a2[i]&lt;&lt;””;//要重载[]，因为a2原来是一个对象 a2 = a3;//a2是空的，因为原来的空间被释放了 for(int i = 0;i&lt;a2.length;++i)//a2.length()返回0 cout&lt;&lt;a2[i]&lt;&lt;””; cout&lt;&lt;endl; a[3]=100; CArray a4(a); CArray A4(A);//要自己写复制构造函数 for(int i = 0; i&lt;a4.length;++i) cout&lt;&lt;a4[i]&lt;&lt;””; return 0; } class CArray{ int size;//数组元素的个数 int *ptr;//指向动态分配的数组 public: CArray(int s = 0);//s代表数组元素的个数 CArray(CArray &amp;a); ~CArray(); void push_back(int v);//用于在数组尾部添加一个元素v CArray &amp; operator=(const CArray &amp;a); //用于数组对象间的赋值 int length(){return size;}//返回数组元素个数 int &amp; CArray::operator[](int i) //返回值不能为int，不支持a[i]=4，双目运算符，但是在类内，只有一个运算符 {//用以支持根据下标访问数组元素，如n=a[i]和a[i]=4这样的语句 return ptr[i]; } };   CArray::CArray(int s):size(s) {//构造函数 if(s ==0) ptr = NULL; else ptr = new int[s]; } CArray::CArray(CArray &amp;a){//复制构造函数，要实现深复制 if(!a.ptr){ ptr = NULL; size = 0; return; } ptr = new int [a.size]; memcpy(ptr,a.ptr,sizeof(int)*a.size); size = a.size; } CArray：：~CArray() { if(ptr) delete [] ptr; } CArray &amp; CArray::operator=(const CArray &amp;a)//深拷贝，而不是浅拷贝 {//赋值号的作用是使“=”左边对象里存放的数组，大小和内容都和右边的对象一致。 if(ptr == a.ptr) return *this;//防止前文所述的出错 if(a.ptr == NULL){//如果a里面的数组是空的 if(ptr) delete[] ptr; ptr = NULL; size =0; return *this; } if(size &lt;a.size){//如果原有空间不够，则新建一个足够大的空间 //如果足够大，就不分配新的空间直接执行if后面的语句 if(ptr) delete [] ptr; ptr = new int[a.size]; } memcpy(ptr,a.ptr,sizeof(int)*a.size);//空间大小为数目*一个int的字节数 size = a.size; return *this; } void CArray::push_back(int v) {//在数组尾部添加一个元素。先判断原来是否有元素，如果有元素，就新建一个临时空间， //然后把原来的元素复制过来，然后删除原来的空间，然后把ptr指针指向了tmpPtr这个临时空间 //这个元素非常浪费资源 if(ptr){ int *tmpPtr = new int[size+1];//重新分配空间 memcpy(tmpPtr,ptr,sizeof(int)*size);//拷贝原数组内容 delete[] ptr; ptr = tmpPtr; } else ptr = new int[1];//数组原来是空的 ptr[size++] = v;//加入新的数组元素 }  </p>
+<h2 id="第五节-流插入运算符和流提取运算符的重载"><a href="#第五节-流插入运算符和流提取运算符的重载" class="headerlink" title="第五节 流插入运算符和流提取运算符的重载"></a>第五节 流插入运算符和流提取运算符的重载</h2><p>问题1：cout&lt;&lt;5&lt;&lt;”this”为什么能够成立？ 问题2：cout是什么？&lt;&lt;为什么能用在cout上？ <strong>1.**</strong>流插入运算符的重载<strong> cout是在iostream中定义的</strong>ostream<strong>**类</strong>的对象。之所以&lt;&lt;能用在cout上是因为，在iostream中对&lt;&lt;进行了重载。 考虑到我们要执行对5的操作也要执行对this的操作，如果我们定义的重载函数返回值为void或者int类型，都无法保证后面的两次甚至更多输出能够成立。但是如果我们将其定义为ostream类型的话，那么对5操作后，还是ostream类型，那么就可以继续对this操作了，因此要把返回值类型定义为ostream。即下面的格式： ostream &amp; ostream::operator&lt;&lt;(int n) { //代码 return *this; }   ostream &amp; ostream::operator&lt;&lt;(const char *s) { //代码 return <em>this; } cout&lt;&lt;5&lt;&lt;”this”本质上的函数调用形式是： cout.operator&lt;&lt;(5).operator&lt;&lt;(“this”); <strong>例**</strong>1<strong><strong>：假定下面程序输出为</strong></strong>5hello<strong>**，该补写些什么？</strong> class CStudent{ public: int nAge; }; int main(){ CStudent s; s.nAge = 5; cout &lt;&lt; s &lt;&lt;”hello”; return 0; } 需要重载左移运算符，如下： 由于&lt;&lt;已经在ostream中成员函数重载，因此在这里我们只能定义为全局函数进行重载，所以需要两个参数。如下面代码所示，o其实就是对象cout。 ostream &amp; operator&lt;&lt;(ostream &amp; o, const CStudent &amp; s){ o&lt;&lt;s.nAge; return o; } <strong>例题**</strong>2**：假定c是Complex复数类对象，现在希望写”cout &lt;&lt; c;”，就能以”a+bi”的形式输出c的值；写“cin&gt;&gt;c”就能从键盘接受“a+bi”形式的输入，并且使得c.real = a，c.imag = b。 int main(){ Complex c; int n; cin &gt;&gt; c &gt;&gt; n; cout &lt;&lt; c &lt;&lt; “,” &lt;&lt;n; return 0; } 程序运行结果可以如下： 输入：13.2+133i 87 输出：13.2+133i,87 代码如下： #include <iostream> #include <string> #include <cstdlib> using namespace std; class Complex{ double real,imag; public: Complex(double r=0,double i =0):real(r),imag(i){}; friend ostream &amp; operator&lt;&lt;(ostream &amp; os, const Complex &amp;c); friend istream &amp; operator &gt;&gt;(istream &amp; is, Compex &amp; c); };   ostream &amp; operator &lt;&lt;(ostream &amp; os, const Complex &amp; c) { os&lt;&lt;c.real&lt;&lt;”+”&lt;&lt;c.imag&lt;&lt;”i”; return os; } istream &amp; operator &gt;&gt;(istream &amp; is, Complex &amp; c) { string s; is &gt;&gt; s;//将”a+bi”作为字符串读入，中间不能有空格 int pos = s.find(“+”,9); string sTmp = s.substr(0,pos);//分离出代表实部的字符串 c.real = atof(sTmp.c_str());//atof库函数能讲const char</cstdlib></string></iostream></em>指针指向的内容转换成float sTmp = s.substr(pos+1,s.length()-pos-2);//分离出代表虚部的字符串 c.imag = atof(sTmp.c_str()); return is; } int main(){ Complex c; int n; cin &gt;&gt; c &gt;&gt; n; cout &lt;&lt; c &lt;&lt; “,” &lt;&lt;n; return 0; } 选择题：重载“&lt;&lt;”用于将自定义的对象通过cout输出时，以下说法正确的是： <strong>C</strong> <strong>可以将“**</strong>&lt;&lt;<strong><strong>”重载为全局函数，第一个参数以及返回值，类型都是</strong></strong>ostream &amp;**。</p>
+<h2 id="第六节-类型转换运算符的重载"><a href="#第六节-类型转换运算符的重载" class="headerlink" title="第六节 类型转换运算符的重载"></a>第六节 类型转换运算符的重载</h2><p>代码如下： #include <iostream>   using namespace std; class Complex{ double real,imag; public: Complex(double r=0,double i =0):real(r),imag(i){}; operator double(){return real;}//类型转换运算符重载时不写返回值类型，因为返回值类型就是它本身 }; int main() { Complex c(1.2,3.4); cout &lt;&lt; (double)c &lt;endl;//输出1.2 double n = 2 + c;//c被自动用类型转换运算符，等价与double n = 2+c.operator double() cout &lt;&lt; n;//输出3.2 }</iostream></p>
+<h2 id="第七节-自增自减运算符的重载"><a href="#第七节-自增自减运算符的重载" class="headerlink" title="第七节 自增自减运算符的重载"></a>第七节 自增自减运算符的重载</h2><p>自增运算符++、自减运算符–有前置/后置之分，为了区别所重载的是前置运算符还是后置运算符，C++规定： （1）前置运算符作为一元运算符重载： 重载为成员函数时： T &amp; operator++() T &amp; operator—() 重载为全局函数时： T1 &amp; operator++(T2) T1 &amp; operator—(T2) （2）后置运算符作为二元运算符重载，多写一个没用的参数int： 重载为成员函数时： T operator++(int) T operator–(int) 重载为全局函数时： T1 operator++(T2, int) T1 operator–(T2, int) 但是在没有后置运算符重载而有前置运算符重载的情况下，在vs中，obj++也调用前置重载，而dev则令obj++编译出错。 <strong>例题**</strong>1<strong>**：</strong> int main() { CDemo d(5); cout&lt;(d++) &lt;&lt;”,”;//等价于d.operator++(0); cout &lt;&lt; d &lt;&lt; “,”; cout &lt;&lt; (++d) &lt;&lt; “,”;//等价于d.operator++(); cout &lt;&lt; d &lt;&lt; endl; cout &lt;&lt; (d–) &lt;&lt; “,”;//等价于d.operator–(0); cout &lt;&lt; d &lt;&lt; “,”; cout &lt;&lt; (–d) &lt;&lt; “,”;//等价于d.operator–(); cout &lt;&lt; d &lt;&lt; endl; return 0; } 输出结果： 5,6,7,7 7,6,5,5 如何编写CDemo？ class CDemo{ int n; public: CDemo(int i=0):n(i){} CDemo &amp; operator++();//前置形式++n返回值就是n的引用，所以这里要用引用 CDemo operator++(int);//后置形式，n++返回的是一个临时变量，所以这里不能用引用 operator int(){return n;} friend CDemo &amp; operator–(CDemo &amp;); friend CDemo operator–(CDemo &amp;, int); };   CDemo &amp; CDemo::operator++(): {//前置 n ++; return *this; } CDemo CDemo::operator++(int k): {//后置 CDemo tmp(*this);//记录修改前的对象 n++; return tmp;//返回修改前的对象 }//s++即为s.operator++(0); CDemo &amp; operator–(CDemo &amp; d){//前置 d.n–; return d; } CDemo operator–(CDemo &amp;d, int){//后置 CDemo tmp(d); d.n–; return tmp; }//s–即为operator–(s,0) 可以看出，<strong>前置操作因为少一个步骤，所以运算速度快于后置操作</strong>。所以<strong>提倡写**</strong>++i<strong>。 </strong>运算符重载的注意事项：*<em> 1.C++不允许定义新的运算符； 2.重载后运算符的含义应该符合日常习惯； 3.运算符重载不改变运算符的优先级； 4.以下运算符不能被重载：“.”、“.</em>”、“::”、“?:”、sizeof； 5.重载运算符()、[]、-&gt;或者赋值运算符=时，运算符重载函数必须生命为成员函数。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/09/14/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e8-af-be-e7-a8-8b-e7-ac-94-e8-ae-b0-ef-bc-88-e7-ac-ac-e4-ba-94-e5-91-a8-ef-bc-89/" class="pre-post btn btn-default" title="C++面向对象程序设计课程笔记（第五周）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第五周）</span>
+        </a>
+    
+    
+        <a href="/2018/09/08/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8-ae-be-e8-ae-a1-e8-af-be-e7-a8-8b-e7-ac-94-e8-ae-b0-ef-bc-88-e7-ac-ac-e4-b8-89-e5-91-a8-ef-bc-89/" class="next-post btn btn-default" title="C++面向对象程序设计课程笔记（第三周）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第三周）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一节-运算符重载的基本概念"><span class="toc-text">第一节 运算符重载的基本概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二节-赋值运算符的重载"><span class="toc-text">第二节 赋值运算符的重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三节-运算符重载为友元"><span class="toc-text">第三节 运算符重载为友元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四节-运算符重载实例：可变长整型数组"><span class="toc-text">第四节 运算符重载实例：可变长整型数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五节-流插入运算符和流提取运算符的重载"><span class="toc-text">第五节 流插入运算符和流提取运算符的重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第六节-类型转换运算符的重载"><span class="toc-text">第六节 类型转换运算符的重载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第七节-自增自减运算符的重载"><span class="toc-text">第七节 自增自减运算符的重载</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
