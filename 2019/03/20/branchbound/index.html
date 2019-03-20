@@ -1,0 +1,1115 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="算法,分支限界法">
+
+
+    <meta name="description" content="广度优先广度优先搜索，其实就是层次遍历，程序采用队列来实现。
+算法思想从根开始，常以BF或以最小耗费（即最大收益）优先的方式搜索问题的解空间树。首先将根结点加入活结点表，接着从活结点表中取出根结...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>分支限界法 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="分支限界法">
+            
+	            分支限界法
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/algorithm/">algorithm</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/分支限界法/">分支限界法</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/20</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="广度优先"><a href="#广度优先" class="headerlink" title="广度优先"></a>广度优先</h2><p>广度优先搜索，其实就是层次遍历，程序采用<strong>队列</strong>来实现。</p>
+<h3 id="算法思想"><a href="#算法思想" class="headerlink" title="算法思想"></a>算法思想</h3><p>从根开始，常以BF或以最小耗费（即最大收益）优先的方式搜索问题的解空间树。首先将根结点加入活结点表，接着从活结点表中取出根结点，使其成为当前扩展结点，一次性生成其所有孩子结点，判断孩子结点是舍弃还是保留，舍弃哪些导致不可行解或导致非最优解的孩子结点，其余的被保留在活结点表中。再从活结点表中取出一个活结点作为当前扩展结点，重复上述扩展过程，直到找到所需的解或活结点表为空时为止。<strong>每一个活结点最多只有一次机会成为扩展结点。</strong></p>
+<h3 id="算法步骤"><a href="#算法步骤" class="headerlink" title="算法步骤"></a>算法步骤</h3><p>算法解题步骤为：</p>
+<ol>
+<li>定义问题的解空间。</li>
+<li>确定问题的解空间组织结构。</li>
+<li>搜索解空间。搜索前要定义判断标准（约束函数或限界函数），如果选优优先队列式分支限界法，则必须确定优先级。</li>
+</ol>
+<h3 id="回溯法与分支限界法的异同"><a href="#回溯法与分支限界法的异同" class="headerlink" title="回溯法与分支限界法的异同"></a>回溯法与分支限界法的异同</h3><p>1.相同点：</p>
+<ul>
+<li>均需要先定义问题的解空间，确定的解空间组织结构一般都是树和图；</li>
+<li>在问题的解空间树上搜索问题解。</li>
+<li>搜索前均需要确定判断条件，该判断条件用于判断扩展生成的结点是否为可行结点。</li>
+<li>搜索过程中必须判断扩展生成的结点是否满足判断条件，如果满足则保留该扩展结点，否则舍弃。</li>
+</ul>
+<p>2.不同点</p>
+<ul>
+<li>搜索目标不同：回溯法的求解目标是找出解空间树中满足约束条件的<strong>所有解</strong>，而分支界限法的求解目标则是找出满足约束条件的<strong>一个解</strong>，或者是在满足约束条件的解中找出在某种意义下的<strong>最优解</strong>。</li>
+<li>搜索的方式不同：回溯法以<strong>深度优先搜索</strong>方法搜索空间树，分支限界法采用<strong>广度优先法</strong>或者<strong>最小消耗优先</strong>搜索解空间树。</li>
+<li>扩展方式不同：回溯法搜索，扩展结点一次只生成<strong>一个孩子结点</strong>，而分支限界法则一次生成<strong>所有孩子结点</strong>。</li>
+</ul>
+<h2 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0-1背包问题"></a>0-1背包问题</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>前面有，不再重述，</p>
+<table>
+<thead>
+<tr>
+<th>w[]</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>2</td>
+<td>5</td>
+<td>4</td>
+<td>2 </td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>v[]</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>6</td>
+<td>3</td>
+<td>5</td>
+<td>4 </td>
+</tr>
+</tbody>
+</table>
+<p>购物车重量W=10。<br>商品的结构体定义为：</p>
+<pre><code>struct Goods
+{
+    int weight;
+    int value;
+} goods[N];
+</code></pre><table>
+<thead>
+<tr>
+<th>weight</th>
+<th>2</th>
+<th>5</th>
+<th>4</th>
+<th>2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>6</td>
+<td>3</td>
+<td>5</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<h3 id="算法设计"><a href="#算法设计" class="headerlink" title="算法设计"></a>算法设计</h3><ol>
+<li>定义问题的解空间。问题解空间为{x<sub>1</sub>,x<sub>2</sub>,…,x<sub>i</sub>,…,x<sub>n</sub>}，显约束为：x<sub>i</sub>=0或者1。</li>
+<li>确定解空间的组织结构：子集树。</li>
+<li><p>搜索解空间：</p>
+<ul>
+<li>约束条件为：w<sub>i</sub>x<sub>i</sub>≤W（i=1~n）</li>
+<li>限界条件：cp+rp&gt;bestp（cp为当前已经装入购物车的物品的总价值，rp为第t+1~第n种物品的总价值，bestp为最大价值）</li>
+</ul>
+</li>
+<li><p>搜索过程：从根节点开始，以BFS方式进行搜索。根节点首先成为活结点，也是当前的扩展结点。一次性生成所有孩子结点，由于子集树中约定左分支上的值为“1”，因此沿着扩展结点的左分支扩展，则代表装入物品；右分支的值为“0”，代表不装入物品。此时判断是否满足约束条件和限界条件，如果满足，则将其加入队列中；反之舍弃。然后再从队列中取出一个元素，作为当前扩展结点，搜索过程队列为空时结束。</p>
+</li>
+</ol>
+<h3 id="步骤解释"><a href="#步骤解释" class="headerlink" title="步骤解释"></a>步骤解释</h3><ol>
+<li>初始化。sumw=2+5+4+2=13，sumv=6+3+5+4=18，因为<strong>sumw&gt;W</strong>，所以不能装完，所以需要进行后续的操作。初始化cp=0,rp=sumv，当前剩余重量rw=W；当前处理物品序号为1；当前最优值bestp=0.解向量为x[]=(0,0,0,0)，创建一个根结点Node(cp,rp,rw,id)，标记为A，加入先进先出队列q中。cp为装入购物车的物品价值，rp为剩余物品的总价值，rw为剩余容量，id为物品号，x[]为当前解向量。</li>
+</ol>
+<p>//定义结点。每个节点来记录当前的解。<br>struct Node</p>
+<pre><code>{
+    int cp, rp; //cp背包的物品总价值，rp剩余物品的总价值
+    int rw; //剩余容量
+    int id; //物品号
+    bool x[N];//解向量
+    Node() {}
+    Node(int _cp, int _rp, int _rw, int _id){
+        cp = _cp;
+        rp = _rp;
+        rw = _rw;
+        id = _id;
+        memset(x, 0, sizeof(x));//解向量初始化为0
+    }
+};
+</code></pre><ol start="2">
+<li>扩展A结点。队头元素A出队，该结点的cp+rp≥bestp，满足限界条件，可以扩展。rw=10&gt;goods[1].weight=2，剩余容量大于1号物品，满足约束条件，可以放入购物车，cp=0+6=6。rp=18-6=12，rw=10-2=8，t=2，x[1]=1，解向量更新为x[]=(1,0,0,0)，生成左孩子B，加入q队列，更新bestp=6。<strong>再扩展右分支</strong>，cp=0,rp=18-6=12,cp+rp&gt;=bestp=6，满足限界条件，不放入1号物品，cp=0,rp=12,rw=10,t=2,x[1]=0，解向量为x[]=(0,0,0,0)，创建新结点C，加入q队列。如下表所示，<strong>X表示为空</strong>。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>B</th>
+<th>X</th>
+<th>X</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>B</th>
+<th>C</th>
+<th>X</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="3">
+<li>扩展B结点。队头元素B出队，该结点cp+rp&gt;=bestp，满足限界条件，可以扩展。rw=8&gt;goods[2].weight=5，剩余容量大于2号物品重量，满足约束条件，可以放入购物车，cp=6+3=9。rp=12-3=9，rw=8-5=3，t=3，x[2]=1，解向量更新为x[]=(1,1,0,0)，生成左孩子D，加入q队列，更新bestp=9。<strong>再扩展右分支</strong>，cp=6,rp=12-3=9,cp+rp&gt;=bestp=9，满足限界条件，不放入2号物品，cp=6,rp=9,rw=8,t=3,x[2]=0，解向量为x[]=(1,0,0,0)，创建新结点E，加入q队列。如下表所示。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>C</th>
+<th>D</th>
+<th>E</th>
+<th>X</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="4">
+<li>扩展C结点。队头元素C出队，该结点cp+rp&gt;=bestp，满足限界条件，可以扩展。rw=10&gt;goods[2].weight=5，剩余容量大于2号物品重量，满足约束条件，可以放入购物车，cp=0+3=3。rp=12-3=9，rw=10-5=5，t=3，x[2]=1，解向量更新为x[]=(0,1,0,0)，生成左孩子F，加入q队列。<strong>再扩展右分支</strong>，cp=0,rp=12-3=9,cp+rp&gt;=bestp=9，满足限界条件，不放入2号物品，cp=6,rp=9,rw=10,t=3,x[2]=0，解向量为x[]=(0,0,0,0)，创建新结点G，加入q队列。如下表所示。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>D</th>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="5">
+<li>扩展D结点。队头元素D出队，该结点cp+rp&gt;=bestp，满足限界条件，可以扩展。但是rw=3&gt;goods[3].weight=4，所以不满足约束条件，舍弃左分支。<strong>扩展右分支</strong>，cp=9,rp=9-5=4,cp+rp&gt;=bestp=9，满足限界条件，不放入3号物品，cp=9,rp=4,rw=3,t=4,x[3]=0，解向量为x[]=(1,1,0,0)，创建新结点H，加入q队列。如下表所示。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>E</th>
+<th>F</th>
+<th>G</th>
+<th>H</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ol start="6">
+<li>扩展E结点。同理可得cp=11,rp=4,rw=4,t=4,x[3]=1，更新解向量为x[]=(1,0,1,0)，生成左孩子I，加入q队列，更新bestp=11。<strong>扩展右分支</strong>，cp=6,rp=9-5=4,cp+rp=10&lt;bestp=11，所以不满足限界条件，舍弃。</li>
+<li>扩展F结点。同理得到左分支，cp=8,rp=4,rw=1,t=4,x[3]=1，解向量为x[]=(0,1,1,0)，生成左孩子J，加入q队列。<strong>扩展右分支</strong>，cp+rp&lt;11，舍弃。</li>
+<li>扩展G结点。该结点cp+rp&lt;bestp=11，不满足限界条件，不再扩展。</li>
+<li>扩展H结点。队头H结点出队，该结点cp+rp&gt;=bestp，满足限界条件，rw=3&gt;goods[4].weight=2，满足约束条件，令cp=9+4=13,rp=4-4=0,rw=3-2=1,t=5,x[4]=1，解向量更新为x[]=(1,1,0,1)，生成孩子K，加入q队列，更新bestp=13。右分支不满足限界条件舍弃。</li>
+<li>扩展I结点。 队头I结点出队，该结点cp+rp&gt;=bestp，满足限界条件，rw=4&gt;goods[4].weight=2，满足约束条件，令cp=11+4=15,rp=4-4=0,rw=4-2=2,t=5,x[4]=1，解向量更新为x[]=(1,0,1,1)，生成孩子L，加入q队列，更新bestp=15。右分支不满足限界条件舍弃。</li>
+<li>队头元素J出队，该结点cp+rp=12&lt;15，不满足限界条件，不再扩展。</li>
+<li>队头元素K出队，扩展K结点：t=5，已经处理完毕，cp&lt;bestp，不是最优解。</li>
+<li>队头元素K出队，扩展K结点：t=5，已经处理完毕，cp=bestp，是最优解，输出该向量(1,0,1,1)。</li>
+<li>队列为空，算法结束。</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>int bestp, W, n, sumw, sumv;
+/*
+bestp 用来记录最优解。
+W为购物车最大容量。
+n为物品的个数。
+sumw 为所有物品的总重量。
+sumv 为所有物品的总价值。
+*/
+//bfs 来进行子集树的搜索。
+int bfs()
+{
+    int t, tcp, trp, trw;
+    queue&lt;Node&gt; q; //创建一个普通队列(先进先出)
+    q.push(Node(0, sumv, W, 1)); //压入一个初始结点
+    while (!q.empty()) //如果队列不空
+    {
+        Node livenode, lchild, rchild;//定义三个结点型变量
+        livenode = q.front();//取出队头元素作为当前扩展结点livenode
+        q.pop(); //队头元素出队
+                 //cp+rp&gt;bestp当前装入的价值+剩余物品价值小于当前最优值时，不再扩展。
+        cout &lt;&lt; &quot;当前结点的id值:&quot; &lt;&lt; livenode.id &lt;&lt; &quot;当前结点的cp值:&quot; &lt;&lt; livenode.cp &lt;&lt; endl;
+        cout &lt;&lt; &quot;当前结点的解向量:&quot;;
+        for (int i = 1; i &lt;= n; i++)
+        {
+            cout &lt;&lt; livenode.x[i];
+        }
+        cout &lt;&lt; endl;
+        t = livenode.id;//当前处理的物品序号
+                        // 搜到最后一个物品的时候不需要往下搜索。
+                        // 如果当前的购物车没有剩余容量(已经装满)了，不再扩展。
+        if (t&gt;n || livenode.rw == 0)
+        {
+            if (livenode.cp &gt;= bestp)//更新最优解和最优值
+            {
+                for (int i = 1; i &lt;= n; i++)
+                {
+                    bestx[i] = livenode.x[i];
+                }
+                bestp = livenode.cp;
+            }
+            continue;
+        }
+        if (livenode.cp + livenode.rp&lt;bestp)//判断当前结点是否满足限界条件，如果不满足不再扩展
+            continue;
+        //扩展左孩子
+        tcp = livenode.cp; //当前购物车中的价值
+        trp = livenode.rp - goods[t].value; //不管当前物品装入与否，剩余价值都会减少。
+        trw = livenode.rw; //购物车剩余容量
+        if (trw &gt;= goods[t].weight) //满足约束条件，可以放入购物车
+        {
+            lchild.rw = trw - goods[t].weight;
+            lchild.cp = tcp + goods[t].value;
+            lchild = Node(lchild.cp, trp, lchild.rw, t + 1);//传递参数
+            for (int i = 1; i&lt;t; i++)
+            {
+                lchild.x[i] = livenode.x[i];//复制以前的解向量
+            }
+            lchild.x[t] = true;
+            if (lchild.cp&gt;bestp)//比最优值大才更新
+                bestp = lchild.cp;
+            q.push(lchild);//左孩子入队
+        }
+        //扩展右孩子
+        if (tcp + trp &gt;= bestp)//满足限界条件，不放入购物车
+        {
+            rchild = Node(tcp, trp, trw, t + 1);//传递参数
+            for (int i = 1; i&lt;t; i++)
+            {
+                rchild.x[i] = livenode.x[i];//复制以前的解向量
+            }
+            rchild.x[t] = false;
+            q.push(rchild);//右孩子入队
+        }
+    }
+    return bestp;//返回最优值。
+}
+</code></pre><h3 id="算法分析"><a href="#算法分析" class="headerlink" title="算法分析"></a>算法分析</h3><p>时间复杂度为O(2<sup>n+1</sup>)，空间复杂度O(n*2<sup>n+1</sup>)。</p>
+<h3 id="算法优化拓展——优先队列式分支限界法"><a href="#算法优化拓展——优先队列式分支限界法" class="headerlink" title="算法优化拓展——优先队列式分支限界法"></a>算法优化拓展——优先队列式分支限界法</h3><p>优先队列优化，简单来说就是以当前结点的上界为优先值，把普通队列改成优先队列。</p>
+<ol>
+<li>算法设计。约束条件没有改变。优先级定义为活结点代表的部分解锁描述的装入物品价值的上界，该价值上界越大，优先级越高。活结点的价值上界up=活结点的cp+剩余物品装满购物车剩余容量的最大价值rp’。限界条件变为<strong>up=cp+rp’&gt;=bestp</strong>。</li>
+<li>解题步骤（简略版）<ul>
+<li>初始化。sumw和sumv分别用来统计所有物品的总重量和总价值。sumw=13,sumv=18,sumw&gt;W，所以不能全部装完，需要搜索求解。</li>
+<li><strong>按价值重量比非递增排序</strong>。排序结果如下表所示。</li>
+<li>后续不再详细叙述。</li>
+</ul>
+</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>weight</th>
+<th>2</th>
+<th>2</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>6</td>
+<td>4</td>
+<td>5</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<p>3.代码实现</p>
+<pre><code>//定义辅助物品结构体，包含物品序号和单位重量价值,用于按单位重量价值(价值/重量比)排序、
+struct Object
+ {
+        int id; //物品序号
+        double d;//单位重量价值
+    }S[N];
+
+//定义排序优先级按照物品单位重量价值由大到小排序
+bool cmp(Object a1,Object a2)
+{
+    return a1.d&gt;a2.d;
+}
+
+//定义队列的优先级。 以up为优先，up值越大，也就越优先
+bool operator &lt;(const Node &amp;a, const Node &amp;b)
+{
+    return a.up&lt;b.up;
+}
+
+int bestp,W,n,sumw,sumv;
+/*
+  bestv 用来记录最优解。
+  W为背包的最大容量。
+  n为物品的个数。
+  sumw 为所有物品的总重量。
+  sumv 为所有物品的总价值。
+*/
+
+double Bound(Node tnode)
+{
+    double maxvalue=tnode.cp;//已装入购物车物品价值
+    int t=tnode.id;//排序后序号
+    //cout&lt;&lt;&quot;t=&quot;&lt;&lt;t&lt;&lt;endl;
+    double left=tnode.rw;//剩余容量
+    while(t&lt;=n&amp;&amp;w[t]&lt;=left)
+    {
+        maxvalue+=v[t];
+       // cout&lt;&lt;&quot;malvalue=&quot;&lt;&lt;maxvalue&lt;&lt;endl;
+        left-=w[t];
+        t++;
+    }
+    if(t&lt;=n)
+        maxvalue+=double(v[t])/w[t]*left;
+    //cout&lt;&lt;&quot;malvalue=&quot;&lt;&lt;maxvalue&lt;&lt;endl;
+    return maxvalue;
+}
+//priorbfs 为优先队列式分支限界法搜索。
+int priorbfs()
+{
+     int t,tcp,trw;
+     double tup; //当前处理的物品序号t，当前装入购物车物品价值tcp，
+    //当前装入购物车物品价值上界tup，当前剩余容量trw
+    priority_queue&lt;Node&gt; q; //创建一个优先队列,优先级为装入购物车的物品价值上界up
+    q.push(Node(0, sumv, W, 1));//初始化,根结点加入优先队列
+    while(!q.empty())
+    {
+        Node livenode, lchild, rchild;//定义三个结点型变量
+        livenode=q.top();//取出队头元素作为当前扩展结点livenode
+        q.pop(); //队头元素出队
+        cout&lt;&lt;&quot;当前结点的id值:&quot;&lt;&lt;livenode.id&lt;&lt;&quot;当前结点的up值:&quot;&lt;&lt;livenode.up&lt;&lt;endl;
+        cout&lt;&lt;&quot;当前结点的解向量:&quot;;
+        for(int i=1; i&lt;=n; i++)
+        {
+            cout&lt;&lt;livenode.x[i];
+        }
+        cout&lt;&lt;endl;
+        t=livenode.id;//当前处理的物品序号
+        // 搜到最后一个物品的时候不需要往下搜索。
+        // 如果当前的购物车没有剩余容量(已经装满)了，不再扩展。
+        if(t&gt;n||livenode.rw==0)
+        {
+            if(livenode.cp&gt;=bestp)//更新最优解和最优值
+            {
+              cout&lt;&lt;&quot;更新最优解向量:&quot;;
+              for(int i=1; i&lt;=n; i++)
+              {
+                bestx[i]=livenode.x[i];
+                cout&lt;&lt;bestx[i];
+              }
+              cout&lt;&lt;endl;
+              bestp=livenode.cp;
+            }
+            continue;
+        }
+        //判断当前结点是否满足限界条件，如果不满足不再扩展
+        if(livenode.up&lt;bestp)
+          continue;
+        //扩展左孩子
+        tcp=livenode.cp; //当前购物车中的价值
+        trw=livenode.rw; //购物车剩余容量
+        if(trw&gt;=w[t]) //满足约束条件，可以放入购物车
+        {
+            lchild.cp=tcp+v[t];
+            lchild.rw=trw-w[t];
+            lchild.id=t+1;
+            tup=Bound(lchild); //计算左孩子上界
+            lchild=Node(lchild.cp,tup,lchild.rw,lchild.id);//传递参数
+            for(int i=1;i&lt;=n;i++)
+            {
+              lchild.x[i]=livenode.x[i];//复制以前的解向量
+            }
+            lchild.x[t]=true;
+            if(lchild.cp&gt;bestp)//比最优值大才更新
+               bestp=lchild.cp;
+            q.push(lchild);//左孩子入队
+        }
+        //扩展右孩子
+         rchild.cp=tcp;
+         rchild.rw=trw;
+         rchild.id=t+1;
+         tup=Bound(rchild); //右孩子计算上界
+         if(tup&gt;=bestp)//满足限界条件，不放入购物车
+         {
+            rchild=Node(tcp,tup,trw,t+1);//传递参数
+            for(int i=1;i&lt;=n;i++)
+            {
+              rchild.x[i]=livenode.x[i];//复制以前的解向量
+            }
+            rchild.x[t]=false;
+            q.push(rchild);//右孩子入队
+          }
+    }
+    return bestp;//返回最优值。
+}
+</code></pre><h2 id="旅行商问题"><a href="#旅行商问题" class="headerlink" title="旅行商问题"></a>旅行商问题</h2><h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><p>带权邻接矩阵g[][]如下所示，空表示为无穷，即没有路径。</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>15</th>
+<th>30</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>15</td>
+<td></td>
+<td>6</td>
+<td>12</td>
+</tr>
+<tr>
+<td>30</td>
+<td>6</td>
+<td></td>
+<td>3</td>
+</tr>
+<tr>
+<td>5</td>
+<td>12</td>
+<td>3</td>
+</tr>
+</tbody>
+</table>
+<h3 id="算法设计-1"><a href="#算法设计-1" class="headerlink" title="算法设计"></a>算法设计</h3><p>可以使用优先队列分支限界法，加快搜索速度。<br>设置优先级：当前已走过的城市所有的路径长度cl。cl越小，优先级越高。<br>从根节点开始，以广度优先的方式进行搜索。根节点首先成为活结点，也是当前的扩展结点。一次性生成所有的孩子结点，判断孩子结点是否满足约束条件和限界条件，如果满足，将其加入到队列中，反之，舍弃。然后再从队列中取出一个元素，作为当前扩展结点，搜索过程队列为空时为止。</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><pre><code>struct Node//定义结点,记录当前结点的解信息
+{
+    double cl; //当前已走过的路径长度
+    int id; //景点序号
+    int x[N];//记录当前路径
+    Node() {}
+    Node(double _cl,int _id)
+    {
+        cl = _cl;
+        id = _id;
+    }
+};
+
+//定义队列的优先级。 以cl为优先级，cl值越小，越优先
+bool operator &lt;(const Node &amp;a, const Node &amp;b)
+{
+    return a.cl&gt;b.cl;
+}
+
+//Travelingbfs 为优先队列式分支限界法搜索
+double Travelingbfs()
+{
+    int t; //当前处理的景点序号t
+    Node livenode,newnode;//定义当前扩展结点livenode,生成新结点newnode
+    priority_queue&lt;Node&gt; q; //创建一个优先队列,优先级为已经走过的路径长度cl,cl值越小，越优先
+    newnode=Node(0,2);//创建根节点
+    for(int i=1;i&lt;=n;i++)
+    {
+       newnode.x[i]=i;//初时化根结点的解向量
+    }
+    q.push(newnode);//根结点加入优先队列
+    cout&lt;&lt;&quot;按优先级出队顺序：&quot;&lt;&lt;endl;//用于调试
+    while(!q.empty())
+    {
+        livenode=q.top();//取出队头元素作为当前扩展结点livenode
+        q.pop(); //队头元素出队
+        //用于调试
+        cout&lt;&lt;&quot;当前结点的id值:&quot;&lt;&lt;livenode.id&lt;&lt;&quot;当前结点的cl值:&quot;&lt;&lt;livenode.cl&lt;&lt;endl;
+        cout&lt;&lt;&quot;当前结点的解向量:&quot;;
+        for(int i=1; i&lt;=n; i++)
+        {
+            cout&lt;&lt;livenode.x[i];
+        }
+        cout&lt;&lt;endl;
+        t=livenode.id;//当前处理的景点序号
+        // 搜到倒数第2个结点时个景点的时候不需要往下搜索
+        if(t==n)  //立即判断是否更新最优解，
+            //例如当前找到一个路径(1243)，到达4号结点时，立即判断g[4][3]和g[3][1]是否有边相连，
+            //如果有边则判断当前路径长度cl+g[4][3]+g[3][1]&lt;bestl，满足则更新最优值和最优解
+        {
+           //说明找到了一条更好的路径，记录相关信息
+           if(g[livenode.x[n-1]][livenode.x[n]]!=INF&amp;&amp;g[livenode.x[n]][1]!=INF)
+             if(livenode.cl+g[livenode.x[n-1]][livenode.x[n]]+g[livenode.x[n]][1]&lt;bestl)
+             {
+                bestl=livenode.cl+g[livenode.x[n-1]][livenode.x[n]]+g[livenode.x[n]][1];
+                cout&lt;&lt;endl;
+                cout&lt;&lt;&quot;当前最优的解向量:&quot;;
+                for(int i=1;i&lt;=n;i++)
+                {
+                  bestx[i]=livenode.x[i];
+                  cout&lt;&lt;bestx[i];
+                }
+                cout&lt;&lt;endl;
+                cout&lt;&lt;endl;
+              }
+            continue;
+        }
+        //判断当前结点是否满足限界条件，如果不满足不再扩展
+       if(livenode.cl&gt;=bestl)
+          continue;
+        //扩展
+        //没有到达叶子结点
+        for(int j=t; j&lt;=n; j++)//搜索扩展结点的所有分支
+        {
+            if(g[livenode.x[t-1]][livenode.x[j]]!=INF)//如果x[t-1]景点与x[j]景点有边相连
+            {
+                double cl=livenode.cl+g[livenode.x[t-1]][livenode.x[j]];
+                if(cl&lt;bestl)//有可能得到更短的路线
+                {
+                    newnode=Node(cl,t+1);
+                    for(int i=1;i&lt;=n;i++)
+                    {
+                      newnode.x[i]=livenode.x[i];//复制以前的解向量
+                    }
+                    swap(newnode.x[t], newnode.x[j]);//交换x[t]、x[j]两个元素的值
+                    q.push(newnode);//新结点入队
+                }
+            }
+        }
+    }
+    return bestl;//返回最优值。
+}
+</code></pre><p>（1）时间复杂度：O(n!)。空间复杂度：O(n*n!)。</p>
+<h3 id="算法优化拓展"><a href="#算法优化拓展" class="headerlink" title="算法优化拓展"></a>算法优化拓展</h3><ol>
+<li>算法开始时创建一个用于表示活结点优先队列。每个结点的费用下界zl=cl+rl值作为优先级。cl表示已经走过的路径长度，rl表示剩余路径长度的下界，rl用剩余每个结点的最小出边之和来计算。初始时先计算图中每个顶点i的最小出边，并用minout[i]数组记录，minsum记录所有结点的最小出边之和。如果所给的有向图中某个顶点没有出边，则该图不可能有回路，算法立即结束。<ul>
+<li>限界条件：zl&lt;bestl，zl&lt;cl+rl。</li>
+</ul>
+</li>
+<li>优先级：zl指已经走过的路径长度+剩余路径长度的下界。zl越小，优先级越高。</li>
+</ol>
+<h3 id="算法优化代码实现"><a href="#算法优化代码实现" class="headerlink" title="算法优化代码实现"></a>算法优化代码实现</h3><p>1.定义节点结构体</p>
+<pre><code>//定义结点,记录当前结点的解信息
+struct Node
+{
+    double cl; //当前已走过的路径长度
+    double rl; //剩余路径长度的下界
+    double zl; //当前路径长度的下界zl=rl+cl
+    int id; //景点序号
+    int x[N];//记录当前解向量
+    Node() {}
+    Node(double _cl,double _rl,double _zl,int _id)
+    {
+        cl = _cl;
+        rl = _rl;
+        zl = _zl;
+        id = _id;
+    }
+};
+</code></pre><p>2.定义队列优先级</p>
+<pre><code>bool operator &lt;(const Node &amp;a, const Node &amp;b)
+{
+    return a.zl&gt;b.zl;
+}
+</code></pre><p>3.计算下界</p>
+<pre><code>bool Bound()//计算下界（即每个景点最小出边权值之和）
+{
+    for(int i=1;i&lt;=n;i++)
+    {
+       double minl=INF;//初时化景点点出边最小值
+       for(int j=1;j&lt;=n;j++)//找每个景点的最小出边
+         if(g[i][j]!=INF&amp;&amp;g[i][j]&lt;minl)
+            minl=g[i][j];
+       if(minl==INF)
+          return false;//表示无回路
+       minout[i]=minl;//记录每个景点的最少出边
+       cout&lt;&lt;&quot;第&quot;&lt;&lt;i&lt;&lt;&quot;个景点的最少出边:&quot;&lt;&lt;minout[i]&lt;&lt;&quot; &quot;&lt;&lt;endl;
+       minsum+=minl;//记录所有景点的最少出边之和
+    }
+    cout&lt;&lt;&quot;每个景点的最少出边之和:&quot;&quot;minsum= &quot;&lt;&lt;minsum&lt;&lt;endl;
+    return true;
+}
+</code></pre><p>4.Travelingbfsopt 为优化的优先队列式分支限界法</p>
+<pre><code>double Travelingbfsopt()
+{
+    if(!Bound())
+        return -1;//表示无回路
+    Node livenode,newnode;//定义当前扩展结点livenode,生成新结点newnode
+    priority_queue&lt;Node&gt; q; //创建一个优先队列,优先级为当前路径长度的下界zl=rl+cl,zl值越小，越优先
+    newnode=Node(0,minsum,minsum,2);//创建根节点
+    for(int i=1;i&lt;=n;i++)
+    {
+       newnode.x[i]=i;//初时化根结点的解向量
+    }
+    q.push(newnode);//根结点加入优先队列
+    while(!q.empty())
+    {
+        livenode=q.top();//取出队头元素作为当前扩展结点livenode
+        q.pop(); //队头元素出队
+        cout&lt;&lt;&quot;当前结点的id值:&quot;&lt;&lt;livenode.id&lt;&lt;&quot;当前结点的zl值:&quot;&lt;&lt;livenode.zl&lt;&lt;endl;
+        cout&lt;&lt;&quot;当前结点的解向量:&quot;;
+        for(int i=1; i&lt;=n; i++)
+        {
+            cout&lt;&lt;livenode.x[i];
+        }
+        cout&lt;&lt;endl;
+        int t=livenode.id;//当前处理的景点序号
+        // 搜到倒数第2个结点时个景点的时候不需要往下搜索
+        if(t==n)  //立即判断是否更新最优解，
+            //例如当前找到一个路径(1243)，到达4号结点时，立即判断g[4][3]和g[3][1]是否有边相连，
+            //如果有边则判断当前路径长度cl+g[4][3]+g[3][1]&lt;bestl，满足则更新最优值和最优解
+        {
+           //说明找到了一条更好的路径，记录相关信息
+           if(g[livenode.x[n-1]][livenode.x[n]]!=INF&amp;&amp;g[livenode.x[n]][1]!=INF)
+             if(livenode.cl+g[livenode.x[n-1]][livenode.x[n]]+g[livenode.x[n]][1]&lt;bestl)
+             {
+                bestl=livenode.cl+g[livenode.x[n-1]][livenode.x[n]]+g[livenode.x[n]][1];
+                cout&lt;&lt;endl;
+                cout&lt;&lt;&quot;当前最优的解向量:&quot;;
+                for(int i=1;i&lt;=n;i++)
+                {
+                  bestx[i]=livenode.x[i];
+                  cout&lt;&lt;bestx[i];
+                }
+                cout&lt;&lt;endl;
+                cout&lt;&lt;endl;
+              }
+            continue;
+        }
+        //判断当前结点是否满足限界条件，如果不满足不再扩展
+       if(livenode.cl&gt;=bestl)
+          continue;
+        //扩展
+        //没有到达叶子结点
+        for(int j=t; j&lt;=n; j++)//搜索扩展结点的所有分支
+        {
+            if(g[livenode.x[t-1]][livenode.x[j]]!=INF)//如果x[t-1]景点与x[j]景点有边相连
+            {
+                double cl=livenode.cl+g[livenode.x[t-1]][livenode.x[j]];
+                double rl=livenode.rl-minout[livenode.x[j]];
+                double zl=cl+rl;
+                if(zl&lt;bestl)//有可能得到更短的路线
+                {
+                    newnode=Node(cl,rl,zl,t+1);
+                    for(int i=1;i&lt;=n;i++)
+                    {
+                      newnode.x[i]=livenode.x[i];//复制以前的解向量
+                    }
+                    swap(newnode.x[t], newnode.x[j]);//交换两个元素的值
+                    q.push(newnode);//新结点入队
+                }
+            }
+        }
+    }
+    return bestl;//返回最优值。
+}
+</code></pre><h3 id="算法复杂度分析"><a href="#算法复杂度分析" class="headerlink" title="算法复杂度分析"></a>算法复杂度分析</h3><p>时间复杂度最坏为O(nn!)，空间复杂度为O(n<sup>2</sup>*(n+1)!)。</p>
+<h2 id="最优工程布线问题"><a href="#最优工程布线问题" class="headerlink" title="最优工程布线问题"></a>最优工程布线问题</h2><h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>在3×3的方格阵列，灰色表示封锁，不能通过。将每个方格抽象为一个结点，方格和相邻4个方向（上下左右）中能通过的方格用一条线连接起来，不能通过的方格不连线。这样，可以把问题的解空间定义为<strong>一个图</strong>，如下图所示。</p>
+<p><img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2019/03/zuiyougongcheng1.jpg" alt> <img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2019/03/zuiyougongcheng2.jpg" alt></p>
+<p>该问题是特殊的最短路径问题，特殊之处在于用布线走过的方格数代表布线的长度，布线时每一个方格，布线长度累加1.我们可以看出，从a到b有多种布线方案，最短的布线长度即从a到b的最短路径长度为4。<br>既然只能朝四个方向布线，也就是说如果从树型搜索的角度来看，我们可以把它看做为m叉树，那么问题的解空间就变成了一颗m叉树。</p>
+<h3 id="算法设计-2"><a href="#算法设计-2" class="headerlink" title="算法设计"></a>算法设计</h3><p>（1）定义问题的解空间。可以把最优工程布线问题解的形式为n元组{x<sub>1</sub>,x<sub>2</sub>,…,x<sub>i</sub>,…,x<sub>n</sub>}，分量x<sub>i</sub>表示最优布线方案经过的第i个方格，而方格也可以用(x,y)表示第x行第y列。因为方格不可重复布线，所以在确定x<sub>i</sub>的时候，前面走过的方格{x<sub>1</sub>,x<sub>2</sub>,…,x<sub>i-1</sub>}都不可以再走，x<sub>i</sub>的取值范围为<strong>S-{x<sub>1</sub>,x<sub>2</sub>,…,x<sub>i-1</sub>}</strong>。</p>
+<font color="red"><strong>注意：和前面问题不同，因为不知道最优布线长度，所以n是未知的。</strong></font>
+
+<p>（2）解空间的组织结构：一颗m叉树，m=4，树的深度n未知。</p>
+<p>（3）搜索解空间。搜索从起始结点a开始，到目标节点b结束。</p>
+<ul>
+<li>约束条件：非障碍物或边界未曾布线。</li>
+<li>限界条件：最先碰到的一定是距离最短的，因此无限界条件。</li>
+<li>搜索过程：从a开始将其作为第一个扩展结点，沿a的右、下、左、上4个方向的相邻结点扩展。判断约束条件是否成立，若成立，则放入活结点中，并将这个方格标记为1。接着从活结点队列中取出队首结点作为下一个扩展结点，并沿当前扩展结点的右、下、左、上四个方向的相邻结点扩展，将满足约束条件的方格记为2，依此类推，一直继续搜索到目标方格或活结点为空为止，目标方格里的数据就是最优的布线长度。</li>
+</ul>
+<p>构造最优解过程从目标节点开始，沿着右、下、左、上四个方向。判断如果某个方向方格里的数据比扩展结点方格的数据小1，则进入该方向方格，使其成为当前的扩展结点。以此类推，搜索过程一直持续到起始结点结束。</p>
+<h3 id="算法实现"><a href="#算法实现" class="headerlink" title="算法实现"></a>算法实现</h3><pre><code>//定义结构体position
+typedef struct
+{
+    int x;
+    int y;
+} Position;//位置
+int grid[100][100];//地图
+bool findpath(Position s, Position e, Position *&amp;path, int &amp;PathLen)
+{
+    if ((s.x == e.x) &amp;&amp; (s.y == e.y))//开始位置就是结束位置
+    {
+        PathLen = 0;
+        return true;
+    }
+    Position DIR[4], here, next;
+    //定义方向数组DIR[4]，当前位置here，下一个位置next
+    DIR[0].x = 0;
+    DIR[0].y = 1;
+    DIR[1].x = 1;
+    DIR[1].y = 0;
+    DIR[2].x = 0;
+    DIR[2].y = -1;
+    DIR[3].x = -1;
+    DIR[3].y = 0;
+    here = s;
+    grid[s.x][s.y] = 0;//标记初始为0，未布线为-1，墙壁为-2
+    queue&lt;Position&gt; Q;//所使用队列
+    //按四个方向进行搜索
+    for (;;)
+    {
+        for (int i = 0; i &lt; 4; i++)//四个方向前进，右下左上
+        {
+            next.x = here.x + DIR[i].x;
+            next.y = here.y + DIR[i].y;
+            if (grid[next.x][next.y] == -1)//未布线
+            {
+                grid[next.x][next.y] = grid[here.x][here.y] + 1;
+                Q.push(next);
+            }
+            if ((next.x == e.x) &amp;&amp; (next.y == e.y))
+                break;//找到了我们需要的目标
+        }
+        if ((next.x == e.x) &amp;&amp; (next.y == e.y))
+            break;//找到了我们需要的目标
+        if (Q.empty())
+            return false;
+        else
+        {
+            here = Q.front();
+            Q.pop();//把Q队头的元素弹出
+        }
+    }
+    //逆向找回最短布线方案
+    PathLen = grid[e.x][e.y];//最短的长度
+    path = new Position[PathLen];
+    here = e;
+    for (int j = PathLen - 1; j &gt;= 0; j--)
+    {
+        path[j] = here;
+        //沿着四个方向寻找，右下左上
+        for (int i = 0; i &lt; 4; i++)
+        {
+            next.x = here.x + DIR[i].x;
+            next.y = here.y + DIR[i].y;
+            if (grid[next.x][next.y] == j)
+                break;
+        }
+        here = next;
+    }
+    return true;
+}
+//初始化地图，标记大于0表示已经布线，-1未布线，-2墙壁
+void init(int m, int n)
+{
+    for (int i = 1; i &lt;= m; i++)
+        for (int j = 1; j &lt;= n; j++)
+            grid[i][j] = -1;
+    //上面是先将所有的格子都初始化为-1
+    //然后把本问题为了方便加上的第0行和第0列都设置为墙
+    for (int i = 0; i &lt;= n + 1; i++)
+        grid[0][i] = grid[m + 1][i] = -2;
+    for (int i = 0; i &lt;= m + 1; i++)
+        grid[i][0] = grid[i][n + 1] = -2;
+}
+</code></pre><h3 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h3><p>时间复杂度O(nm)，构造最短布线需要O(L)，空间复杂度O(n)。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/03/20/dprograming/" class="pre-post btn btn-default" title="动态规划">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">动态规划</span>
+        </a>
+    
+    
+        <a href="/2019/03/20/回溯法/" class="next-post btn btn-default" title="回溯法">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">回溯法</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: false,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-CN'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#广度优先"><span class="toc-text">广度优先</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法思想"><span class="toc-text">算法思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法步骤"><span class="toc-text">算法步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回溯法与分支限界法的异同"><span class="toc-text">回溯法与分支限界法的异同</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1背包问题"><span class="toc-text">0-1背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题分析"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#步骤解释"><span class="toc-text">步骤解释</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法分析"><span class="toc-text">算法分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法优化拓展——优先队列式分支限界法"><span class="toc-text">算法优化拓展——优先队列式分支限界法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#旅行商问题"><span class="toc-text">旅行商问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题分析-1"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计-1"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法优化拓展"><span class="toc-text">算法优化拓展</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法优化代码实现"><span class="toc-text">算法优化代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法复杂度分析"><span class="toc-text">算法复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最优工程布线问题"><span class="toc-text">最优工程布线问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题描述"><span class="toc-text">问题描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计-2"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法实现"><span class="toc-text">算法实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

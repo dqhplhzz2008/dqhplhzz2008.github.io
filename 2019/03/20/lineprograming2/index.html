@@ -1,0 +1,497 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="线性规划,算法">
+
+
+    <meta name="description" content="圆桌问题X集合中的点到Y集合中的每个点都有连线，所有连线容量都是1，保证两个点只能匹配一次（一个餐桌上只能有同一个单位的一个人）。这种在一个二分图中每个结点可以有多个匹配结点的问题称为二分图多重...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>线性规划2 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="线性规划2">
+            
+	            线性规划2
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/algorithm/">algorithm</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/算法/">算法</a> <a class="tag-link" href="/tags/线性规划/">线性规划</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/20</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="圆桌问题"><a href="#圆桌问题" class="headerlink" title="圆桌问题"></a>圆桌问题</h2><p>X集合中的点到Y集合中的每个点都有连线，所有连线容量都是1，保证两个点只能匹配一次（一个餐桌上只能有同一个单位的一个人）。这种在一个二分图中每个结点可以有多个匹配结点的问题称为<strong>二分图多重匹配问题</strong>。求解时<strong>需要添加源点和汇点，源和汇的边容量分别限制X、Y集合中每一个点匹配的个数</strong>。</p>
+<p>简历一个二分图，每个代表团为X集合中的结点，每个会议桌为Y集合中的结点，增设源点s和汇点t。从源点s向每个x<sub>i</sub>结点链接一条容量为该店标团人数r<sub>i</sub>的有向边，从每个y<sub>i</sub>结点向汇点t链接一条容量为该会议桌容量c<sub>j</sub>的有向边。X集合中每个结点向Y集合中每个结点链接一条容量为1的有向边。</p>
+<h3 id="算法设计"><a href="#算法设计" class="headerlink" title="算法设计"></a>算法设计</h3><ol>
+<li>构建网络。根据输入的数据，建立二分图，每个代表团为X集合中的结点，每个会议桌为Y集合中的结点，增设源点s和汇点t。从源点s向每个x<sub>i</sub>结点链接一条容量为该店标团人数r<sub>i</sub>的有向边，从每个y<sub>i</sub>结点向汇点t链接一条容量为该会议桌容量c<sub>j</sub>的有向边。X集合中每个结点向Y集合中每个结点链接一条容量为1的有向边。创建混合网络。</li>
+<li>求网络最大流。</li>
+<li>输出安排方案。如果<strong>最大流值等于源点s与X集合所有结点边容量之和，则说明X集合每个结点都有完备的多重匹配，否则无解</strong>。对于每个代表团来说，从X集合对应点出发的所有流量为1的边指向的Y集合的结点就是该代表团人员的安排情况（一个可行解）。</li>
+</ol>
+<h3 id="完美图解"><a href="#完美图解" class="headerlink" title="完美图解"></a>完美图解</h3><p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/Algorithm/images/duochongpipei1.jpg" alt="多重匹配"></p>
+<p>假设代表团数M=4，每个代表团人数依次为2、4、3、5；会议桌数n=5，每个会议桌可安排人数依次为3、4、2、5、4.</p>
+<ol>
+<li>构建网络。</li>
+<li>求最大网络流。使用ISAP算法求网络最大流，找到14条增广路径。<ul>
+<li>增广路经：10-9-4-0。增流1。</li>
+<li>增广路经：10-8-4-0。增流1。</li>
+<li>增广路经：10-7-4-0。增流1。</li>
+<li>增广路经：10-6-4-0。增流1。</li>
+<li>增广路经：10-5-4-0。增流1。</li>
+<li>增广路经：10-9-3-0。增流1。</li>
+<li>增广路经：10-8-3-0。增流1。</li>
+<li>增广路经：10-7-3-0。增流1。</li>
+<li>增广路经：10-9-2-0。增流1。</li>
+<li>增广路经：10-8-2-0。增流1。</li>
+<li>增广路经：10-6-2-0。增流1。</li>
+<li>增广路经：10-5-2-0。增流1。</li>
+<li>增广路经：10-9-1-0。增流1。</li>
+<li>增广路经：10-8-1-0。增流1。</li>
+</ul>
+</li>
+</ol>
+<p>增流后的实流网络如下图所示。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/Algorithm/images/duochongpipei2.jpg" alt="多重匹配"></p>
+<ol start="3">
+<li>输出安排方案。最大流值等于源点s与X几何所有结点边容量之和14，说明每个代表团都有完备的多重匹配。对于每个代表团，从代表团结点出发的所有流量为1的边指向的结点就是该代表团人员的会议桌号。在程序中，会议桌储存编号=代表团数m+实际编号，输出时需要输出会议桌实际编号。</li>
+</ol>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><p>（1）构建混合网络。</p>
+<pre><code>cout&lt;&lt;&quot;请输入代表团数m和会议桌数n:&quot;&lt;&lt;endl;
+    cin&gt;&gt;m&gt;&gt;n;
+    init();
+    total=m+n;
+    cout&lt;&lt;&quot;请依次输入每个代表团人数:&quot;&lt;&lt;endl;
+    for(int i=1;i&lt;=m;i++)
+    {
+        cin&gt;&gt;cost;
+        sum+=cost;
+        add(0, i, cost);//源点到代表团的边，容量为该代表团人数
+    }
+    cout&lt;&lt;&quot;请依次输入每个会议桌可安排人数:&quot;&lt;&lt;endl;
+    for(int j=m+1;j&lt;=total;j++)
+    {
+        cin&gt;&gt;cost;
+        add(j, total+1, cost);//会议桌到汇点的边，容量为会议桌可安排人数
+    }
+    for(int i=1;i&lt;=m;i++)
+        for(int j=m+1;j&lt;=total;j++)
+           add(i, j, 1);//代表团到会议桌的边，容量为1
+</code></pre><p>（3）输出安排方案</p>
+<pre><code>if(sum==Isap(0,total+1,total+2))
+    {
+        cout&lt;&lt;&quot;会议桌安排成功！&quot;;
+        cout&lt;&lt;endl;
+        print(m,n);//输出最佳方案
+        cout&lt;&lt;endl;
+        printg(total+2);//输出最终网络邻接表
+    }
+    else
+        cout&lt;&lt;&quot;无法安排所有代表团！&quot;;
+
+void print(int m,int n)//输出安排方案
+{
+   cout&lt;&lt;&quot;----------安排方案如下：----------&quot;&lt;&lt;endl;
+   cout&lt;&lt;&quot;每个代表团的安排情况：&quot;&lt;&lt;endl;
+   for(int i=1;i&lt;=m;i++)//读每个代表团的邻接表
+   {
+       cout&lt;&lt;&quot;第&quot;&lt;&lt;i&lt;&lt;&quot;个代表团安排的会议桌号:&quot;;
+       for(int j=V[i].first;~j;j=E[j].next)//读第i个代表团的邻接表
+          if(E[j].flow==1)
+             cout&lt;&lt;E[j].v-m&lt;&lt;&quot;  &quot;;
+       cout&lt;&lt;endl;
+   }
+}
+</code></pre><h3 id="算法复杂度"><a href="#算法复杂度" class="headerlink" title="算法复杂度"></a>算法复杂度</h3><p>时间复杂度：找到一条可增广路时间为O(V)，最多会执行O(VE)次，因为关键边的总数为O(VE)，因此总的时间复杂度为O(V<sup>2</sup>E)，其中V为结点个数，E为边的数量。</p>
+<p>空间复杂度O(V)。</p>
+<h2 id="试题库问题"><a href="#试题库问题" class="headerlink" title="试题库问题"></a>试题库问题</h2><p>这仍然是一个<strong>二分图多重分配</strong>问题。</p>
+<h3 id="算法设计-1"><a href="#算法设计-1" class="headerlink" title="算法设计"></a>算法设计</h3><ol>
+<li>构建网络。根据输入的数据，简历二分图，每个题型为X集合中的结点，每个实体为Y集合中的结点，增设源点s和汇点t。从源点s向每个x<sub>i</sub>有一条有向边，容量为该题型选出的数量c<sub>i</sub>。从每个y<sub>i</sub>向t连接一条有向边，容量为1，以保障每道题只能选中一次。Y集合中的题属于哪些题型，则x<sub>i</sub>就和y<sub>i</sub>之间有一条有向边，容量为1，创建混合网络。</li>
+<li>求网络最大流。</li>
+<li>输出抽取方案。如果<strong>最大流值等于源点s与X集合所有结点边容量之和，则说明实体抽取成功，否则无解</strong>。对于每个题型来说，从X集合对应点出发的所有流量为1的边指向的Y集合的结点就是该题型选中的试题号（一个可行解）。</li>
+</ol>
+<h3 id="完美图解-1"><a href="#完美图解-1" class="headerlink" title="完美图解"></a>完美图解</h3><p>假设题型数m=4，实体总数n=15，我们要在每种题型依次选择2、0、3、2个实体。上述的15个实体中，每个实体所属的题型依次是：1/2；2/3；1/4；2/3；2/4；1/2/3；3；4；4；2/3/4；3；2；1；1、4；4。</p>
+<ol>
+<li>构建网络。</li>
+<li><p>使用ISAP算法求网络最大流，找到7条增广路径。</p>
+<ul>
+<li>增广路经：20-19-4-0。增流：1。</li>
+<li>增广路经：20-18-4-0。增流：1。</li>
+<li>增广路经：20-15-3-0。增流：1。</li>
+<li>增广路经：20-14-3-0。增流：1。</li>
+<li>增广路经：20-11-3-0。增流：1。</li>
+<li>增广路经：20-17-1-0。增流：1。</li>
+<li>增广路经：20-10-1-0。增流：1。<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/Algorithm/images/duochongpipei3.jpg" alt="试题抽取"></li>
+</ul>
+</li>
+<li><p>输出抽取方案。最大流值等于抽取的试题数之和，说明试题抽取成功。</p>
+</li>
+</ol>
+<h3 id="算法复杂度-1"><a href="#算法复杂度-1" class="headerlink" title="算法复杂度"></a>算法复杂度</h3><p>时间复杂度：找到一条可增广路时间为O(V)，最多会执行O(VE)次，因为关键边的总数为O(VE)，因此总的时间复杂度为O(V<sup>2</sup>E)，其中V为结点个数，E为边的数量。</p>
+<p>空间复杂度O(V)。</p>
+<h2 id="最大收益问题"><a href="#最大收益问题" class="headerlink" title="最大收益问题"></a>最大收益问题</h2><h3 id="问题分析"><a href="#问题分析" class="headerlink" title="问题分析"></a>问题分析</h3><p>经过分析，又根据最大流最小割定理，最大流的流值等于最小割容量。即：实验方案净收益=所有实验项目收益-最大流值。所以只需要求出最大流值即可、</p>
+<h3 id="算法设计-2"><a href="#算法设计-2" class="headerlink" title="算法设计"></a>算法设计</h3><ol>
+<li>构建网络。根据输入的数据，添加源点和汇点，从源点s到每个实验项目E<sub>i</sub>有一条有向边，容量是项目产生的收益p<sub>i</sub>。从每个实验仪器I<sub>j</sub>到汇点t有一条有向边，容量是仪器费用c<sub>j</sub>，每个实验项目到该实验项目用到的仪器有一条有向边容量是<br>∞，创建混合网络。</li>
+<li>基于ISAP算法求网络最大流。</li>
+<li>输出最大收益及实验方案。最大收益实验方案就是<strong>最小割中的S集合去掉源点</strong>。在最大流对应的混合网络中，从选点开始，沿着cap&gt;flow的边深度优先遍历，遍历到的结点就是S集合，即对应的实验项目和仪器就是选中的实验方案。</li>
+</ol>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><ol>
+<li>输出最大收益方案</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">void DFS(int s)//深度搜索最大获益方案</span><br><span class="line">&#123;</span><br><span class="line">   for(int i=V[s].first;~i;i=E[i].next)//读当前结点的邻接表</span><br><span class="line">       if(E[i].cap&gt;E[i].flow)</span><br><span class="line">       &#123;</span><br><span class="line">           int u=E[i].v;</span><br><span class="line">           if(!flag[u])</span><br><span class="line">           &#123;</span><br><span class="line">               flag[u]=true;</span><br><span class="line">               DFS(u);</span><br><span class="line">           &#125;</span><br><span class="line">       &#125;</span><br><span class="line">&#125;</span><br><span class="line">void print(int m,int n)//输出最佳方案</span><br><span class="line">&#123;</span><br><span class="line">   cout&lt;&lt;&quot;----------最大获益方案如下：----------&quot;&lt;&lt;endl;</span><br><span class="line">   DFS(0);</span><br><span class="line">   cout&lt;&lt;&quot;选中的实验编号：&quot;&lt;&lt;endl;</span><br><span class="line">   for(int i=1;i&lt;=m;i++)</span><br><span class="line">       if(flag[i])</span><br><span class="line">          cout&lt;&lt;i&lt;&lt;&quot;  &quot;;</span><br><span class="line">   cout&lt;&lt;endl;</span><br><span class="line">   cout&lt;&lt;&quot;选中的仪器编号：&quot;&lt;&lt;endl;</span><br><span class="line">   for(int i=m+1;i&lt;=m+n;i++)</span><br><span class="line">      if(flag[i])</span><br><span class="line">          cout&lt;&lt;i-m&lt;&lt;&quot;  &quot;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>构建混合网络</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;&quot;请输入实验数m和仪器数n:&quot;&lt;&lt;endl;</span><br><span class="line">    cin&gt;&gt;m&gt;&gt;n;</span><br><span class="line">    init();</span><br><span class="line">    total=m+n;</span><br><span class="line">    cout&lt;&lt;&quot;请依次输入实验产生的效益和该实验需要的仪器编号(为0结束):&quot;&lt;&lt;endl;</span><br><span class="line">    for(int i=1;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;cost;</span><br><span class="line">        sum+=cost;</span><br><span class="line">        add(0, i, cost);//源点到实验项目的边，容量为该项目效益</span><br><span class="line">        while(cin&gt;&gt;num,num) //num为该项目需要的仪器编号</span><br><span class="line">            add(i, m+num, INF);//实验项目到需要仪器的边，容量为无穷大</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;&quot;请依次输入所有仪器的费用:&quot;&lt;&lt;endl;</span><br><span class="line">    for(int j=m+1;j&lt;=total;j++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;cost;</span><br><span class="line">        add(j, total+1, cost);//实验仪器到汇点的边，容量为实验仪器费用</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="算法复杂度-2"><a href="#算法复杂度-2" class="headerlink" title="算法复杂度"></a>算法复杂度</h3><p>时间复杂度：找到一条可增广路时间为O(V)，最多会执行O(VE)次，因为关键边的总数为O(VE)，因此总的时间复杂度为O(V<sup>2</sup>E)，其中V为结点个数，E为边的数量。</p>
+<p>空间复杂度O(V)。</p>
+<h2 id="方格取数问题"><a href="#方格取数问题" class="headerlink" title="方格取数问题"></a>方格取数问题</h2><h3 id="问题简介"><a href="#问题简介" class="headerlink" title="问题简介"></a>问题简介</h3><p>从一个矩阵中选取一些数，要求满足任意两个数不相邻，使这些数的和最大。实际上就是讲矩阵中的数分为两部分，对矩阵中的点进行黑白着色。</p>
+<h3 id="问题分析-1"><a href="#问题分析-1" class="headerlink" title="问题分析"></a>问题分析</h3><p>黑色方格作为一个集合X，白色方格作为一个集合Y，可以将一个图分为两部分，构成一个二分图。添加源点和汇点，从源点向黑色方格连一条边，容量为该黑色方格的权值，从白色方格向汇点连一条边，容量为该白色方格的权值，对于每一对相邻的黑白方格，从黑方格向白方格连一条边，容量为无穷大。</p>
+<p>同样是求出<strong>最小割</strong>，选中方格的最大权值=所有方格权值之和-最小割容量。</p>
+<h3 id="算法设计-3"><a href="#算法设计-3" class="headerlink" title="算法设计"></a>算法设计</h3><ol>
+<li>构建网络</li>
+<li>求网络最大流。</li>
+<li>输出选中物品的最大价值、物品选择方案。</li>
+</ol>
+<p><strong>选中物品的最大价值=所有物品价值之和-最大流值</strong><br><strong>注意</strong>：切割线切到的边容量是没选中的方格权值。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/Algorithm/images/fanggequshu1.jpg" alt="方格取数1"></p>
+<p>物品选择方案就是<strong>最小割中的S集合中的黑色方格和T集合中的白色方格</strong>。找到最小割后，从源点出发，沿着cap&gt;flow的边DFS，遍历到的结点就是S集合，没有遍历到的结点就是T集合。输出S集合中的黑色方格和T集合中的白色方格。如上图所示。</p>
+<h3 id="算法详解"><a href="#算法详解" class="headerlink" title="算法详解"></a>算法详解</h3><p>假设整个图如下图所示。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/Algorithm/images/fanggequshu2.jpg" alt="方格取数1"></p>
+<ol>
+<li>构建网络，根据输入的数据，绘制二分图，添加源点s和汇点t，从黑方格向白方格连一条边，容量为∞，创建网络。</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/Algorithm/images/fanggequshu3.jpg" alt="方格取数3"></p>
+<ol start="2">
+<li>在混合网络上用ISAP算法求网络最大流，找到如下6条增广路径。<ul>
+<li>增广路径：10-6-9-0.增流5。</li>
+<li>增广路径：10-8-9-0.增流15。</li>
+<li>增广路径：10-4-7-0.增流34。</li>
+<li>增广路径：10-2-5-0.增流70。</li>
+<li>增广路径：10-2-3-0.增流21。</li>
+<li>增广路径：10-2-1-0.增流75。</li>
+</ul>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/Algorithm/images/fanggequshu4.jpg" alt="方格取数4"></p>
+<p>切割线中被选中的就是红色圈圈的结点，选择的道路是从源点出发，按照cap&gt;flow的结点（这里面只有7和9两个结点）去深度遍历，这就是S集合；1、3、5和2是T集合。<br>所以选中的黑点为7、9，白色为2。</p>
+<h3 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h3><p>（1）构建网络</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">//创建混合网络</span><br><span class="line">for(int i=1;i&lt;=m;i++)</span><br><span class="line">	for(int j=1;j&lt;=n;j++)</span><br><span class="line">	&#123;</span><br><span class="line">		if((i+j)%2==0)//染黑色</span><br><span class="line">		&#123;</span><br><span class="line">			add(0,(i-1)*n+j,map[i][j]);//从源点到当前物品加边，容量为物品价值</span><br><span class="line">			flag[(i-1)*n+j]=1;//染色</span><br><span class="line">			//当前物品结点到四个相邻物品结点发出一条有向边，容量为无穷大</span><br><span class="line">			for(int k=0;k&lt;4;k++)</span><br><span class="line">			&#123;</span><br><span class="line">				int x=i+dir[k][0];</span><br><span class="line">				int y=j+dir[k][1];</span><br><span class="line">				if(x&lt;=m &amp;&amp; x&gt;0 &amp;&amp; y&lt;=n &amp;&amp; y&gt;0)</span><br><span class="line">					add((i-1)*n+j,(x-1)*n+y,INF);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">			//染白色，也就相当于flag为0，不需要专门的语句</span><br><span class="line">		//从源点到当前物品加边，容量为物品价值</span><br><span class="line">			add((i-1)*n+j,total+1,map[i][j]);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>（2）输出挑选物品的最大价值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;&quot;挑选物品的最大价值：&quot;&lt;&lt;sum-Isap(0,total+1,total+2)&lt;&lt;endl;</span><br></pre></td></tr></table></figure>
+<p>（3）输出选中的物品编号。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">void DFS(int s)</span><br><span class="line">&#123;</span><br><span class="line">	//读取当前结点的邻接表</span><br><span class="line">	for(int i=V[s].first;~i;i=E[i].next)</span><br><span class="line">	&#123;</span><br><span class="line">		if(E[i].cap&gt;E[i].flow)</span><br><span class="line">		&#123;</span><br><span class="line">			int u=E[i].v;</span><br><span class="line">			if(!dfsflag[u])</span><br><span class="line">			&#123;</span><br><span class="line">				dfsflag[u]=true;</span><br><span class="line">				DFS(u);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">//输出最佳方案</span><br><span class="line">void print(int m,int n)</span><br><span class="line">&#123;</span><br><span class="line">	cout&lt;&lt;&quot;-----最佳方案：-----&quot;&lt;&lt;endl;</span><br><span class="line">	cout&lt;&lt;&quot;选中物品编号&lt;&lt;endl;</span><br><span class="line">	DFS(0);</span><br><span class="line">	for(int i=1;i&lt;=m*n;i++)</span><br><span class="line">		if(())</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="算法复杂度-3"><a href="#算法复杂度-3" class="headerlink" title="算法复杂度"></a>算法复杂度</h3><p>时间复杂度：找到一条可增广路时间为O(V)，最多会执行O(VE)次，因为关键边的总数为O(VE)，因此总的时间复杂度为O(V<sup>2</sup>E)，其中V为结点个数，E为边的数量。</p>
+<p>空间复杂度O(V)。</p>
+<h2 id="旅游路线问题"><a href="#旅游路线问题" class="headerlink" title="旅游路线问题"></a>旅游路线问题</h2><h3 id="问题分析-2"><a href="#问题分析-2" class="headerlink" title="问题分析"></a>问题分析</h3><p>给定一张地图，图中结点代表景点，边代表景点可以直达。现要求找到满足下面要求且途径景点最多的一条旅游线路：</p>
+<ol>
+<li>从最东端起点出发，从东往西经过若干个景点到达最西端的景点，然后再从西向东回到家（可途径若干景点）；</li>
+<li>除起点外，任何景点只能访问1次。</li>
+</ol>
+<h3 id="算法设计-4"><a href="#算法设计-4" class="headerlink" title="算法设计"></a>算法设计</h3><ol>
+<li>构建网络。根据输入的数据，按顺序对景点进行编号，即景点i对应结点i，对每个结点拆点，拆为两个结点i和i’，且从i到i’连接一条边，边容量为1，单位流量费用为0；源点和终点拆点时，边的容量为2，单位流量费用为0；如果景点i到景点j可以直达，则从结点i’到结点j连接一条边，边的容量为1，单位流量费用为-1，创建混合网络。</li>
+<li>求网络最小费用最大流。</li>
+<li>求出最优的旅游线路。从源点出发，沿着flow&gt;0且cost≤0的方向深度优先遍历，到达终点后，再沿着flow＜0且cost≥0的方向深度优先遍历，返回源点。</li>
+</ol>
+<h3 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h3><ol>
+<li>构建网络</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">cout&lt;&lt;&quot;请输入景点个数n和直达线路数m:&quot;&lt;&lt;endl;</span><br><span class="line">    cin&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    init();//初始化</span><br><span class="line">    maze.clear();</span><br><span class="line">    cout&lt;&lt;&quot;请输入景点名str&quot;&lt;&lt;endl;</span><br><span class="line">    for(i=1;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">       cin&gt;&gt;str[i];</span><br><span class="line">       maze[str[i]]=i;</span><br><span class="line">       if(i==1||i==n)</span><br><span class="line">         add(i,i+n,2,0);</span><br><span class="line">       else</span><br><span class="line">         add(i,i+n,1,0);</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;&quot;请输入可以直达的两个景点名str1,str2&quot;&lt;&lt;endl;</span><br><span class="line">    for(i=1;i&lt;=m;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        cin&gt;&gt;str1&gt;&gt;str2;</span><br><span class="line">        int a=maze[str1],b=maze[str2];</span><br><span class="line">        if(a&lt;b)</span><br><span class="line">        &#123;</span><br><span class="line">          if(a==1&amp;&amp;b==n)</span><br><span class="line">            add(a+n,b,2,-1);</span><br><span class="line">          else</span><br><span class="line">            add(a+n,b,1,-1);</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">           if(b==1&amp;&amp;a==n)</span><br><span class="line">             add(b+n,a,2,-1);</span><br><span class="line">           else</span><br><span class="line">             add(b+n,a,1,-1);</span><br><span class="line">         &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>求网络最小费用最大流</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line">bool SPFA(int s, int t, int n)//求最小费用路的SPFA</span><br><span class="line">&#123;</span><br><span class="line">    int i, u, v;</span><br><span class="line">    queue &lt;int&gt; qu; // 队列，STL实现</span><br><span class="line">    memset(vis,0,sizeof(vis));//访问标记初始化</span><br><span class="line">    memset(c,0,sizeof(c));   //入队次数初始化</span><br><span class="line">    memset(pre,-1,sizeof(pre)); //前驱初始化</span><br><span class="line">    for(i=1;i&lt;=n;i++)</span><br><span class="line">    &#123;</span><br><span class="line">        dist[i]=INF; //距离初始化</span><br><span class="line">    &#125;</span><br><span class="line">    vis[s]=true; //结点入队vis要做标记</span><br><span class="line">    c[s]++;     //要统计结点的入队次数</span><br><span class="line">    dist[s]=0;</span><br><span class="line">    qu.push(s);</span><br><span class="line">    while(!qu.empty())</span><br><span class="line">    &#123;</span><br><span class="line">        u=qu.front();</span><br><span class="line">        qu.pop();</span><br><span class="line">        vis[u]=false;</span><br><span class="line">        //队头元素出队，并且消除标记</span><br><span class="line">        for(i=V[u].first; i!=-1; i=E[i].next)//遍历结点u的邻接表</span><br><span class="line">        &#123;</span><br><span class="line">            v=E[i].v;</span><br><span class="line">            if(E[i].cap&gt;E[i].flow &amp;&amp; dist[v]&gt;dist[u]+E[i].cost)//松弛操作</span><br><span class="line">            &#123;</span><br><span class="line">                dist[v]=dist[u]+E[i].cost;</span><br><span class="line">                pre[v]=i; //记录前驱</span><br><span class="line">                if(!vis[v]) //结点v不在队内</span><br><span class="line">                &#123;</span><br><span class="line">                    c[v]++;</span><br><span class="line">                    qu.push(v);   //入队</span><br><span class="line">                    vis[v]=true; //标记</span><br><span class="line">                    if(c[v]&gt;n) //超过入队上限，说明有负环</span><br><span class="line">                        return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    cout&lt;&lt;&quot;最短路数组&quot;&lt;&lt;endl;</span><br><span class="line">    cout&lt;&lt;&quot;dist[ ]=&quot;;</span><br><span class="line">    for(int i=1;i&lt;=n;i++)</span><br><span class="line">       cout&lt;&lt;&quot;  &quot;&lt;&lt;dist[i];</span><br><span class="line">    cout&lt;&lt;endl;</span><br><span class="line">    if(dist[t]==INF)</span><br><span class="line">        return false; //如果距离为INF，说明无法到达，返回false</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br><span class="line">int MCMF(int s,int t,int n) //minCostMaxFlow</span><br><span class="line">&#123;</span><br><span class="line">    int d; //可增流量</span><br><span class="line">    maxflow=mincost=0;//maxflow 当前最大流量，mincost当前最小费用</span><br><span class="line">    while(SPFA(s,t,n))//表示找到了从s到t的最短路</span><br><span class="line">    &#123;</span><br><span class="line">        d=INF;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;&quot;增广路径：&quot;&lt;&lt;t;</span><br><span class="line">        for(int i=pre[t]; i!=-1; i=pre[E[i^1].v])</span><br><span class="line">        &#123;</span><br><span class="line">            d=min(d, E[i].cap-E[i].flow); //找最小可增流量</span><br><span class="line">            cout&lt;&lt;&quot;--&quot;&lt;&lt;E[i^1].v;</span><br><span class="line">        &#125;</span><br><span class="line">        cout&lt;&lt;&quot;增流：&quot;&lt;&lt;d&lt;&lt;endl;</span><br><span class="line">        cout&lt;&lt;endl;</span><br><span class="line">        for(int i=pre[t]; i!=-1; i=pre[E[i^1].v])//修改残余网络，增加增广路上相应弧的容量，并减少其反向边容量</span><br><span class="line">        &#123;</span><br><span class="line">            E[i].flow+=d;</span><br><span class="line">            E[i^1].flow-=d;</span><br><span class="line">        &#125;</span><br><span class="line">        maxflow+=d; //更新最大流</span><br><span class="line">        mincost+=dist[t]*d; //dist[t]为该路径上单位流量费用之和 ，最小费用更新</span><br><span class="line">   &#125;</span><br><span class="line">   return maxflow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>输出最优的旅游路线</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">void print(int s,int t)</span><br><span class="line">&#123;</span><br><span class="line">    int v;</span><br><span class="line">    vis[s]=1;</span><br><span class="line">    for(int i=V[s].first;~i;i=E[i].next)</span><br><span class="line">      if(!vis[v=E[i].v]&amp;&amp;((E[i].flow&gt;0&amp;&amp;E[i].cost&lt;=0)||(E[i].flow&lt;0&amp;&amp;E[i].cost&gt;=0)))</span><br><span class="line">      &#123;</span><br><span class="line">         print(v,t);</span><br><span class="line">         if(v&lt;=t)</span><br><span class="line">           cout&lt;&lt;str[v]&lt;&lt;endl;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/03/20/lineprograming1/" class="next-post btn btn-default" title="线性规划1">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">线性规划1</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+    <div id="comments">
+        
+	
+    <div id="vcomments" class="valine"></div>
+    <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="/assets/valine.min.js"></script>
+
+    <script>
+        new Valine({
+            av: AV,
+            el: '#vcomments',
+            appId: 'xOKV9J4UeQAtVkvnJC7Kq2Jn-gzGzoHsz',
+            appKey: 'erIpQac4azoCmgfBB7Dl9maa',
+            placeholder: '说点什么吧',
+            notify: false,
+            verify: false,
+            avatar: 'mm',
+            meta: 'nick,mail'.split(','),
+            pageSize: '10',
+            path: window.location.pathname,
+            lang: 'zh-CN'.toLowerCase()
+        })
+    </script>
+
+
+    </div>
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#圆桌问题"><span class="toc-text">圆桌问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完美图解"><span class="toc-text">完美图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法复杂度"><span class="toc-text">算法复杂度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#试题库问题"><span class="toc-text">试题库问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计-1"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完美图解-1"><span class="toc-text">完美图解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法复杂度-1"><span class="toc-text">算法复杂度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#最大收益问题"><span class="toc-text">最大收益问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题分析"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计-2"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法复杂度-2"><span class="toc-text">算法复杂度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#方格取数问题"><span class="toc-text">方格取数问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题简介"><span class="toc-text">问题简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题分析-1"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计-3"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法详解"><span class="toc-text">算法详解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现-2"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法复杂度-3"><span class="toc-text">算法复杂度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#旅游路线问题"><span class="toc-text">旅游路线问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题分析-2"><span class="toc-text">问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#算法设计-4"><span class="toc-text">算法设计</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现-3"><span class="toc-text">代码实现</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
