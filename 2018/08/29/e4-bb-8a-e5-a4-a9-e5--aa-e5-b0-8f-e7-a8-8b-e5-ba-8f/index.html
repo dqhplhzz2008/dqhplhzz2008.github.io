@@ -1,0 +1,338 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="今天在GitHub上更新了大学的时候曾经写过的一些程序，可以在我的GitHub上查看。第一个是图书馆人员计数器，第二个是超声波测距仪，第三个是基于MATLAB的回波信号的产生与消除。其中前两个程...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>今天在github上更新了几个小程序 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="今天在github上更新了几个小程序">
+            
+	            今天在github上更新了几个小程序
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/08/29</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>今天在GitHub上更新了大学的时候曾经写过的一些程序，可以在我的GitHub上查看。第一个是<strong>图书馆人员计数器</strong>，第二个是<strong>超声波测距仪</strong>，第三个是<strong>基于MATLAB的回波信号的产生与消除</strong>。其中前两个程序是我和同学一起制作，最后一个程序是我自己单独制作。欢迎查看。</p>
+<h2 id="图书馆人员出入计数器"><a href="#图书馆人员出入计数器" class="headerlink" title="图书馆人员出入计数器"></a>图书馆人员出入计数器</h2><h3 id="1-设计任务"><a href="#1-设计任务" class="headerlink" title="1.设计任务"></a>1.设计任务</h3><p>设计一个图书馆出入人员计数系统，要求利用2组红外发射接收对管组成模拟图书馆出入人员计数系统，使其能够模拟统计图书馆出入人员计数, 并使用数码管显示计数信息。</p>
+<h3 id="2-基本要求"><a href="#2-基本要求" class="headerlink" title="2.基本要求"></a><a href="https://github.com/dqhplhzz2008/libraryinandout#2基本要求" target="_blank" rel="noopener"></a>2.基本要求</h3><p>（1) 任何一对红外管能够检测到有人走过，并将计数显示出来； （2）当障碍物依次从红外发射管1到2走过的时候，人员数加1； （3）在实现(2)的基础上，实现则有分，如果不能保证两个同时实现，则不加分。当障碍物依次从红外发射管2到1走过的时候，人员数减1。</p>
+<h3 id="3-发挥部分"><a href="#3-发挥部分" class="headerlink" title="3.发挥部分"></a><a href="https://github.com/dqhplhzz2008/libraryinandout#3发挥部分" target="_blank" rel="noopener"></a>3.发挥部分</h3><p>（1）充分发挥两对红外对管的功能,实现当人员走到一半再返回,则计数不变功能； （2）为保证系统稳定性，当人员从第1对红外发射管经过之后，直接从中间取出，不计数；当人员从中间直接经过第2个管子之后， 不计数；待再次从第1、2对红外管经过时，正常计数。</p>
+<h3 id="4-下载地址"><a href="#4-下载地址" class="headerlink" title="4.下载地址"></a>4.下载地址</h3><p>[<a href="https://github.com/dqhplhzz2008/libraryinandout" target="_blank" rel="noopener">下载地址</a>]</p>
+<h2 id="超声波测距仪"><a href="#超声波测距仪" class="headerlink" title="超声波测距仪"></a>超声波测距仪</h2><h3 id="关于程序"><a href="#关于程序" class="headerlink" title="关于程序"></a>关于程序</h3><p>本设计利用超声波具有指向性强，能量消耗慢，传播距离较远等优点，设计了一个基于51系列单片机的超声波测距系统，该系统使用ATMEL公司的51系列单片机，由单片机控制产生超声波脉冲并使用定时器计时，计算超声波自发射至接收的往返时间，从而得到实测距离，并用四位LED数码管显示出来，利用按键还可以实现距离的记录和乘积计算以及报警功能。整个硬件电路由单片机核心控制模块、超声波发送与接收模块、显示电路模块、蜂鸣器模块、按键模块和供电模块等组成。此系统具有易控制、工作可靠、测距准确度高、可读性强和流程清晰等优点。实现后的作品可用于需要测量距离参数的各种应用场合。</p>
+<h3 id="设计要求"><a href="#设计要求" class="headerlink" title="设计要求"></a><a href="https://github.com/dqhplhzz2008/UDMD#1设计要求" target="_blank" rel="noopener"></a>设计要求</h3><p>本系统的设计目的是，通过自己设计并画出电路原理图、PCB板，焊接电路，同时编写程序实现以下功能： <strong>S1</strong>：按下S1不放，则数码管显示数字定住，表示此时确定了一个距离L1，松开S1,则继续测距。 <strong>S2</strong>：按下S2不放，则数码管显示数字定住，表示此时确定了一个距离L2，松开S2,则继续测距。 <strong>S3</strong>：距离L1与距离L2相乘的结果。（注意：由于数码管显示有限，只能显示4位，所以L1和L2为两位数时，相乘结果才正确） <strong>S4</strong>：按下S4，约10秒后蜂鸣器响，按复位键后恢复正常。</p>
+<h3 id="硬件选择"><a href="#硬件选择" class="headerlink" title="硬件选择"></a>硬件选择</h3><p>本设计的MCU采用的是DIP（Dual In-line Package塑料双列直插式）封装的STC89C52高性能8位单片机。AT89C51是一个低电压，高性能CMOS 8位单片机，片内含4k bytes的可反复擦写的Flash只读程序存储器和128 bytes的随机存取数据存储器（RAM），器件采用ATMEL公司的高密度、非易失性存储技术生产，兼容标准MCS-51指令系统，片内置通用8位中央处理器和Flash存储单元，内置功能强大的微型计算机的AT89C51提供了高性价比的解决方案。</p>
+<h3 id="系统框图"><a href="#系统框图" class="headerlink" title="系统框图"></a><a href="https://github.com/dqhplhzz2008/UDMD#系统框图" target="_blank" rel="noopener"></a>系统框图</h3><p><a href="https://raw.githubusercontent.com/dqhplhzz2008/UDMD/master/zongkuangtu.png" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/dqhplhzz2008/UDMD/master/zongkuangtu.png" alt></a> 该系统由1个中心模块、5个功能模块组成。 单片机核心控制是整个系统的心脏。在本系统中，它将产生一个电平使超声波发送模块产生40kHZ的方波并发送出去；利用其中的定时器实现计时，并计算出距离，然后将其显示在数码管上；接收来自按键模块的信息；控制蜂鸣器模块的工作。 供电模块是系统的电源供给部分。来自电池的9V电压将通过该模块降为5V供给其它各个模块。 其它模块不在此再累述。</p>
+<h3 id="系统测试结果"><a href="#系统测试结果" class="headerlink" title="系统测试结果"></a><a href="https://github.com/dqhplhzz2008/UDMD#系统测试结果" target="_blank" rel="noopener"></a>系统测试结果</h3><p>测试次数</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>系统测试值（单位：mm）</p>
+<p>239</p>
+<p>348</p>
+<p>421</p>
+<p>520</p>
+<p>685</p>
+<p>直尺测试值（单位：mm）</p>
+<p>248</p>
+<p>358</p>
+<p>430</p>
+<p>532</p>
+<p>691</p>
+<p>误差（单位：mm</p>
+<p>9</p>
+<p>10</p>
+<p>9</p>
+<p>12</p>
+<p>6</p>
+<h3 id="下载地址"><a href="#下载地址" class="headerlink" title="下载地址"></a>下载地址</h3><p>[<a href="https://github.com/dqhplhzz2008/UDMD" target="_blank" rel="noopener">下载地址</a>]</p>
+<h2 id="基于MATLAB的回波信号的产生与消除"><a href="#基于MATLAB的回波信号的产生与消除" class="headerlink" title="基于MATLAB的回波信号的产生与消除"></a>基于MATLAB的回波信号的产生与消除</h2><h3 id="1-设计任务-1"><a href="#1-设计任务-1" class="headerlink" title="1.设计任务"></a><a href="https://github.com/dqhplhzz2008/GEES#1设计任务" target="_blank" rel="noopener"></a>1.设计任务</h3><p>本课程设计要求用MATLAB语言编程实现回波信号的产生和消除。</p>
+<h3 id="2-理论依据"><a href="#2-理论依据" class="headerlink" title="2.理论依据"></a><a href="https://github.com/dqhplhzz2008/GEES#2理论依据" target="_blank" rel="noopener"></a>2.理论依据</h3><p>根据设计要求分析系统功能，掌握设计中所需理论及原理（采样频率、采样位数的概念，采样定理；回声信号，卷积，相关分析；时域信号的FFT分析；数字滤波器设计原理和方法）。</p>
+<h3 id="3-信号的采集"><a href="#3-信号的采集" class="headerlink" title="3.信号的采集"></a><a href="https://github.com/dqhplhzz2008/GEES#3信号的采集" target="_blank" rel="noopener"></a>3.信号的采集</h3><p>录制一段音频（如歌曲、说话声等），绘制其时域波形，对此音频信号用FFT作谱分析。</p>
+<h3 id="4-回声信号的产生"><a href="#4-回声信号的产生" class="headerlink" title="4.回声信号的产生"></a><a href="https://github.com/dqhplhzz2008/GEES#4回声信号的产生" target="_blank" rel="noopener"></a>4.回声信号的产生</h3><p>在录制信号基础上产生带有回声的声音信号并绘制其时域波形，对其进行FFT频谱分析，绘制频谱图。</p>
+<h3 id="5-从带有回声的声音信号中恢复原信号"><a href="#5-从带有回声的声音信号中恢复原信号" class="headerlink" title="5.从带有回声的声音信号中恢复原信号"></a><a href="https://github.com/dqhplhzz2008/GEES#5从带有回声的声音信号中恢复原信号" target="_blank" rel="noopener"></a>5.从带有回声的声音信号中恢复原信号</h3><p>设计合适的滤波器，对带有回声的声音信号进行滤波，恢复原信号。绘制所设计滤波器的幅频和相频特性，及滤波后的信号的时域波形和频谱图。</p>
+<h3 id="6-分析反射物距离"><a href="#6-分析反射物距离" class="headerlink" title="6.分析反射物距离"></a><a href="https://github.com/dqhplhzz2008/GEES#6分析反射物距离" target="_blank" rel="noopener"></a>6.分析反射物距离</h3><p>从带有回声的声音信号中估计反射物的距离。采用相关分析法从带有回声的声音信号中估计反射物的距离。</p>
+<h2 id="7-下载地址"><a href="#7-下载地址" class="headerlink" title="7.下载地址"></a>7.下载地址</h2><p><a href="https://github.com/dqhplhzz2008/GEES" target="_blank" rel="noopener">[下载地址]</a></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/09/03/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-b1-a1-e7-a8-8b-e5-ba-8f-e8/" class="pre-post btn btn-default" title="C++面向对象程序设计课程笔记（第一周）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第一周）</span>
+        </a>
+    
+    
+        <a href="/2018/03/09/tiobe-index-for-march-2018top-20/" class="next-post btn btn-default" title="TIOBE Index for March 2018[TOP 20]">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">TIOBE Index for March 2018[TOP 20]</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#图书馆人员出入计数器"><span class="toc-text">图书馆人员出入计数器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-设计任务"><span class="toc-text">1.设计任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-基本要求"><span class="toc-text">2.基本要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-发挥部分"><span class="toc-text">3.发挥部分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-下载地址"><span class="toc-text">4.下载地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#超声波测距仪"><span class="toc-text">超声波测距仪</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#关于程序"><span class="toc-text">关于程序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设计要求"><span class="toc-text">设计要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬件选择"><span class="toc-text">硬件选择</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统框图"><span class="toc-text">系统框图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#系统测试结果"><span class="toc-text">系统测试结果</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#下载地址"><span class="toc-text">下载地址</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基于MATLAB的回波信号的产生与消除"><span class="toc-text">基于MATLAB的回波信号的产生与消除</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-设计任务-1"><span class="toc-text">1.设计任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-理论依据"><span class="toc-text">2.理论依据</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-信号的采集"><span class="toc-text">3.信号的采集</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-回声信号的产生"><span class="toc-text">4.回声信号的产生</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-从带有回声的声音信号中恢复原信号"><span class="toc-text">5.从带有回声的声音信号中恢复原信号</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-分析反射物距离"><span class="toc-text">6.分析反射物距离</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-下载地址"><span class="toc-text">7.下载地址</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

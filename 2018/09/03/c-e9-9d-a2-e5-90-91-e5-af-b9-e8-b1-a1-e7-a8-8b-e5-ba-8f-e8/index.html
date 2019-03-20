@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="一、动态内存分配 1.第一种用法，分配一个变量： P = new T; T是任意类型名，P是类型为T*的指针。动态分配出一片大小为sizeof(T)字节的内存空间，并且将该内存空间的起始地址赋值...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++面向对象程序设计课程笔记（第一周） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++面向对象程序设计课程笔记（第一周）">
+            
+	            C++面向对象程序设计课程笔记（第一周）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/09/03</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p><strong>一、动态内存分配</strong> 1.第一种用法，分配一个变量： P = new T; T是任意<strong>类型名</strong>，P是类型为<strong>T*</strong>的指针。动态分配出一片大小为<strong>sizeof(T)</strong>字节的内存空间，并且将该内存空间的<strong>起始地址</strong>赋值给P。比如： int *pn; pn = new int; *pn = 5; 2.第二种用法，分配一个数组： P= new T[N]; T：任意<strong>类型名</strong>； P：类型为<strong>T*</strong>的指针； N：要分配的数组元素的<strong>个数</strong>，可以是整型<strong>表达式</strong>。 动态分配出一片大小为N*sizeof(T)字节的内存空间，并且将该内存空间的起始地址赋给P。 例如： int *pn; int i = 5; pn = new int[i<em>20]; pn[0]=20; pn[100] =30;//编译没有问题，运行时导致数组越界，最大下标为99才对   new运算符返回值的类型都是<strong>T</strong></em>。 3.用delete运算符释放动态分配的内存 <strong>用new动态分配的内存空间，一定要用delete运算符进行释放。</strong> 格式如下： delete 指针;//该指针必须指向new出来的空间 例如： int *p = new int; *p = 5; delete p; delete p;//异常，一片空间不能被delete多次 用delete释放动态分配的数组，要加“<strong>[]</strong>”。，格式如下： delete[] 指针;//该指针<strong>必须</strong>指向new出来的数组。 如果不加[]，那么delete的空间就不会被释放完全。 <strong>二、内联函数和重载函数，函数参数缺省值</strong> 1.内联函数 函数调用是由时间开销的。如果函数本身只有几条语句，之行很快，而且执行次数较多，那么调用函数产生额外开销比较大，。为了减少函数调用的开销，引入了<strong>内联函数</strong>机制。<strong>编译器处理对内联函数的调用语句时，是将整个函数的代码插入到调用语句处，而不会产生调用函数的语句。</strong> 内联函数的书写格式： inline 函数返回值类型 函数名称(参数) { 函数体; } 2.函数重载 同java类似，不再累述，<strong>根据调用语句中的实参的个数和类型判断应该调用哪个函数</strong>。但是若实参的个数和类型一致，只是返回值类型不同，就不是重载，会报错。 3.函数参数缺省值 定义函数的时候可以让<strong>最右边的连续若干个</strong>参数有缺省值。 <strong>三、类和对象的基本概念与用法</strong> 结构化程序设计中，函数和其操作的数据结构没有直观联系。 重用：在编写某个程序时，发现其需要的某项功能，在现有的某个程序里已经有了相同或类似的实现，那么自然希望能够将那部分代码抽取出来，在新程序中使用。 在结构化程序设计中，随着程序规模的增大，由于程序大量函数、变量之间的关系错综复杂，要抽取这部分代码，会变得十分困难。 面向对象的程序设计具有：<strong>抽象</strong>、<strong>封装</strong>、<strong>继承</strong>和<strong>多态</strong>四个基本特点。 例程： class CRectangle { public: int w,h; int Area(){ return w*h; } int Perimeter(){ return 2*(w+h); } void Init(intw_,inth_){ w = w_; h = h_; } };//必须要有分号 在主程序中使用： int main() { int w,h; CRectangle r;//新建一个类 cin&gt;&gt;w&gt;&gt;h; r.Init(w,j);;//初始化赋值 cout&lt;&lt;r.Area()&lt;&lt;endl&lt;&lt;r.Perimeter(); return 0; } 和结构变量一样，对象所占用的内存空间的大小，等于所有<strong>成员变量</strong>（<strong>不包括成员函数</strong>）的大小之和。 每个对象各有自己的存储空间，一个对象的某个成员变量被改变了不会影响另一个对象的成员变量。 和结构变量一样，对象之间可以用“=”进行赋值，但不可以运用别的运算符号，除非重载。 第二种使用类的成员变量和成员函数的方法： 指针-&gt;成员名。 第一种类似于Java，不说了。 用法3：引用名.成员名 CRectangle r2; CRectangle &amp; rr =r2; rr.w=5; rr.Init(5,4);//rr的值边了，r2的值也变</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/09/03/c-e9-9d-a2-e5-90-91-e5-af-b9-e8-e8-ae-a1-e8-af-b/" class="pre-post btn btn-default" title="C++面向对象程序设计课程笔记（第二周）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++面向对象程序设计课程笔记（第二周）</span>
+        </a>
+    
+    
+        <a href="/2018/08/29/e4-bb-8a-e5-a4-a9-e5--aa-e5-b0-8f-e7-a8-8b-e5-ba-8f/" class="next-post btn btn-default" title="今天在github上更新了几个小程序">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">今天在github上更新了几个小程序</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

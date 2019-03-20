@@ -1,0 +1,549 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="1.修改程序清单11.15，使之将一系列连续的随机漫步者位置写入到文件中。对于每个位置，用步号进行标示。另外，让该程序将初始条件（目标距离和步长）以及结果小结写入到该文件中。
+#include ...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++ Primer Plus（第五版）第11章编程题答案 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++ Primer Plus（第五版）第11章编程题答案">
+            
+	            C++ Primer Plus（第五版）第11章编程题答案
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/18</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p><strong>1.修改程序清单11.15，使之将一系列连续的随机漫步者位置写入到文件中。对于每个位置，用步号进行标示。另外，让该程序将初始条件（目标距离和步长）以及结果小结写入到该文件中。</strong></p>
+<p>#include <iostream></iostream></p>
+<p>#include <cstdlib></cstdlib></p>
+<p>#include <ctime></ctime></p>
+<p>#include <fstream></fstream></p>
+<p>#include “vector.h”<br>using namespace std;<br>using VECTOR::Vector;<br>int main() {<br>    ofstream outFile;<br>    outFile.open(“exercise1.txt”);<br>    srand(time(0));<br>    double direction;<br>    Vector step;<br>    Vector result(0.0, 0.0);<br>    unsigned long steps = 0;<br>    double target;<br>    double dstep;<br>    cout &lt;&lt; “Enter target distance(q to quit): “;<br>    while (cin &gt;&gt; target)<br>    {<br>        cout &lt;&lt; “Enter step length: “;<br>        if (!(cin &gt;&gt; dstep))<br>            break;<br>        outFile &lt;&lt; “Target Distance: “ &lt;&lt; target &lt;&lt; “, Step Size: “ &lt;&lt; dstep &lt;&lt; endl;<br>        while (result.magval() &lt; target)<br>        {<br>            direction = rand() % 360;<br>            step.set(dstep, direction, ‘p’);<br>            result = result + step;<br>            outFile &lt;&lt; steps &lt;&lt; “: (x,y) = “ &lt;&lt; “(“ &lt;&lt; step.xval() &lt;&lt; “, “ &lt;&lt; step.yval() &lt;&lt; “)” &lt;&lt; endl;<br>            steps++;<br>        }<br>        outFile &lt;&lt; “After “ &lt;&lt; steps &lt;&lt; “ steps, the subject “<br>            “has the following location:\n”;<br>        outFile &lt;&lt; “(x,y)=” &lt;&lt; result &lt;&lt; endl;<br>        result.polar_mode();<br>        outFile &lt;&lt; “ or\n” &lt;&lt; result &lt;&lt; endl;<br>        outFile &lt;&lt; “Average outward distance per step = “<br>            &lt;&lt; result.magval() / steps &lt;&lt; endl;<br>        outFile &lt;&lt; “====================================================”&lt;&lt;endl;<br>                outFile &lt;&lt; “COPYRIGHT 2018 WWW.YUSHUAI.XYZ” &lt;&lt; endl;<br>        steps = 0;<br>        result.set(0.0, 0.0);<br>        cout &lt;&lt; “Enter target distance (q to quit): “;<br>    }<br>    outFile.close();<br>    cout &lt;&lt; “Bye~” &lt;&lt; endl;<br>    system(“pause”);<br>    return 0;<br>}</p>
+<p><strong>2.对Vector类的头文件（程序清单11.13）和实现文件（程序清单11.14）进行修改，使其不再存储矢量的长度和角度，而是在magval()和angval()被调用时计算它们。</strong> <strong>应保留公有接口不变（公有方法及其参数不变），但对私有部分（包括一些私有方法）和方法实现进行修改。然后，使用程序清单11.15对修改后的版本进行测试，结果应该与以前相同，因为Vector类的公有接口与原来相同。</strong> vector.h</p>
+<p>// vect.h – Vector class with &lt;&lt;, mode state</p>
+<p>#ifndef VECTOR_H_</p>
+<p>#define VECTOR_H_</p>
+<p>#include <iostream><br>namespace VECTOR<br>{<br>    class Vector<br>    {<br>    private:<br>        double x;          // horizontal value<br>        double y;          // vertical value<br>        char mode;         // ‘r’ = rectangular, ‘p’ = polar<br>                           // private methods for setting values<br>        void set_x(double mag, double ang);<br>        void set_y(double mag, double ang);<br>    public:<br>        Vector();<br>        Vector(double n1, double n2, char form = ‘r’);<br>        void set(double n1, double n2, char form = ‘r’);<br>        ~Vector();<br>        double xval() const { return x; }       // report x value<br>        double yval() const { return y; }       // report y value<br>        double magval() const { return sqrt(x <em> x + y </em> y); }   // report magnitude<br>        double angval() const// report angle<br>        {<br>            if (x == 0.0 &amp;&amp; y == 0.0)<br>                return 0.0;<br>            else<br>                return atan2(y, x);<br>        }</iostream></p>
+<pre><code>    void polar_mode();                    // set mode to &apos;p&apos;
+    void rect_mode();                     // set mode to &apos;r&apos;
+                                          // operator overloading
+    Vector operator+(const Vector &amp; b) const;
+    Vector operator-(const Vector &amp; b) const;
+    Vector operator-() const;
+    Vector operator*(double n) const;
+    // friends
+    friend Vector operator*(double n, const Vector &amp; a);
+    friend std::ostream &amp; operator&lt;&lt;(std::ostream &amp; os, const Vector &amp; v);
+};
+</code></pre><p>}   // end namespace VECTOR</p>
+<p>#endif</p>
+<p>#pragma once</p>
+<p>vector.cpp</p>
+<p>#include <cmath></cmath></p>
+<p>#include “vector.h”   // includes <iostream><br>using std::sqrt;<br>using std::sin;<br>using std::cos;<br>using std::atan2;<br>using std::cout;</iostream></p>
+<p>namespace VECTOR<br>{</p>
+<pre><code>const double Rad\_to\_deg = 57.2957795130823;
+
+// private methods
+// calculates magnitude from x and y
+// set x from polar coordinate
+void Vector::set_x(double mag, double ang)
+{
+    x = mag * cos(ang);
+}
+
+// set y from polar coordinate
+void Vector::set_y(double mag, double ang)
+{
+    y = mag * sin(ang);
+}
+
+// public methods
+Vector::Vector()             // default constructor
+{
+    x = y = 0.0;
+    mode = &apos;r&apos;;
+}
+
+// construct vector from rectangular coordinates if form is r
+// (the default) or else from polar coordinates if form is p
+Vector::Vector(double n1, double n2, char form)
+{
+    mode = form;
+    if (form == &apos;r&apos;)
+    {
+        x = n1;
+        y = n2;
+    }
+    else if (form == &apos;p&apos;)
+    {
+        set_x(n1, n2);
+        set_y(n1, n2);
+    }
+    else
+    {
+        cout &lt;&lt; &quot;Incorrect 3rd argument to Vector() -- &quot;;
+        cout &lt;&lt; &quot;vector set to 0\\n&quot;;
+        x = y = 0.0;
+        mode = &apos;r&apos;;
+    }
+}
+
+// set vector from rectangular coordinates if form is r (the
+// default) or else from polar coordinates if form is p
+void Vector::set(double n1, double n2, char form)
+{
+    mode = form;
+    if (form == &apos;r&apos;)
+    {
+        x = n1;
+        y = n2;
+    }
+    else if (form == &apos;p&apos;)
+    {
+        set_x(n1, n2);
+        set_y(n1, n2);
+    }
+    else
+    {
+        cout &lt;&lt; &quot;Incorrect 3rd argument to Vector() -- &quot;;
+        cout &lt;&lt; &quot;vector set to 0\\n&quot;;
+        x = y = 0.0;
+        mode = &apos;r&apos;;
+    }
+}
+
+Vector::~Vector()    // destructor
+{
+}
+
+void Vector::polar_mode()    // set to polar mode
+{
+    mode = &apos;p&apos;;
+}
+
+void Vector::rect_mode()     // set to rectangular mode
+{
+    mode = &apos;r&apos;;
+}
+
+// operator overloading
+// add two Vectors
+Vector Vector::operator+(const Vector &amp; b) const
+{
+    return Vector(x + b.x, y + b.y);
+}
+
+// subtract Vector b from a
+Vector Vector::operator-(const Vector &amp; b) const
+{
+    return Vector(x - b.x, y - b.y);
+}
+
+// reverse sign of Vector
+Vector Vector::operator-() const
+{
+    return Vector(-x, -y);
+}
+
+// multiple vector by n
+Vector Vector::operator*(double n) const
+{
+    return Vector(n * x, n * y);
+}
+
+// friend methods
+// multiply n by Vector a
+Vector operator*(double n, const Vector &amp; a)
+{
+    return a * n;
+}
+
+// display rectangular coordinates if mode is r,
+// else display polar coordinates if mode is p
+std::ostream &amp; operator&lt;&lt;(std::ostream &amp; os, const Vector &amp; v)
+{
+    if (v.mode == &apos;r&apos;)
+        os &lt;&lt; &quot;(x,y) = (&quot; &lt;&lt; v.x &lt;&lt; &quot;, &quot; &lt;&lt; v.y &lt;&lt; &quot;)&quot;;
+    else if (v.mode == &apos;p&apos;)
+    {
+        os &lt;&lt; &quot;(m,a) = (&quot; &lt;&lt; v.magval() &lt;&lt; &quot;, &quot;
+            &lt;&lt; v.angval() * Rad\_to\_deg &lt;&lt; &quot;)&quot;;
+    }
+    else
+        os &lt;&lt; &quot;Vector object mode is invalid&quot;;
+    return os;
+}
+</code></pre><p>}  // end namespace VECTOR</p>
+<p><strong>3.修改程序清单11.15，使之报告N次测试中的最高、最低和平均步数（其中N是用户输入的整数），而不是报告每次测试的结果。</strong></p>
+<p>#include<iostream></iostream></p>
+<p>#include<cstdlib></cstdlib></p>
+<p>#include<ctime></ctime></p>
+<p>#include “vector.h”<br>using namespace std;<br>using VECTOR::Vector;<br>int main() {<br>    srand(time(0));<br>    double direction;<br>    Vector step;<br>    Vector result(0.0, 0.0);<br>    unsigned long steps = 0;<br>    double target;<br>    double dstep;<br>    unsigned long max = 0;<br>    unsigned long min = 999;<br>    double avg = 0;<br>    int N;<br>    cout &lt;&lt; “请输入测试的次数：N=”;<br>    cin &gt;&gt; N;<br>    cout &lt;&lt; “第一次：” &lt;&lt; endl;<br>    int i;<br>    for (i = 0; i &lt; N; i++)<br>    {<br>        cout &lt;&lt; “Enter target distance(ONLY ENTER NUMBER): “;<br>        cin &gt;&gt; target;<br>        cout &lt;&lt; “Enter step length: “;<br>        if (!(cin &gt;&gt; dstep))<br>            break;<br>        while (result.magval() &lt; target)<br>        {<br>            direction = rand() % 360;<br>            step.set(dstep, direction, ‘p’);<br>            result = result + step;<br>            steps++;<br>        }<br>        if (max &lt; steps)<br>            max = steps;<br>        if (min &gt; steps)<br>            min = steps;<br>        avg += steps;<br>        result.polar_mode();<br>        steps = 0;<br>        result.set(0.0, 0.0);<br>    }<br>    avg /= N;<br>    cout &lt;&lt; “max: “ &lt;&lt; max &lt;&lt; endl &lt;&lt; “min: “ &lt;&lt; min &lt;&lt; endl &lt;&lt; “average: “ &lt;&lt; avg &lt;&lt; endl;<br>    cout &lt;&lt; “Bye~”;<br>    system(“pause”);<br>    return 0;<br>}</p>
+<p><strong>4.重新编写最后的Time类示例（程序清单11.10、程序清单11.11和程序清单11.12），使用友元函数来实现所有的重载运算符。</strong> mytime3.h</p>
+<p>#pragma once</p>
+<p>#ifndef MYTIME3_H_</p>
+<p>#define MYTIME3_H_</p>
+<p>#include<iostream><br>using namespace std;<br>class Time {<br>private:<br>    int hours;<br>    int minutes;<br>public:<br>    Time();<br>    Time(int h, int m = 0);<br>    void AddMin(int m);<br>    void AddHr(int h);<br>    void Reset(int h = 0, int m = 0);<br>    friend Time operator+(const Time &amp; t1, const Time &amp; t2);<br>    friend Time operator-(const Time &amp; t1, const Time &amp; t2);<br>    friend Time operator<em>(const Time &amp;t, double n);<br>    friend Time operator</em>(double m, const Time &amp; t) { return t*m; }<br>    friend ostream &amp; operator&lt;&lt;(ostream &amp; os, const Time &amp; t);<br>};</iostream></p>
+<p>#endif // !MYTIME_H_</p>
+<p>mytime3.cpp</p>
+<p>#include<iostream></iostream></p>
+<p>#include “mytime3.h”<br>using namespace std;<br>Time::Time() {<br>    hours = minutes = 0;</p>
+<p>}<br>Time::Time(int h, int m) {<br>    hours = h;<br>    minutes = m;</p>
+<p>}<br>void Time::AddMin(int m) {<br>    minutes += m;<br>    hours += minutes / 0;<br>    minutes %= 60;</p>
+<p>}<br>void Time::AddHr(int h) {<br>    hours += h;</p>
+<p>}<br>void Time::Reset(int h, int m) {<br>    hours = h;<br>    minutes = m;</p>
+<p>}<br>Time operator+(const Time &amp; t1, const Time &amp; t2) {<br>    Time sum;<br>    sum.minutes = t1.minutes + t2.minutes;<br>    sum.hours = t1.hours + t2.hours + sum.minutes / 60;<br>    sum.minutes %= 60;<br>    return sum;<br>}<br>Time operator-(const Time &amp; t1, const Time &amp; t2) {<br>    Time diff;<br>    int tot1, tot2;<br>    tot1 = t2.minutes + 60 <em> t2.hours;<br>    tot2 = t1.minutes + 60 </em> t1.hours;<br>    diff.minutes = (tot2 - tot1) % 60;<br>    diff.hours = (tot2 - tot1) / 60;<br>    return diff;</p>
+<p>}</p>
+<p>Time operator<em>(const Time &amp;t, double n) {<br>    Time result;<br>    long totalminutes = t.hours\</em>n * 60 + t.minutes*n;<br>    result.hours = totalminutes / 60;<br>    result.minutes = totalminutes % 60;<br>    return result;<br>}</p>
+<p>ostream &amp; operator&lt;&lt;(ostream &amp; os, const Time &amp; t) {<br>    os &lt;&lt; t.hours &lt;&lt; “ Hours, “ &lt;&lt; t.minutes &lt;&lt; “ minutes.”;<br>    return os;<br>}</p>
+<p>usetime3.cpp</p>
+<p>#include<iostream></iostream></p>
+<p>#include”mytime3.h”<br>using namespace std;<br>int main() {<br>    Time aida(3, 35);<br>    Time tosca(2, 48);<br>    Time temp;<br>    cout &lt;&lt; “Aida and Tosca:\n”;<br>    cout &lt;&lt; aida &lt;&lt; “;” &lt;&lt; tosca &lt;&lt; endl;<br>    temp = aida + tosca;<br>    temp = aida<em>1.17;<br>    cout &lt;&lt; “Aida</em>1.17: “ &lt;&lt; temp &lt;&lt; endl;<br>    cout &lt;&lt; “10*Tosca: “ &lt;&lt; 10 * tosca &lt;&lt; endl;</p>
+<pre><code>system(&quot;pause&quot;);
+return 0;
+</code></pre><p>}</p>
+<p><strong>5.重新编写Stonewt类（程序清单11.16和程序清单11.17），使它有一个状态成员，由该成员控制对象应转换为英石格式、整数磅格式还是浮点磅格式。重载&lt;&lt;运算符，使用它来替换show_stn()和show_lbs()方法。重载加法、减法和乘法运算符，以便可以对Stonewt值进行加、减、乘运算。编写一个使用所有类方法和友元的小程序，来测试这个类。</strong> stonewt.h</p>
+<p>// stonewt.h – definition for the Stonewt class</p>
+<p>#ifndef STONEWT_H_</p>
+<p>#define STONEWT_H_<br>class Stonewt<br>{<br>private:<br>    enum {Lbs_per_stn = 14};      // pounds per stone<br>    int stone;                    // whole stones<br>    double pds_left;              // fractional pounds<br>    double pounds;                // entire weight in pounds<br>public:<br>    Stonewt(double lbs);          // constructor for double pounds<br>    Stonewt(int stn, double lbs); // constructor for stone, lbs<br>    Stonewt();                    // default constructor<br>    ~Stonewt();<br>    void show_lbs() const;        // show weight in pounds format<br>    void show_stn() const;        // show weight in stone format<br>};</p>
+<p>#endif</p>
+<p>stonewt.cpp</p>
+<p>// stonewt.cpp – Stonewt methods</p>
+<p>#include <iostream><br>using std::cout;</iostream></p>
+<p>#include “stonewt.h”</p>
+<p>// construct Stonewt object from double value<br>Stonewt::Stonewt(double lbs)<br>{<br>    stone = int (lbs) / Lbs_per_stn;    // integer division<br>    pds_left = int (lbs) % Lbs_per_stn + lbs - int(lbs);<br>    pounds = lbs;<br>}</p>
+<p>// construct Stonewt object from stone, double values<br>Stonewt::Stonewt(int stn, double lbs)<br>{<br>    stone = stn;<br>    pds_left = lbs;<br>    pounds =  stn * Lbs_per_stn +lbs;<br>}</p>
+<p>Stonewt::Stonewt()          // default constructor, wt = 0<br>{<br>    stone = pounds = pds_left = 0;<br>}</p>
+<p>Stonewt::~Stonewt()         // destructor<br>{<br>}</p>
+<p>// show weight in stones<br>void Stonewt::show_stn() const<br>{<br>    cout &lt;&lt; stone &lt;&lt; “ stone, “ &lt;&lt; pds_left &lt;&lt; “ pounds\n”;<br>}</p>
+<p>// show weight in pounds<br>void Stonewt::show_lbs() const<br>{<br>    cout &lt;&lt; pounds &lt;&lt; “ pounds\n”;<br>}</p>
+<p>stone.cpp</p>
+<p>// stone.cpp – user-defined conversions<br>// compile with stonewt.cpp</p>
+<p>#include <iostream><br>using std::cout;</iostream></p>
+<p>#include “stonewt.h”<br>void display(const Stonewt &amp; st, int n);<br>int main()<br>{<br>    Stonewt pavarotti = 260; // uses constructor to initialize<br>    Stonewt wolfe(285.7);    // same as Stonewt wolfe = 285.7;<br>    Stonewt taft(21, 8);</p>
+<pre><code>cout &lt;&lt; &quot;The tenor weighed &quot;;
+pavarotti.show_stn();
+cout &lt;&lt; &quot;The detective weighed &quot;;
+wolfe.show_stn();
+cout &lt;&lt; &quot;The President weighed &quot;;
+taft.show_lbs();
+pavarotti = 265.8;       // uses constructor for conversion
+taft = 325;      
+cout &lt;&lt; &quot;After dinner, the tenor weighed &quot;;
+pavarotti.show_stn();
+cout &lt;&lt; &quot;After dinner, the President weighed &quot;;
+taft.show_lbs();
+display(taft, 2);
+cout &lt;&lt; &quot;The wrestler weighed even more.\\n&quot;;
+display(422, 2);
+cout &lt;&lt; &quot;No stone left unearned\\n&quot;;
+system(&quot;pause&quot;);
+return 0;
+</code></pre><p>}</p>
+<p>void display(const Stonewt &amp; st, int n)<br>{<br>    for (int i = 0; i &lt; n; i++)<br>    {<br>        cout &lt;&lt; “Wow! “;<br>        st.show_stn();<br>    }<br>}</p>
+<p><strong>7.复数有两个部分组成：实数部分和虚数部分。复数的一种书写方式是：（3.0,4.0）。请定义一个复数类，以便下面的程序可以使用它来获得正确的结果。</strong> <strong>（……代码省略……）</strong> <strong>注意。必须重载运算符&lt;&lt;和&gt;&gt;。标准C++使用头文件complex提供了比这个示例更广泛的复数支持，因此应将自定义的头文件命名为complex0.h，以免发生冲突。应尽可能使用const。</strong> <strong>请注意，经过重载后，cin&gt;&gt;c将提示用户输入实数和虚数部分。</strong> complex0.h</p>
+<p>#pragma once</p>
+<p>#include<iostream></iostream></p>
+<p>#ifndef COM0_H_<br>using namespace std;<br>class complex {<br>    double a;<br>    double b;<br>public:<br>    complex();<br>    complex(double x, double y);<br>    ~complex();<br>    complex operator+(const complex &amp; t) const;<br>    complex operator-(const complex &amp; t) const;<br>    friend complex operator<em>(const complex &amp; t,double n);//Êý³Ë<br>    friend complex operator</em>(const complex &amp; t1, const complex &amp; t2);<br>    friend complex operator~(const complex &amp; t);<br>    friend ostream &amp; operator&lt;&lt;(ostream &amp; os, const complex &amp; c);<br>    friend istream &amp; operator &gt;&gt; (istream &amp;in, complex &amp;c);</p>
+<p>};</p>
+<p>#endif // !COM0_H_</p>
+<p>complex0.cpp</p>
+<p>#include “complex0.h”</p>
+<p>#include<iostream><br>complex::complex() {<br>    a = 0;<br>    b = 0;<br>}<br>complex::complex(double x, double y) {<br>    a = x;<br>    b = y;</iostream></p>
+<p>}<br>complex::~complex() {}<br>complex complex::operator+(const complex &amp; t) const<br>{</p>
+<pre><code>complex sum;
+sum.a = a + t.a;
+sum.b = b + t.b;
+return sum;
+</code></pre><p>}<br>complex complex::operator-(const complex &amp; t) const<br>{<br>    complex diff;<br>    diff.a = a - t.a;<br>    diff.b = b - t.b;<br>    return diff;</p>
+<p>}<br>complex operator<em>(const complex &amp; t, double n)  //Êý³Ë<br>{<br>    return complex((t.a)\</em>n, (t.b)*n);</p>
+<p>}</p>
+<p>complex operator<em>(const complex &amp; t1, const complex &amp; t2)<br>{<br>    return complex((t1.a\</em>t2.a - t1.b*t2.b), (t1.a*t2.b + t1.b*t2.a));</p>
+<p>}<br>complex operator~(const complex &amp; t)<br>{<br>    return complex(t.a, (-1.0)*t.b);</p>
+<p>}<br>ostream &amp; operator&lt;&lt;(ostream &amp; os, const complex &amp; c)<br>{<br>    os &lt;&lt; “(“ &lt;&lt; c.a &lt;&lt; “,” &lt;&lt; c.b &lt;&lt; “!” &lt;&lt; “)”;<br>    return os;</p>
+<p>}<br>istream &amp; operator &gt;&gt; (istream &amp;in, complex &amp;c)<br>{<br>    in &gt;&gt; c.a &gt;&gt; c.b;<br>    return in;<br>}</p>
+<p>备注： 操作系统：Windows 10 x64(1803) 编译器：Microsoft Visual Studio 2015</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/29/e7-bc-96-e7-a8-8a6-e4-b8-b2-e7-9f-a5-e8-af-86-e7-82-b9/" class="pre-post btn btn-default" title="编程知识点学习（1）：字符串知识点">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">编程知识点学习（1）：字符串知识点</span>
+        </a>
+    
+    
+        <a href="/2018/11/18/c-primer-plus-ef-bc-88-e7-ac98-e7-ad-94-e6-a1-88/" class="next-post btn btn-default" title="C++ Primer Plus（第五版）第10章编程题答案">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第10章编程题答案</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

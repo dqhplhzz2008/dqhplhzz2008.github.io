@@ -1,0 +1,396 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="题目7 链表倒数第k个结点题目描述输入一个链表，输出该链表中倒数第k个结点。
+题目解析我们很容易可以想到，由于这是一个单向链表，所以我们可以第一遍先遍历这个链表，看有多少个结点（假设为n），然后...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>《剑指Offer》题目解析（5） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="《剑指Offer》题目解析（5）">
+            
+	            《剑指Offer》题目解析（5）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/03/04</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="题目7-链表倒数第k个结点"><a href="#题目7-链表倒数第k个结点" class="headerlink" title="题目7 链表倒数第k个结点"></a>题目7 链表倒数第k个结点</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入一个链表，输出该链表中倒数第k个结点。</p>
+<h3 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h3><p>我们很容易可以想到，由于这是一个单向链表，所以我们可以第一遍先遍历这个链表，看有多少个结点（假设为n），然后计算出pos=n-k+1，然后我们只需要再遍历一遍这个链表，输出第n-k+1个结点的值即可。 但是要注意<strong>鲁棒性</strong>。我们要考虑，如果这个链表为空呢？如果这个链表的结点数不到k个呢？那就需要对代码进行补充和完善。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><pre><code>ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
+        if (pListHead == NULL)
+            return NULL;
+        ListNode* list1 = pListHead;
+        int count=1;
+        int pos = 0;
+        while (list1)
+        {
+            ++count;
+            list1 = list1-&gt;next;
+        }
+        if (count&lt;=k)
+            return list1;
+        pos = count - k + 1;
+        int n = 1;
+        ListNode* list2 = pListHead;
+        while (list2 &amp;&amp; n &lt; pos - 1)
+        {
+            list2 = list2-&gt;next;
+            ++n;
+        }
+        return list2;
+
+    }
+</code></pre><h2 id="题目8-翻转链表"><a href="#题目8-翻转链表" class="headerlink" title="题目8 翻转链表"></a>题目8 翻转链表</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入一个链表，反转链表后，输出新链表的表头。</p>
+<h3 id="题目解析-1"><a href="#题目解析-1" class="headerlink" title="题目解析"></a>题目解析</h3><p>首先我们应该考虑两个问题（<strong>鲁棒性</strong>）： 1. 链表为空呢？返回空。 2. 链表就只有一个结点呢？返回这个结点。 其它一般情况就是多个结点了。为了正确翻转一个链表，需要调整链表中指针的方向。我们假设有下面三个结点：<strong>a-&gt;b-&gt;c</strong>，假设我们要翻转b的next指向a，那么指向a之后，b和c之间的联系就断了，因此我们需要把结点c的地址保存下来。也就是说，我们在调整结点b的next指针的时候，除了需要知道结点b本身，还需要知道结点b的前一个结点a，因为我们要把结点b的next指针指向a。同时，我们还需要实现保存b的一个结点c，以防止链表断开。 我们新建一个next指针，让它来保存b指针的next所指向的地址，然后把a的next指向NULL，然后令node=a，然后把lnode=b；这个时候，进入下一个循环，next指向了c，然后把b的next指向了a，然后令node=b，然后将lnode往下指向c；下一个循环，next=空了，然后把c的next指向了b，然后node=c，然后lnode=空。这个时候判断了lnode为空，结束循环，形成了<strong>a&lt;-b&lt;-c</strong>。</p>
+<h3 id="代码-1"><a href="#代码-1" class="headerlink" title="代码"></a>代码</h3><pre><code>ListNode* ReverseList(ListNode* pHead) {
+    if (pHead == NULL)
+        return NULL;
+    ListNode *node = NULL;
+    ListNode *lnode = pHead;
+    while(lnode!= NULL){
+        ListNode *next = lnode-&gt;next;
+        lnode-&gt;next = node;
+        node = lnode;
+        lnode = next;
+
+    }
+    return node;
+}
+</code></pre><h2 id="题目9-合并两个排序的链表"><a href="#题目9-合并两个排序的链表" class="headerlink" title="题目9 合并两个排序的链表"></a>题目9 合并两个排序的链表</h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入两个单调递增的链表，输出两个链表合成后的链表，当然我们需要合成后的链表满足单调不减规则。</p>
+<h3 id="题目解析-2"><a href="#题目解析-2" class="headerlink" title="题目解析"></a>题目解析</h3><p>一定要考虑<strong>鲁棒性</strong>： 1. 若第一个链表为空，则直接返回第2个； 2. 若第二个链表为空，则直接返回第1个； 3. 其实若两个链表都为空的话，在第一个if语句判断的时候返回了第二个链表，而第2个链表为空，所以正好也是返回了NULL。 4. 这个时候我们新建一个result的链表存储结果，并为空，对于头结点来说，判断第一个链表和第二个链表的值，若第一个小于第二个，则把第一个链表的头结点给result，然后继续往下进行递归调用Merge函数（Merge(pHead1-&gt;next,pHead2)）；否则，把第二个链表的头结点给result，继续往下进行递归调用Merge函数（Merge(pHead1,pHead2-&gt;next）。</p>
+<h3 id="代码-2"><a href="#代码-2" class="headerlink" title="代码"></a>代码</h3><pre><code>ListNode* Merge(ListNode* pHead1, ListNode* pHead2)
+{
+    if(pHead1==NULL)
+        return pHead2;
+    if(pHead2==NULL)
+        return pHead1;
+    ListNode* result=NULL;
+    if(pHead1-&gt;val&lt;pHead2-&gt;val)
+    {
+        result=pHead1;
+        result-&gt;next=Merge(pHead1-&gt;next,pHead2);
+    }
+    else
+    {
+        result=pHead2;
+        result-&gt;next=Merge(pHead1,pHead2-&gt;next);
+    }
+    return result;
+}
+</code></pre><h2 id="题目10-树的子结构"><a href="#题目10-树的子结构" class="headerlink" title="题目10 树的子结构"></a>题目10 树的子结构</h2><h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>输入两棵二叉树A，B，判断B是不是A的子结构。（ps：我们约定空树不是任意一个树的子结构）</p>
+<h3 id="题目解析-3"><a href="#题目解析-3" class="headerlink" title="题目解析"></a>题目解析</h3><p>第一步在树A中查找与根节点的值一样的结点，这实际上就是树的遍历。如HasSubtree()函数中所述。如果根值相同，则去继续比较，否则有A的左子树和B比较，如果还不行就用A的右子树和B比较。 我们一定要<strong>注意边界条件的检查</strong>，即检查空指针。当树A或B为空的时候，定义相应的输出。本代码里面就是if不符合之后直接返回result。 第二步是判断树A中以R为根节点的子树是不是和B具有相同的结构，这里也是用递归来实现的，如果A为空了B还不是空的，那么B肯定不是A的子树；如果B空了A还没空，那么肯定也不是；如果两个结点值不一样，那就返回false；如果值相同，则继续对左子树和右子树进行比较。 <strong>一个可以提现专业的细节：</strong>double和float表示小数的时候都有误差，所以判断两个小数的时候不能直接判断相等，而是要判断他们的误差是不是在一个很小的范围内，如果很小，就认为相等。所以可以定义下面的函数：</p>
+<pre><code>bool Equal(double a,double b)
+{
+    if((num1-num2&gt;-0.0000001)&amp;&amp;(num1-num2&lt;0.0000001)
+        return true;
+    else
+        return false;
+}
+</code></pre><h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><pre><code>bool HasSub(TreeNode* root1, TreeNode* root2)
+    {
+        if(root1 ==NULL &amp;&amp; root2 !=NULL)
+            return false;
+        if(root2==NULL)
+            return true;
+        if(root1-&gt;val != root2-&gt;val)
+            return false;
+        return HasSub(root1-&gt;left,root2-&gt;left)&amp;&amp;HasSub(root1-&gt;right,root2-&gt;right);
+
+    }
+    bool HasSubtree(TreeNode* pRoot1, TreeNode* pRoot2)
+    {
+        bool result = false;
+        if(pRoot1!=NULL &amp;&amp; pRoot2!=NULL)
+        {
+            if(pRoot1-&gt;val == pRoot2-&gt;val)
+                result=HasSub(pRoot1,pRoot2);
+            if(!result)
+                result=HasSubtree(pRoot1-&gt;left,pRoot2);
+            if(!result)
+                result=HasSubtree(pRoot1-&gt;right,pRoot2);
+        }
+
+        return result;
+    }
+</code></pre>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/03/05/e3-80-8a-e5-89-91-e6e-90-ef-bc-886-ef-bc-89/" class="pre-post btn btn-default" title="《剑指Offer》题目解析（6）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">《剑指Offer》题目解析（6）</span>
+        </a>
+    
+    
+        <a href="/2019/03/04/e3-80-8a-e5a7-a3-e6-9e-90-ef-bc-884-ef-bc-89/" class="next-post btn btn-default" title="《剑指Offer》题目解析（4）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">《剑指Offer》题目解析（4）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目7-链表倒数第k个结点"><span class="toc-text">题目7 链表倒数第k个结点</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目8-翻转链表"><span class="toc-text">题目8 翻转链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析-1"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-1"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目9-合并两个排序的链表"><span class="toc-text">题目9 合并两个排序的链表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-2"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析-2"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-2"><span class="toc-text">代码</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目10-树的子结构"><span class="toc-text">题目10 树的子结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-3"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#题目解析-3"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码-3"><span class="toc-text">代码</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="1.**关于复制构造函数，下列说法正确的是 A.系统不会生成缺省复制构造函数，因此必须自己实现 B.复制构造函数是形如X::X(X)的函数 C.Myclass c1, c2; c1.n = 1;...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>《C++面向对象程序设计》2018年秋季期末考试答案（选择题） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="《C++面向对象程序设计》2018年秋季期末考试答案（选择题）">
+            
+	            《C++面向对象程序设计》2018年秋季期末考试答案（选择题）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/13</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p><strong>1.**</strong>关于复制构造函数，下列说法正确的是<strong> A.系统不会生成缺省复制构造函数，因此必须自己实现 B.复制构造函数是形如X::X(X)的函数 C.Myclass c1, c2; c1.n = 1; c2 = c1;第三句将会调用复制构造函数 </strong>D.<strong><strong>调用函数</strong></strong>A Func() {   A a(4);    return a;   }<strong><strong>时，将会调用</strong></strong>A<strong>**的复制构造函数</strong> <strong>解析：</strong> 只要你不写构造函数，系统就会自动帮你生成缺省的构造函数，包括复制构造函数，故A错误。复制构造函数的格式是<strong>X::X(X&amp;)</strong>或<strong>X::X(const X &amp;)</strong>，故B错误。复制构造函数起作用主要有以下三种情况： 1)当用一个对象去初始化同类的另一个对象时； 2)如果某函数有一个参数是类A的对象，那么该函数被调用时，类A的复制构造函数将被调用； 3) 如果函数的返回值是类A的对象时，则函数返回时，A的复制构造函数被调用。 由此可得，C错误，D正确（第3种情况）。 <strong>2.**</strong>关于虚函数，下列说法不正确的是<strong> A.不允许以虚函数作为构造函数 B.没有虚函数便无法实现多态 </strong>C.<strong>**一般来讲，如果一个类中定义了虚函数，则不可将析构函数也定义为虚函数</strong> D.不能用抽象类定义对象 <strong>解析：</strong> 在学习虚函数的时候，明确说过构造函数和静态函数不能使用virtual，即不能成为虚函数，虚函数是实现多态的基础，在实现多态的时候，析构函数也经常会被定义为虚函数，抽象类是可以定义对象的。这是一个概念题。 <strong>3.**</strong>关于<strong> </strong>this<strong> </strong>指针，以下说法不正确的是<strong> A.static成员函数内部不可以使用this指针 B.在构造函数内部可以使用this指针 C.在析构函数内部可以使用 this 指针 </strong>D.const<strong><strong>成员函数内部不可以使用</strong></strong>this<strong> </strong>指针<strong> </strong>解析：<strong> 一个对象的this指针并不是对象本身的一部分，不会影响sizeof（对象）的结果。this作用域是在类内部，当在类的非静态成员函数中访问类的非静态成员的时候，编译器会自动将对象本身的地址作为一个隐含参数传递给函数。友元函数没有this指针，因为友元不是类的成员。只有成员函数才有this指针。静态成员函数是类的一部分，作用是为了处理静态数据成员，它没有this指针，静态成员函数可以直接访问该类的静态成员，但不能直接访问类中的非静态成员。构造函数、析构函数、const成员函数都是成员函数，故可以使用this指针，静态成员函数因为其设计的原因，不可以使用is指针。 </strong>4.<strong><strong>以下关于多态的说法那个不正确</strong></strong>?<strong> </strong>A.<strong>**在成员函数中调用虚函数，是多态</strong> B.通过“基类对象名.函数名”的方式调用虚函数，不是多态 C.多态的函数调用语句中，函数一定是虚函数 D.通过“基类引用名.函数名”的方式调用虚函数，是多态 <strong>解析：</strong> 多态的表现形式有以下几种： 1）通过基类指针调用基类和派生类中的同名虚函数时： ①若该指针指向一个基类的对象，那么被调用的是基类的虚函数； ②若该指针指向一个派生类的对象，那么被调用的是派生类的虚函数。 2）通过基类引用调用基类和派生类中的同名虚函数时： ①若该引用引用的是一个基类的对象，那么被调用的是基类的虚函数； ②若该引用引用的是一个派生类的对象，那么调用的是派生类的虚函数。 故B、D正确，A错误。要实现多态，函数一定是虚函数，这是定义，故C正确。 <strong>5.map**</strong>的每个元素包括<strong><strong>KEY(first</strong></strong>）和<strong><strong>VALUE(second)</strong></strong>。关于<strong><strong>map</strong></strong>容器，下列哪种说法错误<strong> A.map支持下标运算符 B.map的不同元素可以有相同的VALUE </strong>C.map<strong><strong>支持</strong></strong>STL<strong><strong>的</strong></strong>sort<strong>**算法</strong> D.map支持双向迭代器 <strong>解析：</strong> map的设计问题，不做解释，详情可以查看map的具体解析就会明白。 <strong>6.**</strong>下列说法错误的是<strong> </strong>A.<strong><strong>可以在一个类的友元函数中使用</strong></strong>this<strong>**指针</strong> B.每个类只有一个析构函数 C.抽象类至少包含一个纯虚函数 D.构造函数不可以是virtual函数 <strong>解析见第**</strong>3<strong>**题。</strong> <strong>7.**</strong>关于继承和派生的描述中，下列说法错误的是<strong>**:</strong> A.派生类的成员函数中，不能访问基类的private成员 <strong>B.**</strong>在派生类的析构函数执行之前，会先调用基类的析构函数<strong> C.派生类对象的地址可以赋值给基类指针 D.派生类可以有和基类同名同参数的成员函数 解析： 继承的权限如下： 若继承方式是public，基类成员在派生类中的访问权限保持不变，也就是说，基类中的成员访问权限，在派生类中仍然保持原来的访问权限； 若继承方式是private，基类所有成员在派生类中的访问权限都会变为私有(private)权限； 若继承方式是protected，基类的共有成员和保护成员在派生类中的访问权限都会变为保护(protected)权限，私有成员在派生类中的访问权限仍然是私有(private)权限。 故A正确。C正确，实践中已经实现。D可以通过多态来实现。B的正确过程应该是：构造函数先执行基类构造函数，再执行派生类的构造函数，析构函数先执行派生类的构造函数，再执行基类的构造函数。 </strong>8.<strong><strong>以下哪种使用</strong></strong>std::sort<strong>**算法的方式是不合法的：</strong> A. vector<int> a; …; sort(a.begin(), a.end()); B. bool b[99]; …; sort(b, b + 99); C. string c = “2333”; …; sort(c.begin(), c.end()); <strong>D. list<int> d; …; sort(d.begin(), d.end());</int></strong> <strong>解析：</strong> A/B/C均可以实现，list应该使用mylist.sort();这种格式来进行排序。 <strong>9.**</strong>类<strong><strong>A</strong></strong>重载的运算符声明是<strong><strong>int operator&lt;(A &amp;other) const</strong></strong>，那么以下说法中正确的是：<strong> A.小于号左侧的A对象不可以是const的 </strong>B.<strong><strong>小于号右侧的</strong></strong>A<strong><strong>对象不可以是</strong></strong>const<strong>**的</strong> C.这个写法是错误的，因为小于号的返回类型必须是bool D.使用小于号的时候，other参数处，传进来的对象实际上会被复制一次 <strong>解析：</strong> 该运算符使用时类似于c.operator&lt;(other)。小于号左侧的A对象就是这个表达式中的c，是可以const，也可以不const的，但是小于号右侧的A对象是不能为const的，因为若左侧的A对象不是const，根据非const成员函数可以访问非const对象的非const数据成员、const数据成员，但不可以访问const对象的任意数据成员，那么一旦右侧为const的，这个比较就无法进行了，故A错误，B正确。 返回值为bool类型可以为int，故C错误，声明中参数是引用，故不会被复制一次，D错误。 <strong>10.**</strong>以下<strong><strong>STL</strong></strong>中的函数模板哪个可以作用于<strong>**set</strong> A. sort B. random_shuffle <strong>C. find</strong> D. 都不行 <strong>解析：</strong> 见set的使用说明。 本答案解析为本人整理，查阅了有关课本和网上的相关资料，如有转载请注明转载来源。本文首发于本博客（<a href="http://www.yushuai.xyz/2018/11/13/4130.html），未来还将发表于我的个人公众号（小奥的学习笔记）和我的GitHub、Gitee主页。" target="_blank" rel="noopener">http://www.yushuai.xyz/2018/11/13/4130.html），未来还将发表于我的个人公众号（小奥的学习笔记）和我的GitHub、Gitee主页。</a></int></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/14/c-primer-plus-ef-bc-96-e7-a8-8b-e9-a2-98-e7-ad-94-e6-a1-88/" class="pre-post btn btn-default" title="C++ Primer Plus（第五版）第9章编程题答案">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第9章编程题答案</span>
+        </a>
+    
+    
+        <a href="/2018/11/08/c-primer-plus-ef-bc-88-e7-ac-ac-e4-ba-94-e7-89-a2-98-e7-ad-94-e6-a1-88/" class="next-post btn btn-default" title="C++ Primer Plus（第五版）第8章编程题答案">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第8章编程题答案</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

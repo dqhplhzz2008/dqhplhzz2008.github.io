@@ -1,0 +1,399 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://gitpages.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="编程">
+
+
+    <meta name="description" content="1.为复习题5描述的类提供方法定义，并编写一个小程序来演示所有的特性。 bankacc.h
+#ifndef BANKACC_H_1
+#define BANKACC_H_1class Bank {...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>C++ Primer Plus（第五版）第10章编程题答案 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://gitpages.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/cpp/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="C++ Primer Plus（第五版）第10章编程题答案">
+            
+	            C++ Primer Plus（第五版）第10章编程题答案
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/编程/">编程</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/18</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p><strong>1.为复习题5描述的类提供方法定义，并编写一个小程序来演示所有的特性。</strong> bankacc.h</p>
+<p>#ifndef BANKACC_H_1</p>
+<p>#define BANKACC_H_1<br>class Bank {<br>    char name[30];<br>    char account[7];<br>    double debt;<br>public:<br>    Bank();<br>    Bank(const char *co, const char *ac, double db = 0.0);<br>    ~Bank();<br>    void show() const;<br>    void deposit(const double money);<br>    void withdrawal(const double money);<br>};</p>
+<p>#endif // !BANKACC_H_1</p>
+<p>bankacc.cpp</p>
+<p>#include<iostream></iostream></p>
+<p>#include<string></string></p>
+<p>#include<cstring></cstring></p>
+<p>#include”bankacc.h”<br>using namespace std;<br>Bank::Bank() {<br>    strcpy(name, “no name”);<br>    name[30] = ‘\0’;<br>    strcpy(account, “100000”);<br>    account[6] = ‘\0’;<br>    debt = 0.0;<br>}<br>Bank::Bank(const char *co, const char *ac, double db)<br>{<br>    strncpy(name, co, 29);<br>    strncpy(account, ac,6);<br>    name[30] = ‘\0’;<br>    account[6] = ‘\0’;<br>    debt = db;</p>
+<p>}<br>Bank::~Bank() {<br>    cout &lt;&lt; “Your account has been deleted.Thank your for using our service.\n”;<br>}<br>void Bank::show() const<br>{<br>    cout &lt;&lt; “Account Name: “ &lt;&lt; name &lt;&lt; endl;<br>    cout &lt;&lt; “Account ID: “ &lt;&lt; account &lt;&lt; endl;<br>    cout &lt;&lt; “Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>}<br>void Bank::deposit(const double money)<br>{<br>    debt += money;<br>    cout &lt;&lt; “Your Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>    cout &lt;&lt; “Thank you for using deposit service.Bye~\n”;</p>
+<p>}<br>void Bank::withdrawal(const double money) {<br>    if (money &lt;= debt)<br>    {<br>        debt -= money;<br>        cout &lt;&lt; “Your Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>    }</p>
+<pre><code>else
+    cout &lt;&lt; &quot;Error, you do not have enough money.\\n&quot;;
+cout &lt;&lt; &quot;Thank you for using withdrawal service.Bye~\\n&quot;;
+</code></pre><p>}</p>
+<p>banker.cpp</p>
+<p>#include<iostream></iostream></p>
+<p>#include<string></string></p>
+<p>#include<cstring></cstring></p>
+<p>#include”bankacc.h”<br>using namespace std;</p>
+<p>int main() {<br>    cout &lt;&lt; “This is Bank example 1:” &lt;&lt; endl;<br>    Bank banks1;<br>    banks1.show();<br>    cout &lt;&lt; “After depositing…”&lt;&lt;endl;<br>    double depos1 = 3692.21;<br>    banks1.deposit(depos1);<br>    cout &lt;&lt; “After withdrawal…” &lt;&lt; endl;<br>    banks1.withdrawal(1252.63);<br>    cout &lt;&lt; “#########################################” &lt;&lt; endl;<br>    double money2 = 8945.32;<br>    Bank banks2 = Bank(“Yushuai Zhang”, “H6365”, money2);<br>    banks2.show();<br>    cout &lt;&lt; “After depositing…” &lt;&lt; endl;<br>    double depos2 = 235.21;<br>    banks2.deposit(depos2);<br>    cout &lt;&lt; “After withdrawal…” &lt;&lt; endl;<br>    banks2.withdrawal(625.63);</p>
+<pre><code>system(&quot;pause&quot;);
+return 0;
+</code></pre><p>}</p>
+<p><strong>2.下面是一个非常简单的类定义：</strong> <strong>（……代码省略……）</strong> <strong>通过提供未定义的方法来完成这个类的实现。然后，编写一个使用这个类的程序，它使用了几种可能的构造函数调用（没有参数、一个参数和两个参数）以及两种显示方法。</strong> person.cpp</p>
+<p>#include<iostream></iostream></p>
+<p>#include<string></string></p>
+<p>#include<cstring><br>using namespace std;<br>const int LIMIT = 25;<br>class Person {<br>private:<br>    string lname;<br>    char fname[LIMIT];<br>public:<br>    Person();<br>    Person(const string &amp;ln, const char*fn = “Heyyou”);<br>    void Show() const;<br>    void FormalShow() const;<br>};<br>Person::Person()<br>{<br>    lname = “”;<br>    fname[0] = ‘\0’;</cstring></p>
+<p>}<br>Person::Person(const string &amp; ln, const char *fn) {<br>    lname = ln;<br>    strncpy(fname, fn, LIMIT-1);<br>    fname[LIMIT - 1] = ‘\0’;</p>
+<p>}<br>void Person::Show()const {<br>    cout &lt;&lt; fname &lt;&lt; “ “ &lt;&lt; lname &lt;&lt; endl;</p>
+<p>}</p>
+<p>void Person::FormalShow() const {<br>    cout &lt;&lt; lname &lt;&lt; “ “ &lt;&lt; fname &lt;&lt; endl;</p>
+<p>}<br>int main() {<br>    Person one;<br>    Person two(“Smythecraft”);<br>    Person three(“Dimwiddy”, “Sam”);<br>    one.Show();<br>    cout &lt;&lt; endl;<br>    one.FormalShow();<br>    cout &lt;&lt; endl;<br>    two.FormalShow();<br>    cout &lt;&lt; endl;<br>    three.Show();<br>    system(“pause”);<br>    return 0;<br>}</p>
+<p><strong>3.完成第9章的编程练习1，但要用正确的golf类声明替换那里的代码。用带合适参数的构造函数替换setgolf(golf &amp;, const char <em>, int)， 以提供初始值。保留setgolf()的交互版本，但要用构造函数来实现它（例如，setgolf()的代码应该获得数据，将数据传递给构造函数来创建一个临时对象，并将其赋给调用对象，即</em>this）。</strong> golf.h</p>
+<p>#ifndef GOLF_H</p>
+<p>#define GOLF_H<br>class Golf {<br>private:<br>    static const int Len = 40;<br>    char fullname[Len];<br>    int handicap;<br>public:<br>    Golf(const char * name = “HHHHHH”, int hc = 10);<br>    ~Golf();<br>    bool setGolf();<br>    void sethandicap(int hc);<br>    void showGolf()const;<br>};</p>
+<p>#endif // GOLF_H</p>
+<p>golf.cpp</p>
+<p>#include <iostream></iostream></p>
+<p>#include <cstring></cstring></p>
+<p>#include “golf.h”<br>using namespace std;</p>
+<p>Golf::Golf(const char * name, int hc)<br>{<br>    strncpy(fullname, name, 40);<br>    fullname[39] = ‘\0’;<br>    handicap = hc;<br>}</p>
+<p>Golf::~Golf()<br>{<br>    cout &lt;&lt; “Bye!” &lt;&lt; endl;<br>}</p>
+<p>bool Golf::setGolf()<br>{<br>    char fullname[Len];<br>    int handicap;</p>
+<pre><code>cout &lt;&lt; &quot;Please input the name of the golf player: &quot;;
+cin.get(fullname, Len); 
+if (cin)
+{
+    cout &lt;&lt; &quot;Please input the handicap of the golf player: &quot;;
+    cin &gt;&gt; handicap;
+    cin.get();
+    *this = Golf(fullname, handicap);
+    return true;
+}
+else
+    return false;
+</code></pre><p>}</p>
+<p>void Golf::sethandicap(int hc)<br>{<br>    handicap = hc;<br>}</p>
+<p>void Golf::showGolf()const<br>{<br>    std::cout &lt;&lt; “hullname: “ &lt;&lt; fullname &lt;&lt; “, \thandicap: “ &lt;&lt; handicap &lt;&lt; std::endl;<br>}</p>
+<p>main.cpp</p>
+<p>#include <iostream></iostream></p>
+<p>#include “golf.h”<br>using namespace std;<br>int main()<br>{<br>    Golf one;<br>    Golf two;<br>    Golf three;</p>
+<pre><code>one.showGolf();         // 默认构造函数
+two.setGolf();          // 交互版本
+two.showGolf();
+two.sethandicap(5000);  //成员函数
+two.showGolf();         //成员函数
+three.sethandicap(20);
+three.showGolf();
+system(&quot;pause&quot;);
+return 0;
+</code></pre><p>}</p>
+<p><strong>5.考虑下面的结构声明：</strong></p>
+<p>struct customer {<br>       char fullname[35];<br>       double payment;<br>};</p>
+<p>  <strong>编写一个程序，它从栈中添加和删除customer结构（栈用Stack类声明表示）。每次customer结构被删除时，其payment的值都被加入到总数中，并报告总数。注意：应该可以直接使用Stack类而不作修改；只需修改typedef声明，使Item的类型为customer，而不是unsigned long即可</strong>。 stack.h</p>
+<p>#pragma once</p>
+<p>#ifndef STACK_H_</p>
+<p>#define STACK_H_<br>typedef struct customer<br>{<br>    char fullname[35];<br>    double payment;<br>}CUSTOMER;</p>
+<p>typedef customer Item;</p>
+<p>class Stack<br>{<br>private:<br>    enum { MAX = 10 };<br>    Item items[MAX];<br>    int top;<br>    int total;<br>public:<br>    Stack();<br>    ~Stack();<br>    bool isempty()const;<br>    bool isfull()const;<br>    bool push(const Item &amp; item);<br>    bool pop(Item &amp; item);<br>};</p>
+<p>#endif // STACK_H_</p>
+<p>static.cpp</p>
+<p>#include <iostream></iostream></p>
+<p>#include “stack.h”<br>using namespace std;<br>Stack::Stack()<br>{<br>    top = 0;<br>    total = 0;<br>}</p>
+<p>Stack::~Stack()<br>{<br>    cout &lt;&lt; “Bye!\n”;<br>}</p>
+<p>bool Stack::isempty()const<br>{<br>    return top == 0;<br>}</p>
+<p>bool Stack::isfull()const<br>{<br>    return top == MAX;<br>}</p>
+<p>bool Stack::push(const Item &amp; item)<br>{<br>    if (top &lt; MAX)<br>    {<br>        items[top++] = item;<br>        return true;<br>    }<br>    else<br>        return false;<br>}</p>
+<p>bool Stack::pop(Item &amp; item)<br>{<br>    if (top &gt; 0)<br>    {<br>        item = items[–top];<br>        total +=item.payment;<br>        cout &lt;&lt; “PO#” &lt;&lt; item.fullname &lt;&lt; endl;<br>        cout &lt;&lt; “Total = “ &lt;&lt; total &lt;&lt; endl;<br>        return true;<br>    }<br>    else<br>        return false;<br>}</p>
+<p>main.cpp</p>
+<p>#include <iostream></iostream></p>
+<p>#include <cctype></cctype></p>
+<p>#include “stack.h”</p>
+<p>int main()<br>{<br>    using namespace std;<br>    Stack st;   // create an empty stack<br>    char ch;<br>    CUSTOMER po;<br>    cout &lt;&lt; “Please enter A to add a purchase order.\n”<br>        &lt;&lt; “P to process a PO,or Q to quit.\n”;<br>    while (cin &gt;&gt; ch &amp;&amp; toupper(ch) != ‘Q’)<br>    {<br>        while (cin.get() != ‘\n’)<br>            continue;<br>        if (!isalpha(ch))<br>        {<br>            cout &lt;&lt; ‘\a’;<br>            continue;<br>        }<br>        switch (ch)<br>        {<br>        case ‘A’:<br>        case ‘a’:<br>            cout &lt;&lt; “Enter a PO fullname to add:\t”;<br>            cin.getline(po.fullname, 35);<br>            cout &lt;&lt; “Enter a PO payment to add:\t”;<br>            cin &gt;&gt; po.payment;<br>            if (st.isfull())<br>                cout &lt;&lt; “stack already full\n”;<br>            else<br>                st.push(po);<br>            break;<br>        case ‘P’:<br>        case ‘p’:if (st.isempty())<br>            cout &lt;&lt; “Stack already empty\n”;<br>                 else<br>                     st.pop(po);<br>            break;<br>        }<br>        cout &lt;&lt; “Please enter A to add a purchase order,\n”<br>            &lt;&lt; “P to process a PO, or Q to quit.\n”;<br>    }<br>    cout &lt;&lt; “Bye\n”;<br>    return 0;<br>}</p>
+<p><strong>6. 根据类声明，提供成员函数的定义和测试这个类的程序。</strong></p>
+<p>#include<iostream><br>using namespace std;<br>class Move<br>{<br>private:<br>    double x;<br>    double y;<br>public:<br>    Move(double a = 0, double b = 0);<br>    void showmove()const;<br>    Move add(const Move &amp;m)const;<br>    void reset(double a = 0, double b = 0);<br>};<br>Move::Move(double a, double b)<br>{<br>    x = a;<br>    y = b;<br>}<br>void Move::showmove()const {<br>    cout &lt;&lt; “x= “ &lt;&lt; x &lt;&lt; endl;<br>    cout &lt;&lt; “y= “ &lt;&lt; y &lt;&lt; endl;<br>}<br>Move Move::add(const Move &amp; m) const {<br>    return Move(x + m.x, y + m.y);</iostream></p>
+<p>}<br>void Move::reset(double a, double b)<br>{<br>    x = a;<br>    y = b;<br>}</p>
+<p>int main() {<br>    Move move1;<br>    cout &lt;&lt; “Move1:\n”;<br>    move1.showmove();<br>    Move move2 = Move(2.3, 1.9);<br>    cout &lt;&lt; “Move2:\n”;<br>    move2.showmove();<br>    move1 = move1.add(move2);<br>    cout &lt;&lt; “Move1 after adding move2:\n”;<br>    move1.showmove();<br>    move1.reset();<br>    move2.reset();<br>    cout &lt;&lt; “Reset Move1:\n”;<br>    move1.showmove();<br>    cout &lt;&lt; “Reset Move2:\n”;<br>    move2.showmove();<br>    system(“pause”);<br>    return 0;</p>
+<p>}</p>
+<p>备注： 操作系统：Windows 10 x64(1803) 编译器：Microsoft Visual Studio 2015</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/18/c-primer-plus-ef-bc-88-e7-ac-ac-ed-94-e6-a1-88/" class="pre-post btn btn-default" title="C++ Primer Plus（第五版）第11章编程题答案">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第11章编程题答案</span>
+        </a>
+    
+    
+        <a href="/2018/11/14/c-primer-plus-ef-bc-96-e7-a8-8b-e9-a2-98-e7-ad-94-e6-a1-88/" class="next-post btn btn-default" title="C++ Primer Plus（第五版）第9章编程题答案">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第9章编程题答案</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
