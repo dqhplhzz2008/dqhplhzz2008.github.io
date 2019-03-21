@@ -1,0 +1,486 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第一节：数据结构基本知识1.1 什么是数据结构例：写程序实现一个函数PrintN，使得传入一个正整数位N的参数后，能顺序打印从1道N的全部正整数。
+代码1（循环实现）：
+void PrintN(...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第1节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第1节）整理">
+            
+	            数据结构【浙江大学】（第1节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/03</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>351</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第一节：数据结构基本知识"><a href="#第一节：数据结构基本知识" class="headerlink" title="第一节：数据结构基本知识"></a>第一节：数据结构基本知识</h1><h2 id="1-1-什么是数据结构"><a href="#1-1-什么是数据结构" class="headerlink" title="1.1 什么是数据结构"></a>1.1 什么是数据结构</h2><p><strong>例：写程序实现一个函数PrintN，使得传入一个正整数位N的参数后，能顺序打印从1道N的全部正整数。</strong></p>
+<p>代码1（循环实现）：</p>
+<p>void PrintN(int N){<br>       int i;<br>       for(i =1; i&lt;=N; i++)<br>       {<br>              printf(“%d\n”,i);<br>       }<br>       return;<br>}</p>
+<p>代码2（递归实现）：</p>
+<p>void PrintN(int N){<br>       if(N){<br>              PrintN(N-1);<br>              printf(“%d\n”,N);<br>       }<br>       return;<br>}</p>
+<p><strong>结论：解决问题方法的效率，跟空间的利用率有关。</strong></p>
+<p><strong>例3：写程序计算给定多项式在给定点x处的值</strong></p>
+<p>代码：</p>
+<p>double f(int n, double a[], double x)<br>{<br>       int i;<br>       double p = a[n];<br>       for(i=n;i&gt;0;i–)<br>       {<br>              p = a[i-1]+x*p;<br>       }<br>       return p;<br>}</p>
+<p>C语言中提供了一个函数为clock()，它捕捉从程序开始运行到clock()被调用时所耗费的时间。这个时钟单位是clock tick。常熟CLK_TCK为机器时钟每秒所周的clock tick。例子如下：</p>
+<p>#include &lt;stdio.h&gt;</p>
+<p>#include &lt;time.h&gt;<br>clock_t start,stop;<br>/*clock_t是clock()函数返回的变量类型*/<br>double duration;</p>
+<p>int main()<br>{<br>       start = clock();<br>       MyFunction();//所需要测量运行时间的函数<br>       stop = clock();<br>       duration = ((double)(stop-start)/CLK_TCK;<br>       return 0;<br>}</p>
+<p><strong>结论：解决问题方法的效率，跟算法的巧妙程度有关。</strong></p>
+<p><strong>什么是数据结构？</strong></p>
+<p>数据对象在计算机中的组织方式。数据对象必定与一系列加在其上面的操作相关联，完成这项操作所用的方法就是算法。</p>
+<p><strong>抽象数据类型</strong></p>
+<p>抽象是指：描述数据类型的方法不依赖与具体事项，它：</p>
+<p>①与存放数据的机器无关；②与数据存储的物理结构无关；③与实现操作的算法和编程语言均无关。</p>
+<p>它只描述数据对象集和相关操作集“是什么”，并不涉及“如何做”的问题。</p>
+<h2 id="1-2-算法"><a href="#1-2-算法" class="headerlink" title="1.2 算法"></a>1.2 算法</h2><p><strong>1.什么是算法？</strong></p>
+<p>算法是：</p>
+<p>（1）一个有限指令集；</p>
+<p>（2）接受一些输入（有时候也没有输入）；</p>
+<p>（3）产生输出；</p>
+<p>（4）一定在<strong>有限步骤</strong>后终止；</p>
+<p>（5）每一条指令必须：有充分明确的目标，不可以有歧义；计算机能够处理的范围之内；描述应<strong>不依赖于任何一种计算机语言以及具体的实现</strong>。</p>
+<p><strong>2.什么是好的算法？</strong></p>
+<p>在分析一般算法的效率时，我们经常关注一下两种复杂度：</p>
+<p>（1）最坏情况复杂度Tworst(n)；</p>
+<p>（2）平均复杂度Tavg(n)。</p>
+<p><strong>3 复杂度的渐进表示法</strong></p>
+<p>T(n)=O(f(n))表示存在常数C&gt;0，n0&gt;0使得当n≥n0时有T(n)≤Cf(n)；</p>
+<p>T(n)=Ω(f(n))表示存在常数C&gt;0，n0&gt;0使得当n≥n0时有T(n)≥Cf(n)；</p>
+<p>T(n)=θ(h(n))表示同时又T(n)= O(f(n))和T(n)=Ω(f(n))。</p>
+<p>不同复杂度函数的感性理解，如表1.1所示。</p>
+<p>1.1 不同复杂度函数的规模</p>
+<p><strong>函数</strong></p>
+<p><strong>1</strong></p>
+<p><strong>2</strong></p>
+<p><strong>4</strong></p>
+<p><strong>8</strong></p>
+<p><strong>16</strong></p>
+<p><strong>32</strong></p>
+<p><strong>1</strong></p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p>1</p>
+<p><strong>logn</strong></p>
+<p>0</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p><strong>n</strong></p>
+<p>1</p>
+<p>2</p>
+<p>4</p>
+<p>8</p>
+<p>16</p>
+<p>32</p>
+<p><strong>nlogn</strong></p>
+<p>0</p>
+<p>2</p>
+<p>8</p>
+<p>24</p>
+<p>64</p>
+<p>160</p>
+<p><strong>_n2_</strong></p>
+<p>_1_</p>
+<p>_4_</p>
+<p>_16_</p>
+<p>_64_</p>
+<p><em>256</em></p>
+<p><em>1024</em></p>
+<p><strong>_n3_</strong></p>
+<p>_1_</p>
+<p>_8_</p>
+<p>_64_</p>
+<p><em>512</em></p>
+<p><em>4096</em></p>
+<p><em>32768</em></p>
+<p><strong>_2n_</strong></p>
+<p>_1_</p>
+<p>_4_</p>
+<p>_16_</p>
+<p><em>256</em></p>
+<p><em>65536</em></p>
+<p><em>4294967296</em></p>
+<p><strong>_n!_</strong></p>
+<p>_1_</p>
+<p>_2_</p>
+<p>_24_</p>
+<p><em>40326</em></p>
+<p><em>2092278988000</em></p>
+<p><em>26313*1033</em></p>
+<p>如果复杂度为灰色斜体的部份，要想办法尽可能降到黑色部分。</p>
+<p>复杂度分析小窍门：</p>
+<p>（1）若两段算法分别有复杂度T1(n)=O(f1(n))和T2(n)=O(f2(n))，则</p>
+<p>①两段代码的和T1(n)+T2(n)=max(O(f1(n)), T2(n)=O(f2(n)))</p>
+<p>②两段代码嵌套起来T1(n)×T2(n)=O(f1(n)×f2(n))。</p>
+<p>（2）若T(n)是关于n的k阶多项式，那么T(n)= θ(nk)。</p>
+<p>（3）一个for循环的时间复杂度等于循环次数乘循环体内代码的复杂度。</p>
+<p>（4）if-else结构的复杂度取决于if的条件判断复杂度和两个分枝部分的复杂度，总体复杂度取三者中最大。</p>
+<h2 id="1-3-应用实例"><a href="#1-3-应用实例" class="headerlink" title="1.3 应用实例"></a>1.3 应用实例</h2><p><strong>1.例1</strong></p>
+<p><img src="/wp-content/uploads/image/20180403/1522767675424103.jpg" alt="1522767675424103.jpg" title="1522767675424103.jpg"></p>
+<p>复杂度为<strong>O(N3)</strong></p>
+<p><strong>算法2：</strong></p>
+<p>int MaxSubseqSum2(int A[], int N)<br>{<br>       int ThisSum, MaxSum=0;<br>       int i ,j;<br>       for(i=0;i&lt;N;i++)/*i是子列左端的位置*/<br>       {<br>              ThisSum =0;/*ThisSum是从A[i]dao A[j]的子列和*/<br>              for(j=i; j&lt;N;j++)<br>              {<br>                     ThisSum+=A[j];<br>                     /<em>对于相同的i，不同的j，只要把j-1此循环的基础上累加1项即可</em>/<br>                     if(ThisSum&gt;MaxSum)<br>                     MaxSum=ThisSum;<br>              }<br>       }<br>       return MaxSum;<br>}</p>
+<p>复杂度为<strong>O(N2)</strong></p>
+<p><strong>算法3：分而治之</strong></p>
+<p>先将这个数组分为两半，分别递归的解决两边的问题。在左边我们会得到一个左边的最大值，右边会得到一个右边的最大值，然后再求一个跨越边界的最大子列和。然后对其进行比较，寻找到最大值。</p>
+<p><img src="/wp-content/uploads/image/20180403/1522767648119445.jpg" alt="1522767648119445.jpg" title="1522767648119445.jpg"> </p>
+<p>图2</p>
+<p><strong>算法4：在线处理</strong></p>
+<p>代码：</p>
+<p>int MaxSubseqSum4(int A[], int N)<br>{<br>       int ThisSum, MaxSum;<br>       int i;<br>       ThisSum=MaxSum=0;<br>       for(i=0;i&lt;N;i++){<br>              ThisSum +=A[i];/<em>向右累加</em>/<br>              if(ThisSum&gt;MaxSum)<br>                     MaxSum=ThisSum;/<em>发现更大和则更新当前结果</em>/<br>              else if(ThisSum&lt;0)/<em>如果当前子列和为负</em>/<br>                  ThisSum=0;/<em>则不可能使后面的部分和增大，抛弃之</em>/<br>       }<br>       return MaxSum;<br>}</p>
+<p>复杂度为<strong>O(N)</strong></p>
+<p>为了理解这个算法，举个例子来走一遍过程。假设一组数字为：</p>
+<p><strong>序号</strong></p>
+<p><strong>0</strong></p>
+<p><strong>1</strong></p>
+<p><strong>2</strong></p>
+<p><strong>3</strong></p>
+<p><strong>4</strong></p>
+<p><strong>5</strong></p>
+<p><strong>6</strong></p>
+<p><strong>7</strong></p>
+<p><strong>取值</strong></p>
+<p>-1</p>
+<p>3</p>
+<p>-2</p>
+<p>4</p>
+<p>-6</p>
+<p>1</p>
+<p>6</p>
+<p>-1</p>
+<p>刚开始，我们就令ThisSum和MaxSum为0。进入for循环。</p>
+<p><strong>i取值</strong></p>
+<p><strong>步骤</strong></p>
+<p><strong>ThisSum</strong></p>
+<p><strong>MaxSum</strong></p>
+<p><strong>0</strong></p>
+<p>ThisSum为-1，-1&lt;0，故抛弃这个值</p>
+<p>0</p>
+<p>0</p>
+<p><strong>1</strong></p>
+<p>然后ThisSum加上A[1]，由于之前ThisSum令为0了，所以现在值为3。然后ThisSum&gt;MaxSum，所以把ThisSum赋值给MaxSum，后者等于3。</p>
+<p>3</p>
+<p>3</p>
+<p><strong>2</strong></p>
+<p>然后ThisSum加上A[2]，当前和为+1，然后MaxSum&gt;ThisSum，所以不赋值，由于ThisSum为+1，故不抛弃。</p>
+<p>+1</p>
+<p>3</p>
+<p><strong>3</strong></p>
+<p>ThisSum加上A[3]，结果为5，然后ThisSum&gt;MaxSum，所以把ThisSum赋值给MaxSum，后者等于5</p>
+<p>+5</p>
+<p>5</p>
+<p><strong>4</strong></p>
+<p>ThisSum加上A[4]，结果为-1。此时ThisSum小于MaxSum，所以不改变Max的值。又由于This＜0，故赋值为0。</p>
+<p>0</p>
+<p>5</p>
+<p><strong>5</strong></p>
+<p>ThisSum加上A[5]，值为1，此时ThisSum小于MaxSum，所以不改变Max的值。</p>
+<p>1</p>
+<p>5</p>
+<p><strong>6</strong></p>
+<p>ThisSum加上A[6]，值为7，此时ThisSum大于MaxSum，所以把ThisSum赋值给MaxSum，后者等于7</p>
+<p>7</p>
+<p>7</p>
+<p><strong>7</strong></p>
+<p>ThisSum加上A[7]，值为6，此时ThisSum小于MaxSum，所以不改变Max的值。</p>
+<p>6</p>
+<p>7</p>
+<p>故最大值为7。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/24/datastructure_chapter3/" class="pre-post btn btn-default" title="数据结构【浙江大学】（第3节）整理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第3节）整理</span>
+        </a>
+    
+    
+        <a href="/2018/03/09/tiobe-index-for-march-2018top-20/" class="next-post btn btn-default" title="TIOBE Index for March 2018[TOP 20]">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">TIOBE Index for March 2018[TOP 20]</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第一节：数据结构基本知识"><span class="toc-text">第一节：数据结构基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-什么是数据结构"><span class="toc-text">1.1 什么是数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-算法"><span class="toc-text">1.2 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-应用实例"><span class="toc-text">1.3 应用实例</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

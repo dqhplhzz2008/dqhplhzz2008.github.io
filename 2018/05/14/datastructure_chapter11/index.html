@@ -1,0 +1,772 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第十一讲：散列查找11.1 散列表11.1.1 散列的基本思路编译处理时，设计变量及属性的管理：
+（1）插入：新变量定义。
+（2）查找：变量的引用。
+编译处理中对变量管理：动态查找问题。
+利用查...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第11节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第11节）整理">
+            
+	            数据结构【浙江大学】（第11节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/14</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>310</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第十一讲：散列查找"><a href="#第十一讲：散列查找" class="headerlink" title="第十一讲：散列查找"></a>第十一讲：散列查找</h1><h2 id="11-1-散列表"><a href="#11-1-散列表" class="headerlink" title="11.1 散列表"></a>11.1 散列表</h2><h3 id="11-1-1-散列的基本思路"><a href="#11-1-1-散列的基本思路" class="headerlink" title="11.1.1 散列的基本思路"></a>11.1.1 散列的基本思路</h3><p>编译处理时，设计变量及属性的管理：</p>
+<p>（1）插入：新变量定义。</p>
+<p>（2）查找：变量的引用。</p>
+<p>编译处理中对变量管理：<strong>动态查找问题</strong>。</p>
+<p>利用查找树进行变量管理，由于两个变量名（字符串）比较效率不高。</p>
+<p>我们已知的查找方法：</p>
+<p>（1）顺序查找，复杂度O(N)；</p>
+<p>（2）二分查找（静态查找），复杂度O(logN)</p>
+<p>（3）二叉搜索树，复杂度为O(h)，其中h为二叉查找树的高度；</p>
+<p>（4）平衡二叉树，复杂度为O(logN)。</p>
+<p>如何快速搜索到需要的关键词呢？如果关键词不方便比较该怎么办呢？</p>
+<p>我们回顾下查找的本质：已知对象找到位置。有序安排对象：全序、半序。直接“算出”对象位置：<strong>散列</strong>。</p>
+<p>散列查找法的两项基本工作：</p>
+<p>（1）计算位置：构造散列函数确定关键词存储位置；</p>
+<p>（2）解决冲突：应用某种策略解决多个关键词位置相同的问题。</p>
+<p>时间复杂度几乎是常量：O(1)，即查找时间与问题规模无关！</p>
+<h3 id="11-1-2-什么是散列表"><a href="#11-1-2-什么是散列表" class="headerlink" title="11.1.2 什么是散列表"></a>11.1.2 什么是散列表</h3><p>散列表（哈希表）</p>
+<p><strong>类型名称</strong>:符号表（SymbolTable）</p>
+<p><strong>数据对象集</strong>：符号表是“名字(Name)-属性(Attribute)”对的集合。</p>
+<p><strong>操作集</strong>：对于一个符号表Table∈SymbolTable，一个给定名字Name∈NameType，属性Attr∈AttributeType，以及正整数TableSize，符号表的基本操作主要有：</p>
+<p>1、SymbolTable   InitializeTable( int TableSize )：创建一个长度为TableSize的符号表；</p>
+<p>2、Boolean IsIn(   SymbolTable Table, NameType Name)：</p>
+<pre><code>查找特定的名字Name是否在符号表Table中；
+</code></pre><p>3、AttributeType   Find( SymbolTable Table, NameType Name)：</p>
+<pre><code>获取Table中指定名字Name对应的属性；
+</code></pre><p>4、SymbolTable   Modefy(SymbolTable Table, NameType Name, AttributeType Attr)：</p>
+<pre><code>将Table中指定名字Name的属性修改为Attr；
+</code></pre><p>5、SymbolTable   Insert(SymbolTable Table, NameType Name, AttributeType Attr)：</p>
+<pre><code>向Table中插入一个新名字Name及其属性Attr；
+</code></pre><p>6、 SymbolTable   Delete(SymbolTable Table, NameType Name)：</p>
+<pre><code>从Table中删除一个名字Name及其属性。
+</code></pre><p><strong>【例1：一位数组】</strong>有n = 11个数据对象的集合，关键词是正整数，分别为 18，23，11，20，2，7，27，30，42，15，34。</p>
+<p>如果符号表的大小用TableSize = 17（通常用一个素数），选取散列函数h如下：</p>
+<p>h(key) = key mod TableSize                  （公式 5.1）</p>
+<p>其中mod 是求余运算，相当于C语言中的%运算。</p>
+<p>用这个散列函数对11个数据对象建立查找表（忽略各关键词对应的属性部分，该例的关键词没有冲突）如下：</p>
+<p><strong>地址</strong></p>
+<p><strong>0</strong></p>
+<p><strong>1</strong></p>
+<p><strong>2</strong></p>
+<p><strong>3</strong></p>
+<p><strong>4</strong></p>
+<p><strong>5</strong></p>
+<p><strong>6</strong></p>
+<p><strong>7</strong></p>
+<p><strong>8</strong></p>
+<p><strong>9</strong></p>
+<p><strong>10</strong></p>
+<p><strong>11</strong></p>
+<p><strong>12</strong></p>
+<p><strong>13</strong></p>
+<p><strong>14</strong></p>
+<p><strong>15</strong></p>
+<p><strong>16</strong></p>
+<p><strong>关键词</strong></p>
+<p><strong>34</strong></p>
+<p><strong>18</strong></p>
+<p><strong>2</strong></p>
+<p><strong>20</strong></p>
+<p><strong>23</strong></p>
+<p><strong>7</strong></p>
+<p><strong>42</strong></p>
+<p><strong>27</strong></p>
+<p><strong>11</strong></p>
+<p><strong>30</strong></p>
+<p><strong>15</strong></p>
+<pre><code>（1）存放：
+</code></pre><p>h(18)=1，h(23)=6，……。如果新插入35，h(35)=1，该位置有对象，<strong>冲突！</strong></p>
+<p>（2）查找（先考虑在没有冲突情况下）</p>
+<p>查找时，对给定关键词keyi依然通过公式5.1计算出地址，再将keyi与该地址单元中关键词比较，若相等，则查找成功。例如：</p>
+<p>key=22，h(22)=5，该地址空，不在表中；</p>
+<p>key=30，h(30)=13，该地址存放是30，找到！</p>
+<p><strong>【定义】设散列表空间大小为m，填入表中的元素个数是n，则称α＝n/m为散列表的“装填因子（Loading Factor）”。</strong></p>
+<p> 装填因子α＝11 / 17 ≈ 0.65。</p>
+<p> 实用时，常将散列表大小设计使得 α＝0.5～0.8为宜。</p>
+<p><strong>[例2：二维数组]</strong>将给定的10个C语言中的关键词(保留字或标准函数名)顺次存入一张散列表。这10个关键词为：acos、define、float、exp、char、atan、ceil、floor、clock、ctime。散列表设计为一个二维数组Table[26][2]，2列分别代表 2个槽，如图1所示。</p>
+<p><img src="/wp-content/uploads/image/20180514/1526312364798333.jpg" alt="1526312364798333.jpg" title="1526312364798333.jpg">   </p>
+<p>图1</p>
+<p>利用一个二维数组，为例1中所提到的冲突提供了一个解决方案。可以将相同的两个元素放到多个槽中。</p>
+<p>考虑到这些都是单词，我们在设计散列函数的时候可以以首字母为基准进行，比如设计为：</p>
+<p><strong><em>h(key) = key[0] – ‘a’</em></strong></p>
+<pre><code>如图2所示，当放到clock和ctime的时候，发现产生了冲突，如图2所示。
+</code></pre><p><img src="/wp-content/uploads/image/20180514/1526312380118344.jpg" alt="1526312380118344.jpg" title="1526312380118344.jpg"></p>
+<p>图2</p>
+<p>如果没有溢出，则</p>
+<p><strong>_T_**</strong>_查询<em><strong> </strong></em>= T_<strong>**_插入_</strong> <strong><em>= T</em>**</strong>_删除<em><strong> </strong></em>=_<strong> </strong>O( 1 )**</p>
+<p>总结一下：</p>
+<p>“散列（Hashing）” 的基本思想是：以数据对象的关键字key为自变量，通过一个确定的函数关系 h，计算出对应的函数值h(key)，把这个值解释为数据对象的存储地址，并按此存放，即“存储位置 = h（key）”。</p>
+<p>散列方法中使用的计算函数称为“散列函数” （也称哈希函数），按这个思想构造的表称为“散列表”，所以它也是一种存储方法。</p>
+<p>在查找某数据对象时，用同样的方法“存储位置 = h（key）”计算出地址，将key与该地址单元中数据对象关键字进行比较，确定查找是否成功。</p>
+<p>可能将<strong>不同的关键字</strong>映射到同一个散列地址上，即h(keyi) = h(keyj)（当keyi ≠keyj），这种现象称为“冲突(Collision)”， keyi 和keyj称为“<strong>同义词</strong>（synonym）”。</p>
+<p><strong>通常关键词的值域（允许取值的范围）远远大于表空间的地址集，所以说，冲突不可能避免，只能尽可能减少。</strong></p>
+<h2 id="11-2-散列函数的构造方法"><a href="#11-2-散列函数的构造方法" class="headerlink" title="11.2 散列函数的构造方法"></a>11.2 散列函数的构造方法</h2><p>一个“好”的散列函数一般应考虑下列两个因素：</p>
+<pre><code>1\. **计算简单**，以便提高转换速度；
+</code></pre><p>2. 关键词对应的<strong>地址空间分布均匀</strong>，以尽量减少冲突。</p>
+<h3 id="11-2-1-数字关键词的散列函数构造"><a href="#11-2-1-数字关键词的散列函数构造" class="headerlink" title="11.2.1 数字关键词的散列函数构造"></a>11.2.1 数字关键词的散列函数构造</h3><p><strong>1.直接定址法</strong>：取关键词的某个线性函数值为散列地址，即h(key)=a×key+b(a、b为常数)。</p>
+<p><strong>2.除留余数法</strong>：散列函数为：h(key) = key mod p。为了地址空间分布均匀，一般p取<strong>素数</strong>。</p>
+<p><strong>3.数字分析法</strong>：分析数字关键字在各位上的变化情况，取比较随机的位作为散列地址。</p>
+<p>比如：取11位手机号码key的后4位作为地址：散列函数为：h(key) = atoi(key+7)</p>
+<p><strong>4.折叠法</strong>：把关键词分割成位数相同的几个部分，然后叠加。</p>
+<p>例如56793542，则做以下处理：（542）+（793）+（056）=1391，取391作为关键字。</p>
+<p><strong>5.平方取中法</strong>：例如56793542，则计算56793542×56793542=322550<strong>641</strong>2905764，那么就取中间的641作为关键字。</p>
+<h3 id="11-2-2-字符串关键词的散列函数构造"><a href="#11-2-2-字符串关键词的散列函数构造" class="headerlink" title="11.2.2 字符串关键词的散列函数构造"></a>11.2.2 字符串关键词的散列函数构造</h3><p><strong>1.一个简单的散列函数——ASCII码加和法</strong></p>
+<p>对字符型关键词key定义散列函数如下：</p>
+<p>h(key) = (Σkey[i]) mod TableSize</p>
+<p>这种方法也会有<strong>比较严重的冲突</strong>！</p>
+<p><strong>2.简单的改进——前3个字符位移法</strong></p>
+<p>h(key)=(key[0] + key[1]´27 + key[2]´272 )mod TableSize</p>
+<p>缺点：<strong>仍然冲突：string、 street、strong、structure等等；空间浪费：3000/263 ≈ 30%</strong></p>
+<p><strong>3.好的散列函数——移位法</strong></p>
+<pre><code>设计关键词所有n个字符，并且分布得很好。如图3所示的公式。
+</code></pre><p><img src="/wp-content/uploads/image/20180514/1526312403132274.jpg" alt="1526312403132274.jpg" title="1526312403132274.jpg"> </p>
+<p>图3</p>
+<p>在实际应用这个公式的时候，我们可以考虑在第一节的时候计算多项式的那个简便方法。代码如下：</p>
+<p>Index Hash ( const char <em>Key, int TableSize )<br>{<br>    unsigned int h = 0;     /</em> 散列函数值，初始化为0 <em>/<br>    while ( \</em>Key != ‘\0’)  /* 位移映射 <em>/<br>        h = ( h &lt;&lt; 5 ) + </em>Key++;<br>    return  h % TableSize;<br>}</p>
+<h2 id="11-3-冲突处理方法"><a href="#11-3-冲突处理方法" class="headerlink" title="11.3 冲突处理方法"></a>11.3 冲突处理方法</h2><p>常用处理冲突的思路：</p>
+<pre><code>（1）换个位置：开放地址法；
+</code></pre><p>（2）同一位置的冲突对象组织在一起：链地址法。</p>
+<h3 id="11-3-1-开放定址法"><a href="#11-3-1-开放定址法" class="headerlink" title="11.3.1 开放定址法"></a>11.3.1 开放定址法</h3><p>所谓开放定址法（Open Addressing）就是一旦产生了冲突（该地址已经有其它元素），就按某种规则去<strong>寻找另一空地址</strong>。</p>
+<p>若发生了第i次冲突，试探的下一个地址将增加di，基本公式是：</p>
+<p><strong>hi(key) = (h(key)+di) mod TableSize     ( 1≤ i &lt; TableSize )</strong></p>
+<p> di决定了不同的解决冲突方案：线性探测（di=i）、平方探测（di=±i2）、双散列（di=i*h2(key)）。</p>
+<h3 id="11-3-2-线性探测"><a href="#11-3-2-线性探测" class="headerlink" title="11.3.2 线性探测"></a>11.3.2 线性探测</h3><p>即线性探测法以增量序列 1，2，……，（TableSize-1）循环试探下一个存储地址。</p>
+<p>【<strong>例】</strong>设关键词序列为 {47，7，29，11，9，84，54，20，30}，</p>
+<p>散列表表长TableSize=13，</p>
+<p>装填因子α=9/13 ≈0.69；</p>
+<p>散列函数为：h(key) =key mod 11。</p>
+<p>用线性探测法处理冲突，列出依次插入后的散列表，并估算查找性能。（1分钟）</p>
+<p><strong>关键词 (key)</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>11</strong></p>
+<p><strong>9</strong></p>
+<p><strong>84</strong></p>
+<p><strong>54</strong></p>
+<p><strong>20</strong></p>
+<p><strong>30</strong></p>
+<p>散列地址h(key)</p>
+<p>3</p>
+<p>7</p>
+<p>7</p>
+<p>0</p>
+<p>9</p>
+<p>7</p>
+<p>10</p>
+<p>9</p>
+<p>8</p>
+<p>冲突次数</p>
+<p>0</p>
+<p>0</p>
+<p>1</p>
+<p>0</p>
+<p>0</p>
+<p>3</p>
+<p>1</p>
+<p>3</p>
+<p>6</p>
+<p><strong>地址</strong></p>
+<p><strong>操作</strong></p>
+<p><strong>0</strong></p>
+<p><strong>1</strong></p>
+<p><strong>2</strong></p>
+<p><strong>3</strong></p>
+<p><strong>4</strong></p>
+<p><strong>5</strong></p>
+<p><strong>6</strong></p>
+<p><strong>7</strong></p>
+<p><strong>8</strong></p>
+<p><strong>9</strong></p>
+<p><strong>10</strong></p>
+<p><strong>11</strong></p>
+<p><strong>12</strong></p>
+<p><strong>说 明</strong></p>
+<p><strong>插入47</strong></p>
+<p><strong>47</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入7</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入29</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>d1 = 1</strong></p>
+<p><strong>插入11</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入9</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入84</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>84</strong></p>
+<p><strong>d3 = 3</strong></p>
+<p><strong>插入54</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>84</strong></p>
+<p><strong>54</strong></p>
+<p><strong>d1 = 1</strong></p>
+<p><strong>插入20</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>84</strong></p>
+<p><strong>54</strong></p>
+<p><strong>20</strong></p>
+<p><strong>d3 = 3</strong></p>
+<p><strong>插入30</strong></p>
+<p><strong>11</strong></p>
+<p><strong>30</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>84</strong></p>
+<p><strong>54</strong></p>
+<p><strong>20</strong></p>
+<p><strong>d6 = 6</strong></p>
+<p>线性探测会产生聚集现象。</p>
+<p><strong>1.散列表查找性能分析</strong></p>
+<p>（1）成功平均查找长度（ASLs）。假设要查找的关键词一定在散列表中存在。只要对<strong>查找表中的每个关键词的比较次数加起来，除以关键词的个数</strong>，就得到平均每个关键词的查找长度。而<strong>每个关键词的比较次数是其冲突次数加1</strong>。</p>
+<p>ASL s= （1+7+1+1+2+1+4+2+4）/ 9 = 23/9 ≈ 2.56</p>
+<p>（2）不成功平均查找长度（ASLu），即不在散列表中的关键词的平均查找次数（不成功）。一般方法：将不在散列表中的关键词分若干类。如根据H(key)值分类。查找方式举个例子就明白了，假设我们查找22,22 mod 11=0，那么从H(key)=0开始查找，发现此时没有它，往后移一位还是不对，再后一位是空的，故判断其不在表中，故查找次数为3。然后所有这些找不到的元素的查找次数之和除以其个数就可以得出其ASLu。</p>
+<h3 id="11-3-3-线性探测——字符串的例子"><a href="#11-3-3-线性探测——字符串的例子" class="headerlink" title="11.3.3 线性探测——字符串的例子"></a>11.3.3 线性探测——字符串的例子</h3><p>【例】将acos/define/float/exp/char/atan/ceil/floor顺次放入一张大小为26的散列表中。H(key)=key[0]-‘a’，采用线性探测di=i。</p>
+<p>0</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>……</p>
+<p>acos</p>
+<p>atan</p>
+<p>char</p>
+<p>define</p>
+<p>exp</p>
+<p>float</p>
+<p>ceil</p>
+<p>floor</p>
+<p>……</p>
+<p>分析：</p>
+<p><strong>ASLs</strong>： （1+1+1+1+1+2+5+3）/8=15/8≈<strong>1.87</strong></p>
+<p>ASLu：根据H(key)值分为26种情况，H值为0,1,2…,25，则</p>
+<p><strong>ASLu</strong>=(9+8+7+6+5+4+3+2+1*18)/26=62/26≈<strong>2.38</strong></p>
+<h3 id="11-3-4-平方探测法（二次探测）"><a href="#11-3-4-平方探测法（二次探测）" class="headerlink" title="11.3.4 平方探测法（二次探测）"></a>11.3.4 平方探测法（二次探测）</h3><p>即平方探测法以增量序列12，-12，22，-22，…，q2，-q2且q ≤ ëTableSize/2û 循环试探下一个存储地址。</p>
+<p><strong>【例】设关键词序列为 {47，7，29，11，9，84，54，20，30}</strong></p>
+<p>（1）散列表表长TableSize = 11（即满足4×2+3形式的素数）</p>
+<p>（2）装填因子 α =  9/11 ≈ 0.82</p>
+<p>（3）散列函数为：h(key) = key mod 11</p>
+<p>（4）用平方探测法处理冲突，列出依次插入后的散列表并估算ASLs</p>
+<p><strong>关键词 key</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>11</strong></p>
+<p><strong>9</strong></p>
+<p><strong>84</strong></p>
+<p><strong>54</strong></p>
+<p><strong>20</strong></p>
+<p><strong>30</strong></p>
+<p><strong>散列地址h(key)</strong></p>
+<p><strong>3</strong></p>
+<p><strong>7</strong></p>
+<p><strong>7</strong></p>
+<p><strong>0</strong></p>
+<p><strong>9</strong></p>
+<p><strong>7</strong></p>
+<p><strong>10</strong></p>
+<p><strong>9</strong></p>
+<p><strong>8</strong></p>
+<p><strong>冲突次数</strong></p>
+<p><strong>0</strong></p>
+<p><strong>0</strong></p>
+<p><strong>1</strong></p>
+<p><strong>0</strong></p>
+<p><strong>0</strong></p>
+<p><strong>2</strong></p>
+<p><strong>0</strong></p>
+<p><strong>3</strong></p>
+<p><strong>3</strong></p>
+<p><strong>地址</strong></p>
+<p><strong>操作</strong></p>
+<p><strong>0</strong></p>
+<p><strong>1</strong></p>
+<p><strong>2</strong></p>
+<p><strong>3</strong></p>
+<p><strong>4</strong></p>
+<p><strong>5</strong></p>
+<p><strong>6</strong></p>
+<p><strong>7</strong></p>
+<p><strong>8</strong></p>
+<p><strong>9</strong></p>
+<p><strong>10</strong></p>
+<p><strong>说 明</strong></p>
+<p><strong>插入47</strong></p>
+<p><strong>47</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入7</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入29</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>d1 = 1</strong></p>
+<p><strong>插入11</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入9</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入84</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>84</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>d2 = -1</strong></p>
+<p><strong>插入54</strong></p>
+<p><strong>11</strong></p>
+<p><strong>47</strong></p>
+<p><strong>84</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>54</strong></p>
+<p><strong>无冲突</strong></p>
+<p><strong>插入20</strong></p>
+<p><strong>11</strong></p>
+<p><strong>20</strong></p>
+<p><strong>47</strong></p>
+<p><strong>84</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>54</strong></p>
+<p><strong>d3 = 4</strong></p>
+<p><strong>插入30</strong></p>
+<p><strong>11</strong></p>
+<p><strong>30</strong></p>
+<p><strong>20</strong></p>
+<p><strong>47</strong></p>
+<p><strong>84</strong></p>
+<p><strong>7</strong></p>
+<p><strong>29</strong></p>
+<p><strong>9</strong></p>
+<p><strong>54</strong></p>
+<p><strong>d3 = 4</strong></p>
+<p><strong>ASLs=（1+1+2+1+1+3+1+4+4）/ 9 = 18/9 = 2</strong></p>
+<p>是否有空间，平方探测（二次探测）就能找得到？<strong>这不一定！</strong></p>
+<p>但是有定理显示：<strong>如果散列表长度TableSize是某个4k+3（k是正整数）形式的素数时，平方探测法就可以探查到整个散列表空间。</strong></p>
+<h3 id="11-3-5-平方探测法的实现"><a href="#11-3-5-平方探测法的实现" class="headerlink" title="11.3.5 平方探测法的实现"></a>11.3.5 平方探测法的实现</h3><p>typedef struct HashTbl <em>HashTable;<br>struct HashTbl{<br>    int TableSize;<br>    Cell TheCells;<br>}H ;<br>        HashTable  InitializeTable( int TableSize )<br>        {<br>               HashTable H;<br>               int i;<br>/</em> 1<em>/      if ( TableSize &lt; MinTableSize ){<br>/</em> 2<em>/           Error( “散列表太小” );<br>/</em> 3<em>/           return NULL;<br>                }<br>            /</em> 分配散列表 <em>/<br>/</em> 4<em>/      H = malloc( sizeof( struct HashTbl ) );<br>/</em> 5<em>/      if ( H == NULL )<br>/</em> 6<em>/            FatalError( “空间溢出!!!” );<br>/</em> 7<em>/      H-&gt;TableSize = NextPrime( TableSize );<br>            /</em> 分配散列表 Cells <em>/<br>/</em> 8<em>/      H-&gt;TheCells = malloc( sizeof( Cell ) </em> H-&gt;TableSize );<br>/<em> 9</em>/      if( H-&gt;TheCells == NULL )<br>/*10*/            FatalError( “空间溢出!!!” );<br>/*11*/      for( i = 0; i &lt; H-&gt;TableSize; i++ )<br>/*12*/            H-&gt;TheCells[ i ].Info = Empty;<br>/*13*/      return H;<br>        }<br>        Position  Find( ElementType Key, HashTable H )<br>        {      Position CurrentPos, NewPos;<br>                int CNum;        /<em>   记录冲突次数   </em>/<br>/<em> 1</em>/      CNum = 0;<br>/<em> 2</em>/      NewPos = CurrentPos = Hash( Key, H-&gt;TableSize );<br>/<em> 3</em>/      while( H-&gt;TheCells[ NewPos ].Info != Empty &amp;&amp;<br>                           H-&gt;TheCells[ NewPos ].Element != Key ) {<br>                            /<em> 字符串类型的关键词需要 strcmp 函数!! </em>/<br>/<em> 4</em>/           if(++CNum % 2){ /<em>  判断冲突的奇偶次  </em>/<br>/<em> 5</em>/                 NewPos = CurrentPos + (CNum+1)/2<em>(CNum+1)/2;<br>/</em> 6<em>/                 while( NewPos &gt;= H-&gt;TableSize )<br>/</em> 7<em>/                     NewPos -= H-&gt;TableSize;<br>                   } else {<br>/</em> 8<em>/                 NewPos = CurrentPos - CNum/2 </em> CNum/2;<br>/<em> 9</em>/                 while( NewPos &lt; 0 )<br>/<em> 10</em>/                     NewPos += H-&gt;TableSize;<br>                   }<br>               }<br>/<em> 11</em>/    return NewPos;<br>        }<br>void  Insert( ElementType Key, HashTable H )<br>{           /<em> 插入操作 </em>/<br>              Position Pos;<br>/<em> 1</em>/     Pos = Find( Key, H );<br>/<em> 2</em>/     if( H-&gt;TheCells[ Pos ].Info != Legitimate ) {<br>                /<em> 确认在此插入 </em>/<br>/<em> 3</em>/         H-&gt;TheCells[ Pos ].Info = Legitimate;<br>/<em> 4</em>/         H-&gt;TheCells[ Pos ].Element = Key;<br>                         /<em>字符串类型的关键词需要 strcpy 函数!! </em>/<br>            }<br>        }</p>
+<p><strong>在开放地址散列表中，删除操作要很小心。通常只能“懒惰删除”，即需要增加一个“删除标记(Deleted)”，而并不是真正删除它。以便查找时不会“断链”。其空间可以在下次插入时重用。</strong></p>
+<pre><code>另外还有两种方法：
+</code></pre><p><strong>3.双散列探测法</strong></p>
+<p>di 选为i*h2(key)，其中h2(key)是另一个散列函数。我们把它叫做双散列探测法。由此，探测序列成了：h2(key)，2h2(key)，3h2(key)，…</p>
+<p><strong>对任意的key，h2(key) ≠0</strong></p>
+<p>探测序列还应该保证所有的散列存储单元都应该能够被探测到。选择以下形式有良好的效果：</p>
+<p>h2(key)=p-(key mod p)</p>
+<p>其中：p &lt; TableSize，p、TableSize都是素数。</p>
+<p><strong>4.再散列</strong></p>
+<pre><code>当散列表元素太多（即装填因子α太大）时，查找效率会下降；重新计算，再装入散列表。
+</code></pre><h3 id="11-3-6-分离链接法"><a href="#11-3-6-分离链接法" class="headerlink" title="11.3.6 分离链接法"></a>11.3.6 分离链接法</h3><p><strong>分离链接法是解决冲突的另一种方法，其做法是将所有关键词为同义词的数据对象通过结点链接存储在同一个单链表中。</strong></p>
+<p><strong>【例】 设关键字序列为 47, 7, 29, 11, 16, 92, 22, 8, 3, 50, 37, 89, 94, 21……</strong></p>
+<p>散列函数取为：h(key) = key mod 11，用分离链接法处理冲突。</p>
+<p>如图4所示。</p>
+<p> <img src="/wp-content/uploads/image/20180514/1526312458115004.jpg" alt="1526312458115004.jpg" title="1526312458115004.jpg"></p>
+<p>图4</p>
+<p>该表中有9个结点只需1次查找</p>
+<p>5个结点需要2次查找</p>
+<p>因此查找成功的平均查找次数为：</p>
+<p>ASL s=（9+5*2）/ 14 ≈ 1.36。</p>
+<p>代码如下：</p>
+<p>struct HashTbl<br>{<br>    int TableSize;<br>    List TheLists;<br>}H;<br>struct ListNode;<br>typedef struct ListNode *Position, *List;<br>struct HashTbl;<br>typedef struct HashTbl <em>HashTable;<br>struct ListNode<br>{<br>       ElementType Element;<br>       Position Next;<br>};<br>Position  Find( ElementType Key, HashTable H )<br>{<br>               Position P;<br>               List L;<br>/</em> 1<em>/      L = &amp;( H-&gt;TheLists[ Hash( Key, H-&gt;TableSize ) ] );<br>/</em> 2<em>/      P = L-&gt;Next;<br>/</em> 3<em>/      while( P != NULL &amp;&amp; strcmp(P-&gt;Element, Key) )<br>/</em> 4<em>/          P = P-&gt;Next;<br>/</em> 5*/      return P;<br>}</p>
+<h2 id="11-4-散列表的性能分析"><a href="#11-4-散列表的性能分析" class="headerlink" title="11.4 散列表的性能分析"></a>11.4 散列表的性能分析</h2><p>关键词的比较次数，取决于产生冲突的多少。</p>
+<p>影响产生冲突多少有以下三个因素：</p>
+<p>（1）散列函数是否均匀；</p>
+<p>（2）处理冲突的方法；</p>
+<p>（3）散列表的装填因子α。</p>
+<p><strong>1.线性探测发的查找性能</strong></p>
+<p>可以证明，线性探测法的期望探测次数满足下列公式：</p>
+<p><img src="/wp-content/uploads/image/20180514/1526312479110894.jpg" alt="1526312479110894.jpg" title="1526312479110894.jpg"> </p>
+<p>图5</p>
+<p>当α=0.5时，</p>
+<p>插入操作和不成功查找的期望ASLu=0.5*(1+1/(1-0.5)2)=2.5次，</p>
+<p>成功查找的期望ASLs=0.5*(1+1/(1-0.5))=1.5次。</p>
+<p>例子的α=0.69，于是</p>
+<p>期望ASLu=0.5*(1+1/(1-0.69)2)=5.70次</p>
+<p>期望ASLs=0.5*(1+1/(1-0.69))=2.11次（例中ASLs=2.56）。</p>
+<p><strong>2. 平方探测法和双散列探测法的查找性能</strong></p>
+<p>可以证明，平方探测法和双散列探测法探测次数 满足下列公式：</p>
+<p><img src="/wp-content/uploads/image/20180514/1526312494117302.jpg" alt="1526312494117302.jpg" title="1526312494117302.jpg"> </p>
+<p>图6</p>
+<p>当α=0.5时，</p>
+<p>插入操作和不成功查找的期望ASLu=1/(1-0.5)=2次，</p>
+<p>成功查找的期望ASLs=-1/0.5*ln(1-0.5)≈1.39次。</p>
+<p>例子的α=0.82，于是</p>
+<p>期望ASLu=1/(1-0.82)≈5.56次</p>
+<p>期望ASLs=-1/0.5*ln(1-0.5)≈2.09次（例中ASLs=2）。</p>
+<p>图7表示了期望探测次数与装填因子α的关系。</p>
+<p><img src="/wp-content/uploads/image/20180514/1526312509584118.jpg" alt="1526312509584118.jpg" title="1526312509584118.jpg"> </p>
+<p>图7</p>
+<p>当装填因子α&lt;0.5的时候，各种探测法的期望探测次数都不大，也比较接近。</p>
+<p>随着α的增大，线性探测法的期望探测次数增加较快，不成功查找和插入操作的期望探测次数比成功查找的期望探测次数要大。</p>
+<p>合理的的最大装入因子α应该不超过0.85。</p>
+<p><strong>3. 分离链接法的查找性能</strong></p>
+<p>所有地址链表的平均长度定义成装填因子α，α有可能超过1。</p>
+<p>不难证明：其期望探测次数 p为：</p>
+<p><img src="/wp-content/uploads/image/20180514/1526312523130197.jpg" alt="1526312523130197.jpg" title="1526312523130197.jpg"> </p>
+<p>图8</p>
+<p>   当α=1时，</p>
+<p>插入操作和不成功查找的期望ASLu=1+e-1=1.37次，</p>
+<p>成功查找的期望ASLs=1+1/2=1.5次。</p>
+<p><strong>我们发现：随着α增大，ASLu增加很慢；而ASLs线性增长。</strong></p>
+<p><strong>总结一下散列查找：</strong></p>
+<p>1.选择合适的 h(key) ，散列法的查找效率期望是常数<em>O(1)，</em>它几乎与关键字的空间的大小n无关！</p>
+<p>2.它是以较小的α为前提。因此，散列方法是一个以空间换时间的成功范例。</p>
+<p>3.散列方法的存储对关键字是随机的，不便于顺序查找关键字，也不适合于范围查找，或最大值最小值查找。</p>
+<p><strong>再来总结下开放地址法和分离链接法：</strong></p>
+<p>1.开放地址法：</p>
+<p>（1）散列表是一个数组，存储效率高，随机查找。</p>
+<p>（2）散列表有“聚集”现象，再散列时有“停顿”现象。</p>
+<p>（3）关键字的删除只能采用“懒惰删除”法，会导致存储“垃圾”。</p>
+<p>2.分离链接法：</p>
+<pre><code>（1）关键字删除不需要“懒惰删除”法，从而没有存储“垃圾”。
+</code></pre><p>（2）散列表是顺序存储和链式存储的结合，链表部分的存储效率和查找效率都比较低。</p>
+<p>（3）太小的α可能导致空间浪费，大的α又将付出更多的时间代价。不均匀的链表长度导致时间效率的严重下降。</p>
+<h2 id="11-5应用实例：文件中单词词频统计"><a href="#11-5应用实例：文件中单词词频统计" class="headerlink" title="11.5应用实例：文件中单词词频统计"></a>11.5应用实例：文件中单词词频统计</h2><p><strong>【问题】给定一个英文文本文件，统计文件中所有单词出现的频率，并输出词频最大的前10%的单词及其词频。</strong></p>
+<pre><code>为简单起见，假设单词字符定义为大小写字母、数字和下划线，其他字符均认为是单词分隔符，不予考虑。
+</code></pre><p><strong>【分析】</strong>解决这个问题的最基本的工作、也是大量的工作是不断对新读入的单词在已有单词表中查找，如果已经存在，则将该单词的词频加1，如果不存在，则插入该单词并记词频为1。</p>
+<p>使用<strong>散列表</strong>设计该单词表的数据结构可以进行快速地查找和插入</p>
+<p><strong>【解决方案】</strong>代码如下：</p>
+<p>  int main() {<br>/<em> 1 </em>/  int  TableSize = 10000； /<em> 散列表的估计大小 </em>/<br>        int wordcount = 0,  length;<br>            HashTable H;<br>            ElementType word;<br>            FILE <em>fp;<br>/</em> 2 <em>/   char document[30]= “HarryPotter.txt“; /</em> 要被统计词频的文件名 <em>/<br>/</em> 3 <em>/   H = InitializeTable( TableSize ); /</em> 建立散列表 <em>/<br>/</em> 4 <em>/   if(( fp = fopen(document, “r” ))==NULL)  FatalError(“无法打开文件!\n” );<br>             while( !feof( fp ) ){<br>/</em> 5 <em>/        length = GetAWord( fp, word ); /</em> 从文件中读取一个单词 <em>/<br>/</em> 6 <em>/        if(length &gt; 3){       /</em> 只考虑适当长度的单词 <em>/<br>/</em> 7 <em>/              wordcount++;<br>/</em>查找散列表，若存在，则将该单词的词频加1，若不存在，则插入。<em>/<br>/</em> 8 <em>/              InsertAndCount( word, H );<br>                  }<br>              }<br>              fclose( fp );<br>/</em> 9 <em>/    printf(“该文档共出现 %d 个有效单词，”, wordcount);<br>/</em>根据散列表，输出最频繁出现的给定百分比（10%）的单词。<em>/<br>/</em> 10 <em>/   Show( H ，10.0/100 );  /</em> 显示词频前10%的所有单词 <em>/<br>/</em> 11 <em>/   DestroyTable( H );        /</em> 销毁散列表 */<br>               return 0;<br>}</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/24/datastructure_finalexam/" class="pre-post btn btn-default" title="中国大学MOOC-陈越、何钦铭-数据结构-2018春期末考试">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">中国大学MOOC-陈越、何钦铭-数据结构-2018春期末考试</span>
+        </a>
+    
+    
+        <a href="/2018/05/13/datastructure_chapter10/" class="next-post btn btn-default" title="数据结构【浙江大学】（第10节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第10节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第十一讲：散列查找"><span class="toc-text">第十一讲：散列查找</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#11-1-散列表"><span class="toc-text">11.1 散列表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-1-散列的基本思路"><span class="toc-text">11.1.1 散列的基本思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-1-2-什么是散列表"><span class="toc-text">11.1.2 什么是散列表</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-2-散列函数的构造方法"><span class="toc-text">11.2 散列函数的构造方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-1-数字关键词的散列函数构造"><span class="toc-text">11.2.1 数字关键词的散列函数构造</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-2-2-字符串关键词的散列函数构造"><span class="toc-text">11.2.2 字符串关键词的散列函数构造</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-3-冲突处理方法"><span class="toc-text">11.3 冲突处理方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-1-开放定址法"><span class="toc-text">11.3.1 开放定址法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-2-线性探测"><span class="toc-text">11.3.2 线性探测</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-3-线性探测——字符串的例子"><span class="toc-text">11.3.3 线性探测——字符串的例子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-4-平方探测法（二次探测）"><span class="toc-text">11.3.4 平方探测法（二次探测）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-5-平方探测法的实现"><span class="toc-text">11.3.5 平方探测法的实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#11-3-6-分离链接法"><span class="toc-text">11.3.6 分离链接法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-4-散列表的性能分析"><span class="toc-text">11.4 散列表的性能分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#11-5应用实例：文件中单词词频统计"><span class="toc-text">11.5应用实例：文件中单词词频统计</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

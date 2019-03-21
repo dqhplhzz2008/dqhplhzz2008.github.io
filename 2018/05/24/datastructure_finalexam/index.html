@@ -1,0 +1,402 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="一、判断题
+1-1若用平方探测法解决冲突，则插入新元素时，若散列表容量为质数，插入就一定可以成功。(2分)
+F
+1-2对N个不同的数据采用冒泡排序进行从大到小的排序，当元素基本有序时交换元素次数...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>中国大学MOOC-陈越、何钦铭-数据结构-2018春期末考试 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="中国大学MOOC-陈越、何钦铭-数据结构-2018春期末考试">
+            
+	            中国大学MOOC-陈越、何钦铭-数据结构-2018春期末考试
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>301</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <p>一、判断题</p>
+<p>1-1若用平方探测法解决冲突，则插入新元素时，若散列表容量为质数，插入就一定可以成功。(2分)</p>
+<p>F</p>
+<p>1-2对N个不同的数据采用冒泡排序进行从大到小的排序，当元素基本有序时交换元素次数肯定最多。(2分)</p>
+<p>F</p>
+<p>1-3_n_!是_O_(<em>n^n</em>)的。(2分)</p>
+<p>T</p>
+<p>1-4对一棵平衡二叉树，所有非叶结点的平衡因子都是0，当且仅当该树是完全二叉树。(2分)</p>
+<p>F</p>
+<p>1-5无向连通图至少有一个顶点的度为1。(2分)</p>
+<p>F</p>
+<p>二、选择题</p>
+<p>2-1 对一组数据{2，12，16，88，5，10}进行排序，若前三趟排序结果如下：第一趟排序结果：2，12，16，5，10，88第二趟排序结果：2，12，5，10，16，88第三趟排序结果：2，5，10，12，16，88则采用的排序方法可能是：(2分)</p>
+<p>冒泡排序</p>
+<p>2-2 给定有权无向图的邻接矩阵如下，其最小生成树的总权重是：(4分)</p>
+<p><img src="/wp-content/uploads/image/20180524/1527149225358742.jpg" alt="1.jpg" title="1527149225358742.jpg"> </p>
+<p>图1</p>
+<p>14</p>
+<p>2-3 数据结构中Dijkstra算法用来解决哪个问题？(2分)</p>
+<p>最短路径</p>
+<p>2-4 给定二叉树如下图所示。设N代表二叉树的根，L代表根结点的左子树，R代表根结点的右子树。若遍历后的结点序列为3、1、7、5、6、2、4，则其遍历方式是：(2分)</p>
+<p><img src="/wp-content/uploads/image/20180524/1527149230938568.jpg" alt="2.jpg" title="1527149230938568.jpg"> </p>
+<p>图2</p>
+<p>RNL</p>
+<p>2-5 设栈S和队列Q的初始状态均为空，元素{1,2,3,4,5,6,7}依次进入栈S。若每个元素出栈后立即进入队列Q，且7个元素出队的顺序是{2,5,6,4,7,3,1}，则栈S的容量至少是：(2分)</p>
+<p>4</p>
+<p>2-6对于序列{49，38，65，97，76，13，27，50}，按由小到大进行排序，下面哪一个是初始步长为4的希尔排序法第一趟的结果？(4分)</p>
+<p>49,13,27,50,76,38,65,97</p>
+<p>2-7在一个有权无向图中，如果顶点b到顶点a的最短路径长度是10，顶点c与顶点b之间存在一条长度为3的边。那么下列说法中有几句是正确的？(4分)</p>
+<ol>
+<li><p>c与a的最短路径长度就是13</p>
+</li>
+<li><p>c与a的最短路径长度就是7</p>
+</li>
+<li><p>c与a的最短路径长度不超过13</p>
+</li>
+<li><p>c与a的最短路径不小于7</p>
+</li>
+</ol>
+<p>2句</p>
+<p>2-8 在拓扑排序算法中用堆栈和用队列产生的结果会不同吗？(2分)</p>
+<p>有可能会不同</p>
+<p>2-9 设最小堆（小根堆）的层序遍历结果为{5,18,15,28,22,42,40}。用线性时间复杂度的算法将该堆调整为最大堆（大根堆），则该树的中序遍历结果为：(4分)</p>
+<p>A. 18,28,22,42,15,40,5</p>
+<p>2-10 在图中自a点开始进行广度优先遍历算法可能得到的结果为：(2分)</p>
+<p><img src="/wp-content/uploads/image/20180524/1527149240572014.jpg" alt="3.jpg" title="1527149240572014.jpg"></p>
+<p>图3</p>
+<p>a,b,e,c,d,f</p>
+<p>2-11 在一个链队列中，front和rear分别为头指针和尾指针，则插入一个结点s的操作为（）。(2分)</p>
+<p>rear-&gt;next=s;rear=s;</p>
+<p>2-12 设散列表的地址区间为[0,16]，散列函数为_H_(<em>Key</em>)=<em>Key</em>%17。采用线性探测法处理冲突，并将关键字序列{26，25，72，38，8，18，59}依次存储到散列表中。元素59存放在散列表中的地址是：(4分)</p>
+<p>11</p>
+<p>2-13 令P代表入栈，O代表出栈。则将一个字符串3<em>a+b/c变为3a</em>bc/+的堆栈操作序列是哪个？（例如将ABC变成BCA的操作序列是PPOPOO。）(4分)</p>
+<p>POPPOOPPOPPOOO</p>
+<p>2-14要判断一个整数_N_（&gt;10）是否素数，我们需要检查3到√_N_之间是否存在奇数可以整除_N_。则这个算法的时间复杂度是：(2分)</p>
+<p>O(根号N)</p>
+<p>2-15 将1~6这6个键值插到一棵初始为空的二叉搜索树中。如果插入完成后，搜索树结构如图所示，问：可能的插入序列是什么？(2分)</p>
+<p><img src="/wp-content/uploads/image/20180524/1527149247170792.jpg" alt="4.jpg" title="1527149247170792.jpg"> </p>
+<p>图4</p>
+<p>413256</p>
+<p>2-16 将9,8,7,2,3,5,6,4顺序插入一棵初始为空的AVL树。下列句子中哪句是错的？(4分)</p>
+<p>5是根结点</p>
+<p>2-17 对给定序列{110，119，7，911，114，120，122}采用次位优先（LSD）的基数排序，则两趟收集后的结果为：(2分)</p>
+<p>7,110,911,114,119,120,122</p>
+<p>2-18 给定输入序列{4371,1323,6173,4199,4344,9679,1989}以及散列函数_h_(_X_)=_X_%10。如果用大小为10的散列表，并且用分离链接法解决冲突，则输入各项经散列后在表中的下标为：（-1表示相应的插入无法成功）(4分)</p>
+<p>1,3,3,9,4,9,9</p>
+<p>2-19</p>
+<p>在图中自d点开始进行深度优先遍历算法可能得到的结果为：(2分)</p>
+<p><img src="/wp-content/uploads/image/20180524/1527149252111692.jpg" alt="5.jpg" title="1527149252111692.jpg"> </p>
+<p>图5</p>
+<p>d,e,a,c,f,b</p>
+<p>2-20 哈夫曼树是n个带权叶子结点构成的所有二叉树中（带权路径长度）最小的二叉树。(2分)</p>
+<p>2-21 在并查集问题中，已知集合元素0~8所以对应的父结点编号值分别是{1,-4,1,1,-3,4,4,8,-2}（注：−_n_表示树根且对应集合大小为_n_），那么将元素6和8所在的集合合并（要求必须将小集合并到大集合）后，该集合对应的树根和父结点编号值分别是多少？(4分)</p>
+<p>4和-5</p>
+<p>2-22 将10,12,1,14,6,5,8,15,3,9,7逐个按顺序插入到初始为空的最小堆中，然后连续执行两次删除最小元素操作（DeleteMin），再插入4，16，此后堆顶的元素是什么？(4分)</p>
+<p>4</p>
+<p>二、程序填空题</p>
+<p> <img src="/wp-content/uploads/image/20180524/1527149270110276.jpg" alt="1527149270110276.jpg" title="1527149270110276.jpg"></p>
+<p>图6</p>
+<p>三、编程题</p>
+<p>7-1 还原二叉树（8 分）</p>
+<p>给定一棵二叉树的先序遍历序列和中序遍历序列，要求计算该二叉树的高度。</p>
+<p><strong>输入格式：</strong></p>
+<p>输入首先给出正整数N（≤50），为树中结点总数。下面两行先后给出先序和中序遍历序列，均是长度为N的不包含重复英文字母（区别大小写）的字符串。</p>
+<p><strong>输出格式：</strong></p>
+<p>输出为一个整数，即该二叉树的高度。</p>
+<p><strong>输入样例：</strong></p>
+<p>9</p>
+<p>ABDFGHIEC</p>
+<p>FDHGIBEAC</p>
+<p><strong>输出样例：</strong></p>
+<p>5</p>
+<p><strong>代码：</strong></p>
+<p>暂时不公布代码</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/08/29/e4-bb-8a-e5-a4-a9-e5--aa-e5-b0-8f-e7-a8-8b-e5-ba-8f/" class="pre-post btn btn-default" title="今天在github上更新了几个小程序">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">今天在github上更新了几个小程序</span>
+        </a>
+    
+    
+        <a href="/2018/05/14/datastructure_chapter11/" class="next-post btn btn-default" title="数据结构【浙江大学】（第11节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第11节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

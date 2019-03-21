@@ -1,0 +1,549 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第三讲 树（上）3.1 树与树的表示1.查找
+查找是指根据某个给定关键字K，从集合R中找出关键字与K相同的记录。它分为以下两类：
+（1）静态查找：集合中记录是固定的，没有插入和删除操作。
+（2）...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第3节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第3节）整理">
+            
+	            数据结构【浙江大学】（第3节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>331</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第三讲-树（上）"><a href="#第三讲-树（上）" class="headerlink" title="第三讲 树（上）"></a>第三讲 树（上）</h1><h2 id="3-1-树与树的表示"><a href="#3-1-树与树的表示" class="headerlink" title="3.1 树与树的表示"></a>3.1 树与树的表示</h2><p><strong>1.查找</strong></p>
+<p>查找是指根据某个给定关键字K，从集合R中找出关键字与K相同的记录。它分为以下两类：</p>
+<p>（1）静态查找：集合中记录是固定的，没有插入和删除操作。</p>
+<p>（2）动态查找：集合中记录是动态变化的，除了查找，还可能发生插入和删除。</p>
+<p>首先举一个<strong>顺序查找</strong>的例子。此例需要注意，其设置了一个哨兵，因此可以减少判断中的一个条件。这个例子要求是在Element[1]~Element[n]中查找关键字为K的数据元素，其结构体如下：</p>
+<p>typedef struct LNode *List;<br>struct LNode{<br>       ElementType Element[MAXSIZE];<br>       int Length;<br>};</p>
+<p>则查找算法代码如下：</p>
+<p>int SequentialSearch(List Tb1, ElementType K)<br>{<br>       int i;<br>       Tb1-&gt;Element[0]=K;/<em>建立哨兵</em>/<br>       for(i-Tb1-&gt;Length;Tb1-&gt;Element[i]!=K;i–);<br>       return i;/<em>查找成功返回下标，不成功返回0</em>/<br>}</p>
+<p>时间复杂性<strong>O(n)。</strong></p>
+<p>再举一个<strong>二分查找</strong>的例子。二分查找遵循以下要求：假设n个数据元素的关键字满足有序，并且是连续存放。</p>
+<p>例如，假设有13个数据元素，按照关键字由小到大顺序存放，二分查找关键字为444的数据。</p>
+<p>5</p>
+<p>16</p>
+<p>39</p>
+<p>45</p>
+<p>51</p>
+<p>98</p>
+<p>100</p>
+<p>202</p>
+<p>226</p>
+<p>321</p>
+<p>368</p>
+<p>444</p>
+<p>501</p>
+<p>理论步骤是如表1.1所示。</p>
+<p>表1.1 二分法步骤</p>
+<p>left</p>
+<p>right</p>
+<p>mid</p>
+<p>value</p>
+<p>comparsion</p>
+<p>1</p>
+<p>13</p>
+<p>7</p>
+<p>100</p>
+<p>100&lt;444，右侧</p>
+<p>8</p>
+<p>13</p>
+<p>10</p>
+<p>321</p>
+<p>321&lt;444，右侧</p>
+<p>11</p>
+<p>13</p>
+<p>12</p>
+<p>444</p>
+<p>444=444，结束</p>
+<p>程序代码如下：</p>
+<p>int BinarySearch(List Tbl, ElementType K)<br>{<br>       int left, right, mid, NoFount = -1;<br>       left = 1;/<em>初始左侧边界</em>/<br>       right = Tbl-&gt;Length;/<em>初始右侧边界</em>/<br>       while (left &lt;= right)<br>       {<br>              mid = (left + right) / 2;<br>              if (K &lt; Tbl-&gt;Element[mid])<br>                     right = mid - 1;<br>              else if (K &gt; Tbl-&gt;Element[mid])<br>                     left = mid + 1;<br>              else return mid;<br>       }<br>       return NotFound;<br>}</p>
+<p>时间复杂度是<strong>O(logN)</strong>。</p>
+<p><strong>2.树的定义和术语</strong></p>
+<p>树（Tree）：n（n≥0）个结点构成的有限集合。当n=0时，称为空树。</p>
+<p>对于任一棵非空树（n&gt;0），它具备以下性质：</p>
+<p>（1）树种有一个称为根的特殊结点，用r表示；</p>
+<p>（2）其余结点可分为m（m＞0）个互不相交的有限集T1，T2，…，Tm，其中每个集合本身又是一棵树，称为原来树的“子树”。</p>
+<p>（3）子树是不相交的；</p>
+<p>（4）除了根结点外，每个结点有且只有一个父节点；</p>
+<p>（5）一棵N个结点的树有N-1条边。</p>
+<p>树的一些基本术语：</p>
+<p>（1）结点的度：结点子树个数。</p>
+<p>（2）树的度：树的所有结点中最大的度数。</p>
+<p>（3）叶结点：度为0的结点。</p>
+<p>（4）父结点：有子树的结点是其子树的根结点的父结点。</p>
+<p>（5）子结点：若A结点是B结点的父结点，则称B结点是A结点的子结点。</p>
+<p>（6）兄弟结点：具有同一父结点的各结点彼此是兄弟结点。</p>
+<p>（7）路径和路径长度：从结点n1到nk的路径为一个结点序列n1，n2，…nk，其中ni是ni+1的父结点。路径所包含边的个数为路径的长度。</p>
+<p>（8）祖先结点：沿树根到某一结点路径上的所有结点都是这个结点的祖先结点。</p>
+<p>（9）子孙节点：某一结点的子树中的所有结点是这个结点的子孙。</p>
+<p>（10）结点的层次：规定根结点在1层，其它任一结点的层数是其父结点的层数加1。</p>
+<p>（11）树的深度：树种所有结点总的最大层次是这棵树的深度。</p>
+<p><strong>3.树的表示</strong></p>
+<pre><code>数组、链表都是很难表示树的，因为树的结构是多变的，无法统一规定。因此在这里用“**儿子-兄弟表示法**”，结构如下面所示。
+</code></pre><p>Element</p>
+<p>FirstChild</p>
+<p>NextSibling</p>
+<p>如图1左所示的树结构可以表示为图1右所示的表示法。</p>
+<p> <img src="/wp-content/uploads/image/20180424/1524538762128265.jpg" alt="1524538762128265.jpg" title="1524538762128265.jpg"></p>
+<p>图1</p>
+<p>把这个树往右转向45°，可以看出，这是一个度为2的树。这种方法也被称为——<strong>二叉树</strong>。</p>
+<h2 id="3-2-二叉树"><a href="#3-2-二叉树" class="headerlink" title="3.2 二叉树"></a>3.2 二叉树</h2><p><strong>1.二叉树的定义</strong></p>
+<pre><code>二叉树T：一个有穷的结点集合。这个集合可以为空。若不为空，则它是由根结点和称为其左子树TL和右子树TR的两个不相交的二叉树组成。
+</code></pre><p>二叉树的五种基本形态如图2所示，几种特殊二叉树如图3所示。</p>
+<p><img src="/wp-content/uploads/image/20180424/1524538779384852.jpg" alt="1524538779384852.jpg" title="1524538779384852.jpg"> </p>
+<p>图2</p>
+<p><img src="/wp-content/uploads/image/20180424/1524538792735225.jpg" alt="1524538792735225.jpg" title="1524538792735225.jpg"> </p>
+<p>图3</p>
+<p>对完全二叉树左一个说明。完全二叉树可以是满二叉树缺少最低一层最右侧几个，只要前面都对的起来即可，但是<strong>绝不能在中间缺几个（如图3右下角）</strong>。</p>
+<p><strong>2.二叉树的几个重要性质</strong></p>
+<p>（1）一个二叉树第i层的最大结点数为：2i-1，i≥1。</p>
+<p>（2）深度为k的二叉树最大节点数是2k-1，k≥1。</p>
+<p>（3）对任何非空二叉树T，若n0表示叶结点的个数，n2是度为2的非叶结点个数，那么两者满足n0=n2+1。</p>
+<p><strong>3.二叉树的抽象数据类型定义</strong></p>
+<p>类型名称：二叉树</p>
+<p>数据对象集：一个有穷的结点集合。若不为空，则由根结点和其左、右二叉子树组成。</p>
+<p>操作集：BT∈BinTree，Item∈ElementType，重要的操作有：</p>
+<pre><code>（1）Boolean IsEmpty(BinTree BT)：判断BT是否为空；
+</code></pre><p>（2）void Traversal(BinTree BT)：遍历，按某顺序访问每个结点；</p>
+<p>（3）BinTree CreatBinTree()：创建一个二叉树。</p>
+<p>二叉树常用的便利方法有：</p>
+<p>（1）void PreOrderTraversal(BinTree BT)：先序——根、左子树、右子树；</p>
+<p>（2）void InOrderTraversal(BinTree BT)：中序——左子树、根、右子树；</p>
+<p>（3）void PostOrderTraversal(BinTree BT)：后序：左子树、右子树、根；</p>
+<p>（4）void LevelOrderTraversal(BinTree BT)：层次遍历：从上到下、从左到右。</p>
+<p><strong>4.二叉树的存储结构</strong></p>
+<p>（1）顺序存储结构</p>
+<p>完全二叉树：按从上至下、从左到右顺序存储，n个结点的完全二叉树的结点父子关系，可以使用顺序存储结果。如图4所示。</p>
+<p> <img src="/wp-content/uploads/image/20180424/1524538808162249.jpg" alt="4.jpg" title="1524538808162249.jpg"></p>
+<p>图4</p>
+<p>这个完全二叉树很有规律，很容易找到其父结点和子结点。我们可以发现：</p>
+<p>①非根节点（序号i&gt;1）的父结点的序号是[i/2]（在这里[]表示取整）；</p>
+<p>②结点（序号为i）的左孩子结点序号为2i（若2i&gt;=n，就没有左孩子）；</p>
+<p>③结点（序号为i）的右孩子结点序号为2i+1（若2i+1&gt;=n，就没有右孩子）。</p>
+<p>推广来说，一般二叉树也可以采用这种结构，方法就是通过补空位使其变成完全二叉树。但这样的结果是会造成空间浪费。</p>
+<p>（2）链表存储</p>
+<p>一般二叉树的结点可以用下面的方式表示：</p>
+<p>Left</p>
+<p>Data</p>
+<p>Right</p>
+<p>其代码表示如下：</p>
+<p>typedef struct TreeNode *BinTree;<br>typedef BinTree Position:<br>struct TreeNode{<br>       ElementType Data;<br>       BinTree Left;<br>       BinTree Right;<br>};</p>
+<p><strong>5.二叉树的递归遍历</strong></p>
+<p>（1）先序遍历</p>
+<p>遍历过程为：</p>
+<p>①访问根结点；②先序遍历其左子树，先序遍历其右子树。</p>
+<p>程序如下所示：</p>
+<p>void PreOrderTraversal(BinTree BT)<br>{<br>       if(BT){<br>              printf(“%d”,BT-&gt;Data);<br>              PreOrderTraversal(BT-&gt;Left);<br>              PreOrderTraversal(BT-&gt;Right);<br>       }<br>}</p>
+<p>（2）中序遍历</p>
+<p>遍历过程为：</p>
+<p>①中序遍历其左子树；②访问根结点；③中序遍历其右子树。</p>
+<p>程序如下所示：</p>
+<p>void InOrderTraversal(BinTree BT)<br>{<br>       if(BT){<br>              PreOrderTraversal(BT-&gt;Left);<br>              printf(“%d”,BT-&gt;Data);<br>PreOrderTraversal(BT-&gt;Right);<br>       }<br>}</p>
+<p>（3）后序遍历</p>
+<p>便利过程：</p>
+<p>①后续遍历其左子树；②后续遍历其右子树；③访问根结点。</p>
+<p>代码如下：</p>
+<p>void PostOrderTraversal(BinTree BT)<br>{<br>       if(BT){<br>              PreOrderTraversal(BT-&gt;Left);<br>PreOrderTraversal(BT-&gt;Right)<br>printf(“%d”,BT-&gt;Data);;<br>       }<br>}</p>
+<p><strong>6.二叉树的非递归遍历（以中序为例）</strong></p>
+<p>基本思路：<strong>使用堆栈</strong>。</p>
+<p>如图5所示的二叉树，我们以此未来来介绍利用堆栈进行处理的方法，输出顺序为：DBEFAGHCI。处理的方法见表3.1所示。</p>
+<p><img src="/wp-content/uploads/image/20180424/1524538820783938.jpg" alt="5.jpg" title="1524538820783938.jpg"> </p>
+<p>图5</p>
+<p>表3.1 使用堆栈算法的表格示意</p>
+<p>序号</p>
+<p>当前结点</p>
+<p>堆栈（从左到右相当于从底到顶）</p>
+<p>步骤说明</p>
+<p>1</p>
+<p>A</p>
+<p>[A]</p>
+<p>首先把A压入堆栈</p>
+<p>2</p>
+<p>B</p>
+<p>[AB]</p>
+<p>B为A的左孩子，压入堆栈</p>
+<p>3</p>
+<p>D</p>
+<p>[ABD]</p>
+<p>D为B的左孩子，压入堆栈</p>
+<p>4</p>
+<p>[AB]</p>
+<p>D无孩子，将D推出堆栈</p>
+<p>5</p>
+<p>[A]</p>
+<p>将<strong>B推出堆栈</strong></p>
+<p>6</p>
+<p>F</p>
+<p>[AF]</p>
+<p>由于F为B右孩子，在B推出时将F压入堆栈</p>
+<p>7</p>
+<p>E</p>
+<p>[AFE]</p>
+<p>E为F左孩子，压入堆栈</p>
+<p>8</p>
+<p>[AF]</p>
+<p>E无孩子，将<strong>E推出堆栈</strong></p>
+<p>9</p>
+<p>[A]</p>
+<p><strong>将F推出堆栈</strong></p>
+<p>10</p>
+<p>[]</p>
+<p><strong>将A推出堆栈</strong></p>
+<p>11</p>
+<p>C</p>
+<p>[C]</p>
+<p>将G压入堆栈</p>
+<p>12</p>
+<p>G</p>
+<p>[CG]</p>
+<p>G为C的左孩子，压入堆栈</p>
+<p>13</p>
+<p>[C]</p>
+<p>G没有左孩子，<strong>G推出堆栈</strong></p>
+<p>14</p>
+<p>H</p>
+<p>[CH]</p>
+<p>将G的右孩子压入堆栈</p>
+<p>15</p>
+<p>[C]</p>
+<p>H无孩子，<strong>H推出堆栈</strong></p>
+<p>16</p>
+<p> []</p>
+<p><strong>将C推出堆栈</strong></p>
+<p>17</p>
+<p>I</p>
+<p>[I]</p>
+<p>将I压入堆栈</p>
+<p>18</p>
+<p>[]</p>
+<p><strong>将I推出堆栈</strong></p>
+<p>具体执行代码如下：</p>
+<p>void InOrderTraversal(BinTree BT)<br>{<br>       BinTree T=BT;<br>       Stack S=CreatStack(MaxSize);/<em>创建并初始化堆栈S</em>/<br>       while(T||!IsEmpty(S)){<br>              while(T)<br>              {/<em>一致向左将沿途结点压入堆栈</em>/<br>                     Push(S,T);<br>                     T=T-&gt;Left;<br>              }<br>              if(!IsEmpty(S))<br>              {<br>                     T= Pop(S);/<em>结点弹出堆栈</em>/<br>                     printf(“%5d”,,T-&gt;Data);/<em>打印结点</em>/<br>                     T=T-&gt;Right;/<em>转向右子树</em>/<br>              }<br>       }<br>}</p>
+<p>同理可得，中序遍历为：</p>
+<p>void PreOrderTraversal(BinTree BT)<br>{<br>       BinTree T=BT;<br>       Stack S=CreatStack(MaxSize);/<em>创建并初始化堆栈S</em>/<br>       while(T||!IsEmpty(S)){<br>              while(T)<br>              {/<em>一致向左将沿途结点压入堆栈</em>/<br>                     printf(“%5d”,,T-&gt;Data);/<em>打印结点</em>/<br>                     Push(S,T);<br>                     T=T-&gt;Left;<br>              }<br>              if(!IsEmpty(S))<br>              {<br>                     T= Pop(S);/<em>结点弹出堆栈</em>/<br>                     T=T-&gt;Right;/<em>转向右子树</em>/<br>              }<br>       }<br>}</p>
+<p><strong>7.层序遍历</strong></p>
+<p>层次遍历是利用队列的方式进行。遍历从根结点开始，首先将根结点指针入队，然后开始执行下面三个操作：</p>
+<p>（1）从队列中取出一个元素；</p>
+<p>（2）访问该元素所指结点；</p>
+<p>（3）若钙元素所指结点的左、右孩子结点费控，则将其左、右孩子的指针顺序入队。</p>
+<p>不断执行这三步操作，直到队列为空，再无元素可取，二叉树的层序遍历就完成了。其代码如下所示：</p>
+<p>void LevelOrderTraversal(BinTree BT)<br>{<br>       BinTree T;<br>       Queue Q;<br>       if(!BT) return;/<em>空树直接返回</em>/<br>       Q = CreatQueue(MaxSize);<br>       AddQ(Q,BT);<br>       while(!IsEmptyQ(Q)){<br>              T = DeleteQ(Q);<br>              printf(“%d\n”,T-&gt;Data); /<em>访问取出队列的结点</em>/<br>              if(T-&gt;Left)<br>                     AddQ(Q,T-&gt;Left);<br>              if(T-&gt;Right)<br>                     AddQ(Q,T-&gt;Right);<br>       }<br>}</p>
+<p><strong>8.遍历应用的例子</strong></p>
+<p>【例1】遍历二叉树的应用：输出二叉树中的叶子结点。</p>
+<p>void PreOrderTraversal(BinTree BT)<br>{<br>       if(BT){<br>              if(!BT-&gt;Left &amp;&amp;!BT-&gt;Right)<br>                     printf(“%d”,BT-&gt;Data);<br>              PreOrderTraversal(BT-&gt;Left);<br>              PreOrderTraversal(BT-&gt;Right);<br>       }<br>}</p>
+<p>【例2】求二叉树的高度。</p>
+<p>int PostOrderGetHeight(BinTree BT)<br>{<br>       int HL,HR,MaxH;<br>       if(BT){<br>              HL = PostOrderGetHeight(BT-&gt;Left);<br>              HR = PostOrderGetHeight(BT-&gt;Right);<br>              MaxH = (HL&gt;HR)?HL:HR;<br>              return MaxH+1;<br>       }<br>       else return 0;<br>}</p>
+<p>【例3】二元运算表达式树及其遍历</p>
+<p>如图6所示。</p>
+<p><img src="/wp-content/uploads/image/20180424/1524538879168912.jpg" alt="6.jpg" title="1524538879168912.jpg"></p>
+<p>图6</p>
+<p>三种遍历可以得到三种不同的访问结果：</p>
+<p>（1）中序遍历得到中缀表达式：a + b <em> c + d </em> e + f * g</p>
+<p>（2）先序遍历得到前缀表达式：+ + a <em> b c </em> + * d e f g</p>
+<p>（3）后序遍历得到后缀表达式：a b c <em> + d e </em> f + g * +</p>
+<p>由此直接将表达式存入链表就可以了。</p>
+<p>【例4】由两种遍历序列确定二叉树：已知三种遍历中的<strong>任意两种</strong>遍历序列，能否<strong>唯一确定</strong>一棵二叉树呢？</p>
+<p>只需要确保其中一个是<strong>中序遍历</strong>，就可以唯一确定。如果只有前序遍历、后序遍历，这就不可能找到唯一的。</p>
+<p>下面以先序和中序遍历序列来确定一棵二叉树。</p>
+<p>先序遍历序列的第一个结点就是根结点。这个根结点能够在中序遍历序列中将其余结点分割成两个子序列，根结点前面部分是左子树上的结点，而根结点后面的部分是右子树上的结点。</p>
+<p>根据这两个子序列，在先序序列中找到对应的左子序列和右子序列，它们分别对应左子树和右子树。</p>
+<p>然后对左子树和右子树分别递归使用相同的方法继续分解。</p>
+<p><strong>9.二叉树的创建</strong></p>
+<pre><code>由于树是非线性结构，创建一棵二叉树必须首先确定树种结点的输入顺序，常用的方法是**先序创建**和**层序创建**两种。
+</code></pre>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/24/datastructure_chapter4/" class="pre-post btn btn-default" title="数据结构【浙江大学】（第4节）整理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第4节）整理</span>
+        </a>
+    
+    
+        <a href="/2018/04/03/datastructure_chapter1/" class="next-post btn btn-default" title="数据结构【浙江大学】（第1节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第1节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第三讲-树（上）"><span class="toc-text">第三讲 树（上）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-树与树的表示"><span class="toc-text">3.1 树与树的表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-二叉树"><span class="toc-text">3.2 二叉树</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

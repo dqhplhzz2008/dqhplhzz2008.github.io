@@ -16,10 +16,28 @@
     <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
     <!--SEO-->
 
-    <meta name="keywords" content="编程">
+    <meta name="keywords" content="数据结构">
 
 
-    <meta name="description" content="每次cin&gt;&gt;之后，缓冲区内会多出来一个回车符，这个回车符对cin&gt;&gt;不会有影响，但是对于cin.getline()函数和getline()函数就会产生影响，导致还不等你...">
+    <meta name="description" content="排序算法
+平均时间复杂度
+最好情况
+最坏情况
+空间复杂度
+稳定性
+冒泡排序
+O(n2)
+O(n)
+O(n2)
+O(1)
+稳定
+选择排序
+O(n2)
+O(n2)
+O(n2)
+O(1)
+不稳定
+插入...">
 
 
 
@@ -31,7 +49,7 @@
     <!--Title-->
 
 
-<title>C++中的cin, cin.getline, getline等混合使用时不能输入直接执行下一行的问题 | 小奥の部落格</title>
+<title>常用排序算法复杂度和稳定性情况总结 | 小奥の部落格</title>
 
 
     <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
@@ -116,6 +134,10 @@
                             </li>
                         
                             <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
                                 <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
                             </li>
                         
@@ -140,16 +162,16 @@
                     <p id="process"></p>
 <article class="post">
     <div class="post-head">
-        <h1 id="C++中的cin, cin.getline, getline等混合使用时不能输入直接执行下一行的问题">
+        <h1 id="常用排序算法复杂度和稳定性情况总结">
             
-	            C++中的cin, cin.getline, getline等混合使用时不能输入直接执行下一行的问题
+	            常用排序算法复杂度和稳定性情况总结
             
         </h1>
         <div class="post-meta">
     
         <span class="categories-meta fa-wrap">
             <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/C-C/">C/C++</a>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
         </span>
     
 
@@ -158,7 +180,7 @@
             <i class="fa fa-tags"></i>
             <span class="tags-meta">
                 
-                    <a class="tag-link" href="/tags/编程/">编程</a>
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
                 
             </span>
         </span>
@@ -168,7 +190,7 @@
         
         <span class="fa-wrap">
             <i class="fa fa-clock-o"></i>
-            <span class="date-meta">2018/11/06</span>
+            <span class="date-meta">2019/03/04</span>
         </span>
         
     
@@ -178,7 +200,73 @@
     </div>
     
     <div class="post-body post-content">
-        <p>每次cin&gt;&gt;之后，缓冲区内会多出来一个回车符，这个回车符对cin&gt;&gt;不会有影响，但是对于cin.getline()函数和getline()函数就会产生影响，导致还不等你输入，就直接把输入语句执行语句运行结束了，直接去运行后面的程序了；解决方法就是养成习惯，每次cin&gt;&gt;之后，都加一句“cin.get();”或者“cin.ignore();”，而且这两句也不会影响连续多次cin&gt;&gt;的正常工作。 特别提示，在普通语句中可能很容易发现cin&gt;&gt;后面使用了cin.getline()或者getline()，但是在存在循环时就很容易忽略cin&gt;&gt;出现在cin.getline()函数和getline()函数的前面，因为一次循环执行结束之后，多出来的回车符还是会在缓冲区里，还是会对接下来的输入产生影响。 ——————— 作者：Leonardo Liu 来源：CSDN 原文：<a href="https://blog.csdn.net/leowinbow/article/details/82190631" target="_blank" rel="noopener">https://blog.csdn.net/leowinbow/article/details/82190631</a> 版权声明：本文为博主原创文章，转载请附上博文链接！</p>
+        <p>排序算法</p>
+<p>平均时间复杂度</p>
+<p>最好情况</p>
+<p>最坏情况</p>
+<p>空间复杂度</p>
+<p>稳定性</p>
+<p>冒泡排序</p>
+<p>O(n2)</p>
+<p>O(n)</p>
+<p>O(n2)</p>
+<p>O(1)</p>
+<p>稳定</p>
+<p>选择排序</p>
+<p>O(n2)</p>
+<p>O(n2)</p>
+<p>O(n2)</p>
+<p>O(1)</p>
+<p>不稳定</p>
+<p>插入排序</p>
+<p>O(n2)</p>
+<p>O(n)</p>
+<p>O(n2)</p>
+<p>O(1)</p>
+<p>稳定</p>
+<p>希尔排序</p>
+<p>O(nlogn)~O(n2)</p>
+<p>O(n2)</p>
+<p>O(n2)</p>
+<p>O(1)</p>
+<p>不稳定</p>
+<p>归并排序</p>
+<p>O(nlogn)</p>
+<p>O(nlogn)</p>
+<p>O(nlogn)</p>
+<p>O(n)</p>
+<p>稳定</p>
+<p>快速排序</p>
+<p>O(nlogn)</p>
+<p>O(nlogn)</p>
+<p>O(n2)</p>
+<p>O(logn)~O(n)</p>
+<p>不稳定</p>
+<p>堆排序</p>
+<p>O(nlogn)</p>
+<p>O(nlogn)</p>
+<p>O(nlogn)</p>
+<p>O(1)</p>
+<p>不稳定</p>
+<p>计数排序</p>
+<p>O(n+k)</p>
+<p>O(n+k)</p>
+<p>O(n+k)</p>
+<p>O(k)</p>
+<p>稳定</p>
+<p>桶排序</p>
+<p>O(n+k)</p>
+<p>O(n+k)</p>
+<p>O(n2)</p>
+<p>O(n+k)</p>
+<p>稳定</p>
+<p>基数排序</p>
+<p>O(n×k)</p>
+<p>O(n×k)</p>
+<p>O(n×k)</p>
+<p>O(n+k)</p>
+<p>稳定</p>
+<p><strong>堆选归集与初始序列无关</strong></p>
 
     </div>
     
@@ -216,15 +304,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
-        <a href="/2018/11/08/c-primer-plus-ef-bc-88-e7-ac-ac-e4-ba-94-e7-89-a2-98-e7-ad-94-e6-a1-88/" class="pre-post btn btn-default" title="C++ Primer Plus（第五版）第8章编程题答案">
+        <a href="/2019/03/05/e3-80-8a-e5-89-91-e6e-90-ef-bc-886-ef-bc-89/" class="pre-post btn btn-default" title="《剑指Offer》题目解析（6）">
             <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
-            <span class="hidden-xs">C++ Primer Plus（第五版）第8章编程题答案</span>
+            <span class="hidden-xs">《剑指Offer》题目解析（6）</span>
         </a>
     
     
-        <a href="/2018/11/06/c-primer-plus-ef-bc-88-e7-ac-ac-e-8b-e9-a2-98-e7-ad-94-e6-a1-88/" class="next-post btn btn-default" title="C++ Primer Plus（第五版）第7章编程题答案">
+        <a href="/2019/03/04/e3-80-8a-e5-87-a3-e6-9e-90-ef-bc-885-ef-bc-89/" class="next-post btn btn-default" title="《剑指Offer》题目解析（5）">
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">C++ Primer Plus（第五版）第7章编程题答案</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">《剑指Offer》题目解析（5）</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>

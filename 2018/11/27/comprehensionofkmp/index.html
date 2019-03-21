@@ -1,0 +1,531 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="总结一些在网上看到的关于KMP算法的简单理解，目前我的理解还很初步，很多东西还似懂非懂，目前先贴下来，期待以后慢慢懂。
+KMP算法的基本原理假设字符串S=BBC ABCDAB ABCDABCDA...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>KMP算法的简单理解 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="KMP算法的简单理解">
+            
+	            KMP算法的简单理解
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/11/27</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>总结一些在网上看到的关于KMP算法的简单理解，目前我的理解还很初步，很多东西还似懂非懂，目前先贴下来，期待以后慢慢懂。</p>
+<h2 id="KMP算法的基本原理"><a href="#KMP算法的基本原理" class="headerlink" title="KMP算法的基本原理"></a>KMP算法的基本原理</h2><p>假设字符串S=BBC ABCDAB ABCDABCDABDE，搜索词P=ABCDABD。那么我们在执行搜索的时候进行下面的操作： 首先，字符串“BBC ABCDAB ABCDABCDABDE”的第一个字符与“ABCDABD”的第一个字符比较，因为不匹配，所以搜索词后移一位，直到移动到匹配的地方，即</p>
+<p>B</p>
+<p>B</p>
+<p>C</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>E</p>
+<p>A</p>
+<p>然后我们就发现匹配了，于是开始使用搜索词P的第二个字符与字符串S下一个字符进行比较发现相匹配，然后继续比较……直到P的最后一个字符D与S中相应位置进行比较，发现S中为空格，即</p>
+<p>B</p>
+<p>B</p>
+<p>C</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>E</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p><strong>D</strong></p>
+<p>如果是传统的方法，则是将字符串P的指针回到第一个字符，然后后移继续进行比较。这样的方法是暴力方法，复杂度太高。KMP算法是利用了已经知道的匹配信息，然后不再把“搜索位置”移回已经比较的位置再进行比较，而是继续往后移。这里利用的就是<strong>部分匹配值</strong>（Partial Match Value）。</p>
+<p>部分匹配值的介绍 首先要了解“前缀”和“后缀”的概念。前缀是指<strong>除了最后一个字符以外，一个字符串的全部头部的集合</strong>，后缀是指<strong>除了第一个字符以外，一个字符串的全部尾部的集合</strong>。所谓部分匹配值就是<strong>前缀和后缀的最长的共有元素的长度</strong>。以ABCDABD为例，有以下情况：</p>
+<p>字符</p>
+<p>前缀</p>
+<p>后缀</p>
+<p>共有元素长度</p>
+<p>A</p>
+<p>-</p>
+<p>-</p>
+<p>0</p>
+<p>AB</p>
+<p>A</p>
+<p>B</p>
+<p>0</p>
+<p>ABC</p>
+<p>A/AB</p>
+<p>BC/C</p>
+<p>0</p>
+<p>ABCD</p>
+<p>A/AB/ABC</p>
+<p>BCD/CD/D</p>
+<p>0</p>
+<p>ABCDA</p>
+<p><strong>A</strong>/AB/ABC/ABCD</p>
+<p>BCDA/CDA/DA/<strong>A</strong></p>
+<p>1</p>
+<p>ABCDAB</p>
+<p>A/<strong>AB</strong>/ABC/ABCD/ABCDA</p>
+<p>BCDAB/CDAB/DAB/<strong>AB</strong>/B</p>
+<p>2</p>
+<p>ABCDABD</p>
+<p>A/AB/ABC/ABCD/ABCDA/ABCDB</p>
+<p>BCDABD/CDABD/DABD/ABD/BD/D</p>
+<p>0</p>
+<p>所谓部分匹配，实质上指的是有时字符串头部和尾部会有重复。例如，”ABCDAB”之中有两个”AB”，那么它的”部分匹配值”就是2（”AB”的长度）。搜索词移动的时候，第一个”AB”向后移动4位（字符串长度-部分匹配值），就可以来到第二个”AB”的位置。</p>
+<p>我们进行“继续往后移”的移动位数的标准是用如下公式计算： 移动位数=已匹配的字符数-对应的部分匹配值 基于上面这个公式，我们可以看到，已匹配的字符数为6（ABCDAB），对应的部分匹配值为2，那么就将搜索词向后移动4位。如下所示：</p>
+<p>B</p>
+<p>B</p>
+<p>C</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>E</p>
+<p>A</p>
+<p>B</p>
+<p><strong>C</strong></p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>依旧是如此，可以看到空格与C不匹配，搜索词还要继续往后移。此时已匹配的字符数为2（AB），对应的部分匹配值为0，所以往后移动2位。</p>
+<p>B</p>
+<p>B</p>
+<p>C</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>E</p>
+<p><strong>A</strong></p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>此时空格与A不匹配，往后继续移动1位，得到如下所示。</p>
+<p>B</p>
+<p>B</p>
+<p>C</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>E</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p><strong>D</strong></p>
+<p>这个时候发现D又不匹配，此时已匹配的字符数为6位，对应的部分匹配值为2，所以向右移动4位，得到如下所示。</p>
+<p>B</p>
+<p>B</p>
+<p>C</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>C</p>
+<p>D</p>
+<p>A</p>
+<p>B</p>
+<p>D</p>
+<p>E</p>
+<p><strong>A</strong></p>
+<p><strong>B</strong></p>
+<p><strong>C</strong></p>
+<p><strong>D</strong></p>
+<p><strong>A</strong></p>
+<p><strong>B</strong></p>
+<p><strong>D</strong></p>
+<p>此时，发现匹配，搜索完成。当然，如果想继续寻找后面是否还会有继续匹配的，可以继续移动7位（已匹配的字符数为7，对应的部分匹配值为0）。 我们换个角度来理解，假设P为主字串，而T为子串。当匹配失败时，j要移动的下一个位置k。存在着这样的性质：最前面的k个字符和j之前的最后k个字符是一样的。即 P[0 ~ k-1] == P[j-k ~ j-1] 因为: 当T[i] != P[j]时，有T[i-j ~ i-1] == P[0 ~ j-1]，由P[0 ~ k-1] == P[j-k ~ j-1]，必然：T[i-k ~ i-1] == P[0 ~ k-1]。</p>
+<h2 id="next数组的求解思路"><a href="#next数组的求解思路" class="headerlink" title="next数组的求解思路"></a>next数组的求解思路</h2><p>讲完上面的原理，下面就是编程的实现，这里面最重要的就是<strong>根据待匹配的模版字符串求出对应每一位的最大相同前后缀的长度</strong>。 实际上，<strong>next[j]**</strong>的值（也就是<strong><strong>k</strong></strong>）表示，当<strong><strong>P[j] != T[i]</strong></strong>时，<strong><strong>j</strong></strong>指针的下一步移动位置**。 我们在做题的时候来求next数组，可以通过手算，按照计算部分匹配值即可。要注意的是，next[1]=0，next[1]=1，next[n]是计算前面n-1个字符的部分匹配值，如果找到，那么next值是该长度加1，否则next值是1（其实就是0+1）。 但是，编写程序我们需要原理。如图2所示。此时j=0，如果这个时候不匹配，那么j已经在最左边，不可能移动了，所以这个时候应该是i来移动，所next[0]=-1。 <img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/11/kmptu1.jpg" alt></p>
+<p>图1</p>
+<p>当j=1的时候，按照前面说的，我们应该将j移动到为T[0]的位置，所以实际上这里next[1]=0。 <img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/11/kmptu2.jpg" alt></p>
+<p>图2</p>
+<p>对比图3中的两个图，我们发现当P[k] == P[j]时，有next[j+1] == next[j] + 1。其实这个是可以证明的：因为在P[j]之前已经有P[0 ~ k-1] == p[j-k ~ j-1]。（next[j] == k）这时候现有P[k] == P[j]，我们是不是可以得到P[0 ~ k-1] + P[k] == p[j-k ~ j-1] + P[j]。即：P[0 ~ k] == P[j-k ~ j]，即next[j+1] == k + 1 == next[j] + 1。（这里还需要多去理解理解） <img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/11/kmtu3.jpg" alt></p>
+<p>图3</p>
+<p>如果P[k] != P[j]，那么k=next[k]，如图4所示。 <img src="https://dqhplhzz2008-1251830035.cos.ap-guangzhou.myqcloud.com/wp-content/uploads/2018/11/kmptu4.jpg" alt></p>
+<p>图4</p>
+<h2 id="nextval数组的求解思路"><a href="#nextval数组的求解思路" class="headerlink" title="nextval数组的求解思路"></a>nextval数组的求解思路</h2><p>nextval[i]的求解需要比较s中next[i]所在位置的字符是否与s[i]的字符一致，如果一致则用s[next[i]]的nextval的值作为nextval[i]，如果不一致，则用next[i]做为nextval[i]。 即以下格式：</p>
+<p>nextval[i] = s[next[i]]==s[i]?nextval[s[next[i]]]:next[i]</p>
+<h2 id="KMP算法的代码"><a href="#KMP算法的代码" class="headerlink" title="KMP算法的代码"></a>KMP算法的代码</h2><p><strong>KMP**</strong>算法：可以实现复杂度为<strong>**O(m+n)</strong></p>
+<p>#include&lt;stdio.h&gt;</p>
+<p>#include&lt;string.h&gt;<br>void getNext(const char P[], int next[])<br>{<br>    int q, k;<br>    int m = strlen(P);<br>    next[0] = 0;<br>    for (q = 1, k = 0; q &lt; m; ++q)<br>    {<br>        while (k &gt; 0 &amp;&amp; P[q] != P[k])<br>            k = next[k - 1];<br>        if (P[q] == P[k])<br>        {<br>            k++;<br>        }<br>        next[q] = k;<br>    }<br>}<br>int kmp(const char T[], const char P[], int next[])<br>{<br>    int n, m;<br>    int i, q;<br>    n = strlen(T);<br>    m = strlen(P);<br>    getNext(P, next);<br>    for (i = 0, q = 0; i &lt; n; ++i)<br>    {<br>        while (q &gt; 0 &amp;&amp; P[q] != T[i])<br>            q = next[q - 1];<br>        if (P[q] == T[i])<br>        {<br>            q++;<br>        }<br>        if (q == m) // 输出找到的位置  还可以判断i == n - 1 未找到<br>        {<br>            printf(“Pattern occurs with shift:%d\n”, (i - m + 1));<br>        }<br>    }<br>}</p>
+<p>int main()<br>{<br>    int i;<br>    int next[100] = { 0 };<br>    char T[20], P[20];<br>    scanf(“%s%s”, T, P);</p>
+<pre><code>printf(&quot;%s\\n&quot;, T);
+printf(&quot;%s\\n&quot;, P);
+kmp(T, P, next);
+for (i = 0; i &lt; strlen(P); ++i)
+{
+    printf(&quot;%d &quot;, next\[i\]);
+}
+printf(&quot;\\n&quot;);
+return 0;
+</code></pre><p>}</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/11/29/e7-bc-96-e7-a8-8a6-e4-b8-b2-e7-9f-a5-e8-af-86-e7-82-b9/" class="pre-post btn btn-default" title="编程知识点学习（1）：字符串知识点">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">编程知识点学习（1）：字符串知识点</span>
+        </a>
+    
+    
+        <a href="/2018/11/18/c-primer-plus-ef-bc-88-e7-ac-ac-ed-94-e6-a1-88/" class="next-post btn btn-default" title="C++ Primer Plus（第五版）第11章编程题答案">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">C++ Primer Plus（第五版）第11章编程题答案</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP算法的基本原理"><span class="toc-text">KMP算法的基本原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#next数组的求解思路"><span class="toc-text">next数组的求解思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nextval数组的求解思路"><span class="toc-text">nextval数组的求解思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP算法的代码"><span class="toc-text">KMP算法的代码</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第五节：树（下）5.1 堆1.堆的介绍
+优先队列：特殊的“队列”，取出元素的顺序是依照元素的优先权（关键字）大小，而不是元素进入队列的先后顺序。
+堆的两个特性：
+（1）结构性：用数组表示的完全二...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第5节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第5节）整理">
+            
+	            数据结构【浙江大学】（第5节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>331</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第五节：树（下）"><a href="#第五节：树（下）" class="headerlink" title="第五节：树（下）"></a>第五节：树（下）</h1><h2 id="5-1-堆"><a href="#5-1-堆" class="headerlink" title="5.1 堆"></a>5.1 堆</h2><p><strong>1.堆的介绍</strong></p>
+<p>优先队列：特殊的“队列”，取出元素的顺序是依照元素的优先权（关键字）大小，而不是元素进入队列的先后顺序。</p>
+<p>堆的两个特性：</p>
+<p>（1）结构性：用数组表示的<strong>完全二叉树</strong>；</p>
+<p>（2）有序性：任一结点的关键字是其子树所有结点的的最大值（最小值）：</p>
+<p>①最大堆：也称“大顶堆”：最大值</p>
+<p>②最小堆，也称“小顶堆”：最小值。</p>
+<p>类型名称：最大堆（MaxHeap）</p>
+<p>数据对象集：一个有N&gt;0个元素的最大堆H是一棵完全二叉树，每个结点上的元素值不小于其子结点元素的值。</p>
+<p>操作集：对于任意最多有MaxSize个元素的最大堆H Î MaxHeap，元素item Î ElementType，主要操作有：</p>
+<p>• MaxHeap Create( int MaxSize )：创建一个空的最大堆。</p>
+<p>• Boolean IsFull( MaxHeap H )：判断最大堆H是否已满。</p>
+<p>• Insert( MaxHeap H, ElementType   item )：将元素item插入最大堆H。</p>
+<p>• Boolean IsEmpty( MaxHeap H )：判断最大堆H是否为空。</p>
+<p>• ElementType DeleteMax( MaxHeap H   )：返回H中最大元素(高优先级)。</p>
+<p><strong>2.最大堆的操作</strong></p>
+<p>（1）最大堆的创建</p>
+<p>typedef  struct  HeapStruct  <em>MaxHeap;<br>struct  HeapStruct {<br>       ElementType \</em>Elements;  /* 存储堆元素的数组 <em>/<br>       int Size;                    /</em> 堆的当前元素个数 <em>/<br>       int Capacity;           /</em> 堆的最大容量     <em>/<br>};<br>MaxHeap Create( int MaxSize )<br>{        /</em> 创建容量为MaxSize的空的最大堆 <em>/<br>MaxHeap H = malloc( sizeof( struct HeapStruct ) );<br>H-&gt;Elements = malloc( (MaxSize+1) </em> sizeof(ElementType));<br>H-&gt;Size = 0;<br>H-&gt;Capacity = MaxSize;<br>H-&gt;Elements[0] = MaxData;<br>   /<em> 定义“哨兵”为大于堆中所有可能元素的值，便于以后更快操作 </em>/<br>return H;<br>}</p>
+<p>（2）最大堆的插入</p>
+<p>当插入一个元素时，我们首先要想到将元素插入到最右下角的位置。然而，所插入的值有可能比其父结点还要大，因此我们需要将其与父结点调换位置。若此时该元素仍然要比新位置的父结点大，那么继续调换位置，直到满足要求。代码实现如下所示：</p>
+<p>void Insert( MaxHeap H, ElementType item )<br>{ /<em> 将元素item 插入最大堆H，其中H-&gt;Elements[0]已经定义为哨兵 </em>/<br>    int i;<br>    if ( IsFull(H) ) {<br>        printf(“最大堆已满”);<br>        return;<br>    }<br>  i = ++H-&gt;Size; /<em> i指向插入后堆中的最后一个元素的位置 </em>/<br>  for ( ; H-&gt;Elements[i/2] &lt; item; i/=2 )<br>        H-&gt;Elements[i] = H-&gt;Elements[i/2]; /<em> 向下过滤结点 </em>/<br>  H-&gt;Elements[i] = item; /<em> 将item 插入 </em>/<br>}</p>
+<p><strong>注意：H-&gt;Element[ 0 ] 是哨兵元素，它不小于堆中的最大元素，以便省去i&gt;=1的语句，控制顺环结束。</strong></p>
+<p>（3）最大堆的删除</p>
+<p>取出根结点（最大值）元素，同时删除堆的一个结点。</p>
+<p>如图1所示。我们想取出最大值58这个点。我们需要做的是：</p>
+<p>①把58取出，然后用最后一个元素来替补根这个位置。</p>
+<p>②找出31的较大的孩子，然后跟31比较。发现孩子44要比31大，于是将44和31交换位置。</p>
+<p>③再比较31和子孩子35，发现35大于31，因此交换35和31的位置。完成。</p>
+<p><img src="/wp-content/uploads/image/20180424/1524539295962876.jpg" alt="1524539295962876.jpg" title="1524539295962876.jpg"> </p>
+<p>图1</p>
+<p>代码如下：</p>
+<p>ElementType DeleteMax( MaxHeap H )<br>{  /<em> 从最大堆H中取出键值为最大的元素，并删除一个结点 </em>/<br>    int Parent, Child;<br>    ElementType MaxItem, temp;<br>    if ( IsEmpty(H) ) {<br>        printf(“最大堆已为空”);<br>        return;<br>    }<br>    MaxItem = H-&gt;Elements[1]; /<em> 取出根结点最大值 </em>/<br>    /<em> 用最大堆中最后一个元素从根结点开始向上过滤下层结点 </em>/<br>    temp = H-&gt;Elements[H-&gt;Size–];<br>  for( Parent=1; Parent<em>2&lt;=H-&gt;Size; Parent=Child ) {<br>      Child = Parent </em> 2;<br>        if( (Child!= H-&gt;Size) &amp;&amp;<br>     (H-&gt;Elements[Child] &lt; H-&gt;Elements[Child+1]) )<br>           Child++;  /<em> Child指向左右子结点的较大者 </em>/<br>        if( temp &gt;= H-&gt;Elements[Child] ) break;<br>    else  /<em> 移动temp元素到下一层 </em>/<br>         H-&gt;Elements[Parent] = H-&gt;Elements[Child];<br>    }<br>    H-&gt;Elements[Parent] = temp;<br>    return MaxItem;<br>}</p>
+<p><strong>_T_ (_N_) = O ( log _N_ )</strong></p>
+<p><strong>3.最大堆的建立</strong></p>
+<p>堆的一个重要应用就是<strong>堆排序</strong>。要进行排序，首先需要建立堆。</p>
+<p>建立最大堆：将已经存在的N个元素按最大堆的要求存放在一个一位数组中。</p>
+<p>方法1：通过插入操作，将N个元素一个个相继插入到一个初始为空的堆中去，其时间代价最大为O(NlogN)。不合适。</p>
+<p>方法2：在限行时间复杂度下建立最大堆。</p>
+<p>（1）将N个元素按输入顺序存入，先满足完全二叉树的结构特性。</p>
+<p>（2）调整各结点位置，以满足最大堆的有序特性。</p>
+<p>要这样做，首先要寻找到最后一个由儿子的结点。由右往左，由下往上，直到根结点。</p>
+<p>代码如下：</p>
+<p>MaxHeap BuildMaxHeap( MaxHeap H )<br>{   /<em> 这里假设所有H-&gt;Size个元素已经存在H-&gt;Elements[]中     </em>/<br>    /<em> 本函数将H-&gt;Elements[]中的元素调整，使满足最大堆的有序性 </em>/<br>int Parent, Child, i;<br>ElementType temp;<br>for( i = H-&gt;Size/2; i&gt;0; i– ){ /<em>从最后一个结点的父结点开始 </em>/<br> temp = H-&gt;Elements[i];<br> for( Parent=i; Parent<em>2&lt;=H-&gt;Size; Parent=Child ) {<br>    /</em> 向下过滤 <em>/<br>      Child = Parent </em> 2;<br>        if( (Child!= H-&gt;Size) &amp;&amp;<br>    (H-&gt;Elements[Child] &lt; H-&gt;Elements[Child+1]) )<br>            Child++;  /<em> Child指向左右子结点的较大者 </em>/<br>        if( temp &gt;= H-&gt;Elements[Child] ) break;<br>   else  /<em> 移动temp元素到下一层 </em>/<br>          H-&gt;Elements[Parent] = H-&gt;Elements[Child];<br>  } /<em> 结束内部for循环对以H-&gt;Elements[i]为根的子树的调整 </em>/<br>  H-&gt;Elements[Parent] = temp;<br> }<br> return H;<br>}</p>
+<h2 id="5-2-哈夫曼树和哈夫曼编码"><a href="#5-2-哈夫曼树和哈夫曼编码" class="headerlink" title="5.2 哈夫曼树和哈夫曼编码"></a>5.2 哈夫曼树和哈夫曼编码</h2><p><strong>1.哈夫曼编码介绍</strong></p>
+<p>设一棵二叉树有_n_个叶子结点，每个叶子结点带有权值 _wk_，从根结点到每个叶子结点的长度为 _lk_，则每个叶子结点的带权路径长度之和就是这棵树的“带权路径长度（Weighted Path Length，简称WPL）”。</p>
+<p>假设有_n_个权值{_w1_ ,_w2_ , …… , _wn_} ，构造有_n_个叶子的二叉树，每个叶子的权值是_n_个权值之一。这样的二叉树也许可以构造多个，其中必有一个（或几个）是带权路径长度WPL最小的。达到WPL最小的二叉树就称为最优二叉树或哈夫曼树。</p>
+<p><strong>2.哈夫曼树的构造</strong></p>
+<p>每次把权值最小的两棵二叉树合并</p>
+<p>typedef struct TreeNode <em>HuffmanTree;<br>struct TreeNode{<br>int Weight;<br>HuffmanTree Left, Right;<br>}<br>HuffmanTree Huffman( MinHeap H )<br>{   /</em> 假设H-&gt;Size个权值已经存在H-&gt;Elements[]-&gt;Weight里 <em>/<br>  int i;  HuffmanTree T;<br>    BuildMinHeap(H); /</em>将H-&gt;Elements[]按权值调整为最小堆<em>/<br>    for (i = 1; i &lt; H-&gt;Size; i++) { /</em>做H-&gt;Size-1次合并<em>/<br>        T = malloc( sizeof( struct TreeNode) ); /</em>建立新结点<em>/<br>        T-&gt;Left = DeleteMin(H);<br>                     /</em>从最小堆中删除一个结点，作为新T的左子结点<em>/<br>        T-&gt;Right = DeleteMin(H);<br>                    /</em>从最小堆中删除一个结点，作为新T的右子结点<em>/<br>        T-&gt;Weight = T-&gt;Left-&gt;Weight+T-&gt;Right-&gt;Weight;<br>                    /</em>计算新权值<em>/<br>        Insert( H, T ); /</em>将新T插入最小堆*/<br>  }<br>  T = DeleteMin(H);<br>  return T;<br>}</p>
+<p><strong>3.哈夫曼树的特点</strong></p>
+<p>（1）没有度为1的结点；</p>
+<p>（2）n个叶子结点的哈夫曼树共有2n-1个结点；</p>
+<p>（3）哈夫曼树的任意非叶节点的左右子树交换后仍是哈夫曼树。</p>
+<h2 id="5-3-集合"><a href="#5-3-集合" class="headerlink" title="5.3 集合"></a>5.3 集合</h2><p><strong>1.集合基本介绍</strong></p>
+<p>集合运算包括交、并、补、差以及判定一个元素是否是某一集合中等。逻辑上，可以用树结构表示集合，树的每个结点代表一个集合元素。</p>
+<p>但是更好的方法是用数组存储形式。</p>
+<p>数组中每个元素的类型描述为：</p>
+<p>typedef struct {<br>    ElementType Data;<br>    int Parent;<br>} SetType;</p>
+<pre><code>数组每个分量都是一个结构，包含两个域：一个是Data，代表结点的信息；一个是Parent，是一个下标数值，指向父结点的下标，若为-1，代表其为根结点。这样，图2左侧的数组就可以用来表示右侧3棵树。
+</code></pre><p> <img src="/wp-content/uploads/image/20180424/1524539344462846.jpg" alt="1524539344462846.jpg" title="1524539344462846.jpg"></p>
+<p>图2</p>
+<p><strong>2.集合运算</strong></p>
+<p>（1）集合的查找操作（用根结点表示）</p>
+<p>int Find( SetType S[ ], ElementType X )</p>
+<p>{  /<em> 在数组S中查找值为X的元素所属的集合 </em>/<br>   /<em> MaxSize是全局变量，为数组S的最大长度 </em>/<br>   int i;<br>   for ( i=0; i &lt; MaxSize &amp;&amp; S[i].Data != X; i++) ;<br>   if( i &gt;= MaxSize ) return -1; /<em> 未找到X，返回-1 </em>/<br>   for( ; S[i].Parent &gt; 0; i = S[i].Parent ) ;<br>   return i; /<em> 找到X所属集合，返回树根结点在数组S中的下标 </em>/<br>}</p>
+<p>这段代码的意思是，首先寻找到X的下标i，如果X不在集合中，那么返回-1；若X在集合中，则需要返回其根结点的下标，这时候就利用若i的父结点大于等于0，那么久把i的父结点赋值给i，直到找到根结点，返回树根结点在数组S中的下标。</p>
+<p>（2）集合的并操作</p>
+<p>首先分别找到X1和X2两个元素所在集合树的根结点，如果它们不同根，则将其中一个根结点的父结点指针设置成另一个根结点的数组下标就行了。</p>
+<p>void Union( SetType S[ ], ElementType X1, ElementType X2 )<br>{<br>    int Root1, Root2;<br>    Root1 = Find(S, X1);<br>    Root2 = Find(S, X2);<br>    if（ Root1 != Root2 ）S[Root2].Parent = Root1;<br>}</p>
+<pre><code>为了改善合并以后的查找性能，可以采用**小的集合合并到相对大的集合**中。为了区分小的和大的，所以可以将根结点的Parent由-1改为-A，其中A代表该集合有多少元素。这样我们就可以知道哪个集合小，哪个集合大了。
+</code></pre>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/26/datastructure_chapter6/" class="pre-post btn btn-default" title="数据结构【浙江大学】（第6节）整理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第6节）整理</span>
+        </a>
+    
+    
+        <a href="/2018/04/24/datastructure_chapter4/" class="next-post btn btn-default" title="数据结构【浙江大学】（第4节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第4节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第五节：树（下）"><span class="toc-text">第五节：树（下）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-堆"><span class="toc-text">5.1 堆</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-2-哈夫曼树和哈夫曼编码"><span class="toc-text">5.2 哈夫曼树和哈夫曼编码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-集合"><span class="toc-text">5.3 集合</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

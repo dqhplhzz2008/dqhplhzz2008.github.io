@@ -1,0 +1,613 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第九节：排序（上）9.1 概述对于之后应用到的一些说明：
+（1）void X_Sort(ElementType A[], int N) X为排序名称。
+①大多数情况下，为了简单起见，讨论从小到大...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第9节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第9节）整理">
+            
+	            数据结构【浙江大学】（第9节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/12</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>313</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第九节：排序（上）"><a href="#第九节：排序（上）" class="headerlink" title="第九节：排序（上）"></a>第九节：排序（上）</h1><h2 id="9-1-概述"><a href="#9-1-概述" class="headerlink" title="9.1 概述"></a>9.1 概述</h2><p>对于之后应用到的一些说明：</p>
+<p>（1）void X_Sort(ElementType A[], int N) X为排序名称。</p>
+<p>①大多数情况下，为了简单起见，讨论从小到大的整数排序。</p>
+<p>②默认N为正整数。</p>
+<p>③只讨论基于比较的排序（&gt;=&lt;都是有定义的）。</p>
+<p>④只讨论内部排序（一次性可以写入内存，然后只在内存里面的数据排序）。</p>
+<p>⑤稳定性：任意两个相等的数据，排序前后的相对位置不发生改变。</p>
+<p><strong>没有一种排序是任何情况下都表现最好的！！！</strong></p>
+<h2 id="9-2-简单排序算法"><a href="#9-2-简单排序算法" class="headerlink" title="9.2 简单排序算法"></a>9.2 简单排序算法</h2><h3 id="9-2-1-冒泡排序"><a href="#9-2-1-冒泡排序" class="headerlink" title="9.2.1 冒泡排序"></a>9.2.1 冒泡排序</h3><p>在一次排序完成后，最后面的一定是最大的，第二次排序的时候只需要对前N-1个排序即可，然后N-2……一直到最后完成。</p>
+<p>冒泡排序的伪码描述如下：</p>
+<p>void Bubble_Sort(ElementType A[], int N)<br>{<br>       for(P=N-1;P&gt;=0;P–)<br>       {<br>              flag = 0;<br>              for(i=0;i&lt;P;i++)<br>              {/<em>一趟冒泡</em>/<br>                     if(A[i]&gt;A[i+1])<br>                     {<br>                            Swap(A[i],A[i+1);]<br>                            flag = 1;/<em>标志发生了交换</em>/<br>                     }<br>              }<br>              if(flag==0)<br>                     break;/<em>全程无交换，已经排好</em>/<br>       }<br>}</p>
+<p>最好情况：顺序T=O(N)；最差情况：逆序T=O(N2)</p>
+<p>这个算法具有<strong>稳定性</strong>！</p>
+<h3 id="9-2-2-插入排序"><a href="#9-2-2-插入排序" class="headerlink" title="9.2.2 插入排序"></a>9.2.2 插入排序</h3><p>类似于打扑克的时候拿到牌之后进行排序 。</p>
+<p>源代码：</p>
+<p>void InsertionSort( ElementType A[], int N )<br>{ /<em> 插入排序 </em>/<br>     int P, i;<br>     ElementType Tmp;</p>
+<pre><code>for ( P=1; P&lt;N; P++ ) {
+    Tmp = A\[P\]; /* 取出未排序序列中的第一个元素*/
+    for ( i=P; i&gt;0 &amp;&amp; A\[i-1\]&gt;Tmp; i-- )
+        A\[i\] = A\[i-1\]; /*依次与已排序序列中元素比较并右移*/
+    A\[i\] = Tmp; /* 放进合适的位置 */
+}
+</code></pre><p>}</p>
+<p>最好情况：顺序T=O(N)</p>
+<p>最坏情况：逆序T=O (N2)</p>
+<p>此方法也具有<strong>稳定性</strong>。</p>
+<p>举例，问序列{34,8,64,51,32,21}中用插入排序和冒泡排序分别需要交换多少次？</p>
+<p>答：冒泡法：9次；插入法，9次。</p>
+<pre><code>它们的次数相等，是巧合还是必然？见下一节。
+</code></pre><h3 id="9-2-3-时间复杂度下界"><a href="#9-2-3-时间复杂度下界" class="headerlink" title="9.2.3 时间复杂度下界"></a>9.2.3 时间复杂度下界</h3><p><strong>1.逆序对</strong></p>
+<p>对于下标i&lt;j，如果A[i]&gt;A[j]，则称(i,j)是一对<strong>逆序对</strong>（inversion）。</p>
+<p>我们来看上一节中最后的序列{34,8,64,51,32,21}，它里面有多少逆序对呢？</p>
+<p>(34,8)(34,42)(34,21)(64,51)(64,21)(64,21)(51,32)(51,21)(32,21)</p>
+<p>一共9个逆序对。这说明，前面两种算法，<strong>交换2个相邻元素正好消去1个逆序对</strong>！</p>
+<p><strong>插入排序</strong>时间复杂度：<strong>T(N,I)=O(N+I)</strong>。这里面N是元素个数，I是逆序对个数。这个可以这样理解，时间复杂度最低为元素个数N，即逆序对为0，也就是顺序排列情况下；然后随着多一个逆序对，复杂度加1。</p>
+<p>如果序列<strong>基本有序</strong>，那么<strong>插入排序</strong>简单且高效。</p>
+<p><strong>2.定理1：任意N个不同元素组成的序列平均具有N(N-1)/4个逆序对。</strong></p>
+<p><strong>3.定理2：任何仅以交换相邻两元素来排序的算法，其平均时间复杂度为Ω（N2）。（</strong><em>注意：Ω是下界，O是上界）</em></p>
+<pre><code>这意味着，要提高算法效率，我们必须：每次消去不止1个逆序对！每次交换相隔较远的2个元素！
+</code></pre><h2 id="9-3-希尔排序"><a href="#9-3-希尔排序" class="headerlink" title="9.3 希尔排序"></a>9.3 希尔排序</h2><p><strong>1.简单举例</strong></p>
+<p>它利用了插入排序的简单，同时克服了交换每次只交换相邻两个元素的缺点。</p>
+<p>用下面这个序列来进行希尔排序的举例：</p>
+<p>81</p>
+<p>94</p>
+<p>11</p>
+<p>96</p>
+<p>12</p>
+<p>35</p>
+<p>17</p>
+<p>95</p>
+<p>28</p>
+<p>58</p>
+<p>41</p>
+<p>75</p>
+<p>15</p>
+<p>（1）<strong>首先以每5个元素取一个的规律进行排序</strong>：这里取了81、35、41。用插入排序对其进行排序：</p>
+<p><strong>35</strong></p>
+<p>94</p>
+<p>11</p>
+<p>96</p>
+<p>12</p>
+<p><strong>41</strong></p>
+<p>17</p>
+<p>95</p>
+<p>28</p>
+<p>58</p>
+<p><strong>81</strong></p>
+<p>75</p>
+<p>15</p>
+<p>然后取94、17、75进行插入排序，得到下面的结果：</p>
+<p><strong>35</strong></p>
+<p><strong>17</strong></p>
+<p>11</p>
+<p>96</p>
+<p>12</p>
+<p><strong>41</strong></p>
+<p><strong>75</strong></p>
+<p>95</p>
+<p>28</p>
+<p>58</p>
+<p><strong>81</strong></p>
+<p><strong>94</strong></p>
+<p>15</p>
+<p>然后考虑11、95、15，得到下面结果：</p>
+<p><strong>35</strong></p>
+<p><strong>17</strong></p>
+<p><strong>11</strong></p>
+<p>96</p>
+<p>12</p>
+<p><strong>41</strong></p>
+<p><strong>75</strong></p>
+<p><strong>15</strong></p>
+<p>28</p>
+<p>58</p>
+<p><strong>81</strong></p>
+<p><strong>94</strong></p>
+<p><strong>95</strong></p>
+<p>然后考虑96、28，得到下面结果：</p>
+<p><strong>35</strong></p>
+<p><strong>17</strong></p>
+<p><strong>11</strong></p>
+<p><strong>28</strong></p>
+<p>12</p>
+<p><strong>41</strong></p>
+<p><strong>75</strong></p>
+<p><strong>15</strong></p>
+<p><strong>96</strong></p>
+<p>58</p>
+<p><strong>81</strong></p>
+<p><strong>94</strong></p>
+<p><strong>95</strong></p>
+<p>然后考虑12和58：</p>
+<p><strong>35</strong></p>
+<p><strong>17</strong></p>
+<p><strong>11</strong></p>
+<p><strong>28</strong></p>
+<p><strong>12</strong></p>
+<p><strong>41</strong></p>
+<p><strong>75</strong></p>
+<p><strong>15</strong></p>
+<p><strong>96</strong></p>
+<p><strong>58</strong></p>
+<p><strong>81</strong></p>
+<p><strong>94</strong></p>
+<p><strong>95</strong></p>
+<p>（2）<strong>再用每3个元素取一个的规律</strong>进行排序：这里取35、28、75、58、95，结果如下：</p>
+<p><strong>28</strong></p>
+<p><strong>12</strong></p>
+<p><strong>11</strong></p>
+<p><strong>35</strong></p>
+<p><strong>15</strong></p>
+<p><strong>41</strong></p>
+<p><strong>58</strong></p>
+<p><strong>17</strong></p>
+<p><strong>94</strong></p>
+<p><strong>75</strong></p>
+<p><strong>81</strong></p>
+<p><strong>96</strong></p>
+<p><strong>95</strong></p>
+<p>（3）再做1间隔排序（即普通插入排序）。我们可以发现，此时整个序列已经基本有序，所以此时插入排序简单高效。</p>
+<p><strong>11</strong></p>
+<p><strong>12</strong></p>
+<p><strong>15</strong></p>
+<p><strong>17</strong></p>
+<p><strong>28</strong></p>
+<p><strong>35</strong></p>
+<p><strong>41</strong></p>
+<p><strong>58</strong></p>
+<p><strong>75</strong></p>
+<p><strong>81</strong></p>
+<p><strong>94</strong></p>
+<p><strong>95</strong></p>
+<p><strong>96</strong></p>
+<p>该算法的步骤：</p>
+<p>①.定义增量序列DM&gt;DM-1&gt;…&gt;D1=1</p>
+<p>②对每个Dk进行“Dk-间隔”排序。</p>
+<p>注意：“Dk-间隔”有序的序列，在执行“Dk-1-间隔”排序后，仍然是“Dk-间隔”有序的。</p>
+<p><strong>2.希尔增量序列</strong></p>
+<p>（1）原始希尔排序：DM=[N/2]，Dk=[Dk+1/2]。其中，[]代表取整。</p>
+<p>伪代码如下：</p>
+<p>void Shell_Sort(ElementType A[], int N)<br>{<br>       for(D=N/2;D&gt;0;D/=2)<br>       {<br>               for(P=D;P&lt;N;P++)<br>               {<br>                      Tmp= A[P];<br>                      for(i=P;i&gt;=D&amp;&amp;A[i-D]&gt;Tmp;i-=D)<br>                             A[i]=A[i-D];<br>                      A[i]=Tmp;<br>               }<br>       }<br>}</p>
+<p>最坏情况：T=<strong>θ(N2)</strong>（<strong>θ代表即使上界也是下界，即可以达到的值</strong>）</p>
+<p>这种情况即，增量元素不互质，则小增量可能根本不起作用。</p>
+<p><strong>3.其它增量序列</strong></p>
+<p>（1）Hibbard增量序列：Dk=2k-1（相邻元素互质）。最坏情况：<strong>T=θ(N3/2)</strong>，猜想<strong>Tavg=O(N5/4)</strong>。</p>
+<p>（2）Sedgewick增量序列：{1,5,19,41,109}（9×4i-9×2i+1或4i-3×2i+1），猜想<strong>Tavg=O(N7/6)</strong>，<strong>Tworst=O(N4/3)</strong>。</p>
+<p><strong>4.稳定性：不稳定。</strong></p>
+<h2 id="9-4-堆排序"><a href="#9-4-堆排序" class="headerlink" title="9.4 堆排序"></a>9.4 堆排序</h2><h3 id="9-4-1-选择排序"><a href="#9-4-1-选择排序" class="headerlink" title="9.4.1 选择排序"></a>9.4.1 选择排序</h3><p>void Selection_Sort(ElementType A[], int N)<br>{<br>       for(i=0;i&lt;N;i++)<br>       {<br>              MinPosition = ScanForMin(A, i N-1);<br>              /<em>从A[i]到A[N-1]中找最小元，并将其位置赋给MinPosition</em>/<br>              Swap(A[i], A[MinPosition]);<br>              /<em>将未排序部分的最小元换到有序部份的最后位置</em>/<br>       }<br>}</p>
+<p>无论如何，<strong>T=θ(N2)</strong>。</p>
+<p>如何快速寻找到最小元？见下一节。</p>
+<h3 id="9-4-2-堆排序（选择排序的改进）"><a href="#9-4-2-堆排序（选择排序的改进）" class="headerlink" title="9.4.2 堆排序（选择排序的改进）"></a>9.4.2 堆排序（选择排序的改进）</h3><p><strong>1.算法1：</strong></p>
+<p>void Heap_Sort ( ElementType A[], int N )<br>{<br>       BuildHeap(A); /<em>调整为最小堆，复杂度为O(N) </em>/<br>       for ( i=0; i&lt;N; i++ )<br>              TmpA[i] = DeleteMin(A); /<em>以此把最小元弹出来放到这个临时数组中</em>/<br>/<em>复杂度为O(logN) </em>/<br>       for ( i=0; i&lt;N; i++ )/<em> O(N) </em>/<br>              A[i] = TmpA[i];/<em>把临时数组的数组返回原来的数组</em>/<br>}</p>
+<p>时间复杂度：<strong>T(N)=O(NlogN)</strong></p>
+<p>缺点：需要额外O(N)空间，并且复制元素需要时间。</p>
+<p><strong>2.算法2：</strong></p>
+<p><strong>注意，在堆排序里面的这个堆，元素是从0的位置开始的；原来学堆的时候，0是用来放哨兵的。</strong></p>
+<pre><code>因此，在堆排序中，元素下标从0开始。则对于下标为i的元素，其左、右孩子的下标分别为：**2i+1**, **2i+2**。
+
+伪码描述如下：
+</code></pre><p>void Heap_Sort ( ElementType A[], int N )<br>{<br>       for ( i=N/2-1; i&gt;=0; i– )/<em> BuildHeap </em>/<br>              PercDown( A, i, N );<br>       for ( i=N-1; i&gt;0; i– ) {<br>              Swap( &amp;A[0], &amp;A[i] ); /<em> DeleteMax </em>/<br>              PercDown( A, 0, i );<br>       }<br>}</p>
+<p><strong>定理：堆排序处理N个不同元素的随机排列的平均比较次数是2NlogN-O(Nlog logN)。</strong></p>
+<p><strong>注意：虽然堆排序给出最佳平均时间复杂度，但实际效果不如用Sedgewick增量序列的希尔排序。</strong></p>
+<p><strong>整体C语言源代码：</strong></p>
+<p>void Swap( ElementType *a, ElementType *b )<br>{<br>     ElementType t = *a; *a = *b; *b = t;<br>}</p>
+<p>void PercDown( ElementType A[], int p, int N )<br>{ /<em> 改编代码4.24的PercDown( MaxHeap H, int p )    </em>/<br>  /<em> 将N个元素的数组中以A[p]为根的子堆调整为最大堆 </em>/<br>    int Parent, Child;<br>    ElementType X;</p>
+<pre><code>X = A\[p\]; /* 取出根结点存放的值 */
+for( Parent=p; (Parent*2+1)&lt;N; Parent=Child ) {
+    Child = Parent * 2 + 1;
+    if( (Child!=N-1) &amp;&amp; (A\[Child\]&lt;A\[Child+1\]) )
+        Child++;  /* Child指向左右子结点的较大者 */
+    if( X &gt;= A\[Child\] ) break; /* 找到了合适位置 */
+    else  /* 下滤X */
+        A\[Parent\] = A\[Child\];
+}
+A\[Parent\] = X;
+</code></pre><p>}</p>
+<p>void HeapSort( ElementType A[], int N )<br>{ /<em> 堆排序 </em>/<br>     int i;</p>
+<pre><code>for ( i=N/2-1; i&gt;=0; i-- )/* 建立最大堆 */
+    PercDown( A, i, N );
+
+for ( i=N-1; i&gt;0; i-- ) {
+    /* 删除最大堆顶 */
+    Swap( &amp;A\[0\], &amp;A\[i\] ); /* 见代码7.1 */
+    PercDown( A, 0, i );
+}
+</code></pre><p>}</p>
+<h2 id="9-5-归并排序"><a href="#9-5-归并排序" class="headerlink" title="9.5 归并排序"></a>9.5 归并排序</h2><h3 id="9-5-1有序子列的归并"><a href="#9-5-1有序子列的归并" class="headerlink" title="9.5 1有序子列的归并"></a>9.5 1有序子列的归并</h3><p><strong>1.举例</strong>：假设我们有两个有序序列如下：</p>
+<p>1</p>
+<p>13</p>
+<p>24</p>
+<p>26</p>
+<p>2</p>
+<p>15</p>
+<p>27</p>
+<p>38</p>
+<p>我们要将它们合并成一个序列并按照顺序排序。我们需要设置三个指针，如图1所示。Aptr指向A序列的第一个元素（1），Bptr指向B序列的第一个元素（2），Cptr指向合并后的第一个元素。这里的指针其实是三个整数，分别存储的三个元素的下标。首先比较Aptr和Bptr指向的元素那个比较小，选择比较小的放入Cptr所代表的下标的那个位置。然后将Aptr加1，Cptr加1，用Bptr所代表的的下标的元素和Aptr所代表的的下标的元素比较，发现Bptr下标的元素（2）小，将2存入Cptr代表下标的元素，即C[Cptr]。然后依次类推。</p>
+<p> <img src="/wp-content/uploads/image/20180512/1526113422133621.jpg" alt="1.jpg" title="1526113422133621.jpg"></p>
+<p>图1</p>
+<p><strong>时间复杂度T(N)=O(N)</strong>。</p>
+<p>伪代码描述如下：</p>
+<p>/<em> L = 左边起始位置, R = 右边起始位置, RightEnd = 右边终点位置 </em>/<br>void Merge( ElementType A[], ElementType TmpA[],<br>            int L, int R, int RightEnd )<br>{<br>       LeftEnd = R - 1; /<em> 左边终点位置。假设左右两列挨着 </em>/<br>       Tmp = L; /<em> 存放结果的数组的初始位置 </em>/<br>       NumElements = RightEnd - L + 1;<br>       while( L &lt;= LeftEnd &amp;&amp; R &lt;= RightEnd )<br>       {<br>              if( A[L] &lt;= A[R] )<br>                     TmpA[Tmp++] = A[L++];<br>              else TmpA[Tmp++] = A[R++];<br>       }<br>       while( L &lt;= LeftEnd ) /<em> 直接复制左边剩下的 </em>/<br>              TmpA[Tmp++] = A[L++];<br>       while( R &lt;= RightEnd ) /<em>直接复制右边剩下的 </em>/<br>              TmpA[Tmp++] = A[R++];<br>       for(i=0;i&lt;NumElements;i++,RightEnd–)<br>              A[RightEnd] = TmpA[RightEnd];<br>}</p>
+<h3 id="9-5-2递归算法"><a href="#9-5-2递归算法" class="headerlink" title="9.5.2递归算法"></a>9.5.2递归算法</h3><p><strong>1.分而治之</strong></p>
+<p>如图2所示，该算法是<strong>稳定的</strong>。</p>
+<p><img src="/wp-content/uploads/image/20180512/1526113401102417.jpg" alt="2.jpg" title="1526113401102417.jpg"> </p>
+<p>图2</p>
+<p>伪码描述如下：</p>
+<p>void MSort( ElementType A[], ElementType TmpA[], int L, int RightEnd )<br>{<br>       int Center;<br>       if ( L &lt; RightEnd ) {<br>              Center = ( L + RightEnd ) / 2;<br>              MSort( A, TmpA, L, Center );<br>              MSort( A, TmpA, Center+1, RightEnd );<br>              Merge( A, TmpA, L, Center+1, RightEnd );<br>       }<br>}</p>
+<pre><code>时间复杂度为：**T(N)=T(N/2)+T(N/2)+O(N)，即T(N)=O(NlogN)。**
+</code></pre><p><strong>2.统一函数接口</strong></p>
+<p>为了与前面的函数接口统一，因此我们需要再写一个函数来统一函数接口。其伪码描述如下：</p>
+<p>void Merge_sort( ElementType A[], int N )<br>{<br>       ElementType <em>TmpA;<br>       TmpA = malloc( N </em> sizeof( ElementType ) );<br>       if ( TmpA != NULL )<br>       {<br>              MSort( A, TmpA, 0, N-1 );<br>              free( TmpA );<br>       }<br>       else Error( “空间不足” );<br>}</p>
+<p>如果只在Merge中声明临时数组，那么两个子函数声明如下：</p>
+<p>void Merge( ElementType A[], int L, int R, int RightEnd )</p>
+<p>void MSort( ElementType A[], int L, int RightEnd )</p>
+<pre><code>这样也不是不行，但是这样的话，**每一次在子函数里面用一次释放一次，增加了时间复杂度，还不如直接在最外层的代码里面定义好。**
+</code></pre><p><strong>整体的源代码实现如下：</strong></p>
+<p>/<em> 归并排序 - 递归实现 </em>/</p>
+<p>/<em> L = 左边起始位置, R = 右边起始位置, RightEnd = 右边终点位置</em>/<br>void Merge( ElementType A[], ElementType TmpA[], int L, int R, int RightEnd )<br>{ /<em> 将有序的A[L]~A[R-1]和A[R]~A[RightEnd]归并成一个有序序列 </em>/<br>     int LeftEnd, NumElements, Tmp;<br>     int i;</p>
+<pre><code>LeftEnd = R - 1; /* 左边终点位置 */
+Tmp = L;         /* 有序序列的起始位置 */
+NumElements = RightEnd - L + 1;
+
+while( L &lt;= LeftEnd &amp;&amp; R &lt;= RightEnd ) {
+    if ( A\[L\] &lt;= A\[R\] )
+        TmpA\[Tmp++\] = A\[L++\]; /* 将左边元素复制到TmpA */
+    else
+        TmpA\[Tmp++\] = A\[R++\]; /* 将右边元素复制到TmpA */
+}
+
+while( L &lt;= LeftEnd )
+    TmpA\[Tmp++\] = A\[L++\]; /* 直接复制左边剩下的 */
+while( R &lt;= RightEnd )
+    TmpA\[Tmp++\] = A\[R++\]; /* 直接复制右边剩下的 */
+
+for( i = 0; i &lt; NumElements; i++, RightEnd -- )
+    A\[RightEnd\] = TmpA\[RightEnd\]; /* 将有序的TmpA\[\]复制回A\[\] */
+</code></pre><p>}</p>
+<p>void Msort( ElementType A[], ElementType TmpA[], int L, int RightEnd )<br>{ /<em> 核心递归排序函数 </em>/<br>     int Center;</p>
+<pre><code>if ( L &lt; RightEnd ) {
+     Center = (L+RightEnd) / 2;
+     Msort( A, TmpA, L, Center );              /* 递归解决左边 */
+     Msort( A, TmpA, Center+1, RightEnd );     /* 递归解决右边 */ 
+     Merge( A, TmpA, L, Center+1, RightEnd );  /* 合并两段有序序列 */
+}
+</code></pre><p>}</p>
+<p>void MergeSort( ElementType A[], int N )<br>{ /<em> 归并排序 </em>/<br>     ElementType <em>TmpA;<br>     TmpA = (ElementType </em>)malloc(N*sizeof(ElementType));</p>
+<pre><code>if ( TmpA != NULL ) {
+     Msort( A, TmpA, 0, N-1 );
+     free( TmpA );
+}
+else printf( &quot;空间不足&quot; );
+</code></pre><p>}</p>
+<h3 id="9-5-3-非递归算法"><a href="#9-5-3-非递归算法" class="headerlink" title="9.5.3 非递归算法"></a>9.5.3 非递归算法</h3><p>非递归算法的图示如图3所示。</p>
+<p><img src="/wp-content/uploads/image/20180512/1526113355712562.jpg" alt="1526113355712562.jpg" title="1526113355712562.jpg"> </p>
+<p>图3</p>
+<p>额外空间复杂度是<strong>O(N)</strong>。我们只需要开一个临时数组就可以了，没必要每次都开一个。</p>
+<p>其伪码描述如下：</p>
+<p>void Merge_pass( ElementType A[], ElementType TmpA[], int N,int length )<br> /<em> length = 当前有序子列的长度</em>/<br>{<br>       for ( i=0; i &lt;= N–2*length; i += 2*length )<br>              Merge1( A, TmpA, i, i+length, i+2<em>length–1 );<br>       if ( i+length &lt; N ) /</em> 归并最后2个子列<em>/<br>              Merge1( A, TmpA, i, i+length, N–1);<br>       else /</em> 最后只剩1个子列*/<br>       for ( j = i; j &lt; N; j++ ) TmpA[j] = A[j];<br>}</p>
+<p>统一接口如下：</p>
+<p>void Merge_sort( ElementType A[], int N )<br>{<br>       int length = 1; /<em> 初始化子序列长度</em>/<br>       ElementType <em>TmpA;<br>       TmpA = malloc( N </em> sizeof( ElementType ) );<br>       if ( TmpA != NULL ) {<br>              while( length &lt; N ) {<br>                     Merge_pass( A, TmpA, N, length );<br>                     length <em>= 2;<br>                     Merge_pass( TmpA, A, N, length );<br>                     length </em>= 2;<br>              }<br>              free( TmpA );<br>       }<br>       else Error( “空间不足” );<br>}</p>
+<p><strong>具有稳定性！</strong></p>
+<p><strong>缺点是需要额外空间之类的~此方法主要用在外排序。</strong></p>
+<p><strong>C语言实现源代码：</strong></p>
+<p>/<em> 归并排序 - 循环实现 </em>/<br>/<em> 这里Merge函数在递归版本中给出 </em>/</p>
+<p>/<em> length = 当前有序子列的长度</em>/<br>void Merge_pass( ElementType A[], ElementType TmpA[], int N, int length )<br>{ /<em> 两两归并相邻有序子列 </em>/<br>     int i, j;</p>
+<pre><code>for ( i=0; i &lt;= N-2\*length; i += 2\*length )
+    Merge( A, TmpA, i, i+length, i+2*length-1 );
+if ( i+length &lt; N ) /* 归并最后2个子列*/
+    Merge( A, TmpA, i, i+length, N-1);
+else /* 最后只剩1个子列*/
+    for ( j = i; j &lt; N; j++ ) TmpA\[j\] = A\[j\];
+</code></pre><p>}</p>
+<p>void Merge_Sort( ElementType A[], int N )<br>{<br>     int length;<br>     ElementType *TmpA;</p>
+<pre><code>length = 1; /* 初始化子序列长度*/
+TmpA = malloc( N * sizeof( ElementType ) );
+if ( TmpA != NULL ) {
+     while( length &lt; N ) {
+         Merge_pass( A, TmpA, N, length );
+         length *= 2;
+         Merge_pass( TmpA, A, N, length );
+         length *= 2;
+     }
+     free( TmpA );
+}
+else printf( &quot;空间不足&quot; );
+</code></pre><p>}</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/13/datastructure_chapter10/" class="pre-post btn btn-default" title="数据结构【浙江大学】（第10节）整理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第10节）整理</span>
+        </a>
+    
+    
+        <a href="/2018/05/12/datastructure_chapter8/" class="next-post btn btn-default" title="数据结构【浙江大学】（第8节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第8节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第九节：排序（上）"><span class="toc-text">第九节：排序（上）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#9-1-概述"><span class="toc-text">9.1 概述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-2-简单排序算法"><span class="toc-text">9.2 简单排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-1-冒泡排序"><span class="toc-text">9.2.1 冒泡排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-2-插入排序"><span class="toc-text">9.2.2 插入排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-2-3-时间复杂度下界"><span class="toc-text">9.2.3 时间复杂度下界</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-3-希尔排序"><span class="toc-text">9.3 希尔排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-4-堆排序"><span class="toc-text">9.4 堆排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-4-1-选择排序"><span class="toc-text">9.4.1 选择排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-4-2-堆排序（选择排序的改进）"><span class="toc-text">9.4.2 堆排序（选择排序的改进）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#9-5-归并排序"><span class="toc-text">9.5 归并排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#9-5-1有序子列的归并"><span class="toc-text">9.5 1有序子列的归并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-5-2递归算法"><span class="toc-text">9.5.2递归算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-5-3-非递归算法"><span class="toc-text">9.5.3 非递归算法</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

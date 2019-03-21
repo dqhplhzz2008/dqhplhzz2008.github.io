@@ -1,0 +1,457 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第六节：图（上）6.1 图1.关于图
+图表示的是“多对多”的关系。它包含：
+（1）一组顶点：通常用V（Vertex）表示顶点集合。
+（2）一组边：通常用E（Edge）表示边的集合，表示顶点与顶点...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第6节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第6节）整理">
+            
+	            数据结构【浙江大学】（第6节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/26</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>329</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第六节：图（上）"><a href="#第六节：图（上）" class="headerlink" title="第六节：图（上）"></a>第六节：图（上）</h1><h2 id="6-1-图"><a href="#6-1-图" class="headerlink" title="6.1 图"></a>6.1 图</h2><p><strong>1.关于图</strong></p>
+<p>图表示的是“多对多”的关系。它包含：</p>
+<p>（1）一组顶点：通常用V（Vertex）表示顶点集合。</p>
+<p>（2）一组边：通常用E（Edge）表示边的集合，表示顶点与顶点的关系：</p>
+<p>①边是顶点对：(v,w)∈E，其中v,w∈V。这是一个双向的。</p>
+<p>②有向边：&lt;v,w&gt;，表示从v指向w的边（单行线）。</p>
+<p>③不考虑重边和自回路。</p>
+<p>其抽象数据类型为：</p>
+<p><strong>类型名称：图（Graph）</strong></p>
+<p><strong>数据对象集：一非空的顶点集合Vertex和一个边集合Edge，每条边用对应的一对顶点表示。</strong></p>
+<p><strong>操作集：对于任意的图G</strong> <strong>Î Graph，顶点v、v1和v2</strong> <strong>Î ertex，以及任一访问顶点的函数visit()，操作举例：</strong></p>
+<p><strong>Graph Create( )：构造并返回一个空图；</strong></p>
+<p><strong>void Destroy( Graph G )：释放图G占用的存储空间；</strong></p>
+<p><strong>Graph InsertVertex( Graph G, Vertex v   )：返回一个在G中增加了新顶点v的图</strong></p>
+<p><strong>Graph InsertEdge( Graph G, Vertex v1,   Vertex v2 )：返回一个在G中增加了新边 (v1, v2) 的图；</strong></p>
+<p><strong>Graph DeleteVertex( Graph G, Vertex v   )：删除G中顶点v及其相关边，将结果图返回；</strong></p>
+<p><strong>Graph DFS（ Graph   G, Vertex v, visit()）：在图G中，从顶点v出发进行深度优先遍历；</strong></p>
+<p>图的一些分类：</p>
+<p>（1）<strong>无向图</strong>。边（v, w）等同于边（w, v）。用圆括号“（）”表示无向边。</p>
+<p>（2）<strong>有向图</strong>（Directed Graphs）: 边&lt;v, w&gt;不同于边&lt;w, v&gt;。用尖括号“&lt; &gt;”表示有向边；有向边也称“弧（Arc）”。</p>
+<p>（3）<strong>简单图</strong>（Simple Graphs）:没有重边和自回路的图。</p>
+<p>（4）<strong>邻接点</strong>: 如果（v, w）或 &lt; v, w &gt;是图中任意一条边，那么称v和w互为“邻接点（Adjacent Vertices）”。</p>
+<p>（5）<strong>路径、简单路径、回路、无环图</strong>：</p>
+<p>图G中从<em>vp 到 vq</em> 的路径 = { _vp_, _vi_1, _vi_2, ×××, <em>vin</em>, _vq_ } 使得( _vp_, _vi_1 ), ( _vi_1, _vi_2 ), ×××, ( <em>vin</em>, _vq_ ) 或 &lt; _vp_, _vi_1 &gt;, ×××, &lt; <em>vin</em>, _vq_ > 都属于E( G )。</p>
+<p>路径长度：路径中边的数量。</p>
+<p>简单路径：_vi_1, _vi_2, ×××, <em>vin</em> 都是不同顶点。</p>
+<p>回路：起点和终点相同（_vp_ = _vq_ ）的路径。</p>
+<p>无环图：不存在任何回路的图。</p>
+<p>有向无环图：不存在回路的有向图，也称DAG（Directed Acyclic Graph）。</p>
+<p>（6）<strong>完全图</strong>：分为有向完全图（n(n-1)条边）和无向完全图（n(n-1)/2条边）。</p>
+<p>（7）<strong>度</strong>：与顶点v相关的边数。从该点发出的边数为“出度”，指向该点的边数为“入度”。</p>
+<p>（8）<strong>稠密图、稀疏图</strong>：是否满足 |E| &gt; |V|log2|V|，作为稠密图和稀疏图的分界条件。</p>
+<p>（9）<strong>权（Cost） 、网络（Network）</strong>。</p>
+<p>（10）<strong>图G的子图 G’ ： V( G’ )</strong> <strong>Í V( G )  &amp;&amp;  E( G’ )</strong> <strong>Í E( G )。</strong></p>
+<p>（11）无向图的顶点连通、连通图、连通分量：如果无向图从一个顶点_vi_到另一个顶点<em>vj (i≠j)</em>有路径，则称顶点_vi_和vj是“连通的（Connected）”；无向图中任意两顶点都是连通的，则称该图是“连通图（Connected Graph）”；无向图的极大连通子图称为“连通分量（Connected Component）”。连通分量的概念包含以下4个要点：<em>子图、连通、极大顶点数、极大边数</em></p>
+<p>（12）有向图的强连通图、连通分量：有向图中任意一对顶点_vi_ 和<em>vj (i≠j)</em>均既有从_vi_到_vj_的路径，也有从_vj_到_vi_的路径，则称该有向图是“强连通图（Strongly Connected Graph）”。有向图的极大强连通子图称为“强连通分量（Strongly Connected Component）”。连通分量的概念也包含前面4个要点。</p>
+<p>（13）树、生成树：树是图的特例：无环的无向图。</p>
+<p>所谓连通图G的“生成树（Spanning Tree）”，是G的包含其全部n 个顶点的一个极小连通子图。它必定包含且仅包含G的n-1条边。</p>
+<p>生成树有可能不唯一。</p>
+<p>当且仅当G满足下面4个条件之一（完全等价）：</p>
+<p>① G有n-1条边，且没有环；</p>
+<p>② G有n-1条边，且是连通的；</p>
+<p>③ G中的每一对顶点有且只有一条路径相连；</p>
+<p>④ G是连通的，但删除任何一条边就会使它不连通。</p>
+<p><strong>2.表示图——邻接矩阵</strong></p>
+<p>邻接矩阵G[N][N]-N个顶点从0到N-1编号。其中G[i][j]=1（若&lt;vi,vj&gt;是G中的边）或0（不是G中的边）。可以看出邻接矩阵有以下特点：</p>
+<p>（1）主对角线全为0；</p>
+<p>（2）这是一个对称矩阵。</p>
+<p>那么，对于无向图来说，怎样可以节省一半空间？</p>
+<p>可以用一个长度为N(N+1)/2的1维数组A存储{G00,G10,…,G(n-1)0,…,G(n-1)(n-1)}。则Gij在A中对应的下标是：(i*(i+1)/2+j)。对于网络，只要把G[i][j]的值定义为边&lt;vi,vj&gt;的权重即可。</p>
+<p><strong>问题：vi和vj在网络中它们之间没有边该如何表示？</strong></p>
+<p>邻接矩阵有以下优点：</p>
+<p>（1）直观、简单、好理解；</p>
+<p>（2）方便检查任意一对顶点间是否存在边；</p>
+<p>（3）方便找任一顶点的所有“邻接点”（有边直接相连的顶点）；</p>
+<p>（4）方便计算任一顶点的“度”：</p>
+<p>对于无向图来说，对应行（列）非0的元素的个数。对于有向图来说，对应行非0元素的个数是“出度”，对应列非0元素的个数是“入度”。</p>
+<p>邻接矩阵的缺点：</p>
+<p>（1）浪费空间：存稀疏图有大量无效元素。但是对于稠密图（特别是完全图）还是很合算。</p>
+<p>（2）浪费时间：统计系数图中一共有多少条边。</p>
+<p><strong>3.表示图——邻接表</strong></p>
+<p>邻接表：G[N]为指针数组，对应矩阵每行一个链表，只存非0元素。对于图G中的每个顶点_vi_，将所有邻接于_vi_的顶点_vj_链成一个单链表，这个单链表就称为顶点_vi_的邻接表，再将所有点的邻接表表头放到一个数组中，就构成了图的邻接表。</p>
+<p><strong>一定要够稀疏用邻接表才合算！！！！</strong></p>
+<p>邻接表的特点：</p>
+<p>（1）方便找任一顶点的所有“邻接点”。</p>
+<p>（2）节约稀疏图的空间：需要N个头指针+2E个结点。</p>
+<p>（3）方便计算任一顶点的“度”：<strong>对于无向图来说是如此，对于有向图来说，这只能计算“出度”；需要构造“逆邻接表”（存指向自己的边）来方便计算“入度”。</strong></p>
+<h2 id="6-2-图的遍历"><a href="#6-2-图的遍历" class="headerlink" title="6.2 图的遍历"></a>6.2 图的遍历</h2><p><strong>1.深度优先搜索（DFS）</strong></p>
+<p>代码实现：</p>
+<p>void DFS( Graph G,  int V )<br>{ /<em> 从第V个顶点出发递归地深度优先遍历图G </em>/<br>    VertexType W;<br>      Visited[V] = TRUE;<br>    VisitFunc(V);      /<em> 访问第V个顶点 </em>/<br>    for( W = FirstAdjV(G, V);  W;  W = NextAdjV (G, V, W) )<br>        if( !Visited[W] )<br>           DFS(G, W); /<em> 对V的尚未访问的邻接顶点W递归调用DFS </em>/<br>}</p>
+<pre><code>这段代码的意思是，首先我们开始访问，然后每访问一个节点，都将其标记为True，然后开始访问V的邻接点，如果没访问，那就去访问并且置为True，当看到邻接点都是True时，我们原路返回，若发现没访问过的邻接点，立即去访问；如果没有发现，继续原路返回，直到返回到第一个结点。
+</code></pre><p>若由N个顶点，E跳边，时间复杂度是：</p>
+<p>（1）用邻接表存储图：O(N+E)；</p>
+<p>（2）用邻接矩阵，有O(N2)。</p>
+<p><strong>2.广度优先搜索（BFS）</strong></p>
+<p>相当于层序遍历。</p>
+<p>void BFS(Graph G)<br>{   /<em> 按广度优先遍历图G。使用辅助队列Q和访问标志数组Visited </em>/<br>        Queue <em>Q;    VertexType U, V, W;<br>        for ( U = 0; U &lt; G.n; ++U )  Visited[U] = FALSE;<br>        Q = CreatQueue( MaxSize ); /</em> 创建空队列Q <em>/<br>        for ( U = 0; U&lt;G.n; ++U )<br>         if (!Visited[U] ) {           /</em> 若U尚未访问 <em>/<br>                 Visited[U] = TRUE;<br>                          VisitFunc(U);        /</em> 访问U <em>/<br>                 AddQ (Q, U);        /</em> U入队列 <em>/<br>                 while ( ! IsEmptyQ(Q) ) {<br>                     V = DeleteQ( Q );  /</em>  队头元素出队并置为V <em>/<br>                     for( W = FirstAdjV(G, V);  W;  W = NextAdjV(G, V, W) )<br>                         if ( !Visited[W] ) {<br>                  Visited[W] = TRUE;<br>                                      VisitFunc (W);      /</em> 访问W <em>/<br>                             AddQ (Q, W);<br>              }<br>                  } /</em> while结束<em>/<br>                  } /</em> 结束从U开始的BFS */<br>}</p>
+<p>若由N个顶点，E跳边，时间复杂度是：</p>
+<p>（1）用邻接表存储图：O(N+E)；</p>
+<p>（2）用邻接矩阵，有O(N2)。</p>
+<h2 id="6-3-图的应用"><a href="#6-3-图的应用" class="headerlink" title="6.3 图的应用"></a>6.3 图的应用</h2><p>1.应用实例：拯救007</p>
+<p>如图1所示，如何让007通过这一个个结点（鳄鱼），一步一步跳到岸边呢？这里用深度优先算法更为合适。</p>
+<p>原来的总体算法（伪代码）：</p>
+<p>void ListComponents(Graph G)<br>{<br>       for(each V in G)<br>              if(!visited[V]){<br>                     DFS(V);<br>              }<br>}</p>
+<p>这里的总体算法（伪代码）：</p>
+<p>void Save007(Graph G)<br>{<br>       for(each V in G)<br>              if(!visited[V]&amp;&amp; FirstJump(V))/<em>判断是否踩过这个鳄鱼还有是否能够得着</em>/<br>              {<br>                     answer = DFS(V);<br>                     if(answer ==YES) break;<br>              }<br>              if(answer ==YES) output(“YES”);<br>              else output(“BYEBYE”);<br>}</p>
+<p>DFS部分的伪代码：</p>
+<p>int DFS(Vertex V)<br>{<br>       visited[V] = True;<br>       if(IsSafe(V)) answer = YES;<br>       else{<br>              for(V的每个邻接点W)<br>                     if(!visited[W]&amp;&amp; Jump(V,W))<br>                            /*Jump计算两个鳄鱼之间距离是否小于007最大跳动距离*/<br>                     {<br>                            answer=DFS(W);<br>                            DFS(W);<br>                     }<br>       }<br>       return answer;<br>}</p>
+<h2 id="6-4-图的建立"><a href="#6-4-图的建立" class="headerlink" title="6.4 图的建立"></a>6.4 图的建立</h2><p><strong>1.用邻接矩阵表示图</strong></p>
+<p>typedef struct GNode <em>PtrToGNode;<br>struct GNode{<br>       int Nv;/</em>顶点数<em>/<br>       int Ne;/</em>边数<em>/<br>       WeightType G[MaxVertexNum][MaxVertexNum];<br>       DataType Data[MaxVertexNum];/</em>存顶点的数据<em>/<br>};<br>typedef PtrToGNode MGraph;/</em>以邻接矩阵存储的图类型*/</p>
+<p><strong>2.初始化图</strong></p>
+<p>typedef int Vertex;/<em>用顶点下标表示顶点，为整型</em>/<br>MGraph CreateGraph(int VertexNum)<br>{<br>       Vertex V,W;<br>       MGraph Graph;<br>       Graph = (MGraph)malloc(sizeof(struct GNode));<br>       Graph-&gt;Nv = VertexNum;<br>       Graph-&gt;Ne = 0;</p>
+<pre><code>/*这里默认顶点标号从0开始，到(Graph-&gt;Nv-1)*/
+for(V=0;V&lt;Graph-&gt;Nv;V++)
+       for(W=0;W&lt;Graph-&gt;Nv;W++)
+              Graph-&gt;G\[V\]\[W\] = 0;/*有向图是INFINITY*/
+return Graph;
+</code></pre><p>}</p>
+<p><strong>3.插入边</strong></p>
+<p>typedef struct ENode <em>PtrToGNode;<br>struct ENode<br>{<br>       Vertex V1,V2;/</em>有向边&lt;V1,V2&gt;<em>/<br>       WeightType Weight;/</em>权重*/<br>};<br>typedef PtrToGNode Edge;</p>
+<p>void InsertEdge( MGraph Graph, Edge E)<br>{<br>       /<em>插入边&lt;V1,V2&gt;</em>/<br>       Graph-&gt;G[E-&gt;V1][E-&gt;V2]=E-&gt;Weight;<br>       /<em>无向图</em>/<br>       Graph-&gt;G[E-&gt;V2][E-&gt;V1]=E-&gt;Weight;</p>
+<p>}</p>
+<p><strong>4.建立图</strong></p>
+<p>（1）输入格式：Nv Ne</p>
+<pre><code>V1 V2 Weight
+</code></pre><p>代码如下：</p>
+<p>MGraph BuildGraph()<br>{<br>       Edge E;<br>       MGraph Graph;<br>       Vertex V;<br>       int Nv,i;<br>       scanf(“%d”,&amp;Nv);<br>       Graph = CreateGraph(Nv);<br>       scanf(“%d”,&amp;(Graph-&gt;Ne));<br>       if(Graph-&gt;Ne!=0)<br>       {<br>              E = (Edge)malloc(sizeof(struct ENode));<br>              for(i=0;i<graph->Ne;i++){<br>                     scanf(“%d %d %d”,&amp;E-&gt;V1,&amp;E-&gt;V2,&amp;E-&gt;Weight);<br>                     InsertEdge(Graph, E);<br>              }<br>       }<br>       /<em>如果顶点有数据的话，读入数据</em>/<br>       for(V=0;V<graph->Nv;V++)<br>              scanf(“%c”,&amp;(Graph-&gt;Data[V]));</graph-></graph-></p>
+<pre><code>return Graph;
+</code></pre><p>}</p>
+<p>但是这样来说太麻烦了，如果不要这么麻烦，一个<strong>整体的程序（不再需要子程序）</strong>可以如下：</p>
+<p>int G[MAXN][MAXN],Nv,Ne;<br>void BuildGraph()<br>{<br>       int i,j,v1,v2,w;<br>       scanf(“%d”,&amp;Nv);<br>       /*CreateGraph*/<br>       for(i=0;i&lt;Nv;i++)<br>              for(j=0;j&lt;Nv;j++)<br>                     G[i][j]=0;/<em>初始化，有向图为无穷</em>/<br>       scanf(“%d”, &amp;Ne);/<em>输入有多少个结点</em>/<br>       for(i=0;i&lt;Ne;i++)<br>       {<br>              scanf(“%d %d %d”, &amp;v1,&amp;v2,&amp;w);<br>              /<em>将边插入</em>/<br>              G[v1][v2]=w;<br>              G[v2][v1]=w;<br>       }<br>}</p>
+<pre><code>一气呵成。
+</code></pre><p><strong>5.邻接表表示的图结点的结构</strong></p>
+<p>邻接表：G[N]为指针数组，对应矩阵每行一个链表，只存非0元素。</p>
+<p>typedef struct GNode <em>PtrToGNode;<br>struct GNode{<br>       int Nv;/</em>顶点数<em>/<br>       int Ne;/</em>边数<em>/<br>       AdjList G;/</em>邻接表*/<br>};<br>typedef PtrToGNode LGraph;</p>
+<p>typedef struct Vnode{<br>       PtrToAdjVNode FirstEdge;<br>       DataType Data;/<em>存顶点的数据</em>/<br>}AdjList[MaxVertexNum];<br>/*AdjList是邻接表类型*/</p>
+<p>typedef struct AdjVNode <em>PtrToAdjVNode;<br>struct AdjVNode{<br>       Vertex AdjV;/</em>邻接点下标<em>/<br>       WeightType Weight;<br>       PtrToAdjVNode Next;/</em>指向下一个邻接点的指针*/<br>};</p>
+<p><strong>6.邻接表表示的图-建立图</strong></p>
+<p>（1）初始化一个由VertexNum个顶点但没有边的图</p>
+<p>typedef int Vertex;/<em>用顶点下标表示顶点，为整型</em>/<br>LGraph CreateGraph(int VertexNum)<br>{<br>       Vertex V,W;<br>       LGraph Graph;</p>
+<pre><code>Graph = (LGraph)malloc(sizeof(struct GNode));
+Graph-&gt;Nv = VertexNum;
+Graph-&gt;Ne =0;
+/*每一个顶点跟着的链表都是空的为没有边*/
+for(V=0;V&lt;Graph-&gt;Nv;V++)
+       Graph-&gt;G\[V\].FirstEdge = NULL;
+return Graph;
+</code></pre><p>}</p>
+<p>（2）向LGraph中插入边</p>
+<p>void InsertEdge(LGraph Graph, Edge E)<br>{<br>       PtrToAdjVNode NewNode;</p>
+<pre><code>/*插入边&lt;v1,v2&gt;*/
+NewNode = (PtrToAdjVNode)malloc(sizeof(struct AdjVNode));
+NewNode-&gt;AdjV=E-&gt;V2;
+NewNode-&gt;Weight = E-&gt;Weight;
+/*将V2插入V1的表头*/
+NewNode-Next = Graph-&gt;G\[E-&gt;V1\].FirstEdge;
+Graph-&gt;G\[E-&gt;V1\].FirstEdge = NewNode;
+
+/*若是无向图，还要插入边&lt;V2,V1&gt;*/
+/*为V1建立新的邻接点*/
+NewNode = (PtrToAdjVNode)malloc(sizeof(struct AdjVNode));
+NewNode-&gt;AdjV=E-&gt;V1;
+NewNode-&gt;Weight = E-&gt;Weight;
+/*将V1插入V2的表头*/
+NewNode-Next = Graph-&gt;G\[E-&gt;V2\].FirstEdge;
+Graph-&gt;G\[E-&gt;V2\].FirstEdge = NewNode;
+</code></pre><p>}</p>
+<p>（3）完整建立LGraph</p>
+<p>LGraph BuildGraph()<br>{<br>       LGraph Graph;<br>/<em>剩余与邻接矩阵完整版类似</em>/<br>}</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/09/datastructure_chapter7/" class="pre-post btn btn-default" title="数据结构【浙江大学】（第7节）整理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第7节）整理</span>
+        </a>
+    
+    
+        <a href="/2018/04/24/datastructure_chapter5/" class="next-post btn btn-default" title="数据结构【浙江大学】（第5节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第5节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第六节：图（上）"><span class="toc-text">第六节：图（上）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-图"><span class="toc-text">6.1 图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-图的遍历"><span class="toc-text">6.2 图的遍历</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-图的应用"><span class="toc-text">6.3 图的应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-图的建立"><span class="toc-text">6.4 图的建立</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

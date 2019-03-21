@@ -1,0 +1,369 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第四节：二叉搜索树4.1 二叉搜索树二叉搜索树（BST），也称二叉排序树和二叉查找树。一棵这个树，可以为空。如果不为空，满足以下性质：
+（1）非空左子树的所有键值小于其根结点的键值。
+（2）非空...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第4节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第4节）整理">
+            
+	            数据结构【浙江大学】（第4节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/04/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>331</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第四节：二叉搜索树"><a href="#第四节：二叉搜索树" class="headerlink" title="第四节：二叉搜索树"></a>第四节：二叉搜索树</h1><h2 id="4-1-二叉搜索树"><a href="#4-1-二叉搜索树" class="headerlink" title="4.1 二叉搜索树"></a>4.1 二叉搜索树</h2><p>二叉搜索树（BST），也称二叉排序树和二叉查找树。一棵这个树，可以为空。如果不为空，满足以下性质：</p>
+<p>（1）非空左子树的所有键值<strong>小于</strong>其根结点的键值。</p>
+<p>（2）非空右子树的所有键值<strong>大于</strong>其根结点的键值。</p>
+<p>（3）左、右子树都是二叉搜索树。</p>
+<p><strong>1.二叉搜索树操作的函数：</strong></p>
+<p>Position Find(ElementType X, BinTree BST)：从二叉搜索树BST中查找元素X，并返回其结点地址；</p>
+<p>Position FindMin(ElementType X, BinTree BST)：从二叉搜索树BST中查找最小元素X，并返回其结点地址；</p>
+<p>Position FindMax(ElementType X, BinTree BST)：从二叉搜索树BST中查找最大元素X，并返回其结点地址；</p>
+<p>BinTree Insert(ElementType X, BinTree BST)</p>
+<p>BinTree Delete(ElementType X, BinTree BST)</p>
+<p><strong>2.二叉搜索树的查找操作：Find</strong></p>
+<p>查找从根结点开始，如果树为空，返回<strong>NULL</strong>。</p>
+<p>若树非空，则根结点关键字与X进行比较，并进行以下处理：</p>
+<p>（1）若X小于根结点键值，则在左子树中继续搜索；</p>
+<p>（2）若X大于根节点键值，则在右子树中搜索；</p>
+<p>（3）若两者相等，搜索完成，返回指向此结点的指针。</p>
+<p>代码如下：</p>
+<p>Position Find(ElementType X, BinTree BST)<br>{<br>       if(!BST)<br>              return NULL;<br>       if(X&gt;BST-&gt;Data)<br>              return Find(X,BST-&gt;Right);<br>       else if(X<bst->Data)<br>              return Find(X, Bst-&gt;Left);<br>       else<br>              return BST;<br>}</bst-></p>
+<p>由于非递归函数的执行效率高，可将尾递归函数修改为迭代函数：</p>
+<p>Position Find(ElementType X, BinTree BST)<br>{<br>       while(BST){<br>              if(X&gt;BST-&gt;Data)<br>                     BST= BST-&gt;Right;<br>              else if(X<bst->Data)<br>                     BST= BST-&gt;Left;<br>       else<br>              return BST;<br>       }<br>       return NULL;<br>}</bst-></p>
+<p><strong>3.查找最大和最小元素</strong></p>
+<p>最大元素一定在树的最右分支的端结点上；最小元素在最左分支的端结点上。</p>
+<p>/<em>查找最小元素的递归函数</em>/<br>Position FindMin(BinTree BST)<br>{<br>       if(!BST) return NULL;<br>       else if(!BST-&gt;Left)<br>              return BST;<br>       else<br>              return FindMin(BST-&gt;Left);<br>}<br>/<em>查找最大元素的迭代函数</em>/<br>Position FindMax(BinTree BST)<br>{<br>       if(BST)<br>              while(BST-&gt;Right)<br>                     BST = BST-&gt;Right;<br>       return BST;<br>}</p>
+<p><strong>4.二叉搜索树的插入</strong></p>
+<p>分析：关键是要找到元素应该插入的位置，可以采用与Find类型的方法。</p>
+<p>BinTree Insert(ElementType X, BinTree BST)<br>{<br>       if(!BST){<br>              BST = malloc(sizeof(struct TreeNode));<br>              BST-&gt;Data =X;<br>              BST-&gt;Left = BST-&gt;Right =NULL;<br>       }<br>       else if(X<bst->Data)<br>              BST-&gt;Left = Insert(X, BST-&gt;Left);<br>       else if(X&gt;BST-&gt;Data)<br>              BST-&gt;Right = Inser(X,BST-&gt;Right);<br>       return BST;<br>}</bst-></p>
+<p><strong>4.二叉搜索树的删除</strong></p>
+<p>我们需要考虑三种情况：</p>
+<p>（1）要删除的是叶结点：直接删除，并再修改其父结点指针为NULL。</p>
+<p>（2）要删除的结点只有一个孩子结点：要将其<strong>父结点的指针</strong>指向要删除结点的<strong>孩子结点</strong>。</p>
+<p>（3）要删除的结点有左、右两棵子树：用另一结点代替被删除的结点：右子树的最小元素或者左子树的最大元素。如图2所示。</p>
+<p> <img src="/wp-content/uploads/image/20180424/1524539102126072.jpg" alt="1524539102126072.jpg" title="1524539102126072.jpg"></p>
+<p>图1</p>
+<p>代码如下所示：</p>
+<p>BinTree Delete( ElementType X, BinTree BST )<br>{   Position Tmp;<br>    if( !BST ) printf(“要删除的元素未找到”);<br>    else if( X &lt; BST-&gt;Data )<br>            BST-&gt;Left = Delete( X, BST-&gt;Left); /<em> 左子树递归删除 </em>/<br>    else if( X &gt; BST-&gt;Data )<br>            BST-&gt;Right = Delete( X, BST-&gt;Right); /<em> 右子树递归删除 </em>/<br>    else /<em>找到要删除的结点 </em>/<br>         if( BST-&gt;Left &amp;&amp; BST-&gt;Right ) { /<em>被删除结点有左右两个子结点 </em>/<br>             Tmp = FindMin( BST-&gt;Right );<br>                           /<em>在右子树中找最小的元素填充删除结点</em>/<br>             BST-&gt;Data = Tmp-&gt;Data;<br>             BST-&gt;Right = Delete( BST-&gt;Data, BST-&gt;Right);<br>                                    /<em>在删除结点的右子树中删除最小元素</em>/<br>         } else { /<em>被删除结点有一个或无子结点</em>/<br>             Tmp = BST;<br>             if( !BST-&gt;Left ) /<em> 有右孩子或无子结点</em>/<br>                  BST = BST-&gt;Right;<br>             else if( !BST-&gt;Right ) /<em>有左孩子或无子结点</em>/<br>                  BST = BST-&gt;Left;<br>             free( Tmp );<br>         }<br>    return BST;<br>}</p>
+<h2 id="4-2-平衡二叉树"><a href="#4-2-平衡二叉树" class="headerlink" title="4.2 平衡二叉树"></a>4.2 平衡二叉树</h2><p><strong>1.平衡二叉树基本介绍</strong></p>
+<p>查找二叉搜索树（BST）的时间复杂度（最坏情况下）用查找过程中的比较次数来衡量，它取决于树的深度。</p>
+<p>对于二叉树中任一结点T，其“平衡因子（Balance Factor，简称BF）”定义为BF(T)=hL-hR。（其中hL和hR分别为T的左、右子树的高度。）</p>
+<p>“平衡二叉树（Balanced Binary Tree）”又称为“AVL树” 。 AVL树或者是一棵空树，或者是具有下列性质的非空二叉搜索树：任一结点左、右子树高度差的绝对值不超过1。”即<strong>|BF(T) |≤ 1</strong>。</p>
+<p>平衡二叉树的高度能达到logn吗？</p>
+<p>设nh高度为h的平衡二叉树的最少结点树。结点数最少时：</p>
+<p>nh=n(h-1)+n(h-2)+1</p>
+<p>具体见图2.</p>
+<p><img src="/wp-content/uploads/image/20180424/1524539126857172.jpg" alt="1524539126857172.jpg" title="1524539126857172.jpg"> </p>
+<p>图2</p>
+<p><strong>1.平衡二叉树的调整</strong></p>
+<p>（1）右单旋</p>
+<p>如图3所示，当只将Mar加上May的时候，其平衡因子为-1，但是当增加了一个Nov的时候，其平衡引子变成了-2，不符合平衡二叉树的要求，因此很显然我们会想到将其调整到图3右侧的结构，这样其三个结点的平衡因子都是0了。</p>
+<p><img src="/wp-content/uploads/image/20180424/1524539140516138.jpg" alt="1524539140516138.jpg" title="1524539140516138.jpg"> </p>
+<p>图3</p>
+<p>首个不平衡的“发现者”是Mar（未必是根结点），它是调整起点位置。而“麻烦结点”Nov 在发现者右子树的右边，因而叫RR插入，需要RR旋转（右单旋）；一般情况（设A是首个发现者）的调整方式如下:</p>
+<p> <img src="/wp-content/uploads/image/20180424/1524539153680093.jpg" alt="1524539153680093.jpg" title="1524539153680093.jpg"></p>
+<p>图4</p>
+<p>（2）左单旋</p>
+<p> <img src="/wp-content/uploads/image/20180424/1524539165635453.jpg" alt="1524539165635453.jpg" title="1524539165635453.jpg"></p>
+<p>图5</p>
+<p>（3）左-右双旋</p>
+<p> <img src="/wp-content/uploads/image/20180424/1524539179564828.jpg" alt="1524539179564828.jpg" title="1524539179564828.jpg"></p>
+<p>图6</p>
+<p>（4）右-左双旋</p>
+<p><img src="/wp-content/uploads/image/20180424/1524539192123126.jpg" alt="1524539192123126.jpg" title="1524539192123126.jpg"> </p>
+<p>图7</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/04/24/datastructure_chapter5/" class="pre-post btn btn-default" title="数据结构【浙江大学】（第5节）整理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第5节）整理</span>
+        </a>
+    
+    
+        <a href="/2018/04/24/datastructure_chapter3/" class="next-post btn btn-default" title="数据结构【浙江大学】（第3节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第3节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第四节：二叉搜索树"><span class="toc-text">第四节：二叉搜索树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-二叉搜索树"><span class="toc-text">4.1 二叉搜索树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-平衡二叉树"><span class="toc-text">4.2 平衡二叉树</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

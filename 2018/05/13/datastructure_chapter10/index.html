@@ -1,0 +1,668 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="数据结构">
+
+
+    <meta name="description" content="第十讲：排序（下）10.1 快速排序10.1.1 算法概述策略：分而治之。
+下面举个例子，假如一组数为13/81/92/43/65/31/57/26/75/0，我们对其进行排序。那么首先选择出一...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>数据结构【浙江大学】（第10节）整理 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1263868967 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1263868967%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/datastructure/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/learning/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="数据结构【浙江大学】（第10节）整理">
+            
+	            数据结构【浙江大学】（第10节）整理
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/数据结构/">数据结构</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/数据结构/">数据结构</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2018/05/13</span>
+        </span>
+        
+    
+</div>
+            
+            
+            <p class="fa fa-exclamation-triangle warning">
+                本文于<strong>312</strong>天之前发表，文中内容可能已经过时。
+            </p>
+        
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="第十讲：排序（下）"><a href="#第十讲：排序（下）" class="headerlink" title="第十讲：排序（下）"></a>第十讲：排序（下）</h1><h2 id="10-1-快速排序"><a href="#10-1-快速排序" class="headerlink" title="10.1 快速排序"></a>10.1 快速排序</h2><h3 id="10-1-1-算法概述"><a href="#10-1-1-算法概述" class="headerlink" title="10.1.1 算法概述"></a>10.1.1 算法概述</h3><p>策略：分而治之。</p>
+<p>下面举个例子，假如一组数为13/81/92/43/65/31/57/26/75/0，我们对其进行排序。那么首先选择出一个主元，这里我们选择为65，那么将这组数的其他成员分为了两组，一组是小于主元的13/43/31/57/26/0，一组是大于主元的81/92/75.然后将其递归处理，两边各选一个主元再进行分组……倒数第二步的时候，我们在第一步选择出来的主元左侧已经排好了顺序，右侧也排好了顺序，这样将它们放在同一个数组中，就完成了排序。</p>
+<p>以下是上面这段话的伪码描述：</p>
+<p>void QuickSort(ElementType A[], int N)<br>{<br>       if(N&lt;2)<br>              return;<br>       pivot = 从A[]中选一个主元;<br>       将S={A[]\PIVOT}分成2个独立子集：<br>       A1={a∈S|a≤piovt}和<br>       A2={a∈S|a≥piovt}<br>       A[]=Quic_Sort(A1,N1)∪(pivot)∪QuickSort(A2,N2);<br>}</p>
+<p>这个方法的关键在于<strong>主元的选取</strong>（选取不好，快速算法会很慢）和<strong>子集划分</strong>（这个过程也是耗费时间的一个地方）。</p>
+<p>快速排序算法的最好情况就是<strong>每次正好中分</strong>，<strong>T(N)=O(NlogN)</strong>。</p>
+<h3 id="10-1-2-选主元"><a href="#10-1-2-选主元" class="headerlink" title="10.1.2 选主元"></a>10.1.2 选主元</h3><p>选取头、中、尾的中位数，也可以选取5个、7个等数字的中位数。例如8/12/3的中位数就是8。伪码描述如下：</p>
+<p>ElementType Median3(ElementType A[], int Left, int Right)<br>{<br>       int Center=(Left+Right)/2;<br>       if(A[Left]&gt;A[Center])<br>              Swap(&amp;A[Left],&amp;A[Center]);<br>       if(A[Left]&gt;A[Right])<br>              Swap(&amp;A[Left],&amp;A[Right]);<br>       if(A[Center]&gt;A[Right])<br>              Swap(&amp;A[Center],&amp;A[Right]);<br>       Swap(&amp;A[Center],&amp;A[Right-1]);/<em>将pivot藏到右边</em>/<br>       /<em>只需要考虑A[left+1]到A[Right-2]，这样来划分左右</em>/<br>       return A[Right-1];<br>}</p>
+<h3 id="10-1-3-子集划分"><a href="#10-1-3-子集划分" class="headerlink" title="10.1.3 子集划分"></a>10.1.3 子集划分</h3><p>为了便于理解，还是举一个例子：</p>
+<p>8</p>
+<p>1</p>
+<p>4</p>
+<p>9</p>
+<p>0</p>
+<p>3</p>
+<p>5</p>
+<p>2</p>
+<p>7</p>
+<p><strong>6（M）</strong></p>
+<p>定义两个指针i（指向第一个元素）和j（指向中位数左侧的元素）。（<strong>继续强调，这里的i和j不是实际的指针，而是存储所需要元素下标的整数。</strong>）先比较i代表的元素和主元的大小，发现8大于6，那么i这个指针不变；然后看j代表的元素和主元比较，发现7大于6，将j减一（即左移一位），然后再比较，发现2小于6，这样就不对了，j停止移动。在i和j都停止移动后，将其所指向的两个元素交换位置，变成了下面这个样子。</p>
+<p><strong>2</strong></p>
+<p>1</p>
+<p>4</p>
+<p>9</p>
+<p>0</p>
+<p>3</p>
+<p>5</p>
+<p><strong>8</strong></p>
+<p>7</p>
+<p><strong>6（M）</strong></p>
+<p>然后i加1（右移一位），1小于6，正常，i继续加1（右移一位），4小于6，正常，i继续加1（右移一位），此时9大于6，不正常，i停止；再看j减1（左移一位），5小于6，不正常，j停止，然后交换此时i和j所代表的元素，变成下面这个样子。</p>
+<p><strong>2</strong></p>
+<p>1</p>
+<p>4</p>
+<p><strong>5</strong></p>
+<p>0</p>
+<p>3</p>
+<p><strong>9</strong></p>
+<p><strong>8</strong></p>
+<p>7</p>
+<p><strong>6（M）</strong></p>
+<p>然后i加1（右移一位），发现正常，i继续加1，发现正常，i再加1，发现9小于6，不正常，i停止；然后j左移一位，发现3小于6，不正常，停止。</p>
+<p>此时发现i-j&lt;0了，子集划分结束，同时将i代表的元素和主元交换，完成了子集的划分。最后结果如下：</p>
+<p><strong>2</strong></p>
+<p>1</p>
+<p>4</p>
+<p><strong>5</strong></p>
+<p>0</p>
+<p>3</p>
+<p><strong>6（M）</strong></p>
+<p><strong>8</strong></p>
+<p>7</p>
+<p><strong>9</strong></p>
+<p>快速算法的“快速”在于，划分完成后其主元被一次性放到了正确的位置再也不会移动；例如插入算法等都需要一步一步往后移。</p>
+<p>如果有元素正好等于pivot怎么办？停下来处理。</p>
+<p>对于小规模数据还不如用插入排序。当递归的数据规模充分小，则停止递归，直接调用简单排序。在程序中定义一个Cutoff的阈值。</p>
+<h3 id="10-1-4-算法实现"><a href="#10-1-4-算法实现" class="headerlink" title="10.1.4 算法实现"></a>10.1.4 算法实现</h3><pre><code>伪码描述：
+</code></pre><p>void Quicksort(ElementType A[], int Left, int Right)<br>{<br>       if(Cutoff&lt;=Right-Left)<br>       {<br>              Pivot = Median3(A, Left, Right);<br>              i=Left;<br>              j= Right-1;<br>              for(;;)<br>              {<br>                     while(A[++i]&lt;Pivot){}<br>                     while(A[–j]&gt;Pivot){}<br>                     if(i&lt;j)<br>                            Swap(&amp;A[i],&amp;A[j]);<br>                     else break;<br>              }<br>              Swap(&amp;A[i],&amp;A[Right-1]);<br>              Quicksort(A,Left,i-1);<br>              Quicksort(A,i+1,Right);<br>       }<br>       else<br>              Insertion_Sort(A+Left,Right-Left+1);</p>
+<p>}</p>
+<p>为了统一接口，在上段程序后面再加一个：</p>
+<p>void Quick_Sort(ElementType A[], int N)<br>{<br>       Quicksort(A, 0, N-1);<br>}</p>
+<p>快速排序算法是<strong>不稳定</strong>算法！</p>
+<p>以下给出另外的C语言编写的代码，它是直接调用函数库：</p>
+<p>/<em> 快速排序 - 直接调用库函数 </em>/</p>
+<p>#include &lt;stdlib.h&gt;</p>
+<p>/<em>—————简单整数排序——————–</em>/<br>int compare(const void *a, const void *b)<br>{ /<em> 比较两整数。非降序排列 </em>/<br>    return (<em>(int</em>)a - <em>(int</em>)b);<br>}<br>/<em> 调用接口 </em>/<br>qsort(A, N, sizeof(int), compare);<br>/<em>—————简单整数排序——————–</em>/</p>
+<p>/<em>————— 一般情况下，对结构体Node中的某键值key排序 —————</em>/<br>struct Node {<br>    int key1, key2;<br>} A[MAXN];</p>
+<p>int compare2keys(const void *a, const void *b)<br>{ /<em> 比较两种键值：按key1非升序排列；如果key1相等，则按key2非降序排列 </em>/<br>    int k;<br>    if ( ((const struct Node<em>)a)-&gt;key1 &lt; ((const struct Node</em>)b)-&gt;key1 )<br>        k = 1;<br>    else if ( ((const struct Node<em>)a)-&gt;key1 &gt; ((const struct Node</em>)b)-&gt;key1 )<br>        k = -1;<br>    else { /<em> 如果key1相等 </em>/<br>        if ( ((const struct Node<em>)a)-&gt;key2 &lt; ((const struct Node</em>)b)-&gt;key2 )<br>            k = -1;<br>        else<br>            k = 1;<br>    }<br>    return k;<br>}<br>/<em> 调用接口 </em>/<br>qsort(A, N, sizeof(struct Node), compare2keys);<br>/<em>————— 一般情况下，对结构体Node中的某键值key排序 —————</em>/</p>
+<h2 id="10-2-表排序"><a href="#10-2-表排序" class="headerlink" title="10.2 表排序"></a>10.2 表排序</h2><h3 id="10-2-1-算法概述"><a href="#10-2-1-算法概述" class="headerlink" title="10.2.1 算法概述"></a>10.2.1 算法概述</h3><p>表排序用于：元素不是简简单单的排序，每一个元素都是一个庞大的结构，例如一个结构体等，此时如果我们想要交换两个元素，就不能忽略交换所需要的时间了。表排序就是在移动的时候，并不移动原始的数据，只是移动指向它的指针。</p>
+<p>它是一种间接排序的方法，定义一个指针数组作为“表”（table）。</p>
+<p>用下面一个例子来举例：</p>
+<p>A</p>
+<p>[0]</p>
+<p>[1]</p>
+<p>[2]</p>
+<p>[3]</p>
+<p>[4]</p>
+<p>[5]</p>
+<p>[6]</p>
+<p>[7]</p>
+<p>key</p>
+<p>f</p>
+<p>d</p>
+<p>c</p>
+<p>a</p>
+<p>g</p>
+<p>b</p>
+<p>h</p>
+<p>e</p>
+<p><strong>table</strong></p>
+<p><strong>0</strong></p>
+<p><strong>1</strong></p>
+<p><strong>2</strong></p>
+<p><strong>3</strong></p>
+<p><strong>4</strong></p>
+<p><strong>5</strong></p>
+<p><strong>6</strong></p>
+<p><strong>7</strong></p>
+<p>利用插入算法，可以得出：</p>
+<p>A</p>
+<p>[0]</p>
+<p>[1]</p>
+<p>[2]</p>
+<p>[3]</p>
+<p>[4]</p>
+<p>[5]</p>
+<p>[6]</p>
+<p>[7]</p>
+<p>key</p>
+<p>f</p>
+<p>d</p>
+<p>c</p>
+<p>a</p>
+<p>g</p>
+<p>b</p>
+<p>h</p>
+<p>e</p>
+<p><strong>table</strong></p>
+<p><strong>3</strong></p>
+<p><strong>5</strong></p>
+<p><strong>2</strong></p>
+<p><strong>1</strong></p>
+<p><strong>7</strong></p>
+<p><strong>0</strong></p>
+<p><strong>4</strong></p>
+<p><strong>6</strong></p>
+<p>如果仅要求按顺序输出，则输出：</p>
+<p>A[table[0]],A[table[1]],……,A[table[N-1]]</p>
+<h3 id="10-2-2-物理排序"><a href="#10-2-2-物理排序" class="headerlink" title="10.2.2 物理排序"></a>10.2.2 物理排序</h3><p>所谓物理排序就是说，我们不能像前文那样利用指针来移动，而是必须实际移动结构体，那该怎么办呢？</p>
+<p>利用这样一个原理：<strong>N个数字的排列由若干个独立的环组成</strong>。</p>
+<p>为了解释这个原理，看10.2.1中最后的结果那个表，table[0]值（3）-&gt;table[3]值（1）-&gt;table[1]的值（5）-&gt;table[5](0)返回到了table[0]。一共有三种环，这三种环互不相交，称为独立。</p>
+<p>在排序的时候，先对一个环内进行排序。那么如何判断一个环的结束呢？</p>
+<p><strong>每访问一个空位i后，就令table[i]=i。当发现table[i]==i时，环就结束了。</strong></p>
+<p>下面分析一下复杂度的情况：</p>
+<p>（1）最好的情况：初始即有序。</p>
+<p>（2）最坏的情况：有N/2个环，每个环包含两个元素，元素需要移动3N/2次。</p>
+<p><strong>但是无论如何，复杂度都可以写为T(N)=O(mN)</strong>，其中m是每个A元素复制需要的时间。</p>
+<h2 id="10-3-基数排序"><a href="#10-3-基数排序" class="headerlink" title="10.3 基数排序"></a>10.3 基数排序</h2><h3 id="10-3-1-桶排序"><a href="#10-3-1-桶排序" class="headerlink" title="10.3.1 桶排序"></a>10.3.1 桶排序</h3><p>举例：假设我们有N个学生，他们的成绩是0到100之间的整数（于是有于是有M=101个不同的成绩值个不同的成绩值）。如何在线性时间内将学生按成绩排序？</p>
+<p>我们可以为每一个成绩值构造一个“<strong>桶</strong>”，于是就有了101个桶，如图1所示。如果我们有一个88分的学生，那么就把学生的信息查到88分的这个链表的表头里，伪码描述如下：</p>
+<p>void Bucket_Sort(ElementType A[], int N)<br>{<br>       count[]初始化;<br>       while (读入读入11个学生成绩个学生成绩graded)<br>              将该生插入count[grade]链表;<br>       for ( i=0; i&lt;M; i++ )<br>       {<br>              if(count[i])<br>                     输出整个count[i]链表;<br>       }<br>}</p>
+<p>时间复杂度：<strong>T(N,M)=O(M+N)</strong></p>
+<p>插入学生的成绩，因为是N个学生，所以复杂度为O(N)；输出成绩，for循环，M个成绩，自然复杂度为O(M)。故总的时间复杂度如上。</p>
+<p>如果有N=40000个学生，由于M=101，故这就是一个线性的复杂度。</p>
+<p><img src="/wp-content/uploads/image/20180513/1526218142128125.jpg" alt="1.jpg" title="1526218142128125.jpg"> </p>
+<p>图1</p>
+<p>但是，如果M&gt;&gt;N怎么办？</p>
+<h3 id="10-3-2-基数排序"><a href="#10-3-2-基数排序" class="headerlink" title="10.3.2 基数排序"></a>10.3.2 基数排序</h3><p>举例：假设我们有N=10个整数，每个整数的值在0到999之间之间（于是有于是有M=1000个不同的值个不同的值）。还有可能在线性时间内排序吗？</p>
+<p>这里的基数就是跟进制有关，如果是二进制，基数就是2；如果是十进制，基数就是10。这里我们说的是十进制，所以<strong>基数就是10</strong>。</p>
+<p>加入我们的输入序列为：64,8,216,512,27,729,0,1,343,125，用“次位优先”（Least Significant Digit，LSD）算法。主位是指的第一位，剩余的都叫次位。因此这里比较我们先从个位开始。</p>
+<p>首先我们建立十个“桶”，然后将它们以个位数为标准放到这10个桶里面去，如表中Pass 1；然后按照十位数为标准放到10个桶里，如Pass 2；在完成之后，我们来做一个收集，收集的过程就是扫描每一个桶，然后把桶里的元素按照0,1,8,512,216……顺序用一个链表把它们串起来；串起来后，按照主位放到相应的桶里，如Pass3；最后，再对它们进行一次收集，用链表连起来，得出结果。</p>
+<p>表3.1 基数排序算法流程表</p>
+<p>Bucket</p>
+<p>0</p>
+<p>1</p>
+<p>2</p>
+<p>3</p>
+<p>4</p>
+<p>5</p>
+<p>6</p>
+<p>7</p>
+<p>8</p>
+<p>9</p>
+<p>Pass 1</p>
+<p>0</p>
+<p>1</p>
+<p>512</p>
+<p>343</p>
+<p>64</p>
+<p>125</p>
+<p>216</p>
+<p>27</p>
+<p>8</p>
+<p>729</p>
+<p>Pass2</p>
+<p>0</p>
+<p>512</p>
+<p>125</p>
+<p>343</p>
+<p>64</p>
+<p>1</p>
+<p>216</p>
+<p>27</p>
+<p>8</p>
+<p>729</p>
+<p>Pass3</p>
+<p>0</p>
+<p>125</p>
+<p>216</p>
+<p>343</p>
+<p>512</p>
+<p>729</p>
+<p>1</p>
+<p>8</p>
+<p>27</p>
+<p>64</p>
+<pre><code>时间复杂度：T(N,B,P)=O(P(N+B))。其中P为基数排序次数（本例子例为3），N为输入序列中数字个数，B为整数进制。
+</code></pre><h3 id="10-3-3-多关键字排序"><a href="#10-3-3-多关键字排序" class="headerlink" title="10.3.3 多关键字排序"></a>10.3.3 多关键字排序</h3><p>例如，一副扑克牌是按2种关键字排序的，如图2所示，花色是它的主关键字，面值是它的次关键字。</p>
+<p><img src="/wp-content/uploads/image/20180513/1526218273140431.jpg" alt="1526218273140431.jpg" title="1526218273140431.jpg"></p>
+<p>图2</p>
+<p>在这里，我们可以用“主位优先”（Most Significant Digit, MSD）排序，为花色建立4个桶，在每个桶里分别排序，最后合并结果。</p>
+<p>也可以使用“次位优先”（LSD）算法排序，为面值建立13个桶，就可以直接将结果合并，然后为花色建4个桶，放进去就可以了。</p>
+<p>在这里，LSD优点是不需要排序，时间复杂度小的多。</p>
+<p>基数排序是<strong>稳定</strong>的算法。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>（1）次位优先的C语言代码：</p>
+<p>/<em> 基数排序 - 次位优先 </em>/</p>
+<p>/<em> 假设元素最多有MaxDigit个关键字，基数全是同样的Radix </em>/</p>
+<p>#define MaxDigit 4</p>
+<p>#define Radix 10</p>
+<p>/<em> 桶元素结点 </em>/<br>typedef struct Node *PtrToNode;<br>struct Node {<br>    int key;<br>    PtrToNode next;<br>};</p>
+<p>/<em> 桶头结点 </em>/<br>struct HeadNode {<br>    PtrToNode head, tail;<br>};<br>typedef struct HeadNode Bucket[Radix];</p>
+<p>int GetDigit ( int X, int D )<br>{ /<em> 默认次位D=1, 主位D&lt;=MaxDigit </em>/<br>    int d, i;</p>
+<pre><code>for (i=1; i&lt;=D; i++) {
+    d = X % Radix;
+    X /= Radix;
+}
+return d;
+</code></pre><p>}</p>
+<p>void LSDRadixSort( ElementType A[], int N )<br>{ /<em> 基数排序 - 次位优先 </em>/<br>     int D, Di, i;<br>     Bucket B;<br>     PtrToNode tmp, p, List = NULL;</p>
+<pre><code>for (i=0; i&lt;Radix; i++) /* 初始化每个桶为空链表 */
+    B\[i\].head = B\[i\].tail = NULL;
+for (i=0; i&lt;N; i++) { /* 将原始序列逆序存入初始链表List */
+    tmp = (PtrToNode)malloc(sizeof(struct Node));
+    tmp-&gt;key = A\[i\];
+    tmp-&gt;next = List;
+    List = tmp;
+}
+/* 下面开始排序 */
+for (D=1; D&lt;=MaxDigit; D++) { /* 对数据的每一位循环处理 */
+    /* 下面是分配的过程 */
+    p = List;
+    while (p) {
+        Di = GetDigit(p-&gt;key, D); /* 获得当前元素的当前位数字 */
+        /* 从List中摘除 */
+        tmp = p; p = p-&gt;next;
+        /* 插入B\[Di\]号桶尾 */
+        tmp-&gt;next = NULL;
+        if (B\[Di\].head == NULL)
+            B\[Di\].head = B\[Di\].tail = tmp;
+        else {
+            B\[Di\].tail-&gt;next = tmp;
+            B\[Di\].tail = tmp;
+        }
+    }
+    /* 下面是收集的过程 */
+    List = NULL;
+    for (Di=Radix-1; Di&gt;=0; Di--) { /* 将每个桶的元素顺序收集入List */
+        if (B\[Di\].head) { /* 如果桶不为空 */
+            /* 整桶插入List表头 */
+            B\[Di\].tail-&gt;next = List;
+            List = B\[Di\].head;
+            B\[Di\].head = B\[Di\].tail = NULL; /* 清空桶 */
+        }
+    }
+}
+/* 将List倒入A\[\]并释放空间 */
+for (i=0; i&lt;N; i++) {
+   tmp = List;
+   List = List-&gt;next;
+   A\[i\] = tmp-&gt;key;
+   free(tmp);
+}
+</code></pre><p>}</p>
+<p>（2）主位优先C语言代码：</p>
+<p>/<em> 基数排序 - 主位优先 </em>/<br>/<em> 假设元素最多有MaxDigit个关键字，基数全是同样的Radix </em>/</p>
+<p>#define MaxDigit 4</p>
+<p>#define Radix 10</p>
+<p>/<em> 桶元素结点 </em>/<br>typedef struct Node *PtrToNode;<br>struct Node{<br>    int key;<br>    PtrToNode next;<br>};</p>
+<p>/<em> 桶头结点 </em>/<br>struct HeadNode {<br>    PtrToNode head, tail;<br>};<br>typedef struct HeadNode Bucket[Radix];</p>
+<p>int GetDigit ( int X, int D )<br>{ /<em> 默认次位D=1, 主位D&lt;=MaxDigit </em>/<br>    int d, i;</p>
+<pre><code>for (i=1; i&lt;=D; i++) {
+    d = X%Radix;
+    X /= Radix;
+}
+return d;
+</code></pre><p>}</p>
+<p>void MSD( ElementType A[], int L, int R, int D )<br>{ /<em> 核心递归函数: 对A[L]…A[R]的第D位数进行排序 </em>/<br>     int Di, i, j;<br>     Bucket B;<br>     PtrToNode tmp, p, List = NULL;<br>     if (D==0) return; /<em> 递归终止条件 </em>/</p>
+<pre><code>for (i=0; i&lt;Radix; i++) /* 初始化每个桶为空链表 */
+    B\[i\].head = B\[i\].tail = NULL;
+for (i=L; i&lt;=R; i++) { /* 将原始序列逆序存入初始链表List */
+    tmp = (PtrToNode)malloc(sizeof(struct Node));
+    tmp-&gt;key = A\[i\];
+    tmp-&gt;next = List;
+    List = tmp;
+}
+/* 下面是分配的过程 */
+p = List;
+while (p) {
+    Di = GetDigit(p-&gt;key, D); /* 获得当前元素的当前位数字 */
+    /* 从List中摘除 */
+    tmp = p; p = p-&gt;next;
+    /* 插入B\[Di\]号桶 */
+    if (B\[Di\].head == NULL) B\[Di\].tail = tmp;
+    tmp-&gt;next = B\[Di\].head;
+    B\[Di\].head = tmp;
+}
+/* 下面是收集的过程 */
+i = j = L; /* i, j记录当前要处理的A\[\]的左右端下标 */
+for (Di=0; Di&lt;Radix; Di++) { /* 对于每个桶 */
+    if (B\[Di\].head) { /* 将非空的桶整桶倒入A\[\], 递归排序 */
+        p = B\[Di\].head;
+        while (p) {
+            tmp = p;
+            p = p-&gt;next;
+            A\[j++\] = tmp-&gt;key;
+            free(tmp);
+        }
+        /* 递归对该桶数据排序, 位数减1 */
+        MSD(A, i, j-1, D-1);
+        i = j; /* 为下一个桶对应的A\[\]左端 */
+    }
+}
+</code></pre><p>}</p>
+<p>void MSDRadixSort( ElementType A[], int N )<br>{ /<em> 统一接口 </em>/<br>    MSD(A, 0, N-1, MaxDigit);<br>}</p>
+<h2 id="10-4-排序算法的比较"><a href="#10-4-排序算法的比较" class="headerlink" title="10.4 排序算法的比较"></a>10.4 排序算法的比较</h2><p><strong>排序方法</strong></p>
+<p><strong>平均时间复杂度</strong></p>
+<p><strong>最坏情况下时间复杂度</strong></p>
+<p><strong>额外空间复杂度</strong></p>
+<p><strong>稳定性</strong></p>
+<p><strong>简单选择排序</strong></p>
+<p>O(N2)</p>
+<p>O(N2)</p>
+<p>O(1)</p>
+<p>不稳定</p>
+<p><strong>冒泡排序</strong></p>
+<p>O(N2)</p>
+<p>O(N2)</p>
+<p>O(1)</p>
+<p>稳定</p>
+<p><strong>直接插入排序</strong></p>
+<p>O(N2)</p>
+<p>O(N2)</p>
+<p>O(1)</p>
+<p>稳定</p>
+<p><strong>希尔排序</strong></p>
+<p>O(Nd)</p>
+<p>O(N2)</p>
+<p>O(1)</p>
+<p>不稳定</p>
+<p><strong>堆排序</strong></p>
+<p>O(NlogN)</p>
+<p>O(NlogN)</p>
+<p>O(1)</p>
+<p>不稳定</p>
+<p><strong>快速排序</strong></p>
+<p>O(NlogN)</p>
+<p>O(N2)</p>
+<p>O(logN)</p>
+<p>不稳定</p>
+<p><strong>归并排序</strong></p>
+<p>O(NlogN)</p>
+<p>O(NlogN)</p>
+<p>O(N)</p>
+<p>稳定</p>
+<p><strong>基数排序</strong></p>
+<p>O(P(N+B))</p>
+<p>O(P(N+B))</p>
+<p>O(N+B)</p>
+<p>稳定</p>
+<p>前三种排序算法的共同优点是算法编写简单。冒泡排序和直接插入排序每次都是交换两个元素，因此是慢的，但是它们稳定，简单选择排序是跳着交换，有可能不稳定。</p>
+<p>希尔排序算法打破了N的平方的复杂度，它的好坏取决于d（增量序列），因为是跳着排的，所以它也是不稳定的。</p>
+<p>堆排序和归并排序的时间复杂度是最好的，无论何时都是一样的。归并排序的缺点是它需要一个额外的空间，当数据量非常大的时候，只能排一半数据，但是它的优点是它是稳定的。堆排序理论上看很美，实际情况是虽然理论上是O(NlogN)，但是O这个常数会比较大，所以它到底跟快速排序哪个快，就难说了。堆排序和快速排序的共同缺点是不稳定，快速排序总可以构造一种最糟糕的情况是O(N2)，而且因为是递归的，所以额外空间是需要的，时间复杂度最好时，额外空间复杂度也是O(logN)。</p>
+<p>基数排序在某种情况下，会打破NlogN的魔咒，会更快，近乎线性。它需要的额外空间是需要B个桶，每个桶设置B个数据的位置，所以到底什么情况下合算，看情况，它的好处是它是稳定的。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2018/05/14/datastructure_chapter11/" class="pre-post btn btn-default" title="数据结构【浙江大学】（第11节）整理">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第11节）整理</span>
+        </a>
+    
+    
+        <a href="/2018/05/12/datastructure_chapter9/" class="next-post btn btn-default" title="数据结构【浙江大学】（第9节）整理">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">数据结构【浙江大学】（第9节）整理</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第十讲：排序（下）"><span class="toc-text">第十讲：排序（下）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-快速排序"><span class="toc-text">10.1 快速排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-1-算法概述"><span class="toc-text">10.1.1 算法概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-2-选主元"><span class="toc-text">10.1.2 选主元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-3-子集划分"><span class="toc-text">10.1.3 子集划分</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-1-4-算法实现"><span class="toc-text">10.1.4 算法实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-表排序"><span class="toc-text">10.2 表排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-1-算法概述"><span class="toc-text">10.2.1 算法概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-2-物理排序"><span class="toc-text">10.2.2 物理排序</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3-基数排序"><span class="toc-text">10.3 基数排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-1-桶排序"><span class="toc-text">10.3.1 桶排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-2-基数排序"><span class="toc-text">10.3.2 基数排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-3-3-多关键字排序"><span class="toc-text">10.3.3 多关键字排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#补充"><span class="toc-text">补充</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4-排序算法的比较"><span class="toc-text">10.4 排序算法的比较</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
