@@ -1,0 +1,351 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="vim,centos">
+
+
+    <meta name="description" content="把CentOS7中的vim打造成C++IDE由于我个人平时常使用C/C++进行编程，所以我决定把CentOS下面的VIM这个强大的编辑器改造成一个强大的C++的IDE。下面是具体的步骤。
+安装p...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>把CentOS7中的vim打造成C++IDE | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="把CentOS7中的vim打造成C++IDE">
+            
+	            把CentOS7中的vim打造成C++IDE
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/centos/">centos</a> <a class="tag-link" href="/tags/vim/">vim</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/04/28</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="把CentOS7中的vim打造成C-IDE"><a href="#把CentOS7中的vim打造成C-IDE" class="headerlink" title="把CentOS7中的vim打造成C++IDE"></a>把CentOS7中的vim打造成C++IDE</h2><p>由于我个人平时常使用C/C++进行编程，所以我决定把CentOS下面的VIM这个强大的编辑器改造成一个强大的C++的IDE。下面是具体的步骤。</p>
+<h3 id="安装pathogen"><a href="#安装pathogen" class="headerlink" title="安装pathogen"></a>安装pathogen</h3><p>该插件地址为：<br><a href="https://github.com/tpope/vim-pathogen" target="_blank" rel="noopener">https://github.com/tpope/vim-pathogen</a></p>
+<p>安装命令为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">mkdir -p ~/.vim/autoload ~/.vim/bundle &amp;&amp; \</span><br><span class="line">curl -LSso ~/.vim/autoload/pathogen.vim https://tpo.pe/pathogen.vim</span><br></pre></td></tr></table></figure></p>
+<p>安装完成之后，打开~/.vimrc文件，然后输入：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">execute pathogen#infect()</span><br><span class="line">syntax on</span><br><span class="line">filetype plugin indent on</span><br></pre></td></tr></table></figure></p>
+<p>然后保存退出，这个插件就安装完成了。此时如果在~/.vim文件夹里面执行tree命令，则会得到这样的结果：</p>
+<p>.<br>├── autoload<br>│   └── pathogen.vim<br>└── bundle</p>
+<p>这里面autoload这个目录存放的就是我们的这个pathogen这个插件，其实这个插件就是一个脚本。当vim启动时，由于刚刚我们在~/.vimrc里面配置了<code>execute pathogen#infect()</code>这个功能，所以它会自动加载这个脚本并执行里面的函数。</p>
+<h3 id="安装auto-pairs插件"><a href="#安装auto-pairs插件" class="headerlink" title="安装auto-pairs插件"></a>安装auto-pairs插件</h3><p>项目地址：<br><a href="https://github.com/jiangmiao/auto-pairs" target="_blank" rel="noopener">https://github.com/jiangmiao/auto-pairs</a></p>
+<p>它的功能是成对插入或删除括号，引号等。安装方式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone git://github.com/jiangmiao/auto-pairs.git ~/.vim/bundle/auto-pairs</span><br></pre></td></tr></table></figure>
+<h3 id="安装NERDTree"><a href="#安装NERDTree" class="headerlink" title="安装NERDTree"></a>安装NERDTree</h3><p>功能：显示目录树</p>
+<p>项目地址：<br><a href="https://github.com/scrooloose/nerdtree" target="_blank" rel="noopener">https://github.com/scrooloose/nerdtree</a></p>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/scrooloose/nerdtree.git ~/.vim/bundle/nerdtree</span><br></pre></td></tr></table></figure></p>
+<p>为了方便打开NERDTree，我们可以设置快捷键，还是打开~/.vimrc，插入下面一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">map &lt;C-n&gt; :NERDTree&lt;CR&gt;</span><br></pre></td></tr></table></figure></p>
+<h3 id="MiniBufExplorer"><a href="#MiniBufExplorer" class="headerlink" title="MiniBufExplorer"></a>MiniBufExplorer</h3><p>功能：显示已经打开的buffer<br>项目地址：<br><a href="https://www.vim.org/scripts/script.php?script_id=159" target="_blank" rel="noopener">https://www.vim.org/scripts/script.php?script_id=159</a></p>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.vim/bundle/minibufexplorer/plugin &amp;&amp; wget &quot;http://www.vim.org/scripts/download_script.php?src_id=3640&quot; -O ~/.vim/bundle/minibufexplorer/plugin/minibufexpl.vim</span><br></pre></td></tr></table></figure></p>
+<p>命令解释：在~/.vim/bundle中新建一个目录minibufexplorer，并在其中创建一个plugin，然后下载网址中的内容，-O表示指定下载目录和文件名如后面所示。然后我们打开两个文件，可以看到如图所示上面有了一个标志。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/minibufexplorer.png" alt></p>
+<p>在~/.vimrc文件中插入下面一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let g:miniBufExplMaxSize = 2</span><br></pre></td></tr></table></figure>
+<h3 id="ctags-taglist-omnicppcomplete"><a href="#ctags-taglist-omnicppcomplete" class="headerlink" title="ctags+taglist+omnicppcomplete"></a>ctags+taglist+omnicppcomplete</h3><p><strong>1.首先安装ctags</strong></p>
+<p>执行以下命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo yum install ctags</span><br></pre></td></tr></table></figure></p>
+<p>创建索引：在你代码的根目录执行如下命令，会生成一个tags文件，此时在代码根目录下打开一个文件（vim默认只加载工作目录下的tags文件），将光标置于一个函数或结构体名字上，按ctr+]即可跳转到该名称的定义处，如果出现多个选项，可以输入编号选择对应跳转的地方，按ctr+o可回到光标之前的位置。<br>ctags -R –sort=yes –c++-kinds=+p –fields=+iaS –extra=+q –language-force=C++</p>
+<p><strong>2.安装taglist</strong></p>
+<p>功能：可以将代码内的函数、变量等按照规律列出来，方便查找。</p>
+<p>下载地址：<br><a href="http://www.vim.org/scripts/script.php?script_id=273" target="_blank" rel="noopener">http://www.vim.org/scripts/script.php?script_id=273</a></p>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.vim/bundle &amp;&amp; wget &quot;http://www.vim.org/scripts/download_script.php?src_id=19574&quot; -O taglist.zip &amp;&amp; unzip taglist.zip -d taglist</span><br></pre></td></tr></table></figure></p>
+<p>命令意义：改变当前目录为~/.vim/bundle，然后下载压缩包并命名为taglist.zip，然后将压缩包解压到taglist文件夹中。</p>
+<p>打开~/.vimrc，输入以下内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">let Tlist_Show_One_File=1 &quot; 只展示一个文件的taglist</span><br><span class="line">let Tlist_Exit_OnlyWindow=1 &quot; 当taglist是最后以个窗口时自动退出</span><br><span class="line">let Tlist_Use_Right_Window=1 &quot; 在右边显示taglist窗口</span><br><span class="line">let Tlist_Sort_Type=&quot;name&quot; &quot; tag按名字排序</span><br></pre></td></tr></table></figure>
+<p>**3.OmniCppComplete</p>
+<p>对C++语法补全的插件，可以对function、namespace、class member等进行补全。omni补全需要依赖tags文件，需要你用ctags命令自己生成。</p>
+<p>下载地址：<br><a href="http://www.vim.org/scripts/script.php?script_id=1520" target="_blank" rel="noopener">http://www.vim.org/scripts/script.php?script_id=1520</a></p>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.vim/bundle &amp;&amp; wget &quot;http://www.vim.org/scripts/download_script.php?src_id=7722&quot; -O omnicppcomplete.zip &amp;&amp; unzip omnicppcomplete.zip -d omnicppcomplete</span><br></pre></td></tr></table></figure></p>
+<p>由于命令格式和上面的一致，所以这里不再解释。该命令还需要进行以下配置，打开~/.vimrc文件，输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">filetype plugin indent on</span><br><span class="line">set completeopt=longest,menu</span><br><span class="line">let OmniCpp_NamespaceSearch = 2     &quot; search namespaces in the current buffer   and in included files</span><br><span class="line">let OmniCpp_ShowPrototypeInAbbr = 1 &quot; 显示函数参数列表</span><br><span class="line">let OmniCpp_MayCompleteScope = 1    &quot; 输入 :: 后自动补全</span><br><span class="line">let OmniCpp_DefaultNamespaces = [&quot;std&quot;, &quot;_GLIBCXX_STD&quot;]</span><br></pre></td></tr></table></figure>
+<p>前面说过，omni插件的补全是依赖于tags文件的，因此需要我们手动建立tags文件，方法见前面所示。</p>
+<p>当输入hello.h和hello.cpp中的函数或结构体时，通过按<code>ctr+x</code> <code>ctr+o</code>就可以自动补全了。<br>通过按<code>ctr+n</code>和<code>ctr+p</code>可以对候选项进行上下选择。通过这种方式可以实现对函数、结构体的补全。<br>另外，我们还可以实现对STL补全，这才是我们需要的。</p>
+<p><strong>4.对STL补全</strong></p>
+<p>执行以下命令：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir -p ~/.vim/tags &amp;&amp; cd ~/.vim/tags &amp;&amp; wget &quot;http://www.vim.org/scripts/download_script.php?src_id=9178&quot; -O - | tar jxvf -</span><br></pre></td></tr></table></figure>
+<p>然后我们在~/.vim/tags/cpp_src目录下执行ctags命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++</span><br></pre></td></tr></table></figure></p>
+<p>然后打开~/.vimrc添加下面一行：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set tags+=~/.vim/tags/cpp_src/tags</span><br></pre></td></tr></table></figure></p>
+<p>这种方式显然是不友好的，需要使用ctrl+x和ctrl+o，所以我们可以学习shell中使用TAB补全的方式进行补全，这里就需要使用到SuperTAB。</p>
+<h3 id="SuperTab"><a href="#SuperTab" class="headerlink" title="SuperTab"></a>SuperTab</h3><p>项目地址：<br><a href="https://github.com/ervandew/supertab" target="_blank" rel="noopener">https://github.com/ervandew/supertab</a></p>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.vim/bundle &amp;&amp; git clone https://github.com/ervandew/supertab.git ~ /.vim/bundle/supertab</span><br></pre></td></tr></table></figure>
+<p>无需任何配置即可使用，这时你想要补全变量名或函数名只需按一下TAB键即可，出现候选窗口之后也可以用TAB键进行选择。<br>注意：由于TAB键被映射成了补全快捷键，也就无法通过TAB键直接输入制表符，这时如果想要输入制表符可以通过<code>ctr+v TAB</code>即可，即先输入<code>ctr+v</code>再输入<code>TAB</code>键，在vim下通过<code>ctl+v</code>可以输入很多不可见字符，比如试试<code>ctr+v</code> <code>ctr+w</code>。</p>
+<h3 id="安装colorschemes"><a href="#安装colorschemes" class="headerlink" title="安装colorschemes"></a>安装colorschemes</h3><p>功能：可以给vim更换配色方案</p>
+<p>项目地址：</p>
+<p><a href="https://github.com/flazz/vim-colorschemes" target="_blank" rel="noopener">https://github.com/flazz/vim-colorschemes</a></p>
+<p>安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd ~/.vim/bundle &amp;&amp; git clone </span><br><span class="line">https://github.com/flazz/vim-colorschemes.git ~ /.vim/bundle/colorschemes</span><br></pre></td></tr></table></figure></p>
+<p>在<code>~/.vim/colors</code>中有许多配色方案，你可以任选其一来应用。例如我们使用molokai这个配色方案，我们可以在~/.vimrc中添加这个语句：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">colorscheme molokai</span><br></pre></td></tr></table></figure></p>
+<p>以上，就搭建成功了一个功能强大的C/C++的IDE。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/04/23/trapping-rain-water/" class="next-post btn btn-default" title="trapping rain water">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">trapping rain water</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#把CentOS7中的vim打造成C-IDE"><span class="toc-text">把CentOS7中的vim打造成C++IDE</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装pathogen"><span class="toc-text">安装pathogen</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装auto-pairs插件"><span class="toc-text">安装auto-pairs插件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装NERDTree"><span class="toc-text">安装NERDTree</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MiniBufExplorer"><span class="toc-text">MiniBufExplorer</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ctags-taglist-omnicppcomplete"><span class="toc-text">ctags+taglist+omnicppcomplete</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SuperTab"><span class="toc-text">SuperTab</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装colorschemes"><span class="toc-text">安装colorschemes</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
