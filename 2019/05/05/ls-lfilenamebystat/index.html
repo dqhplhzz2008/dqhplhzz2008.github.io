@@ -1,0 +1,472 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="linux,centos">
+
+
+    <meta name="description" content="利用stat函数实现ls- l filename功能功能&amp;函数介绍在我们使用 ls -l 命令的时候，会输出下面的结果：
+
+在这里，我使用stat函数来实现这一功能。我们知道，stat函...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>利用stat函数实现ls- l filename功能 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="利用stat函数实现ls- l filename功能">
+            
+	            利用stat函数实现ls- l filename功能
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/centos/">centos</a> <a class="tag-link" href="/tags/linux/">linux</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/05</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="利用stat函数实现ls-l-filename功能"><a href="#利用stat函数实现ls-l-filename功能" class="headerlink" title="利用stat函数实现ls- l filename功能"></a>利用stat函数实现ls- l filename功能</h2><h3 id="功能-amp-函数介绍"><a href="#功能-amp-函数介绍" class="headerlink" title="功能&amp;函数介绍"></a>功能&amp;函数介绍</h3><p>在我们使用 <code>ls -l</code> 命令的时候，会输出下面的结果：</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/statls1.png" alt></p>
+<p>在这里，我使用stat函数来实现这一功能。我们知道，stat函数提供了一个结构体，其内容为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">struct stat &#123;</span><br><span class="line">    dev_t         st_dev;       //文件的设备编号</span><br><span class="line">    ino_t         st_ino;       //节点</span><br><span class="line">    mode_t        st_mode;      //文件的类型和存取的权限</span><br><span class="line">    nlink_t       st_nlink;     //连到该文件的硬连接数目，刚建立的文件值为1</span><br><span class="line">    uid_t         st_uid;       //用户ID</span><br><span class="line">    gid_t         st_gid;       //组ID</span><br><span class="line">    dev_t         st_rdev;      //(设备类型)若此文件为设备文件，则为其设备编号</span><br><span class="line">    off_t         st_size;      //文件字节数(文件大小)</span><br><span class="line">    blksize_t     st_blksize;   //块大小(文件系统的I/O 缓冲区大小)</span><br><span class="line">    blkcnt_t      st_blocks;    //块数</span><br><span class="line">    time_t        st_atime;     //最后一次访问时间</span><br><span class="line">    time_t        st_mtime;     //最后一次修改时间</span><br><span class="line">    time_t        st_ctime;     //最后一次改变时间(指属性)</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>基于此，我们就可以获取到我们想要的信息。<br>根据图片中使用<code>ls -l</code>获得到的信息，我们知道我们需要获得的是块数、文件的类型和存取的权限、硬连接数目、用户ID、组ID、最后一次修改时间、文件名等信息。接下来我们可以分别来进行写。</p>
+<p>下面开始讲解这个程序。</p>
+<h3 id="头文件"><a href="#头文件" class="headerlink" title="头文件"></a>头文件</h3><p>首先是所用到的头文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt; //perror和printf等使用</span><br><span class="line">#include &lt;unistd.h&gt; //stat使用</span><br><span class="line">#include &lt;sys/stat.h&gt; //stat使用</span><br><span class="line">#include &lt;sys/types.h&gt; //stat、getpwuid、getgrgid使用</span><br><span class="line">#include &lt;pwd.h&gt;//getpwuid使用</span><br><span class="line">#include &lt;grp.h&gt;//getgrgid使用</span><br><span class="line">#include &lt;time.h&gt; //输出时间ctime使用</span><br><span class="line">#include&lt;stdlib.h&gt; //exit使用</span><br></pre></td></tr></table></figure></p>
+<h3 id="文件类型"><a href="#文件类型" class="headerlink" title="文件类型"></a>文件类型</h3><p>我们知道，首先要显示的是文件类型，而文件类型则可使用stat结构体中的st_mode与上S_IFMT即可得到相应的文件类型，然后我们可以使用一个switch判断即可。相应的文件类型分别是：</p>
+<table>
+<thead>
+<tr>
+<th>字符表示</th>
+<th>八进制表示</th>
+<th>文件类型名称</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S_IFSOCK</td>
+<td>0140000</td>
+<td>套接字</td>
+</tr>
+<tr>
+<td>S_IFLINK</td>
+<td>0120000</td>
+<td>符号链接（软连接）</td>
+</tr>
+<tr>
+<td>S_IFREG</td>
+<td>0100000</td>
+<td>普通文件</td>
+</tr>
+<tr>
+<td>S_IFBLK</td>
+<td>0060000</td>
+<td>块设备</td>
+</tr>
+<tr>
+<td>S_IFDIR</td>
+<td>0040000</td>
+<td>目录</td>
+</tr>
+<tr>
+<td>S_IFCHR</td>
+<td>0020000</td>
+<td>字符设备</td>
+</tr>
+<tr>
+<td>S_IFIFO</td>
+<td>0010000</td>
+<td>管道</td>
+</tr>
+</tbody>
+</table>
+<p>代码实现可以写为（因为是示例，所以就用两种常用的文件格式来演示）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">switch(st.st_mode &amp; S_IFMT)</span><br><span class="line">	&#123;</span><br><span class="line">		case S_IFREG:</span><br><span class="line">			printf(&quot;-&quot;);</span><br><span class="line">			break;</span><br><span class="line">		case S_IFDIR:</span><br><span class="line">			printf(&quot;d&quot;);</span><br><span class="line">			break;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="权限输出（以及输出-）"><a href="#权限输出（以及输出-）" class="headerlink" title="权限输出（以及输出.）"></a>权限输出（以及输出.）</h3><p>我们知道用户、用户组、其它的权限信息仍然是保存在<code>st._st_mode</code>中，且其分布分别是：</p>
+<ul>
+<li>所有者权限（6~8bit）</li>
+<li>所属组权限（3~5bit）</li>
+<li>其它人权限（0~2bit）</li>
+</ul>
+<p>所以我们可以通过取某一位，然后判断其除以3的余数情况来判断其是否可以读写执行。由于我们输出顺序为所有者、所有者的用户组、其他人，所以我们要先从高位进行取，取的方式就是将st_mode与某一位为1其它位为0的数字相与（为1的位置就是我们想取的那个位置），然后进行判断。若该部分余0，则说明没有该权限，所以为“-”代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">int i = 0;</span><br><span class="line">	for(i = 8;i &gt;= 0;i--)</span><br><span class="line">	&#123;</span><br><span class="line">		if(st.st_mode &amp; (1 &lt;&lt; i))</span><br><span class="line">		&#123;</span><br><span class="line">			switch(i%3)</span><br><span class="line">			&#123;</span><br><span class="line">				case 2:</span><br><span class="line">					printf(&quot;r&quot;);</span><br><span class="line">					break;</span><br><span class="line">				case 1:</span><br><span class="line">					printf(&quot;w&quot;);</span><br><span class="line">					break;</span><br><span class="line">				case 0:</span><br><span class="line">					printf(&quot;x&quot;);</span><br><span class="line">					break;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		else</span><br><span class="line">			printf(&quot;-&quot;);</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>用于在权限后面有一个“.”，所以我们直接输出它：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot;.&quot;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="硬连接数目"><a href="#硬连接数目" class="headerlink" title="硬连接数目"></a>硬连接数目</h3><p>接下来就是要输出硬链接的数目，直接读取结构体中的st_nlink即可。所以实现代码如下（记得前面有一个空格）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">int hardlin = (int)st.st_nlink;</span><br><span class="line">	printf(&quot; %d&quot;,hardlin);</span><br></pre></td></tr></table></figure>
+<h3 id="输出所有者名"><a href="#输出所有者名" class="headerlink" title="输出所有者名"></a>输出所有者名</h3><p>由于结构体中存储的是用户的uid，所以要想输出所有者名，我们就需要根据uid来获取用户的用户名。我们可以利用读取<code>/etc/passwd</code>进行查找，也可以采用下面的方法，即使用<code>getpwuid()</code>这个函数。</p>
+<p><strong>基础知识</strong>：<br>函数原型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">struct passwd *getwnam(const char *name);</span><br><span class="line"></span><br><span class="line">struct passwd *getwuid(uid_t uid);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>关于getwnam</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>用来逐一搜索参数name 指定的账号名称, 找到时便将该用户的数据以passwd 结构返回。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回 passwd 结构数据, 如果返回NULL 则表示已无数据, 或有错误发生。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关于getpwuid</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>用来逐一搜索参数uid指定的用户识别码, 找到时便将该用户的数据以passwd结构体返回。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回 passwd 结构数据, 如果返回NULL 则表示已无数据, 或有错误发生。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关于passwd结构体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">struct passwd</span><br><span class="line">&#123;</span><br><span class="line">    char * pw_name; //用户账号</span><br><span class="line">    char * pw_passwd; //用户密码</span><br><span class="line">    uid_t pw_uid; //用户识别码</span><br><span class="line">    gid_t pw_gid; //组识别码</span><br><span class="line">    char * pw_gecos; //用户全名</span><br><span class="line">    char * pw_dir; //家目录</span><br><span class="line">    char * pw_shell; //所使用的shell 路径</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>根据以上，我们可以直接写出以下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct passwd *pw = getpwuid(st.st_uid);</span><br><span class="line">	printf(&quot; %s&quot;,pw-&gt;pw_name);</span><br></pre></td></tr></table></figure>
+<h3 id="输出所属组名"><a href="#输出所属组名" class="headerlink" title="输出所属组名"></a>输出所属组名</h3><p>同上面一样，结构体里面只提供了所属组的GID，所以我们需要根据GID去查找所属组名。方法依然有两种，一为读取<code>/etc/passwd</code>进行查找；二为使用<code>getgrgid()</code>函数进行返回。</p>
+<p><strong>基础知识</strong><br>函数原型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct group *getgrnam(const char *name)；</span><br><span class="line">struct group *getgrgid(gid_t gid);</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>关于getgrnam</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>用来以指定的用户组名来搜索组文件, 找到时便将该组的数据以group 结构返回。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回 group 结构数据, 如果返回NULL 则表示已无数据, 或有错误发生。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关于getgrgid</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>功能</td>
+<td>用来以指定的gid参数来逐一搜索组文件, 找到时便将该组的数据以group 结构返回。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>返回 group 结构数据, 如果返回NULL 则表示已无数据, 或有错误发生。</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>关于group结构体</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">struct group</span><br><span class="line">&#123;</span><br><span class="line">    char *gr_name; //组名称</span><br><span class="line">    char *gr_passwd; //组密码</span><br><span class="line">    gid_t gr_gid; //组识别码</span><br><span class="line">    char **gr_mem; //组成员账号</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>所以实现代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">struct group *gp=getgrgid(st.st_gid);</span><br><span class="line">	printf(&quot; %s&quot;,gp-&gt;gr_name);</span><br></pre></td></tr></table></figure></p>
+<h3 id="输出文件大小、最后修改时间、文件名"><a href="#输出文件大小、最后修改时间、文件名" class="headerlink" title="输出文件大小、最后修改时间、文件名"></a>输出文件大小、最后修改时间、文件名</h3><p>文件大小在stat的结构体里面为<code>st.st_size</code>。</p>
+<p>输出最后修改时间我们可以直接使用结构体里面的<code>st.st_mtime</code>即可，但是要转换成标准的日期输出方式，我们就需要用到<code>ctime()</code>函数。</p>
+<p>其原型如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">char *ctime(const time_t *timep);</span><br></pre></td></tr></table></figure></p>
+<p>其功能为：ctime()将参数timep所指的time_t 结构中的信息转换成真实世界所使用的时间日期表示方法，然后将结果以字符串形态返回。此函数已经由时区转换成当地时间，字符串格式为”Wed Jun 30 21 :49 :08 1993\n”。</p>
+<p>所以可以直接写出如下代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">printf(&quot; %s %s\n&quot;,ctime(&amp;(st.st_mtime)),argv[1]);</span><br></pre></td></tr></table></figure></p>
+<p>至此，我们使用stat实现<code>ls-l filename</code>功能的程序便写完了。<br>我们的程序的运行结果如下：</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/statls2.png" alt></p>
+<p>代码参见<a href="https://github.com/dqhplhzz2008/Study-notes/blob/master/linux/lsl.c" target="_blank" rel="noopener">这里</a></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/05/05/linuxfundamentalday4/" class="next-post btn btn-default" title="Linux基础学习第四天：C库函数和系统函数">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Linux基础学习第四天：C库函数和系统函数</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#利用stat函数实现ls-l-filename功能"><span class="toc-text">利用stat函数实现ls- l filename功能</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#功能-amp-函数介绍"><span class="toc-text">功能&amp;函数介绍</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#头文件"><span class="toc-text">头文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文件类型"><span class="toc-text">文件类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#权限输出（以及输出-）"><span class="toc-text">权限输出（以及输出.）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#硬连接数目"><span class="toc-text">硬连接数目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出所有者名"><span class="toc-text">输出所有者名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出所属组名"><span class="toc-text">输出所属组名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#输出文件大小、最后修改时间、文件名"><span class="toc-text">输出文件大小、最后修改时间、文件名</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="linux,centos">
+
+
+    <meta name="description" content="Linux第四天之C库函数和系统函数
+FILE其实本质上是一个结构体，它里面有：
+
+文件描述符（整型值）。索引到对应的磁盘文件。
+文件读写位置指针：读写文件过程中指针的实际位置。
+I/O缓冲区（...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Linux基础学习第四天：C库函数和系统函数 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux基础学习第四天：C库函数和系统函数">
+            
+	            Linux基础学习第四天：C库函数和系统函数
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/centos/">centos</a> <a class="tag-link" href="/tags/linux/">linux</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/05</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Linux第四天之C库函数和系统函数"><a href="#Linux第四天之C库函数和系统函数" class="headerlink" title="Linux第四天之C库函数和系统函数"></a>Linux第四天之C库函数和系统函数</h2><p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/ckuhanshu1.png" alt></p>
+<p>FILE其实本质上是一个结构体，它里面有：</p>
+<ul>
+<li>文件描述符（整型值）。索引到对应的磁盘文件。</li>
+<li>文件读写位置指针：读写文件过程中指针的实际位置。</li>
+<li>I/O缓冲区（内存地址）：通过寻址找到对应的内存块。大小默认是8个byte。设置I/O缓冲区是为了减少对内存的读写访问，节省时间。</li>
+</ul>
+<p>Linux的系统函数是没有缓冲区的，需要我们自己提供。</p>
+<h3 id="文件描述符"><a href="#文件描述符" class="headerlink" title="文件描述符"></a>文件描述符</h3><p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/wjmsf.png" alt="27a83efda5abad975380a4c0276d8da2.png"></p>
+<p>Linux每一个运行的程序（进程），操作系统都会为其分配一个0~4G（232）的地址空间（虚拟地址空间）。文件描述符大小是1024。<br>文件描述符就是在内核区，如上图所示。第0、1、2个是标准输入、标准输出和标准错误，默认是打开状态，也可以被关闭。每打开一个新文件，则占用一个文件描述，而且使用的是空闲的最小的一个文件描述符。例如我们打开3个文件分别用了3、4和5，这个时候我们关闭了第一个文件，第3个空闲了，再打开第4个文件，那么就占用的是第3个。</p>
+<h3 id="用户区"><a href="#用户区" class="headerlink" title="用户区"></a>用户区</h3><p>Linxu下可执行文件格式是ELF。<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/yonghuqu.png" alt="27a83efda5abad975380a4c0276d8da2.png"></p>
+<p>查看文件类型可以使用<code>file app</code>就可以了。如图所示就是ELF。ELF主要包含的三个段.bss、.data、.text，其他还有一些只读数据段和符号段等。<br>然后下面就是受保护的地址，地址是0~4K。<br>程序在读的时候首先从代码段开始，全局变量就放在.bss或者.data，局部变量是在栈空间，栈空间是<strong>向下增长</strong>。用户使用new或者malloc分配的内存是从堆空间分配，堆空间是<strong>向上增长</strong>。</p>
+<h3 id="C库函数与系统函数的关系"><a href="#C库函数与系统函数的关系" class="headerlink" title="C库函数与系统函数的关系"></a>C库函数与系统函数的关系</h3><p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/ckuxths.png" alt="0622382618d21aad3f42608fdfe50109.png"></p>
+<p>上图中展示了C语言中printf函数是如何实现的。如图所示，printf函数相当于是一个stdout，它需要通过FILE* 来进行操作。我们知道一个FILE本质上是一个结构体，里面有文件描述符（FD）、文件读写位置指针、I/O缓冲区（C库函数维护的）。当我们使用printf的时候，它调用了Linux系统的API：</p>
+<ul>
+<li><p>首先调用了应用层的write函数，printf将文件描述符传递给应用层的write，然后将字符串和字符串的长度传递给了write。write只能在0~3G的用户空间操作，它会帮我们做一个空间转换，将用户空间转换到内核空间。</p>
+</li>
+<li><p>然后从应用层又调用了系统调用层里面的sys_wirte()。这个sys_write()是可以对系统内核进行操作，也就是说对3G~4G范围内进行操作</p>
+</li>
+<li>到内核层以后，会调用显示器的驱动，然后让驱动把字符串显示出来。</li>
+</ul>
+<p>以上是整个的工作流程。 </p>
+<pre><code>Linux的API又分为三层，由上层到底层分别是：
+- 应用层，包括write,open之类，操作的是用户空间。
+- 系统调用。
+- 内核层。操作设备驱动函数等。
+</code></pre><h3 id="open函数"><a href="#open函数" class="headerlink" title="open函数"></a>open函数</h3><p>open是用来打开和创建一个文件或设备。语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line"></span><br><span class="line">int open(const char *pathname, int flags);</span><br><span class="line">int open(const char *pathname, int flags, mode_t mode);</span><br></pre></td></tr></table></figure></p>
+<p>在上述使用方式里面，pathname顾名思义是路径名，flags是打开方式，有O_RDONLY，O_WRONLY或者O_RDWR（分别是只读、只写和读写），当然还有其它的一些打开方式。</p>
+<p>第一个语句用于打开已经存在的文件，而第二个语句用于创建一个不存在的文件。第二个语句flags至少应该是一个可写的，并且需要提供一个O_CREAT，创建不存在的文件需要提供mode参数，也就是访问权限。</p>
+<p>参数mode具体指明了使用权限，它通常也会被umask修改，所以一般新建文件的权限为<code>（mode&amp;~umask）</code>。注意模式只被应用于将来对这个文件的使用中。open调用创建一个新的只读文件，但仍将返回一个可读写文件描述符。</p>
+<p>open()通常用于将路径名转换为一个文件描述符，当open()调用成功的时候，它会返回一个新的文件描述符（永远取未用描述符中的最小值）。如果出现错误则返回-1，并在<code>errno</code>设置错误信息。</p>
+<p>这个调用创建一个新的打开文件，即分配一个新的独一无二的文件描述符，不会与运行中的任何其他程序共享（但可以通过for(2)系统调用实现共享）。这个心的文件描述符在其后对打开文件操作的函数中调用。文件的读写指针被置于文件头。</p>
+<p><code>errno</code>是一个全局变量，当函数调用失败后，errno就会被赋值，值就是对应的错误信息。</p>
+<h3 id="open函数中的errno"><a href="#open函数中的errno" class="headerlink" title="open函数中的errno"></a>open函数中的errno</h3><p>errno定义在头文件<code>errno.h</code>中（地址为/usr/include/errno.h），它是一个<strong>全局变量</strong>，任何标准C库函数都能对其进行修改（Linux系统函数更可以）。</p>
+<p>其错误宏定义位置：</p>
+<ul>
+<li>第1~34个错误定义：/usr/include/asm-generic/errno-base.h</li>
+<li>第35~133个错误定义：/usr/include/asm-generic/errno.h</li>
+</ul>
+<p>我们以errno-base.h截图来看一下，内容如下所示：</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/errnobaseh.png" alt="2ddd475893c76eba04a2611f9b0d7ec0.png"></p>
+<p>我们又改如何查看错误信息呢？我们可以用<code>perror</code>函数来实现。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>头文件</td>
+<td>stdio.h</td>
+</tr>
+<tr>
+<td>函数定义</td>
+<td>void perror(const char *s)</td>
+</tr>
+<tr>
+<td>函数说明</td>
+<td>用来将上一个函数发生错误的原因输出到标准设备（stderr）；参数s所指的字符串会首先被打印出，后面再加上错误原因字符串；此处错误原因依照全局变量errno的值来决定要输出的字符串。</td>
+</tr>
+</tbody>
+</table>
+<p>我们来用实际操作实践一下以下三点：</p>
+<ul>
+<li>打开一个不存在的文件</li>
+<li>打开一个已经存在的文件</li>
+<li>创建一个新文件</li>
+</ul>
+<p>下面的第一张图显示的是源代码，第二张图显示的是操作和操作结果。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/openceshidaima.png" alt="896a7035ab5f613848f7062b565e9a0c.png"></p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/openceshizhixing.png" alt="9147f46947ce41dff2354912ea8aae96.png"></p>
+<p>可以看出以下问题：</p>
+<ul>
+<li>为什么我设置了新建文件的权限为777，而实际生成的文件的权限是775？如前面我们在介绍open()中的mode中所说，其实本地还有一个掩码umask，这个umask值为0002（如第二张图所示），所以我们实际的权限的计算公式为<code>（mode&amp;~umask）</code>，umask取反后做按位与操作。</li>
+</ul>
+<p>接下来再进行一个实践，在新建一个文件前来判断下文件是否存在。<br>就是在<code>open()</code>函数中第二个参数中对<code>O_CREAT</code>和<code>O_EXCL</code>进行连用来判断，即<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fd=open(&quot;newfile&quot;, O_RDWR | O_CREAT | O_EXCL, 0777);</span><br></pre></td></tr></table></figure></p>
+<p>如果文件存在，则返回<code>File exists</code>信息。当然判断文件是否存在不只这一种方法。</p>
+<p>还有一种操作就是将文件截断为0，使用参数为<code>O_TRUNC</code>。</p>
+<h3 id="read函数"><a href="#read函数" class="headerlink" title="read函数"></a>read函数</h3><p>read函数的使用格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">ssize_t read(int fd, void *buf, size_t count);</span><br></pre></td></tr></table></figure>
+<p>参数中，fd是文件描述符；buf是一个缓冲区，可以通过新建一个数组并将该参数设置为数组名，或者malloc一个内存块，然后把指针名设置为改参数；count是字节数。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数功能</td>
+<td>在文件描述符上执行读操作</td>
+</tr>
+<tr>
+<td>函数描述</td>
+<td>read()从文件描述符fd中读取count字节的数据并放入从buf开始的缓冲区。如果count为零，read()返回0并不执行其他操作，如果count大于SSZIE_MAX，则结果不可预料。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>成功时返回读取到的字节数（为0表示读到文件描述符，即文件已经读完了），此返回值受文件剩余字节数限制，当返回值小于指定的字节数时并不意味着错误，这可能因为当前可读取的字节数小于指定的字节数。发生错误时返回-1，并置errno为相应值，在这种情况下无法得知文件偏移位置是否有变化。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="write函数"><a href="#write函数" class="headerlink" title="write函数"></a>write函数</h3><p>write函数的使用格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include&lt;unistd.h&gt;</span><br><span class="line">ssize_t write(int fd, const void *buf, size_t count);</span><br></pre></td></tr></table></figure>
+<p>参数中，fd是文件描述符；buf是一个缓冲区，可以通过新建一个数组并将该参数设置为数组名，或者malloc一个内存块，然后把指针名设置为改参数；count是字节数。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数功能</td>
+<td>在文件描述符上执行写操作</td>
+</tr>
+<tr>
+<td>函数描述</td>
+<td>write()向文件描述符fd所引用的文件中写入从buf开始的缓冲区中count字节的数据。POSIX规定，当使用了write()之后在使用read()，那么读取到的应该是更新后的数据。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>成功时返回所写入的字节数（为0表示没有写入数据）。发生错误时返回-1，并置errno为相应值。若count为零，对普通文件没任何影响，但对特殊文件将产生不可预料的后果。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="lseek函数"><a href="#lseek函数" class="headerlink" title="lseek函数"></a>lseek函数</h3><p>函数功能是用来重新定位文件读写的位移</p>
+<p>语法：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line"></span><br><span class="line">off_t lseek(int fd, off_t offset, int whence);</span><br></pre></td></tr></table></figure></p>
+<p>lseek()函数会重新定位被打开文件的位移量，根据参数offset以及whence的组合来决定：</p>
+<p>SEEK_SET:<br>　　从文件头部开始偏移offset个字节。<br>SEEK_CUR：<br>　　从文件当前读写的指针位置开始，增加offset个字节的偏移量。<br>SEEK_END：<br>　　文件偏移量设置为文件的大小加上偏移量字节。</p>
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>函数功能</td>
+<td>在文件描述符上执行写操作</td>
+</tr>
+<tr>
+<td>函数描述</td>
+<td>write()向文件描述符fd所引用的文件中写入从buf开始的缓冲区中count字节的数据。POSIX规定，当使用了write()之后在使用read()，那么读取到的应该是更新后的数据。</td>
+</tr>
+<tr>
+<td>返回值</td>
+<td>成功时返回所写入的字节数（为0表示没有写入数据）。发生错误时返回-1，并置errno为相应值。若count为零，对普通文件没任何影响，但对特殊文件将产生不可预料的后果。</td>
+</tr>
+</tbody>
+</table>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/05/05/ls-lfilenamebystat/" class="pre-post btn btn-default" title="利用stat函数实现ls- l filename功能">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">利用stat函数实现ls- l filename功能</span>
+        </a>
+    
+    
+        <a href="/2019/04/28/vimtocppide/" class="next-post btn btn-default" title="把CentOS7中的vim打造成C++IDE">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">把CentOS7中的vim打造成C++IDE</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux第四天之C库函数和系统函数"><span class="toc-text">Linux第四天之C库函数和系统函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#文件描述符"><span class="toc-text">文件描述符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用户区"><span class="toc-text">用户区</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C库函数与系统函数的关系"><span class="toc-text">C库函数与系统函数的关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#open函数"><span class="toc-text">open函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#open函数中的errno"><span class="toc-text">open函数中的errno</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#read函数"><span class="toc-text">read函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#write函数"><span class="toc-text">write函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lseek函数"><span class="toc-text">lseek函数</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
