@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="linux,centos">
+
+
+    <meta name="description" content="Linux第六天：进程（下）进程控制fork函数
+作用：创建一个子进程。
+原型：12#include &lt;unistd.h&gt;pid_t fork(void);
+描述：成功返回两个值：
+...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Linux第六天：进程（下） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Linux第六天：进程（下）">
+            
+	            Linux第六天：进程（下）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/centos/">centos</a> <a class="tag-link" href="/tags/linux/">linux</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/08</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Linux第六天：进程（下）"><a href="#Linux第六天：进程（下）" class="headerlink" title="Linux第六天：进程（下）"></a>Linux第六天：进程（下）</h2><h3 id="进程控制"><a href="#进程控制" class="headerlink" title="进程控制"></a>进程控制</h3><p><strong>fork函数</strong></p>
+<p>作用：创建一个子进程。</p>
+<p>原型：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">pid_t fork(void);</span><br></pre></td></tr></table></figure></p>
+<p>描述：<br>成功返回两个值：</p>
+<ul>
+<li>父进程返回子进程的ID(非负)  </li>
+<li>子进程返回 0 </li>
+</ul>
+<p>返回值-1表示出错。</p>
+<p>pid_t类型表示进程ID，但为了表示-1，它是有符号整型。(0不是有效进程ID，init最小，为1)</p>
+<p>实际上，不是fork函数能返回两个值，而是fork后，fork函数变为两个，父子需<strong>各自</strong>返回一个。如下图所示。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/linuxclasses/day6/linuxday6fork.png" alt></p>
+<p>创建的一个子进程，从fork()函数后开始执行，而不是从头开始执行。</p>
+<p><strong>示例1：创建一个子进程</strong><br>测试代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	printf(&quot;xxxxxxxx\n&quot;);</span><br><span class="line">	pid_t pid;</span><br><span class="line">	pid = fork();</span><br><span class="line">	if(pid == -1)</span><br><span class="line">	&#123;</span><br><span class="line">		perror(&quot;Fork Error:&quot;);</span><br><span class="line">		exit(1);</span><br><span class="line">	&#125;</span><br><span class="line">	else if(pid == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;This is child process. My pid = %u\n&quot;,getpid());</span><br><span class="line">		printf(&quot;And my parent process is %u\n&quot;, getppid());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		printf(&quot;This is parent process, and pid is %u\n&quot;,getpid());</span><br><span class="line">		printf(&quot;My parent process is %u\n&quot;,getppid());</span><br><span class="line">		sleep(1);</span><br><span class="line">	&#125;</span><br><span class="line">	printf(&quot;This is the end of this process.\n&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>测试结果：</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/linuxclasses/day6/linuxday6forkpresentation.png" alt></p>
+<p>可执行程序的运行结果正如我们前文所述。首先执行fork()前面的语句，只执行一遍，打印出来了<code>xxxxxxxx</code>。然后开始打印输出父进程的东西，打印出来了父进程的PID和父进程的父进程的PID，（由于这个时候对父进程执行了休眠1秒钟，所以父进程的<code>This is the end of this process</code>被延迟到最后来执行了。）然后打印子进程的信息，输出子进程的<code>This is the end of this process</code>。</p>
+<p>注意，如果父进程不执行<code>sleep(1)</code>的话，父进程的最后那句<code>This is the end of this process</code>可能会穿插在子进程输出信息中输出。</p>
+<p>父进程的父进程是什么呢？我们执行<code>ps aux | grep 7921</code> 就可以看到了7921实际上是bash的进程PID。</p>
+<p><strong>示例2：循环创建3个子进程</strong></p>
+<p>假如我们是这样设计的，那么正确吗？<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">for(int i=0;i&lt;3;i++)</span><br><span class="line">&#123;</span><br><span class="line">    fork();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>实际上，是创建了7个子进程（还有1个父进程）,即(2<sup>n</sup>-1)个子进程，如图所示。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/linuxclasses/day6/linuxday6multifork.png" alt></p>
+<p>修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    pid_t pid;</span><br><span class="line">    printf(&quot;xxxxxxxxxxx\n&quot;);</span><br><span class="line"></span><br><span class="line">    for (i = 0; i &lt; 5; i++) &#123;</span><br><span class="line">        pid = fork();</span><br><span class="line">        if (pid == 0) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (i &lt; 5) &#123;</span><br><span class="line"></span><br><span class="line">        sleep(i);</span><br><span class="line">        printf(&quot;I&apos;am %d child , pid = %u\n&quot;, i+1, getpid());</span><br><span class="line"></span><br><span class="line">    &#125; else  &#123;</span><br><span class="line">        sleep(i);</span><br><span class="line">        printf(&quot;I&apos;m parent\n&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这个程序在进入for循环的含义是：当i=0的时候，执行fork()函数，创建出一个子进程来（将子进程命名为子0），此时子进程返回的pid=0，然后判断符合pid==0，执行break语句，跳出for循环，父进程则因为不符合这个if语句，因而进行下一个循环；当i=1的时候，执行fork()函数，创建出一个子进程来（将子进程命名为子1），此时子进程返回的pid=0，然后判断符合pid==0，执行break语句，跳出for循环，父进程则因为不符合这个if语句，因而进行下一个循环；当i=2的时候，执行fork()函数，创建出一个子进程来（将子进程命名为子2），此时子进程返回的pid=0，然后判断符合pid==0，执行break语句，跳出for循环，父进程则因为不符合这个if语句，因而进行下一个循环……一直到i=4执行完成后退出，后续又产生了子3、子4。</p>
+<p>对于子0来说，此时i=0，执行if(i&lt;5)里面的语句，休眠0秒钟，输出子进程0的信息；对于子1来说，休眠1秒钟，输出子进程1的信息，以此类推。对于父进程来说，执行完for循环之后，i=5，因此休眠5秒钟。所以将按照子进程0~4、父进程的顺序显示。</p>
+<p>其实父进程和子进程没有优先级，谁都有可能抢到，但是无论谁抢到了，其都需要挂起i秒，所以到最后还是按照我们想要的顺序来输出结果。</p>
+<p>但是如果我们去掉挂起i秒这个语句，五个进程和1个父进程是可以看做共同争夺CPU，不会存在父进程因为循环五次而慢于5个子进程的情况。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/linuxclasses/day6/linuxday6multiforkresult1.png" alt></p>
+<p>如上图所示，之所以在输出I’m parent之后就又显示出bash等待命令的界面是因为，bash在执行命令后就会切到后台，但是只要看到父进程的<code>return 0</code>后就会自动切换前台，但是它这个时候并不知道还有子进程在运行，所以才会出现它和剩余的子进程进行抢夺CPU资源，结果就是它有可能比所有剩余的子进程优先抢到CPU，得到图中的结果，也有可能某个子进程先抢到，所以会出现下图的样子。</p>
+<p><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/linuxclasses/day6/linuxday6multiforkresult2.png" alt></p>
+<h3 id="父子进程共享"><a href="#父子进程共享" class="headerlink" title="父子进程共享"></a>父子进程共享</h3><p>父子进程之间在fork后。有哪些相同，那些相异之处呢？<br>刚fork之后：<br>父子相同处: 全局变量、.data、.text、栈、堆、环境变量、用户ID、宿主目录、进程工作目录、信号处理方式…<br>父子不同处: </p>
+<ul>
+<li>进程ID</li>
+<li>fork返回值</li>
+<li>父进程ID</li>
+<li>进程运行时间</li>
+<li>闹钟(定时器)</li>
+<li>未决信号集</li>
+</ul>
+<p>似乎，子进程复制了父进程0-3G用户空间内容，以及父进程的PCB，但pid不同。真的每fork一个子进程都要将父进程的0-3G地址空间完全拷贝一份，然后在映射至物理内存吗？</p>
+<p>当然不是!父子进程间遵循<strong>读时共享写时复制</strong>的原则。这样设计，无论子进程执行父进程的逻辑还是执行自己的逻辑都能节省内存开销。   </p>
+<p>【重点】：父子进程共享：</p>
+<ul>
+<li>文件描述符(打开文件的结构体)  </li>
+<li>mmap建立的映射区 (进程间通信详解)</li>
+</ul>
+<p>特别的，fork之后父进程先执行还是子进程先执行不确定。取决于内核所使用的调度算法。</p>
+<h3 id="GDB调试"><a href="#GDB调试" class="headerlink" title="GDB调试"></a>GDB调试</h3><p>使用gdb调试的时候，gdb只能跟踪一个进程。可以在fork函数调用之前，通过指令设置gdb调试工具跟踪父进程或者是跟踪子进程。默认跟踪父进程。</p>
+<p>设置gdb在fork之后跟踪子进程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set follow-fork-mode child</span><br></pre></td></tr></table></figure></p>
+<p>设置跟踪父进程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">set follow-fork-mode parent</span><br></pre></td></tr></table></figure></p>
+<p>注意，一定要在fork函数调用之前设置才有效。</p>
+<p>如果是在多个子线程中跟踪第3个子进程，那么直接在相应的判断语句中设置条件断点即可。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/05/08/Linuxday6-process/" class="next-post btn btn-default" title="Linux第六天：进程（上）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Linux第六天：进程（上）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux第六天：进程（下）"><span class="toc-text">Linux第六天：进程（下）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#进程控制"><span class="toc-text">进程控制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#父子进程共享"><span class="toc-text">父子进程共享</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GDB调试"><span class="toc-text">GDB调试</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
