@@ -205,9 +205,9 @@ A.子进程获得父进程的数据空间，堆和栈的复制品B.线程可以�
 <p>然后针对每个问题，设置一个temp=0，遍历两个坐标所围成的矩形，然后判断当前点是否为1，如果为1则++temp，最后得到的temp值就为所需要的答案。</p>
 <p>这个方法时间复杂度为O(n^3)，在实际运行中，通过率80%，显然出现了超时问题。</p>
 <h3 id="思路优化版本"><a href="#思路优化版本" class="headerlink" title="思路优化版本"></a>思路优化版本</h3><p>我上面这个版本其实非常糟糕，因为最多我们可能有10万颗星星，也就达标者最多10万次的查询，O(n^3)是非常可怕的。我们可以换一种思路。</p>
-<p>如下图，是这个想法的一个总的示意图，右下角红色加粗黑框里面就是我们要求的矩形部分。<br><img src="en-resource://database/1984:1" alt="45e6c2897e48fd322338caece300c050.png"></p>
-<p>我们首先找这个点左上方有多少个星星，就是下图所示，至于我们为什么要求这部分面积，后面就知道了。<br><img src="en-resource://database/1986:1" alt="8cb2583b6baf2fb4a06475ac9367f65d.png"></p>
-<p>然后我们还可以求矩形右下角左上方里面的点，如下橘色部分所示<br><img src="en-resource://database/1990:1" alt="d66f96e7e3fc17a3839622420f84f9d7.png"><br>然后再求矩形左下角那个点的左上方的部分，如下图紫色所示。<br><img src="en-resource://database/1992:1" alt="222b2e005e02cfaa880faab430c991a3.png"><br>再求矩形右上角左上方的部分，如下图绿色所示。<br><img src="en-resource://database/1994:1" alt="dae947239cf6fb7dae56c1001c5cbfe6.png"></p>
+<p>如下图，是这个想法的一个总的示意图，右下角红色加粗黑框里面就是我们要求的矩形部分。<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/leetcode/assets/nowcodermay1.png" alt></p>
+<p>我们首先找这个点左上方有多少个星星，就是下图所示，至于我们为什么要求这部分面积，后面就知道了。<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/leetcode/assets/nowcodermay2.png" alt></p>
+<p>然后我们还可以求矩形右下角左上方里面的点，如下橘色部分所示<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/leetcode/assets/nowcodermay3.png" alt><br>然后再求矩形左下角那个点的左上方的部分，如下图紫色所示。<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/leetcode/assets/nowcodermay4.png" alt><br>再求矩形右上角左上方的部分，如下图绿色所示。<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/leetcode/assets/nowcodermay5.png" alt></p>
 <p>然后你就会发现下面两个点：</p>
 <ol>
 <li>上面求各个矩形里面的有多少个星星，实际上都是求某一点左上方一直到边界有多少颗星星，这说明它们可以用同样的递推公式来求解。</li>
