@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="论文阅读笔记,MVDR,Spatio-temporal speech probability map,noise covariance estimation">
+
+
+    <meta name="description" content="论文阅读总结：Multi-channel signal enhancement with speech and noise covariance estimates computed by a ...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>论文阅读笔记20190521 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="论文阅读笔记20190521">
+            
+	            论文阅读笔记20190521
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a> <a class="category-link" href="/categories/Speech-Process-Notes/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/MVDR/">MVDR</a> <a class="tag-link" href="/tags/Spatio-temporal-speech-probability-map/">Spatio-temporal speech probability map</a> <a class="tag-link" href="/tags/noise-covariance-estimation/">noise covariance estimation</a> <a class="tag-link" href="/tags/论文阅读笔记/">论文阅读笔记</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/21</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="论文阅读总结：Multi-channel-signal-enhancement-with-speech-and-noise-covariance-estimates-computed-by-a-probabilistic-localization-model"><a href="#论文阅读总结：Multi-channel-signal-enhancement-with-speech-and-noise-covariance-estimates-computed-by-a-probabilistic-localization-model" class="headerlink" title="论文阅读总结：Multi-channel signal enhancement with speech and noise covariance estimates computed by a probabilistic localization model"></a>论文阅读总结：Multi-channel signal enhancement with speech and noise covariance estimates computed by a probabilistic localization model</h1><p>前段时间阅读了一片来自于德国Carl von Ossietzky Universität Oldenburg的Jörn Anemüller和Hendrik Kayser的一篇论文，论文名字叫做《Multi-channel signal enhancement with speech and noise covariance estimates computed by a probabilistic localization model》，看完感觉还挺有借鉴意义的，所以做一个总结。</p>
+<h2 id="论文所提方法和旧方法的比较"><a href="#论文所提方法和旧方法的比较" class="headerlink" title="论文所提方法和旧方法的比较"></a>论文所提方法和旧方法的比较</h2><p>这篇文章提出了一种麦克风阵列语音增强的算法，这种算法也是基于传统MVDR算法改进而来，因为它采用了新的方式来估计所用的参数，所以效果相比传统方法来说好了很多。</p>
+<p>我们都知道，MVDR算法所依赖的参数有两个，一个是噪声协方差矩阵Rnn，还有一个就是导向矢量h。这两个参数的估计准确度越高，自然波束形成的效果也就最好。传统方法对这两个参数的估计主要如以下：</p>
+<ul>
+<li>对于噪声协方差矩阵来说，可以通过VAD进行语音段和噪声段的判断，然后在噪声段进行噪声协方差矩阵Rnn的计算，但是这种方法相对来说对VAD依赖很严重，一旦VAD性能下降，噪声协方差的估计自然也就下降，这种方法其实鲁棒性并不好。在单通道中，可以利用语音快于噪声功率谱密度的变化，所以可以用SPP算法来进行噪声估计。</li>
+<li>对于导向矢量来说，可以使用时延估计模块，计算出到达各个麦克风的相对时延，然后代入公式进行计算；还有就是可以通过语音协方差矩阵变换来得到，也就是导向矢量可以近似表示为语音协方差矩阵最大特征值所对应的的特征向量。</li>
+</ul>
+<p>对于这篇论文来说，它有以下这样几点新意：</p>
+<ul>
+<li>论文中的方法利用了空间语音存在概率来获得导向矢量；</li>
+<li>论文中的噪声协方差矩阵，本质上也是利用语音存在概率来获得的，具体方法在后面来说。</li>
+</ul>
+<p>所以说这篇论文所提出的方法的参数只有一个，那就是语音存在概率map的估计。理论上来说，相比之前方法需要估计多个参数来说，这种只需要估计一个参数的方法只需要保证这个参数更加准确就好了。</p>
+<h2 id="论文所提方法的过程"><a href="#论文所提方法的过程" class="headerlink" title="论文所提方法的过程"></a>论文所提方法的过程</h2><p>下面就来结合图来介绍下整个流程。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/mvdrspstructure1.png" alt="baca46fee14a62e677302d1e91859ac2.png"><br>（自己画的图，为了防止不必要的麻烦就不放在这里了，直接借用论文里面的图）</p>
+<p><strong>第一步 Spatio-temporal speech probability map</strong>：使用GCC-PHAT（广义互相关函数-相位变换法）来进行时延估计，然后利用GCC-PHAT的结果，送入SVM进行训练得到source probability map，计算公式如下：<br><img src="http://tech.yushuai.xyz/wzpt/mvdrsp2.png" alt="bdf989ab11649d2dc99ceebf6df30e72.png"></p>
+<p>式中，θ表示位置索引、n表示时帧索引，k表示频宽索引，x(n,k)表示多通道语音的SFT。</p>
+<p><strong>第二步 Generalized speech and noise covariance estimation</strong>：上一步其实我们就得到了这个speech probability map，得到这个map之后，我们就可以带入下面这个公式来计算广义语音协方差矩阵：<br><img src="http://tech.yushuai.xyz/wzpt/mvdrsp3.png" alt="558f3cc25b926058ad6e05eeae358b8a.png"><br> 在这里的xi和xj代表的是时域的信号，cij的定义如下<br> <img src="http://tech.yushuai.xyz/wzpt/mvdrsp4.png" alt="4a40333289333a4cf7421f7e49772e1e.png"></p>
+<p>至于我们得到这个广义语音协方差矩阵是做什么用的呢？下一步就知道了。咱们接下来求解噪声协方差矩阵。<br>我们知道了语音存在概率，那么我们就可以定义一个噪声存在概率。这个噪声存在概率的定义如下面的图中所示。其实这个时候我们要设置一个阈值p0：当ps≥p0的时候，噪声存在概率自然为0；当ps&lt;p0的时候，噪声存在概率为式中所述。记住无论是噪声存在概率还是语音存在概率，其都是第n帧的θ方向的概率。<br><img src="http://tech.yushuai.xyz/wzpt/mvdrsp5.png" alt="e447e321db453fc78349d628f4779e86.png"></p>
+<p>根据噪声存在概率，仿照上面语音协方差矩阵的形式，就可以得到估计的噪声协方差矩阵，如下<br><img src="http://tech.yushuai.xyz/wzpt/mvdrsp6.png" alt="5ec87e8fbe55f6ed9569355d3407423f.png"></p>
+<p>到目前为止，MVDR算法所需要的两个参数中的噪声协方差矩阵这个参数已经求出来了。接下来求导向矢量。</p>
+<p><strong>第三步Steering Vector</strong>：前面说的语音协方差矩阵就是用到了这里，如下式所示：<br><img src="http://tech.yushuai.xyz/wzpt/mvdrsp7.png" alt="1285131a9978a7b242d2bc67e0672f7f.png"></p>
+<p>其实就相当于求了一个单位向量而已。</p>
+<p>然后把这个也带入MVDR的公示，就可以实现MVDR算法了。更多的内容可以参见论文，也就是参考文献中的论文。</p>
+<p>【参考文献】</p>
+<p>Anemüller J, Kayser H. Multi-channel signal enhancement with speech and noise covariance estimates computed by a probabilistic localization model[C]//2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP). IEEE, 2017: 156-160.</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/05/19/nowcodermonimay/" class="next-post btn btn-default" title="2019年牛客网校招全国同一模拟笔试（5月场）部分题目解析">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">2019年牛客网校招全国同一模拟笔试（5月场）部分题目解析</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#论文阅读总结：Multi-channel-signal-enhancement-with-speech-and-noise-covariance-estimates-computed-by-a-probabilistic-localization-model"><span class="toc-text">论文阅读总结：Multi-channel signal enhancement with speech and noise covariance estimates computed by a probabilistic localization model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#论文所提方法和旧方法的比较"><span class="toc-text">论文所提方法和旧方法的比较</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#论文所提方法的过程"><span class="toc-text">论文所提方法的过程</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
