@@ -1,0 +1,316 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process">
+
+
+    <meta name="description" content="1.声音三要素：音调、音色、响度。
+2.汉明窗的好处：选择一个窗函数主要是看它的主瓣宽度和旁瓣衰减，理论上主瓣宽度越窄越好，旁瓣衰减越大越好。汉明窗是相比来说性能比较好的一个窗函数，比如矩形窗，...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>语音信号处理笔记（1） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+        	<!--<h2 class="text-hide">Snippet主题,从未如此简单有趣</h2>-->
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="语音信号处理笔记（1）">
+            
+	            语音信号处理笔记（1）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a> <a class="category-link" href="/categories/Speech-Process-Notes/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/05/31</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>1.声音三要素：<strong>音调</strong>、<strong>音色</strong>、<strong>响度</strong>。</p>
+<p>2.汉明窗的好处：选择一个窗函数主要是看它的主瓣宽度和旁瓣衰减，理论上主瓣宽度越窄越好，旁瓣衰减越大越好。汉明窗是相比来说性能比较好的一个窗函数，比如矩形窗，虽然主瓣宽度较窄，但是旁瓣衰减不如汉明窗，所以谱泄漏比较严重。综合考虑来说汉明窗最好，它频谱泄露少，高频分量若，波动小，因而可以获得较平滑的谱。<br>3.为何分帧：语音具有短时平稳性，但是长期来看并不平稳，为了利用这种平稳性，所以需要进行分帧，大约10~30ms。</p>
+<p>4.为何重叠：实现两帧之间的平滑过渡、保持其连续性。</p>
+<p>5.语音端点检测方法（语音活动检测）——两级判决法</p>
+<p>（1）第一级判决。①先根据语音短时能量的轮廓选取一个较高的门限T1，进行一次粗判：语音起止点位于该门限与短时能量包络交点所对应的时间间隔之外。②根据背景噪声的平均能量确定一个较低的门限T2，并从A点往左、从B点往右搜索，分别找到短时能量包络与门限T2相交的两个点C和D，于是CD段就是用双门限方法根据短时能量所判断的语音段。</p>
+<p>（2）第二级判决。以短时平均过零数为标准，从C点往左和D点往右搜索，找到短时平均过零数低于某个门限T3的两个点E和F，这便是语音段的起止点。门限T3是由背景噪声的平均过零数所确定的。<br>6.语音信号的数字化和预处理。为了将模拟语音信号转化为数字信号，需要经过取样和量化两个步骤，以得到时间和幅度均离散的信号。</p>
+<p>取样是将时间上连续的信号离散化为样本序列，根据奈奎斯特采样定理，取样频率大于信号两倍宽度时，取样过程不会丢失信息，且取样信号可精确地重构原信号。若不满足取样定理，将产生频谱混叠，此时信号中的高频成分将产生失真。</p>
+<p>取样后需要对信号进行量化，即将时间上离散而幅度仍然连续的波形再离散化。其过程是将整个幅度值分割为有限个区间，将落入同一区间的样本赋予相同的幅度值。若量化阶梯选择的足够小(如64)，则信号幅度从一个取样值到相邻取样值的变化可能非常大，常跨越很多量化阶梯。这样产生的量化噪声接近平稳白噪声过程。一般而言，8bit时的噪声自相关函数几乎为冲激函数，与白噪声的过程相一致。</p>
+<p>总的来说语音信号处理系统框图如下<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1905311.png" alt="f5fe0c296efc4876e7d863ed12c83eb3.png"></p>
+<p>为了防止混叠失真和噪声干扰，所以要设置一个反混叠滤波器。平滑滤波器的作用是对重构的语音波形的高次谐波起平滑作用。</p>
+<p>7.短时能量分析</p>
+<p>短时平均能量的定义：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1905312.png" alt="f5wrwe6efc4876e7d863ed12c83eb3.png"></p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1905313.png" alt="f5wrefc46e7d863ed1fgc83eb32c83eb3.png"></p>
+<p>8.基音周期估值</p>
+<p>基音周期是表征语音信号本质特征的参数，只有准确分析病体区域出语音信号的特征参数，才能进行语音编码、语音合成和语音识别等处理。基音周期估值最基本的方法主要有两种：基于短时自相关法的基因周期估值和基于短时平均幅度差函数的基音周期估值。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/05/31/linux-day-8-mmap/" class="next-post btn btn-default" title="Linux第八天：共享存储映射、匿名映射">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Linux第八天：共享存储映射、匿名映射</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <p>暂无目录</p>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//hexo.io" class="copyright-links" target="_blank" rel="nofollow">Hexo</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
