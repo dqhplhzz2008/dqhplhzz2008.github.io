@@ -162,18 +162,135 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2019/04/28/vimtocppide/">把CentOS7中的vim打造成C++IDE</a>
+                    <a href="/2019/05/08/Linuxday6-process-2/">Linux第六天：进程（下）</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime title>
-                        2019年04月28日
+                        2019年05月08日
                     </time>
                 </div>
             </div>
             <p class="brief">
                 
-                    把CentOS7中的vim打造成C++IDE由于我个人平时常使用C/C++进行编程，所以我决定把CentOS下面的VIM这个强大的编辑器改造成一个强大的C++的IDE。下面是具体的步骤。
-安装pathogen该插件地址为：https:...
+                    Linux第六天：进程（下）进程控制fork函数
+作用：创建一个子进程。
+原型：12#include &amp;lt;unistd.h&amp;gt;pid_t fork(void);
+描述：成功返回两个值：
+
+父进程返回子进程的ID(非负)  
+子...
+                
+            </p>
+        </div>
+    </article>
+ 
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/2019/05/08/Linuxday6-process/">Linux第六天：进程（上）</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime title>
+                        2019年05月08日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    Linux第六天：进程（上）课程知识点框架本部分课程的知识体系：
+
+进程相关的概念  
+
+并发
+单道程序设计
+多道程序设计
+cpu/mmu
+进程控制块-进程状态
+
+
+环境变量
+
+常用的环境变量/作用
+函数（了解）
+
+
+进程控制原语
+
+...
+                
+            </p>
+        </div>
+    </article>
+ 
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/2019/05/06/di-gui-du-mu-lu-wen-jian-ge-shu/">递归读目录获取普通文件个数</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime title>
+                        2019年05月06日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    递归读目录获取普通文件个数功能说明递归进入当前目录及其子目录，遇到普通文件就对计数加1，遇到目录就进入目录，但并不做加1操作，最后输出普通文件个数。
+使用的函数1.opendir()函数：打开一个目录2.readdir()函数：读目录...
+                
+            </p>
+        </div>
+    </article>
+ 
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/2019/05/05/ls-lfilenamebystat/">利用stat函数实现ls- l filename功能</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime title>
+                        2019年05月05日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    利用stat函数实现ls- l filename功能功能&amp;amp;函数介绍在我们使用 ls -l 命令的时候，会输出下面的结果：
+
+在这里，我使用stat函数来实现这一功能。我们知道，stat函数提供了一个结构体，其内容为：
+1234...
+                
+            </p>
+        </div>
+    </article>
+ 
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/2019/05/05/linuxfundamentalday4/">Linux基础学习第四天：C库函数和系统函数</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime title>
+                        2019年05月05日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    Linux第四天之C库函数和系统函数
+FILE其实本质上是一个结构体，它里面有：
+
+文件描述符（整型值）。索引到对应的磁盘文件。
+文件读写位置指针：读写文件过程中指针的实际位置。
+I/O缓冲区（内存地址）：通过寻址找到对应的内存块。大...
                 
             </p>
         </div>
@@ -183,7 +300,7 @@
 
     <nav class="pagination" role="navigation">
         <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/tags/centos/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/centos/">1</a><span class="page-number current">2</span>
+            <a class="extend prev" rel="prev" href="/tags/centos/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/tags/centos/">1</a><span class="page-number current">2</span><a class="page-number" href="/tags/centos/page/3/">3</a><a class="extend next" rel="next" href="/tags/centos/page/3/"><i class="fa fa-angle-right"></i></a>
         </div>
     </nav>
 
@@ -274,7 +391,7 @@
         
     <div class="widget">
         <h3 class="title">分类</h3>
-        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/"><i class="fa" aria-hidden="true">C/C++</i></a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning-Notes/"><i class="fa" aria-hidden="true">Learning Notes</i></a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/"><i class="fa" aria-hidden="true">Life</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Speech-Process-Notes/"><i class="fa" aria-hidden="true">Speech Process Notes</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Speech-Process-Notes/Learning-Notes/"><i class="fa" aria-hidden="true">Learning Notes</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/"><i class="fa" aria-hidden="true">algorithm</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/"><i class="fa" aria-hidden="true">数据结构</i></a><span class="category-list-count">13</span></li></ul>
+        <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/C-C/"><i class="fa" aria-hidden="true">C/C++</i></a><span class="category-list-count">64</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Learning-Notes/"><i class="fa" aria-hidden="true">Learning Notes</i></a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Life/"><i class="fa" aria-hidden="true">Life</i></a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Speech-Process-Notes/"><i class="fa" aria-hidden="true">Speech Process Notes</i></a><span class="category-list-count">1</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Speech-Process-Notes/Learning-Notes/"><i class="fa" aria-hidden="true">Learning Notes</i></a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/"><i class="fa" aria-hidden="true">algorithm</i></a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据结构/"><i class="fa" aria-hidden="true">数据结构</i></a><span class="category-list-count">13</span></li></ul>
     </div>
 
 
@@ -282,7 +399,7 @@
         
     <div class="widget">
         <h3 class="title">归档</h3>
-        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/"><i class="fa" aria-hidden="true">2019年05月</i></a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/"><i class="fa" aria-hidden="true">2019年04月</i></a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">2019年03月</i></a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">2019年02月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/"><i class="fa" aria-hidden="true">2018年11月</i></a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/"><i class="fa" aria-hidden="true">2018年10月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/"><i class="fa" aria-hidden="true">2018年09月</i></a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">2018年08月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">2018年05月</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">2018年04月</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">2018年03月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/"><i class="fa" aria-hidden="true">2015年04月</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/"><i class="fa" aria-hidden="true">2015年03月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/"><i class="fa" aria-hidden="true">2014年05月</i></a><span class="archive-list-count">1</span></li></ul>
+        <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/"><i class="fa" aria-hidden="true">2019年05月</i></a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/"><i class="fa" aria-hidden="true">2019年04月</i></a><span class="archive-list-count">17</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/"><i class="fa" aria-hidden="true">2019年03月</i></a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/02/"><i class="fa" aria-hidden="true">2019年02月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/"><i class="fa" aria-hidden="true">2018年11月</i></a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/"><i class="fa" aria-hidden="true">2018年10月</i></a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/"><i class="fa" aria-hidden="true">2018年09月</i></a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/"><i class="fa" aria-hidden="true">2018年08月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/"><i class="fa" aria-hidden="true">2018年05月</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/"><i class="fa" aria-hidden="true">2018年04月</i></a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/"><i class="fa" aria-hidden="true">2018年03月</i></a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/"><i class="fa" aria-hidden="true">2015年04月</i></a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/"><i class="fa" aria-hidden="true">2015年03月</i></a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/05/"><i class="fa" aria-hidden="true">2014年05月</i></a><span class="archive-list-count">1</span></li></ul>
     </div>
 
 
