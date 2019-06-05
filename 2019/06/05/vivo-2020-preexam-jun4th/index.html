@@ -1,0 +1,312 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="vivo,exam">
+
+
+    <meta name="description" content="只能说自己水平太次，所以在笔试的时候只通过了1道题，复杂度还是O(n2)级别的。紧张什么的都不是理由。做完这道题，让我认识到我的水平距离秋招还太远太远。
+vivo提前批笔试题整理寻找数组中不存在...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>vivo2020校招提前批开发笔试试题 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="vivo2020校招提前批开发笔试试题">
+            
+	            vivo2020校招提前批开发笔试试题
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/exam/">exam</a> <a class="tag-link" href="/tags/vivo/">vivo</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/05</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>只能说自己水平太次，所以在笔试的时候只通过了1道题，复杂度还是O(n2)级别的。紧张什么的都不是理由。做完这道题，让我认识到我的水平距离秋招还太远太远。</p>
+<h1 id="vivo提前批笔试题整理"><a href="#vivo提前批笔试题整理" class="headerlink" title="vivo提前批笔试题整理"></a>vivo提前批笔试题整理</h1><h2 id="寻找数组中不存在的元素"><a href="#寻找数组中不存在的元素" class="headerlink" title="寻找数组中不存在的元素"></a>寻找数组中不存在的元素</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><p>A、B两个数组，要求输出A中存在而B中不存在的元素。<br>例如</p>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">void solution1(vector&lt;int&gt; a,vector&lt;int&gt; b)</span><br><span class="line">&#123;</span><br><span class="line">	int asize = a.size();</span><br><span class="line">	int bsize = b.size();</span><br><span class="line">	vector&lt;int&gt; result;</span><br><span class="line">	for (int i = 0; i &lt; asize; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		vector&lt;int&gt;::iterator it = find(b.begin(), b.end(), a[i]);</span><br><span class="line">		if (it == b.end())</span><br><span class="line">			result.push_back(a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	int rsize = result.size();</span><br><span class="line">	if (rsize == 0)</span><br><span class="line">		cout &lt;&lt; &quot;No match!\n&quot;;</span><br><span class="line">	else</span><br><span class="line">	&#123;</span><br><span class="line">		for (int i = 0; i &lt; rsize - 1; i++)</span><br><span class="line">			cout &lt;&lt; result[i] &lt;&lt; &quot; &quot;;</span><br><span class="line">		cout &lt;&lt; result[rsize - 1] &lt;&lt; endl;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	vector&lt;int&gt; a&#123; 3,2,8,5,7,4,9,1 &#125;;</span><br><span class="line">	vector&lt;int&gt; b&#123; 3,8,1,9,5,10 &#125;;</span><br><span class="line">	solution1(a,b);</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="倒序链表中的两个元素之间的元素"><a href="#倒序链表中的两个元素之间的元素" class="headerlink" title="倒序链表中的两个元素之间的元素"></a>倒序链表中的两个元素之间的元素</h2><h3 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h3><p>一个单向链表，输入m,n，要求在第m和第n区间之内的元素倒序存储并输出此链表。</p>
+<h3 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line">struct ListNode &#123;</span><br><span class="line">	int val;</span><br><span class="line">	ListNode *next;</span><br><span class="line">	ListNode(int x):val(x),next(NULL)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">//vivo笔试中的解题方法</span><br><span class="line">//void reverseBetween(ListNode* head, int m, int n) &#123;</span><br><span class="line">//	vector&lt;int&gt;temp;</span><br><span class="line">//	ListNode *p=head;</span><br><span class="line">//	while (p != NULL)</span><br><span class="line">//	&#123;</span><br><span class="line">//		temp.push_back(p-&gt;val);</span><br><span class="line">//		p = p-&gt;next;</span><br><span class="line">//	&#125;</span><br><span class="line">//	reverse(temp.begin() + m - 1, temp.begin() + n);</span><br><span class="line">//	int tsize = temp.size();</span><br><span class="line">//	for (int i = 0; i &lt; tsize; i++)</span><br><span class="line">//	&#123;</span><br><span class="line">//		cout &lt;&lt; temp[i] &lt;&lt; &quot; &quot;;</span><br><span class="line">//	&#125;</span><br><span class="line">//	cout &lt;&lt; endl;</span><br><span class="line">//&#125;</span><br><span class="line"></span><br><span class="line">ListNode* reverseBetween(ListNode* head, int m, int n) &#123;</span><br><span class="line">	if (!head || !head-&gt;next || n == m) </span><br><span class="line">		return head;</span><br><span class="line">	struct ListNode *L = (struct ListNode *)malloc(sizeof(struct ListNode));</span><br><span class="line">	L-&gt;next = head;     //删除节点常用手段考虑加个头指针</span><br><span class="line">	struct ListNode* pre = NULL;</span><br><span class="line">	struct ListNode* p = L;</span><br><span class="line">	int temp_m = m;</span><br><span class="line">	int temp_n = n;</span><br><span class="line">	//将p转移到反转链表的第一个节点，pre保存前一个节点</span><br><span class="line">	while (temp_m-- &gt;= 1) &#123;</span><br><span class="line">		pre = p;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	struct ListNode* reverse_head = NULL;</span><br><span class="line">	struct ListNode* reverse_tail = p;</span><br><span class="line">	struct ListNode* reverse_tail_after = NULL;</span><br><span class="line">	struct ListNode* q = NULL;</span><br><span class="line">	//进行反转</span><br><span class="line">	while (temp_n - m &gt; 0) &#123;</span><br><span class="line">		q = p-&gt;next;</span><br><span class="line">		reverse_tail_after = q-&gt;next;</span><br><span class="line">		p-&gt;next = reverse_head;</span><br><span class="line">		reverse_head = p;</span><br><span class="line">		p = q;</span><br><span class="line">		temp_n--;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	p-&gt;next = reverse_head;</span><br><span class="line">	reverse_head = p;</span><br><span class="line">	pre-&gt;next = reverse_head;</span><br><span class="line"></span><br><span class="line">	reverse_tail-&gt;next = reverse_tail_after;</span><br><span class="line">	return L-&gt;next;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	ListNode *temp1 = new ListNode(1);</span><br><span class="line">	ListNode *head = temp1;</span><br><span class="line">	for (int i = 2; i &lt;= 10; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		ListNode * newnode = new ListNode(0);</span><br><span class="line">		newnode-&gt;val = i;</span><br><span class="line">		newnode-&gt;next = NULL;</span><br><span class="line">		temp1-&gt;next = newnode;</span><br><span class="line">		temp1 = temp1-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	//reverseBetween(head, 3, 7);</span><br><span class="line">	ListNode *result = reverseBetween(head, 3, 7);</span><br><span class="line">	ListNode *p = head;</span><br><span class="line">	while (p != NULL)</span><br><span class="line">	&#123;</span><br><span class="line">		cout &lt;&lt; p-&gt;val &lt;&lt; &quot; &quot;;</span><br><span class="line">		p = p-&gt;next;</span><br><span class="line">	&#125;</span><br><span class="line">	cout &lt;&lt; endl;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="0-1背包问题"><a href="#0-1背包问题" class="headerlink" title="0-1背包问题"></a>0-1背包问题</h2><h3 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h3><p>有n种礼品，每个礼品对应一个热度值，总金额为k，每个礼品只能买一次，如何购买可以使得所有礼品的总热度值最高。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line">* vivo2019提前批笔试第三题：</span><br><span class="line">* 小v负责一次活动礼品采购，每一款礼品的受欢迎程度(热度值)各不相同，现给出总金额以及各个礼品的单价</span><br><span class="line">* 和热度值，且每个礼品只购买一个，如何购买可以使得所有礼品的总热度值最高。</span><br><span class="line">* 输入：</span><br><span class="line">* 第一行是一个正整数，表示总金额(不大于1000)</span><br><span class="line">* 第二行是一个长度为n的正整数数组，表示礼品单价(n不大于100)</span><br><span class="line">* 第三行是一个长度为n的正整数数组，表示对应礼品的热度值</span><br><span class="line">* 输出：</span><br><span class="line">* 一个正整数，表示可以获得的最高总热度值</span><br><span class="line">*</span><br><span class="line">* 样例输入：1000</span><br><span class="line">*           200 600 100 180 300 450</span><br><span class="line">*           6 10 3 4 5 8</span><br><span class="line">* 样例输出：21</span><br><span class="line">*/</span><br><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;vector&gt;</span><br><span class="line">#include &lt;algorithm&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">int solution3(int total,int len, vector&lt;int&gt;price, vector&lt;int&gt;hot)</span><br><span class="line">&#123;</span><br><span class="line">	vector&lt;vector&lt;int&gt; &gt; dp(len + 1, vector&lt;int&gt;(total + 1, 0));</span><br><span class="line">	for (int i = 1; i &lt;= len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int j = 1; j &lt;= total; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			if (price[i - 1]&gt;j)</span><br><span class="line">			&#123;</span><br><span class="line">				dp[i][j] = dp[i - 1][j];</span><br><span class="line">			&#125;</span><br><span class="line">			else</span><br><span class="line">			&#123;</span><br><span class="line">				dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - price[i - 1]] + hot[i - 1]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return dp[len][total];</span><br><span class="line">&#125;</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">	int n, total;//商品数量和总价</span><br><span class="line">	int temp;//临时变量</span><br><span class="line">	cout &lt;&lt; &quot;请输入n和总价:&quot; &lt;&lt; endl;</span><br><span class="line">	cin &gt;&gt; n &gt;&gt; total;//输入商品数量值和商品总价</span><br><span class="line">	vector&lt;int&gt; hot;</span><br><span class="line">	vector&lt;int&gt; price;</span><br><span class="line">	//价格存入</span><br><span class="line">	cout &lt;&lt; &quot;请输入热度&quot; &lt;&lt; endl;</span><br><span class="line">	for (int i = 0; i&lt;n; i++)</span><br><span class="line">	&#123;</span><br><span class="line"></span><br><span class="line">		cin &gt;&gt; temp;</span><br><span class="line">		hot.push_back(temp);</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 0; i&lt;n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		cin &gt;&gt; temp;</span><br><span class="line">		price.push_back(temp);</span><br><span class="line">	&#125;</span><br><span class="line">	//下面开始进行处理</span><br><span class="line">	int result = solution3(total, n, price, hot);</span><br><span class="line">	cout &lt;&lt; result &lt;&lt; endl;</span><br><span class="line">	system(&quot;pause&quot;);</span><br><span class="line">	return 0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/05/31/speech-process-learning-notes-no1/" class="next-post btn btn-default" title="语音信号处理笔记（1）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">语音信号处理笔记（1）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#vivo提前批笔试题整理"><span class="toc-text">vivo提前批笔试题整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#寻找数组中不存在的元素"><span class="toc-text">寻找数组中不存在的元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#倒序链表中的两个元素之间的元素"><span class="toc-text">倒序链表中的两个元素之间的元素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-1背包问题"><span class="toc-text">0-1背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#题目描述-2"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#代码"><span class="toc-text">代码</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
