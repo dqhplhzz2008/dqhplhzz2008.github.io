@@ -1,0 +1,374 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="牛客">
+
+
+    <meta name="description" content="C++/C语言基础
+对下列语句正确的描述是?12const int *x;   //①int * const x;   //②
+
+
+答案：语句②的含义是指针变量x不能更改
+解析：const修饰 ...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>牛客网选择题整理20190616 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="牛客网选择题整理20190616">
+            
+	            牛客网选择题整理20190616
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/牛客/">牛客</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/16</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="C-C语言基础"><a href="#C-C语言基础" class="headerlink" title="C++/C语言基础"></a>C++/C语言基础</h2><ol>
+<li>对下列语句正确的描述是?<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">const int *x;   //①</span><br><span class="line">int * const x;   //②</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>答案：<strong>语句②的含义是指针变量x不能更改</strong></p>
+<p><strong>解析</strong>：const修饰 <em> 左侧的时候，表示指向的数据类型为常量；当const修饰 </em> 右侧的时候，表示指针本身为常量。</p>
+<ol start="2">
+<li>下述静态数据成员的特征中，D是错误的。</li>
+</ol>
+<p>解析：</p>
+<ol>
+<li>静态数据成员在定义或说明时前面加关键字static。//静态变量的定义</li>
+<li>静态成员初始化与一般数据成员初始化不同。静态数据成员初始化的格式如下：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;数据类型&gt;&lt;类名&gt;::&lt;静态数据成员名&gt;=&lt;值&gt;  //静态变量的初始化</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>这表明：<br>(1) 初始化在类体外进行，而前面不加static，（这点需要注意）以免与一般静态变量或对象相混淆。（更详细的，因为静态成员属于整个类，而不属于某个对象，如果在类内初始化，会导致每个对象都包含该静态成员，这是矛盾的。）<br>(2) 初始化时不加该成员的访问权限控制符private，public等。<br>(3) 初始化时使用作用域运算符来标明它所属类，因此，静态数据成员是类的成员，而不是对象的成员。</p>
+<p>3.二进制数据文件流fdat读指针移到文件头的语句是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">fdat.seekg(0,ios::beg);</span><br></pre></td></tr></table></figure></p>
+<p>解析：对输入流操作：seekg和tellg；对输出流操作操作是seekp和tellp。seekg（）是对输入文件定位，它有两个参数：第一个参数是偏移量，第二个参数是基地址。 对于第一个参数，可以是正负数值，正的表示向后偏移，负的表示向前偏移。而第二个参数可以是： ios：：beg：表示输入流的开始位置 ios：：cur：表示输入流的当前位置 ios：：end：表示输入流的结束位置 tellg（）函数不需要带参数，它返回当前定位指针的位置，也代表着输入流的大小。</p>
+<h2 id="二叉树"><a href="#二叉树" class="headerlink" title="二叉树"></a>二叉树</h2><ol>
+<li><p>n个结点的二叉链表中含有n+1(2n-(n-1)=n+1)个空指针域。利用二叉链表中的空指针域，存放指向节点在某种遍历次序下的前驱和后继结点的指针</p>
+</li>
+<li><p>若一棵完全二叉树有768 个结点，则该二叉树中叶结点的个数是<strong>384</strong>。<br>解析：设二叉树中度为0的节点为n0，度为1的节点为n1，度为2的节点为n2，由于n2=n0-1，所以二叉树的节点为n0+n1+n2=2n0-1+n1=768。由于n0一定为偶数个，且n1要么为0，要么为1，所以n1=1，所以n0=768/2=384。</p>
+</li>
+<li><p>设在一棵度数为3的树中，度数为3的结点数有2个，度数为2的结点数有1个，度数为1的结点数有2个，那么度数为0的结点数有(<strong>6</strong> )个。</p>
+</li>
+</ol>
+<p><strong>解析：</strong> 总结点数等于1+n1<em> 1+n2 </em> 2+n3 <em> 3，所以对于这个题来说，总结点数等于1+1 </em> 2+ 1 <em>2 + 3 </em> 2 =11，所以说，读为0的结点为11-2-1-2=6个。</p>
+<ol start="4">
+<li>若将关键字1，2，3，4，5，6，7 依次插入到初始为空的平衡二叉树 T 中，则 T 中平衡因子为 0 的分支结点的个数是（ ）。 </li>
+</ol>
+<p><strong>解析</strong>：</p>
+<p>![13570765d0e99c85e382f87447a20752.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906161.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906161.png</a>)</p>
+<ol start="5">
+<li>某二叉树结点的中序序列为A、B、C、D、E、F、G，后序序列为B、D、C、A、F、G、E。该二叉树对应的森林结点的层次序列为：<strong>E、G、A、C、D、F、B</strong>。</li>
+</ol>
+<p>解析：首先是<strong>二叉树转换成森林</strong>。加入一棵二叉树的根节点有右孩子，则这颗二叉树能够转换成森林，否则将转换成一棵树。转换方法是：<br>（1）从根节点开始，若右孩子存在，则把与右孩子结点的连线删除。再查看分离后的二叉树，若其根节点的右孩子存在，则连线删除…。直到所有这些根节点与右孩子的连线都删除为止。<br>（2）将每棵分离后的二叉树转换为树。<br>对于此题，结果如下：<br>![eae47ef9d93d47ab2bac97bfa29f7ea3.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906162.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906162.png</a>)</p>
+<p>第二步是<strong>二叉树转换为树</strong>。步骤如下：<br>（1）加线。若某结点X的左孩子结点存在，则将这个左孩子的右孩子结点、右孩子的右孩子结点、右孩子的右孩子的右孩子结点…，都作为结点X的孩子。将结点X与这些右孩子结点用线连接起来。<br>（2）去线。删除原二叉树中所有结点与其右孩子结点的连线。<br>（3）层次调整。<br>对于此题，结果如下：<br>![5e0267c193bfabfc8c57d855835404d8.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906163.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906163.png</a>)</p>
+<ol start="6">
+<li><p>有8个结点的无向图最多有<strong>28</strong>条边。<br><strong>解析</strong>：想象邻接矩阵除去对角线一共有8 * 8-8=56个点，然后无向图，所以56/2=28。我就是忘了除以2。</p>
+</li>
+<li><p>具有n个顶点的有向图，所有顶点的出度之和为m，则所有顶点的入度之和为<strong>m</strong>。<br><strong>解析</strong>：有向图的<strong>入度之和=出度之和</strong>。</p>
+</li>
+</ol>
+<p>8.有向图中，<strong>各列非零之和为入度，各行非零之和为出度</strong>。</p>
+<ol start="9">
+<li><p>在一个n阶B-树上，每个树根节点中所含的关键字数目<strong>最多</strong>为<strong>N-1</strong>个，<strong>最少</strong>为<strong>N/2-1（向上取整）</strong>个。</p>
+</li>
+<li><p>把一棵树转换成二叉树后，这棵二叉树的形态是<strong>唯一</strong>的。把一棵树转换成二叉树的方法如下：<br>（1）加线。就是在所有兄弟结点之间加一条连线；<br>（2）抹线。就是对树中的每个结点，只保留他与第一个孩子结点之间的连线，删除它与其它孩子结点之间的连线；<br>（3）旋转。就是以树的根结点为轴心，将整棵树顺时针旋转一定角度，使之结构层次分明。</p>
+</li>
+</ol>
+<p>![006c667e36f07de36f9e39c5457dcc2e.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906164.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906164.png</a>)</p>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><ol>
+<li>已知有向图G=(V,E)，其中V={ V1 , V2 , V3 , V4 , V5 , V6 , V7 }，E={<v1 ,v2>, <v1 ,v3>, <v1 ,v4>, <v2 ,v5>, <v3 ,v5>, <v3 ,v6>,   <v4 ,v6>, <v5 ,v7>, <v6 ,v7>}G的拓扑序列是 <strong>V1, V3, V4, V6, V2, V5, V7</strong>。</v6></v5></v4></v3></v3></v2></v1></v1></v1></li>
+</ol>
+<p>解析：</p>
+<p>![e469de7f41fbca97c1a8ccb8b3f030c2.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906165.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906165.png</a>)</p>
+<p>取一个结点的要求是这个结点没有任何前驱。</p>
+<h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><ol>
+<li>用相邻矩阵A表示图，判定任意两个顶点Vi和Vj之间是否有长度为m的路径相连，则只要检查（<strong>A^m</strong>）的第i行第j列的元素是否为零即可。</li>
+</ol>
+<p>解析：<br>![3861d5bc8b08276baecc06c4a8e06642.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906166.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906166.png</a>)</p>
+<h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><ol>
+<li>SVM核函数主要包括：<strong>线性核函数</strong>、<strong>多项式核函数</strong>、<strong>径向基核(RBF）</strong>、<strong>傅里叶核函数</strong>、<strong>样条核</strong>、<strong>sigmoid核函数</strong>等。</li>
+</ol>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/06/05/vivo-2020-preexam-jun4th/" class="next-post btn btn-default" title="vivo2020校招提前批开发笔试试题">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">vivo2020校招提前批开发笔试试题</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#C-C语言基础"><span class="toc-text">C++/C语言基础</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树"><span class="toc-text">二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图"><span class="toc-text">图</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#拓扑排序"><span class="toc-text">拓扑排序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它"><span class="toc-text">其它</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#机器学习"><span class="toc-text">机器学习</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
