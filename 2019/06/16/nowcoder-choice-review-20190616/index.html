@@ -222,12 +222,12 @@
 <li>若将关键字1，2，3，4，5，6，7 依次插入到初始为空的平衡二叉树 T 中，则 T 中平衡因子为 0 的分支结点的个数是（ ）。 </li>
 </ol>
 <p><strong>解析</strong>：</p>
-<p>![13570765d0e99c85e382f87447a20752.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906161.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906161.png</a>)</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906161.png" alt="13570765d0e99c85e382f87447a20752.png"></p>
 <ol start="5">
 <li>某二叉树结点的中序序列为A、B、C、D、E、F、G，后序序列为B、D、C、A、F、G、E。该二叉树对应的森林结点的层次序列为：<strong>E、G、A、C、D、F、B</strong>。</li>
 </ol>
-<p>解析：首先是<strong>二叉树转换成森林</strong>。加入一棵二叉树的根节点有右孩子，则这颗二叉树能够转换成森林，否则将转换成一棵树。转换方法是：<br>（1）从根节点开始，若右孩子存在，则把与右孩子结点的连线删除。再查看分离后的二叉树，若其根节点的右孩子存在，则连线删除…。直到所有这些根节点与右孩子的连线都删除为止。<br>（2）将每棵分离后的二叉树转换为树。<br>对于此题，结果如下：<br>![eae47ef9d93d47ab2bac97bfa29f7ea3.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906162.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906162.png</a>)</p>
-<p>第二步是<strong>二叉树转换为树</strong>。步骤如下：<br>（1）加线。若某结点X的左孩子结点存在，则将这个左孩子的右孩子结点、右孩子的右孩子结点、右孩子的右孩子的右孩子结点…，都作为结点X的孩子。将结点X与这些右孩子结点用线连接起来。<br>（2）去线。删除原二叉树中所有结点与其右孩子结点的连线。<br>（3）层次调整。<br>对于此题，结果如下：<br>![5e0267c193bfabfc8c57d855835404d8.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906163.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906163.png</a>)</p>
+<p>解析：首先是<strong>二叉树转换成森林</strong>。加入一棵二叉树的根节点有右孩子，则这颗二叉树能够转换成森林，否则将转换成一棵树。转换方法是：<br>（1）从根节点开始，若右孩子存在，则把与右孩子结点的连线删除。再查看分离后的二叉树，若其根节点的右孩子存在，则连线删除…。直到所有这些根节点与右孩子的连线都删除为止。<br>（2）将每棵分离后的二叉树转换为树。<br>对于此题，结果如下：<br><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906162.png" alt="eae47ef9d93d47ab2bac97bfa29f7ea3.png"></p>
+<p>第二步是<strong>二叉树转换为树</strong>。步骤如下：<br>（1）加线。若某结点X的左孩子结点存在，则将这个左孩子的右孩子结点、右孩子的右孩子结点、右孩子的右孩子的右孩子结点…，都作为结点X的孩子。将结点X与这些右孩子结点用线连接起来。<br>（2）去线。删除原二叉树中所有结点与其右孩子结点的连线。<br>（3）层次调整。<br>对于此题，结果如下：<br><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906163.png" alt="5e0267c193bfabfc8c57d855835404d8.png"></p>
 <ol start="6">
 <li><p>有8个结点的无向图最多有<strong>28</strong>条边。<br><strong>解析</strong>：想象邻接矩阵除去对角线一共有8 * 8-8=56个点，然后无向图，所以56/2=28。我就是忘了除以2。</p>
 </li>
@@ -241,17 +241,17 @@
 <li><p>把一棵树转换成二叉树后，这棵二叉树的形态是<strong>唯一</strong>的。把一棵树转换成二叉树的方法如下：<br>（1）加线。就是在所有兄弟结点之间加一条连线；<br>（2）抹线。就是对树中的每个结点，只保留他与第一个孩子结点之间的连线，删除它与其它孩子结点之间的连线；<br>（3）旋转。就是以树的根结点为轴心，将整棵树顺时针旋转一定角度，使之结构层次分明。</p>
 </li>
 </ol>
-<p>![006c667e36f07de36f9e39c5457dcc2e.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906164.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906164.png</a>)</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906164.png" alt="006c667e36f07de36f9e39c5457dcc2e.png"></p>
 <h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><h3 id="拓扑排序"><a href="#拓扑排序" class="headerlink" title="拓扑排序"></a>拓扑排序</h3><ol>
 <li>已知有向图G=(V,E)，其中V={ V1 , V2 , V3 , V4 , V5 , V6 , V7 }，E={<v1 ,v2>, <v1 ,v3>, <v1 ,v4>, <v2 ,v5>, <v3 ,v5>, <v3 ,v6>,   <v4 ,v6>, <v5 ,v7>, <v6 ,v7>}G的拓扑序列是 <strong>V1, V3, V4, V6, V2, V5, V7</strong>。</v6></v5></v4></v3></v3></v2></v1></v1></v1></li>
 </ol>
 <p>解析：</p>
-<p>![e469de7f41fbca97c1a8ccb8b3f030c2.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906165.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906165.png</a>)</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906165.png" alt="e469de7f41fbca97c1a8ccb8b3f030c2.png"></p>
 <p>取一个结点的要求是这个结点没有任何前驱。</p>
 <h3 id="其它"><a href="#其它" class="headerlink" title="其它"></a>其它</h3><ol>
 <li>用相邻矩阵A表示图，判定任意两个顶点Vi和Vj之间是否有长度为m的路径相连，则只要检查（<strong>A^m</strong>）的第i行第j列的元素是否为零即可。</li>
 </ol>
-<p>解析：<br>![3861d5bc8b08276baecc06c4a8e06642.png]<a href="http://tech.yushuai.xyz/wzpt/choicereview/day1906166.png">http://tech.yushuai.xyz/wzpt/choicereview/day1906166.png</a>)</p>
+<p>解析：<br><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906166.png" alt="3861d5bc8b08276baecc06c4a8e06642.png"></p>
 <h2 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h2><ol>
 <li>SVM核函数主要包括：<strong>线性核函数</strong>、<strong>多项式核函数</strong>、<strong>径向基核(RBF）</strong>、<strong>傅里叶核函数</strong>、<strong>样条核</strong>、<strong>sigmoid核函数</strong>等。</li>
 </ol>
