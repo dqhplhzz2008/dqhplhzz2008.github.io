@@ -1,0 +1,362 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process">
+
+
+    <meta name="description" content="语音和阵列信号的基础以下内容均为自己有关文献和论文整理，因为部分公式较难打出，所以整理成了图片。
+语音信号及特点1.语音信号的几大特点：
+噪声场不同噪声场中的噪声之间的相关程度不一样。定义噪声相...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>语音信号处理笔记（2） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="语音信号处理笔记（2）">
+            
+	            语音信号处理笔记（2）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/23</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="语音和阵列信号的基础"><a href="#语音和阵列信号的基础" class="headerlink" title="语音和阵列信号的基础"></a>语音和阵列信号的基础</h1><p>以下内容均为自己有关文献和论文整理，因为部分公式较难打出，所以整理成了图片。</p>
+<h2 id="语音信号及特点"><a href="#语音信号及特点" class="headerlink" title="语音信号及特点"></a>语音信号及特点</h2><p>1.语音信号的几大特点：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1906231.png" alt="54d91e8d61aed30fa729fa015a0d24aa.png"></p>
+<h2 id="噪声场"><a href="#噪声场" class="headerlink" title="噪声场"></a>噪声场</h2><p>不同噪声场中的噪声之间的相关程度不一样。定义噪声相关函数如下：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1906232.png" alt="be090821cd4f50f6534dbeb308245cd7.png"></p>
+<p> <img src="http://tech.yushuai.xyz/wzpt/speechnotes/1906233.png" alt="83d88fc3a4a31d2e9654f53b27ced0ec.png"></p>
+<p> 一般认为，在不考虑噪声的散射、幅度衰减等的情况下，相干噪声场中噪声直达各个麦克风。实际中，开放的、没有混响的环境通常为相干噪声场；非相干噪声场中，噪声互不相干，理想的非相干噪声场实际环境很少见，通常认为麦克风产生的电子噪声为非相干噪声。许多实际噪声环境可以看作散射场，如室内、车内环境等。</p>
+<h2 id="近场和远场"><a href="#近场和远场" class="headerlink" title="近场和远场"></a>近场和远场</h2><table>
+<thead>
+<tr>
+<th></th>
+<th>区分</th>
+<th>特点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>远场</td>
+<td>一般认为信源到阵列中心的距离远大于信号波长为远场</td>
+<td>声音信号是平面波，阵列接收的多路信号间主要存在时延差，忽略它们的幅度差。</td>
+</tr>
+<tr>
+<td>近场</td>
+<td>反之为近场。</td>
+<td>考虑阵元接收信号间的幅度差，认为声音信号是球面波。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="空间采样定理"><a href="#空间采样定理" class="headerlink" title="空间采样定理"></a>空间采样定理</h2><p>对于阵元间距相等的线性阵列来说，定义空间采样频率为</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1906234.png" alt="1b48053d93c706c0677491c3d22e44bb.png"></p>
+<h2 id="宽带信号接收模型"><a href="#宽带信号接收模型" class="headerlink" title="宽带信号接收模型"></a>宽带信号接收模型</h2><p>假设空间中有一个M阵列的阵元，接收到一个直达的宽带信号，入射角为θ，那么第m个阵元接收到的信号可以表示为<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1906235.png" alt="8b1901cc3c2fb962cf690e681f7d0906.png"></p>
+<p>就是导向矢量，其与信号频率和试验有关系，时延又和阵列结构以及入射角有关系。</p>
+<p>接下来的内容可以将频域的窄带波束形成算法扩展到宽带。</p>
+<p>如果我们将信号观察期间内接收到的数据进行分块，对每块信号进行K点变换，只要数据块比信号相关事件长，那么变换后的每块数据都不想管，那么向量形式的公式可以转化为短时分析的形式</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1906236.png" alt="af86a6423ad1cc450db5077cef7de698.png"></p>
+<p>式中分别是第l数据块的接受信号、第一个麦克风接收的源信号、噪声在fk处的DFT。fk是第k个频点对应的频率。</p>
+<h2 id="导向矢量估计"><a href="#导向矢量估计" class="headerlink" title="导向矢量估计"></a>导向矢量估计</h2><p>导向矢量估计主要有以下几种方法：</p>
+<ol>
+<li>直接估计导向矢量。这一类方法基于这一准则：期望信号相关矩阵的特征向量可以作为导向矢量的估计，估计出相关矩阵后进行广义特征值分解，找到最大特征值对应的特征向量，认为是导向矢量的估计。</li>
+<li>时延估计。这是一种间接估计导向矢量的方法，得到每个麦克风相对参考阵元的时延后，便可计算出每个频率分量对应的导向矢量，时延估计更为简单，对于需要时间同步的算法，也更为直接。环境混响程度轻、信噪比高条件下，现有的时延估计算法能取得良好性能，但在低信噪比复杂环境下，鲁棒性不高，性能下降，而波束形成算法的同步操作对时延误差比较敏感。使用麦克风阵列进行语音增强，而不涉及其他需求（声源跟踪、定位等），计算时延是较为直接的导向矢量估计方法。</li>
+<li>声学传递函数ATF估计。</li>
+<li>波达方向估计。时延估计与DOA估计是等价问题，两者可以相互转换：DOA估计出信号入射角度后，在已知阵列结构条件下，便可计算出各阵元的相对时延，进而得到导向矢量。基于DOA的方法，理想情况下性能好，通常考虑信号为直达声，信噪比低、环境混响严重时，DOA性能急剧下降，另外阵列结构信息在有些运用中是未知的。尽管 DOA算法在实际中有较多运用，但在导向矢量估计方面并没有时延估计那么直接。</li>
+</ol>
+<h2 id="后置滤波"><a href="#后置滤波" class="headerlink" title="后置滤波"></a>后置滤波</h2><p>后置滤波原因：</p>
+<ol>
+<li>波束形成对于非相干噪声去除能力较差；</li>
+<li>波束形成对于非稳态噪声处理能力有限。</li>
+</ol>
+<p>后置滤波器的参数需要利用多路输入信号的信息来计算，可以进一步抑制波束形成输出的噪声，解决波束形成对非相干噪声抑制能力不足的问题，提高语音增强算法的性能。</p>
+<p>Zelinski方法的维纳滤波器表达式如下：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/1906237.png" alt="0840327ac50075f71996c239738a1a06.png"></p>
+<p>上面Re后面的式子和下面那个式子分别表示相位同步之后的输入信号的互功率谱的估计和自功率谱的估计。整个方法的意思是：用阵列得到的多路信号的自相关和互相关功率谱密度的平均，来估计波束形成输出信号中的期望信号和噪声的功率谱。</p>
+<p>这个方法存在两个问题：</p>
+<ol>
+<li>如果噪声信号相关性较大，噪声功率就会欠估计，噪声去除不足。</li>
+<li>如果噪声相关性较低，就会过估计，导致信号的失真。</li>
+</ol>
+<p>所以在实际的散射场中，会存在低频去噪能力不足，有残留噪声。这是因为噪声往往在低频具有较高的相关性。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/06/16/nowcoder-choice-review-20190616/" class="next-post btn btn-default" title="牛客网选择题整理20190616">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">牛客网选择题整理20190616</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#语音和阵列信号的基础"><span class="toc-text">语音和阵列信号的基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#语音信号及特点"><span class="toc-text">语音信号及特点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#噪声场"><span class="toc-text">噪声场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#近场和远场"><span class="toc-text">近场和远场</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#空间采样定理"><span class="toc-text">空间采样定理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#宽带信号接收模型"><span class="toc-text">宽带信号接收模型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#导向矢量估计"><span class="toc-text">导向矢量估计</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后置滤波"><span class="toc-text">后置滤波</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
