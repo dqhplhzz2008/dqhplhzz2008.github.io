@@ -1,0 +1,353 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="牛客">
+
+
+    <meta name="description" content="排序
+外排中使用置换选择排序的目的,是为了增加初始归并段的长度。√
+插入排序：需要有一个对比查找过程；选择排序直接插入指定位置。
+快速排序中，第i趟排序结果至少确定i个元素的位置。
+使用堆排序方...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>牛客网选择题整理20190624 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="牛客网选择题整理20190624">
+            
+	            牛客网选择题整理20190624
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/牛客/">牛客</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/24</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><ol>
+<li>外排中使用置换选择排序的目的,是为了增加初始归并段的长度。√</li>
+<li>插入排序：需要有一个对比查找过程；选择排序直接插入指定位置。</li>
+<li>快速排序中，第i趟排序结果<strong>至少确定i个元素的位置</strong>。</li>
+<li>使用堆排序方法排序（45,78,57,25,41,89），初始堆为<strong>89,78,57,25,41,45</strong>。</li>
+<li>将两个各有n个元素的有序表归并成一个有序表,最少的比较次数是<strong>n</strong>，最多是<strong>2n-1</strong>。</li>
+</ol>
+<p>解析：<br>方法：</p>
+<ol>
+<li>首先将所有元素按照初始顺序填充到一个完全二叉树中</li>
+<li><p>从“最后一个非终端节点”开始，调用siftdown方法，调整堆的结构，直到根节点为止。<br>图示：<br><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906241.png" alt="10db946dd21958631657957ef97caa3d.png"></p>
+</li>
+<li><p>对于冒泡排序和插入排序来说，每一趟都能确定一个元素的<strong>最终位置</strong>。</p>
+</li>
+<li>设一组初始记录关键字序列为(25，50，15，35，80，85，20，40，36，70)，其中含有5个长度为2的有序子表，则用归并排序的方法对该记录关键字序列进行一趟归并后的结果为（   ）。</li>
+</ol>
+<p>解析：序列分为了5组：25,50；15,35；80,85；20,40；36,70。对前两组进行归并，得到：15,25,35,50；对第3、4组归并得到：20,40,80,85；第5组直接输出：36，70。所以最后结果是：<strong>15,25,35,50,20,40,80,85,36,70</strong>。</p>
+<h2 id="图"><a href="#图" class="headerlink" title="图"></a>图</h2><ol>
+<li>连通图上各边权值均不相同，则改图的最少生成树是唯一的。</li>
+<li><p>拓扑排序反映的是<strong>一个工程能否顺利进行的问题</strong>。表示工程的有向图，顶点表示活动，弧表示活动之间的优先关系，AOV网（Activity On Vertex Network）排序算法：从AOV网中选择入度为0的顶点输出，然后删除此顶点，并删除以此顶点为尾的弧，重复直到输出全部顶点或者AOV网中不存在入度为0的顶点为止。采用的图的数据结构：邻接表，加一个存储入度的空间。<br>关键路径：从源点到汇点的最长路径。</p>
+</li>
+<li><p>AOE（activity on Edge）以弧表示活动。AOV（activity on vertex network）以顶点表示活动。</p>
+</li>
+<li>在一个无向图中，所有顶点的度数之和等于<strong>图的边数的2倍</strong>。</li>
+<li>拓扑序列和有向无环图的结构不是一一对应的。</li>
+<li>设某无向图中有n个顶点e条边，则该无向图中所有顶点的度之和为<strong>2e</strong>。</li>
+<li>已知无向图G有16条边，其中度为4的顶点个数为3，度为3的顶点个数为4，其他顶点的度均小于3。图G所含的顶点个数至少是<strong>11</strong>。</li>
+</ol>
+<p>解析：已知图G有16条边，所以其度为32。由于计算顶点个数最少为多少，所以假设剩余的顶点度为2，这样才能保证顶点个数最少。假设度为2的顶点有x个，则可得出：4×3+3×4+x×2=32，解之得x=4。所以顶点个数为3+4+4=11个。</p>
+<h2 id="树"><a href="#树" class="headerlink" title="树"></a>树</h2><ol>
+<li>将森林转换为对应的二叉树，若在二叉树结点中，结点m是结点n的双亲结点的双亲结点，则在原来的森林中，m和n可能具有的关系是____。<br>1.父子关系<br>2.m的双亲结点与n的双亲结点是兄弟关系<br>3.兄弟关系</li>
+</ol>
+<p>解析：若在深林中m的父结点和n的父结点是兄弟关系。那么变成二叉树后，他们形成单边右斜关系，而u和v分别在他们各自的左子树内，不可能在一条路径上，所以2是不可能的。<br>对于1、3来说，分别如下图：<br><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906242.png" alt="4e4a587d91c76aa9910baa204b93532a.png"></p>
+<ol start="2">
+<li><p>m阶B树的定义：<br><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906243.png" alt="75a72ac2d128d93d1e169c5e9d40365c.png"></p>
+</li>
+<li><p>二叉树的线索化：对于二叉树的线索化，实质上就是遍历一次二叉树，只是在遍历的过程中，检查当前结点左，右指针域是否为空，若为空，将它们改为指向前驱结点或后继结点的线索。<br>前驱（pre）:以中序线索二叉树的建立为例，指针pre指向中序遍历时上一个刚刚访问过的结点。</p>
+</li>
+<li><p>若度为m的哈夫曼树中,其叶结点个数为n,则非叶结点的个数为(<strong>(n-1)/(m-1)</strong>)</p>
+</li>
+</ol>
+<p>解析：哈夫曼树并不是局限于二叉树，可能也存在于多叉树。对于二叉树来说，哈夫曼树是最优二叉树（严格二叉树）；对于m叉树来说，是最优m叉树（严格m叉树）。<br>对于度为m的哈夫曼树来说，节点的度要么为0，要么为m。设度不为零的点有a个，则总结点数为a+n。<br>由于除根节点外，其余每一个结点都有一个分支连向一个节点，对于度为m的每个节点都有m个分支，而度为0的节点是没有分支的，所以从分支角度来看，总的结点数是a<em>m+1。<br>a</em>m+1=a+n，所以a=(n-1)/(m-1)。</p>
+<h2 id="网络流"><a href="#网络流" class="headerlink" title="网络流"></a>网络流</h2><p>图示是一个网络流从s到t的某时刻快照。此时t处一共接收到10+13+16=39单位流量。每条横线上的数字表示当前流量和管道的容量。那么，该网络最大的流量是多少？<strong>41</strong>。<br><img src="http://tech.yushuai.xyz/wzpt/choicereview/day1906244.png" alt="436fdd5a60e9353c0dc84ca79fc6ec7c.png"><br>解析：<br>第一层为s，朝着重点最大输出为11+22+10=43。<br>第二层为结点1,2,3：节点一最多输出10，这是受了结点4的限制；结点2最多17，因为结点5发出最大为23；结点3最多为14，这是被结点3的入度所限制了，入度为14。所以总体是10+17+14=41。<br>第三层为结点4,5,6：输出为10+16+16=42。<br>min(43,41,42)=41。</p>
+<p>一定要瞻前顾后（瞻前：看结点的入度是否限制；顾后：看后一结点的输出是否限制），不考虑回流。。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/06/23/speech-process-learning-notes-day2/" class="next-post btn btn-default" title="语音信号处理笔记（2）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">语音信号处理笔记（2）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#排序"><span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图"><span class="toc-text">图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#树"><span class="toc-text">树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#网络流"><span class="toc-text">网络流</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
