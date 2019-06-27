@@ -1,0 +1,405 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="LDR,Machine Learning">
+
+
+    <meta name="description" content="学术报告笔记整理（袁博）报告简介学术报告题目：From Matrix to Tensor: Algorithm and Hardware Co-Design for Energy-Efficie...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Algorithm and Hardware Co-Design for Energy-Efficient Deep Learning | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Algorithm and Hardware Co-Design for Energy-Efficient Deep Learning">
+            
+	            Algorithm and Hardware Co-Design for Energy-Efficient Deep Learning
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/LDR/">LDR</a> <a class="tag-link" href="/tags/Machine-Learning/">Machine Learning</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/27</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="学术报告笔记整理（袁博）"><a href="#学术报告笔记整理（袁博）" class="headerlink" title="学术报告笔记整理（袁博）"></a>学术报告笔记整理（袁博）</h1><h2 id="报告简介"><a href="#报告简介" class="headerlink" title="报告简介"></a>报告简介</h2><p>学术报告题目：From Matrix to Tensor: Algorithm and Hardware Co-Design for Energy-Efficient Deep Learning</p>
+<p>主讲人：袁博，罗格斯大学电气与计算机工程系助理教授（Bo Yuan, Assistant professor in the Department of Electrical and Computer Engineering in Rutgers University）</p>
+<h2 id="报告内容笔记"><a href="#报告内容笔记" class="headerlink" title="报告内容笔记"></a>报告内容笔记</h2><p>深度学习应用广泛，但是目前强调的多以深度学习的软件应用为主。但是随着深度学习深入人们的生活，现有单纯依赖GPU的软件算法成本非常高，而且随着要求精确度的提高，数据量和模型也在变得越来越大，这对于存储量和计算量要求也越来越高，因此需要有专门应用于深度学习的芯片产生。</p>
+<p>为了解决存储量和计算量非常大的问题，引入了Sparsification（模型压缩）这样一种方法，这是基于实际上模型有大量的冗余这一事实。模型压缩主要有两种方法：一是剪枝（如图1所示）；二就是降低精度，例如ESE。如下图，Google的TPU-1也是用的这个，它是用的8bit量化。另外还有binarized model（1比特量化），例如YodaNN。但是这种方法压缩率有限，实践中精确度会损失较大。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao1.png" alt="1c19b0210ce21045940eb7b05ec7714b.png"><br>图1</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao2.png" alt="8bd54a7719e18284399813044b4451a1.png"><br>图2<br>主讲人所在的实验室主要研究了解决这个问题的另外三种方法：</p>
+<h3 id="稠密矩阵构建神经网络"><a href="#稠密矩阵构建神经网络" class="headerlink" title="稠密矩阵构建神经网络"></a>稠密矩阵构建神经网络</h3><p>一是用稠密矩阵构建神经网络。稠密矩阵是每一个元素不一样，但是可以转换成某种有结构性的矩阵（例如循环矩阵，比如说每个大矩阵是3*3小矩阵的循环，那么就有3倍压缩率），由此提出了Low Displacement Rank Matrix（LDR矩阵）。如图所示。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao3.png" alt="905de3b093b2190a0ff05111bc51ec5b.png"><br>图3</p>
+<p>它符合下面的特性：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao4.png" alt="e3cf6c4ca159d09607503d564121a0f9.png"><br>图4</p>
+<p>它有以下优点：<br>①空间复杂度由O(n2)降为了O(n)。<br>②空间结构性更好，设计硬件的时候摆脱了要建立索引，可以节省空间。<br>③利用了LDR矩阵有快速运算方法。</p>
+<p>在使用LDR矩阵之前，我们需要回答三个问题：</p>
+<ul>
+<li>通用近似属性是否仍然存在？（Does universal approximation property still exist?）</li>
+<li>近似误差的界限是什么？（What is the bound of approximation error?）</li>
+<li>我们应该如何获得LDR神经网络？（How should we get LDR neural networks?）</li>
+</ul>
+<p>上面的答案分别是[1]：<br>（1）是的。可以证明得到LDR网络的通用近似理论：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao41.png" alt="f3dceab93df4992cf177be7db7df3856.png"><br>（2）<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao42.png" alt="cc0b3f8fad5c8df0ce102ff75595979f.png"></p>
+<p>基于LDR矩阵所提出来的方法叫CirCNN网络，其结构如下[2]：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao5.png" alt="0cb6be42d94d61be9e4db14cfc795da3.png"><br>图5</p>
+<p>Cir-LSTM与ESE性能比较如下[3]：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao6.png" alt="c54118eaec0bb9798147503583aaf878.png"></p>
+<p>总的来说，LdrNN的框架如下：</p>
+<table>
+<thead>
+<tr>
+<th>List</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Theory</td>
+<td>Theoretical Properties for Neural Networks with Weight Matrices of Low Displacement Rank</td>
+</tr>
+<tr>
+<td>Algorithm</td>
+<td>CircConv: A Structured Convolution with Low Complexity</td>
+</tr>
+<tr>
+<td>Design Space Exploration</td>
+<td>Energy-efficient, high-performance, highly-compressed deep neural network design using block-circulant matrices</td>
+</tr>
+<tr>
+<td>Computer Architecture</td>
+<td>CirCNN: Accelerating and Compressing Deep Neural Networks Using Block-CirculantWeight Matrices</td>
+</tr>
+<tr>
+<td>FPGA Design</td>
+<td>C-LSTM: Enabling Efficient LSTM using Structured Compression Techniques on FPGAs</td>
+</tr>
+<tr>
+<td>Chip Design</td>
+<td>清华大学</td>
+</tr>
+</tbody>
+</table>
+<h3 id="基于稀疏矩阵构建神经网络"><a href="#基于稀疏矩阵构建神经网络" class="headerlink" title="基于稀疏矩阵构建神经网络"></a>基于稀疏矩阵构建神经网络</h3><p>二是基于稀疏矩阵构建神经网络。提出来的就是PermDNN算法。它是Block-Permuted Diagonal Weight Matrix（结构压缩），非零元素只存在于对角线或者偏移对角线的地方。其优点是不需要存储索引，只需要存储偏移量（利用偏移量进行简单取模运算得到索引）。它收到了编码里面的LDPC编码启发，其优点见下表：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>CirCNN</th>
+<th>PermDNN</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Arithmetic Operation</td>
+<td>Complex Number-based</td>
+<td>Real Number-based</td>
+</tr>
+<tr>
+<td>Comp Ratio for One Layer</td>
+<td>2^n</td>
+<td>Flexible</td>
+</tr>
+<tr>
+<td>Time-domain Input Sparsity</td>
+<td>NO</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>从数值运算上说，第一种方法（CirNN）是基于复数的，而本方法基于实数，降低了整体系统的计算量。</li>
+<li>从每一层的复杂度上来说，CirNN计算都是2的n次方，但是PermDNN则是灵活的，这一点PermDNN更好。</li>
+<li>从时域输入压缩上来说，CirNN是没有压缩的，但是PermDnn是压缩的。<h3 id="TIE"><a href="#TIE" class="headerlink" title="TIE"></a>TIE</h3>三是TIE：使用张量训练分解（Tensor Train Decomposition）的方法，如下图，基本上就是相当于对层的分解，具体因为目前不牵扯和自己相关的东西，所以没有做具体的整理。</li>
+</ul>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/yuanbobaogao7.png" alt="a22bb81516200fe00caebb5bcd8b1bb0.png"></p>
+<p>本笔记所提到的论文包括以下：</p>
+<ul>
+<li>Theoretical Properties for Neural Networks with Weight Matrices of Low Displacement Rank</li>
+<li>CircConv: A Structured Convolution with Low Complexity</li>
+<li>Energy-efficient, high-performance, highly-compressed deep neural network design using block-circulant matrices</li>
+<li>CirCNN: Accelerating and Compressing Deep Neural Networks Using Block-CirculantWeight Matrices</li>
+<li>C-LSTM: Enabling Efficient LSTM using Structured Compression Techniques on FPGAs</li>
+</ul>
+<p>这些论文已经上传至百度云，下载地址为：<a href="https://pan.baidu.com/s/12OStk9Id5AIH8P7ty-mhMw" target="_blank" rel="noopener">https://pan.baidu.com/s/12OStk9Id5AIH8P7ty-mhMw</a></p>
+<p>密码请关注我的个人微信公众号，回复“袁博论文”即可得到密码。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Zhao L , Liao S , Wang Y , et al. Theoretical Properties for Neural Networks with Weight Matrices of Low Displacement Rank[J]. 2017.</p>
+<p>[2] Ding C , Liao S , Wang Y , et al. CirCNN: Accelerating and Compressing Deep Neural Networks Using Block-CirculantWeight Matrices[J]. 2017.</p>
+<p>[3] Wang S , Li Z , Ding C , et al. C-LSTM: Enabling Efficient LSTM using Structured Compression Techniques on FPGAs[C]// Proceedings of the 2018 ACM/SIGDA International Symposium on Field-Programmable Gate Arrays. ACM, 2018.</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/06/26/hanoi-tower-question/" class="next-post btn btn-default" title="汉诺塔问题">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">汉诺塔问题</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#学术报告笔记整理（袁博）"><span class="toc-text">学术报告笔记整理（袁博）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#报告简介"><span class="toc-text">报告简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#报告内容笔记"><span class="toc-text">报告内容笔记</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#稠密矩阵构建神经网络"><span class="toc-text">稠密矩阵构建神经网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于稀疏矩阵构建神经网络"><span class="toc-text">基于稀疏矩阵构建神经网络</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TIE"><span class="toc-text">TIE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考文献"><span class="toc-text">参考文献</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
