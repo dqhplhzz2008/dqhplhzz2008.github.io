@@ -1,0 +1,397 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Machine Learning">
+
+
+    <meta name="description" content="西瓜书阅读知识点整理第2章 模型评估与选择评估方法
+学习器的实际预测输出与样本的真实输出之间的差异称为“误差”，其中在训练集上的误差称为“训练误差（training error）”或“经验误差(...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>机器学习第2章：模型评估和选择（model evaluation and selection）笔记 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="机器学习第2章：模型评估和选择（model evaluation and selection）笔记">
+            
+	            机器学习第2章：模型评估和选择（model evaluation and selection）笔记
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Machine-Learning/">Machine Learning</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/29</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="西瓜书阅读知识点整理"><a href="#西瓜书阅读知识点整理" class="headerlink" title="西瓜书阅读知识点整理"></a>西瓜书阅读知识点整理</h1><h2 id="第2章-模型评估与选择"><a href="#第2章-模型评估与选择" class="headerlink" title="第2章 模型评估与选择"></a>第2章 模型评估与选择</h2><h3 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h3><ol>
+<li>学习器的实际预测输出与样本的真实输出之间的差异称为“误差”，其中在训练集上的误差称为“训练误差（training error）”或“经验误差(empirical error)”；在新样本上的误差称为“泛化误差（generalization error）”。往往训练误差为0的方法泛化误差都很大。</li>
+<li>上述种训练误差极其小的往往泛化误差很大，称之为<strong>过拟合</strong>；反之对训练样本的一般性质尚未学好，就是<strong>欠拟合</strong>。欠拟合可以通过增加训练轮数等方式来解决，但是过拟合无法解决，只能缓解。</li>
+<li><p>评估一种机器学习方法的时候，要保证测试集和训练集尽可能不一样。当我们含有一个包含有m个样例的数据集的时候，可以用下面的方法产生训练集S和测试集T： </p>
+<ul>
+<li>留出法。直接将数据集D划分为两个互斥的集合，其中一个集合为训练集S，另一个为测试集T，即D=S∪T，且S∩T＝∅。要注意：一方面，训练集合测试集的划分要尽可能保持数据分布的一致性，避免数据划分过程中引入额外的偏差对最终结果产生影响。另一方面，即便在给定训练集和测试集样本比例后，仍存在多种划分方式对初始数据集进行分割。不同划分会导致不同的训练集/测试集，模型评估的结果也会有差别。因此一般使用留出法时，要采用若干次随机分隔、重复进行试验评估后取平均值作为留出法的评估结果。<br>另外还有一个问题就在于，如果令S包含大多数样本，则训练出来的模型可能更接近于用D训练出来的模型，但由于T较小，评估结果可能不够稳定准确；若令测试集多一些样本，则训练集S与D差别更大了，被评估的模型与用D训练出来的模型相比可能有较大差别，从而降低了评估结果的保真性。一般是将<strong>2/3~4/5</strong>的样本用于训练，剩余样本用于测试。</li>
+<li>交叉验证法。先将数据集D划分为k个大小相似的互斥子集，即D=D1∪D2∪…∪Dk，且Di∩Dj=∅（i≠j）。每个子集尽可能保持数据分布的一致性。然后每次用k-1个子集的并集做训练集，余下那个做测试集。这样就可以获得k组训练集/测试集，从而可以进行k次训练和测试，最终返回这k个厕所结果的平均值。k最常取指是10，此时称为<strong>10折交叉验证</strong>。同上，因为划分子集用多种方法，为了减少差别，k折交叉验证通常要随机使用不同的划分重复p次，最终的评估结果是这p次k折交叉验证的结果的均值。常见有<strong>10次10折交叉验证</strong>。</li>
+<li>留一法（Leave-One-Out，简称LOO）。假设数据集D中包含m个样本，若令k=m，就是留一法。优点是：它不受随机样本划分方式的影响；使用训练集与初始数据集相比只少了一个样本，使得在绝大多数情况下，留一法中被实际评估的模型与期望评估的用D训练出的模型很相似。但是缺点是：在数据集较大的时候，训练m个模型的计算开销是难以忍受的；另外留一法估计的结果未必永远比其他方法准确。</li>
+<li>自助法。直接以自助采样法（bootstrap sampling）为基础，给定包含m个样本的数据集D，对它进行采样产生数据集D’：每次随机从D中挑选一个样本，将其拷贝放入D’，再将该样本放回初始数据集D中，使得该样本在下次采样时仍有可能被采到；这个过程重复执行m次以后，就得到了包含m个样本的数据集D’。这样约有36.8%的样本没有出现在D’中，所以可以将D’用作训练集，D/D’（就是将D中除去D’的样本）用作测试集。这样，实际评估的模型与期望评估的模型都使用m个训练，而我们仍有数据总量约1/3的、没在训练集中出现的样本用于测试。这样的测试结果称为包外估计（out-of-bag estimate）。该方法在数据集较小、难以有效划分训练集和测试集的时候很有用，且对集成学习等方法有很大好处。但是这个方法改变了初始数据集的分部，会引入估计偏差，所以在初始数据多的情况下，留出法和交叉验证法更常用。</li>
+</ul>
+</li>
+<li><p>模型评估与选择种用于评估测试的数据集常被称为“验证集”。例如在研究对比不同算法泛化性能的时候，用测试集上的判别效果来估计模型在实际使用时的泛化能力，而把训练数据另外划分为训练集和验证集，基于验证集进行模型选择和调参。</p>
+</li>
+</ol>
+<h3 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h3><p>性能度量反映了任务需求，用来衡量模型泛化能力。在对比不同模型能力时，使用不同的性能度量往往会导致不同的评判结果。<br>回归任务中用的是均方误差（mean squared error），也就是</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p1.png" alt="575654d237f8d3923a6fea2d1c369c36.png"><br>以上是对于数据分布D和概率密度函数p()来说的。</p>
+<p>在分类任务重常用的性能度量有：</p>
+<ol>
+<li>错误率与精度。</li>
+</ol>
+<p><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p2.png" alt="0b1cdc20bf9e85113091592181d7c9bc.png"></p>
+<ol start="2">
+<li>查准率（准确率Precision）、查全率（召回率，Recall）和F1。</li>
+</ol>
+<p>查准率定义为：认为真且确实为真的样本数/（认为真切确实为真+认为真但是为假）</p>
+<p>查全率定义为：认为真且确实为真/（认为真且确实为真+认为假但是为真）。<br>官方写法如下：</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p3.png" alt="48c33effa6d5265d20a3d6d5ad296474.png"></p>
+<p>查准率和查全率是一对矛盾的度量，除非非常简单的任务，否则不可能使查全率和查准率都很高。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p4.png" alt="64efca21029c26c161f8c9cfefe0ca0e.png"></p>
+<p>P-R图直观显示出学习器在样本总体上的查全率和查准率。<strong>若一个学习器的P-R曲线被另一个学习器的曲线完全包住，则可断言后者的性能优于前者</strong>（例如A优于C），但是<strong>如果两个曲线发生了交叉，就难以一般性断言两者的性能，只能在具体的查准率或查全率条件下进行比较</strong>。<br>平衡点（Break-Even Point，简称BEP）是查准率=查全率时的取值。基于BEP的比较，可以认为图中的A优于B。<br>F1变量是基于查准率与查全率的调和平均，定义如下：</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p5.png" alt="cf28964757a317b1485ced94d37d41b4.png"></p>
+<p>但是由于某些情况下，对于查准率和查全率的重视程度可能不同，F1有了一般形式，即Fβ，它是查准率与查全率的加权调和平均，定义如下：<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p6.png" alt="23a289f3f1629b347034292060fac6e5.png"></p>
+<p>β值恒大于0，当β&gt;1的时候，查全率有更大影响；当β&lt;1的时候，查准率有更大影响。</p>
+<p>很多时候我们有多个二分类混淆矩阵，我们希望估计算法的“全局”性能，这样有两种方法。一种方法是现在各混淆矩阵上分别计算Recall和Precision，分别即为（P1,R1）,(P2,R2)…,(Pn,Rn)，再计算平均值，这样就得到<strong>宏查准率（macro-P）</strong>，宏查准率和相应的宏F1：</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p7.png" alt="962695631d0fa96178149de3b0b0852d.png"></p>
+<ol start="3">
+<li>ROC和AUC<br>很多学习器是为测试样本产生一个实值或者概率预测，然后将这个预测值与一个分类阈值进行比较，若大于阈值则分为正类，否则为反类。这个实值或概率预测结果的好坏，直接决定了学习器的泛化能力。实际上，根据这个值我们可以将测试样本进行排序，“最可能”是正例的排在最前面，“最不可能”的是正例的排在最后面。这样，分类过程就相当于在这个排序中以某个“截断点”将样本分为两部分，前一部分判作正例，后面是反例。<strong>排序本身的质量好坏，体现了综合考虑学习器在不同任务下的“期望泛化性能“的好坏，或者说，一般情况下“泛化性能的好坏”</strong>。ROC曲线就是从这个角度来研究学习器泛化性能的工具。</li>
+</ol>
+<p>ROC全称是“受试者工作特征”（Receiver Operating Characteristic）曲线。ROC曲线的纵轴是<strong>真正例率（True Positive Rate，TPR）</strong>，横轴是<strong>假正例率（False Positive Rate, FPR）</strong>。两者定义分别是<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p8.png" alt="c8b2c40b4d0a2e8aa87d09e3829eb115.png"><br>若一个学习器的ROC曲线被另一个学习器的曲线包住，则另一个学习器性能优于前者。如果两个学习器的ROC曲线发生交叉，则难以一般性判断两者孰优孰劣，此时如果一定要进行比较，则较为合理的判据是<strong>比较ROC曲线下的面积（AUC,Area Under ROC Curve）</strong>。</p>
+<ol start="4">
+<li>代价敏感错误率与代价曲线</li>
+</ol>
+<p>不同类型的错误造成结果的严重程度不同。所以为了权衡不同类型错误所造成的不同损失，可以为错误赋予<strong>非均等代价（unequal cost）</strong>。<br>例如我们可以对一个二分类代价矩阵做以下处理：<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p9.png" alt="548e26f9cfb59287be0613ef9c919563.png"></p>
+<p><strong>一般情况下，重要的是代价比而不是绝对值</strong>。</p>
+<p>若将上面的第0类和第1类分别作为正类和反类，令D+和D-分别代表样例集D的正例自己和反例子集，则代价敏感（cost-sensitive）的错误率为<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p10.png" alt="f94597c52e09c384af9b8c4337814201.png"><br>类似的，可以给出基于分布定义的代价敏感错误率，以及其它一些性能度量，如京都的代价敏感版本。若令costij中的i,j取值不限于0/1，则可以定义出多分类任务的代价的敏感性能度量。<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p11.png" alt="9e46c41b9494ad1ace80b3169b6c249c.png"></p>
+<h3 id="比较检验"><a href="#比较检验" class="headerlink" title="比较检验"></a>比较检验</h3><p>机器学习中性能检验涉及了以下几个重要因素：</p>
+<ul>
+<li>我们要比较泛化性能，然而实验评估的是在测试集上的性能，测试集和泛化的性能未必相同。</li>
+<li>测试集上的性能与测试集的选择有很大的关系，不同大小测试集、同样大小测试集的样例不同，测试结果都会不同。</li>
+<li>很多机器学习算法具有随机性，即便相同参数在同一测试集上运行，多次运行结果可能也不一样。</li>
+</ul>
+<p>统计假设检验（Hypothesis Test）可以提供给我们一些帮助，基于此，若在测试集上观测到A性能好于B，则A的泛化性能在统计意义上优于B，还能得到这个结论的把握有多大。（下面以错误率为性能度量，以ε表示）</p>
+<p><strong>1.假设检验</strong><br><strong>假设</strong>是对学习器<strong>泛化错误率分布</strong>的某种判断或猜想。包含m个样本的测试集上，基于假设测试样本是从样本总体分布中独立采样的，那么泛化错误率为ε的学习器将其中m’个样本五分类，其余样本全都分类正确的概率是<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p12.png" alt="d97ce96148fd14c8252d7fa9479653b0.png"></p>
+<p>由此可以估算其恰将ε’xm个样本误分类的概率如下式所示，这也表达了在包含m个样本的测试集上，泛化错误率为ε的学习器被测得测试错误率为ε’的概率：<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p13.png" alt="32c80883d26f918be70b7a15c5af83b5.png"></p>
+<p>给定测试错误率，则对上式求对ε的偏导，并令其等于0可得到P在ε=ε’时最大，|ε-ε’|增大时P减小，这符合二项分布。<br>我们可以使用二项检验（Binomial Test）对ε&lt;=0.3（即泛化错误率是否不大于0.3）这也的假设来进行检验。更一般来说，我们考虑假设ε小于等于ε0，则在1-α概率内所能观测到的最大错误率如下式计算。这里1-α反映了结论的置信度(confidence)。<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p14.png" alt="35aec645c834b1b86eac4f6fb1404a80.png"></p>
+<p>此时若测试错误率ε’小于临界值，则可以根据二项检验得到：<strong>在α显著度下，假设“ε≤ε0”不能被拒绝，即能以1-α的置信度认为，学习器的泛化错误率不大于ε0；否则该假设可被拒绝，即在α显著度下可认为学习器的泛化错误率大于ε0</strong>。</p>
+<p>二项检验的临界值可以使用<code>icdf(&#39;Binomial&#39;,1-α,m,ε0)</code>来计算得到。</p>
+<p>在很多时候，我们并非做一次留出法估计，而是多次重复留出法或者交叉验证法进行多次训练测试，这样会得到多个测试错误率，此时可以使用t检验来求解。</p>
+<p><strong>2.交叉验证t检验</strong></p>
+<p><strong>3.McNemar检验</strong><br>对于二分类问题，使用留出法不仅可以估计出学习器A和B的测试错误率，还可以获得两学习器分类结果的差别，即两者都正确、都错误、一个正确一个错误的样本数，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>算法B</th>
+<th>算法A</th>
+<th>算法A</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td></td>
+<td>正确</td>
+<td>错误</td>
+</tr>
+<tr>
+<td>正确</td>
+<td>e00</td>
+<td>e01</td>
+</tr>
+<tr>
+<td>错误</td>
+<td>e10</td>
+<td>e11</td>
+</tr>
+</tbody>
+</table>
+<p>若我们做的假设是两个学习器性能相同，也就是说e01=e10，那么|e01-e10|应该服从正态分布。McNemar检验考虑变量</p>
+<p>因为e01+e10通常很小，需要考虑连续性校正，所以分子中有-1一项。这个服从的分部就是卡方分布。临界值在Matlab中可以使用<code>icdf(&#39;Chisquare&#39;1-α,k-1)</code>来计算。</p>
+<p><strong>4.Friedman检验和Nemenyi检验</strong><br>在一组数据及上对多个算法进行比较时，有两种方法：一是两两比较，在两两比较可以使用前面的方法；二是使用基于算法排序的Friedman检验。若“所有算法的性能相同”这个假设被拒绝，则说明算法的性能显著不同。这个时候需要使用“后续检验（post-hoc test）”来进一步区分算法，常用的有Nemenyi算法。</p>
+<h3 id="偏差与方差"><a href="#偏差与方差" class="headerlink" title="偏差与方差"></a>偏差与方差</h3><p>前面的检验是为了估计其泛化性能，而我们还希望了解它为什么具有这样的性能，<strong>偏差-方差分解（bias-variance decomposition）</strong>是解释学习算法泛化性能的一种重要工具。它试图<strong>对学习算法的期望泛化错误率进行拆解</strong>。我们知道，算法在不同训练集上学得的结果很可能不同，即便这些训练是来自同一个分布。<br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p15.png" alt="86f8e5ddb1307583f21e4d75708f259e.png"><br><img src="http://tech.yushuai.xyz/wzpt/mlbook/ch2p16.png" alt="846f51d9edf4a63569ae423c016f1a25.png"></p>
+<p>总结一下，偏差（2.40）度量了学习算法的期望预测与真实结果的偏离程度，即刻画了学习算法本身的你和能力；方差（2.38）度量了同样大小的训练集的变动所导致的学习性能的变化，即刻画了数据扰动所造成的影响；噪声（2.39）则表达了在当前任务上任何学习算法所能达到的期望泛化误差的下界，即刻画了学习问题本身的难度。偏差-方差分解说明，<strong>泛化性能是由学习算法的能力、数据的充分性和学习任务本身的难度共同决定的</strong>。给定学习任务，为了取得较好的泛化性能，则需要使<strong>偏差较小</strong>，即能够充分拟合数据，<strong>方差较小</strong>。使得数据扰动产生的影响小。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/06/27/Algorithm-and-Hardware-Co-Design-for-Energy-Efficient-Deep-Learning/" class="next-post btn btn-default" title="Algorithm and Hardware Co-Design for Energy-Efficient Deep Learning">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Algorithm and Hardware Co-Design for Energy-Efficient Deep Learning</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#西瓜书阅读知识点整理"><span class="toc-text">西瓜书阅读知识点整理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#第2章-模型评估与选择"><span class="toc-text">第2章 模型评估与选择</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#评估方法"><span class="toc-text">评估方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#性能度量"><span class="toc-text">性能度量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较检验"><span class="toc-text">比较检验</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#偏差与方差"><span class="toc-text">偏差与方差</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
