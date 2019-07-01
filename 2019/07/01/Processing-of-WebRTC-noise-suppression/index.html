@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,WebRTC">
+
+
+    <meta name="description" content="计算噪声功率谱程序（WebRtcNs_AnalyzeCore）计算信噪比函数之前的部分分别是：
+1.对输入的时域帧数据进行加窗、FFT变换。
+2.然后计算能量，若能量为0，返回；否则继续往下。
+...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Processing of WebRTC noise suppression | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Processing of WebRTC noise suppression">
+            
+	            Processing of WebRTC noise suppression
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a> <a class="tag-link" href="/tags/WebRTC/">WebRTC</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/07/01</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="计算噪声功率谱程序（WebRtcNs-AnalyzeCore）"><a href="#计算噪声功率谱程序（WebRtcNs-AnalyzeCore）" class="headerlink" title="计算噪声功率谱程序（WebRtcNs_AnalyzeCore）"></a>计算噪声功率谱程序（WebRtcNs_AnalyzeCore）</h1><p>计算信噪比函数之前的部分分别是：</p>
+<p>1.对输入的时域帧数据进行加窗、FFT变换。</p>
+<p>2.然后计算能量，若能量为0，返回；否则继续往下。</p>
+<p>3.然后计算新的能量和幅度。</p>
+<p>4.使用分位数噪声估计进行初始噪声估计。</p>
+<p>5.然后取前50个帧，计算得到高斯白噪声、粉红噪声模型，联合白噪声、粉红噪声模型，得到建模的混合噪声模型。</p>
+<h2 id="计算信噪比（ComputeSnr）"><a href="#计算信噪比（ComputeSnr）" class="headerlink" title="计算信噪比（ComputeSnr）"></a>计算信噪比（ComputeSnr）</h2><p>作用：根据分位数噪声估计计算前后信噪比</p>
+<p>Inputs:<br>|magn|.信号幅度谱估计<br>|noise| 噪声幅度谱估计</p>
+<p>Outputs:<br>|snrLocPrior|先验SNR<br>|snrLocPost| 后验SNR</p>
+<p>后验信噪比指观测到的能量与噪声功率相关的输入功率相比的瞬态SNR：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07011.png" alt="97a3a5b241a1634473d9f9a1adf7eba5.png"></p>
+<p>其中Y是输入含噪声的频谱， N是噪声频谱，先验SNR是与噪声功率相关的纯净（未必是语音）信号功率的期望值，可表示为：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07012.png" alt="26d507f86296c6d420420b1963c37ca6.png"></p>
+<p>其中X是指输入的纯净信号，这里对应的指语音信号。在WebRTC实际的计算中，并没有采用平方数量级，而是采用了量级数量级。<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07013.png" alt="45d9036be136c54b42e76e17dd91a1ce.png"></p>
+<p>由于纯净信号是未知信号，先验SNR的估计是上一帧经估计的先验SNR和瞬态SNR的平均值：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07014.png" alt="4031110669d15c6103c68b115609726a.png"></p>
+<p>上式中H对应与代码中的smooth是上一帧的维纳滤波器，用于对瞬时SNR平滑，前一项是上一帧的先验SNR，后一项是先验SNR的瞬态估计。其通过判决引导DD进行跟新，时间平滑参数是 ，其值越大，流畅度越高，延迟也会越大，程序中选择的是0.98。 </p>
+<h2 id="特征提取（FeatureUpdate）"><a href="#特征提取（FeatureUpdate）" class="headerlink" title="特征提取（FeatureUpdate）"></a>特征提取（FeatureUpdate）</h2><p>作用：提取平均LRT参数、频谱差异、频谱平坦度<br>Inputs:<br>//   <em> |magn| is the signal magnitude spectrum estimate.<br>//   </em> |updateParsFlag| is an update flag for parameters.</p>
+<h3 id="计算频谱平坦度（ComputeSpectralFlatness）"><a href="#计算频谱平坦度（ComputeSpectralFlatness）" class="headerlink" title="计算频谱平坦度（ComputeSpectralFlatness）"></a>计算频谱平坦度（ComputeSpectralFlatness）</h3><p>作用：频谱平坦度计算。<br>原理：该算法假设语音比噪声有更多的谐波。语音频谱往往会在基频（基音）和谐波中出现峰值，而噪声频谱则相对平坦。因此其作为区分噪声和语音的一个特征。<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07015.png" alt="bad1a406eb4c550099b2b4d8bea7cb67.png"></p>
+<p>频谱度计算时N表示STFT后频率点数，B代表频率带的数量，K是频点指数，j是频带指数。每个频带包括大量的频率点。就128个频率点可分成4个频带（低带，中低频带，中高频带，高频），每个频带32个频点。对于噪声Flatness偏大且为常数，而对于语音，计算出的数量则偏下且为变量。<br>根据上面的公式，如果接近于1，则是噪声，（噪声的幅度谱趋于平坦），二对于语音，上面的N次根是对乘积结果进行N次缩小，相比于分母部分，缩小的数量级是倍数的，所以语音的平坦度较小，是趋近于0的。</p>
+<h3 id="计算频谱差异度（ComputeSpectralDifference）"><a href="#计算频谱差异度（ComputeSpectralDifference）" class="headerlink" title="计算频谱差异度（ComputeSpectralDifference）"></a>计算频谱差异度（ComputeSpectralDifference）</h3><p>作用：计算输入谱模板（学习到的）噪声谱的差异程度。所参考的噪声谱是self-&gt;magnAvgPause[i]，返回值是正则化的频谱差异，为self-&gt;featureData[4]。<br>    除了频谱平坦度特征的噪声相关假设之外，有关噪声频谱的另一个假设是，噪声频谱比语音频谱更稳定。因此，可假设噪声频谱的整体形状在任何给定阶段都倾向与保持相同。模板频谱通过更新频谱（最初被设为零）中极有可能是噪声或语音停顿的区段来确定。该比较结果是对噪声的保守估计，其中仅对语音概率确定低于阈值（如 的区段处跟新了噪声。在其它分布中，模板频谱也可能被导入到算法中，或从对应不同噪声的形状中筛选出来。考虑到输入频谱 和模板频谱（表示为 ），如想获得频谱模板差异特征，可首先将频谱差异测量定义为 ，其中α和u是形状参数，包括线性位移和振幅参数，是通过将J最小化获得的。(α,u) 通过线性方程获得，因此可对每个帧轻松抽取此参数。在某些示例中，这些参数可表明输入频谱（在音量增加的情况下）的任何简单位移/标度变化。之后该特征将成为标准话的测度。<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07016.png" alt="960509b029e66e0e5fae728397a98e8d.png"></p>
+<h2 id="语音噪声概率更新（SpeechNoiseProb）"><a href="#语音噪声概率更新（SpeechNoiseProb）" class="headerlink" title="语音噪声概率更新（SpeechNoiseProb）"></a>语音噪声概率更新（SpeechNoiseProb）</h2><p>作用：计算语音/噪声概率，存储在probSpeechFinal。<br>magn：输入幅度谱。noise：噪声谱</p>
+<h3 id="理论基础"><a href="#理论基础" class="headerlink" title="理论基础"></a>理论基础</h3><p>先推导语音/噪声概率计算方法，先来看语音/噪声的概率模型，定义语音状态为 ，定义噪声状态为 ，其中m是帧，k是频率，则语音/噪声的概率可以表示为： 。这一概率取决于观测到的额噪声输入频谱系数 以及所处理信号的一些特征数据（如信号的分类特征），也就是这里的{F}。特征数据可以是有噪输入频谱，过往频谱数据，模型数据等。如特征数据{F}可以包括频谱平坦度测量，谐振峰值距，LPC残余以及模板匹配等。根据贝叶斯准则，语音/噪声概率可表示为：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07017.png" alt="78beaf9c9cb196d76eacfcfcecc0acb3.png"></p>
+<p>其中 是以信号的特征数据为基础的先验概率，该值在后续中被设为一个常数。 是特征数据 下的语音/噪声概率，在忽略 为基础的先验概率p{F}，简化语音概率和噪声概率为：<br>语音概率： ，噪声概率 ，这样标准化的语音概率可以写为：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07018.png" alt="a8d42035ca165f2b1327c2eb0f75bdfd.png"></p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07019.png" alt="d805db8434624e98ad03e5a9ff1322a1.png"></p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc070110.png" alt="1078817bd2f39b0bdbf3cc9960f8f921.png"></p>
+<h3 id="LRT均值的计算"><a href="#LRT均值的计算" class="headerlink" title="LRT均值的计算"></a>LRT均值的计算</h3><p>前面计算了三个特征中的两个（频谱差异度和频谱平坦度），这里介绍第三个，也就是LRT均值，这也是这个函数代码最开始的部分。实际上在理论里面已经把LRT均值的计算理论公式给出，但是有时候帧与帧之间的频变似然比因子 会有很大波动，所以采用经过时间平滑处理的似然比因子：<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc070111.png" alt="64c02e63865eb6eaed5f22cc36827069.png"></p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc070112.png" alt="41028ba63417bb057c7f5c9a824f6a67.png"></p>
+<p>LRT均值同时也作为q公式的参数之一，用来计算q。</p>
+<h3 id="q的计算"><a href="#q的计算" class="headerlink" title="q的计算"></a>q的计算</h3><p>q的数值依赖于LRT均值、频谱差异度、频谱平坦度。<br>在语音/噪声概率计算时，使用高斯假设作为语音PDF模型，从而获得似然比。在其它模型中，概率密度PDF模型也可以用作测量似然比的基础，包括拉普拉斯算子，伽马，超高斯。举个例子，当高斯假设可合理表示噪声时，该假设并不一定适用于语音，尤其是在较短的时帧中（如～10ms）。在这种情况下，可以使用另一种语音PDF模型，但这很可能会增加复杂性。<br>要在噪声估计和过滤流程中确定语音/噪声的概率，这不仅需要本地SNR（即先验SNR和瞬态SNR）的引导，还要结合从特征建模中获得的语音模型/认知内容。将语音模型/认知内容并入到语音/噪声概率确定中，能让噪声抑制流程更好地处理和区分极不稳定的噪声水平。如果仅依靠本地SNR，可能会造成可能性偏差。这里对包含本地SNR和语音特征/模型<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc070113.png" alt="5aa2e21adb7602a54fbaaccd48773406.png"></p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07014.png" alt="01a2abc18d4a30f8b7b8529ce950f8ed.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gainPrior = ((float)1.0 - inst-&gt;priorSpeechProb) / (inst-&gt;priorSpeechProb + (float)0.0001);</span><br><span class="line">for (i = 0; i &lt; inst-&gt;magnLen; i++) &#123;</span><br><span class="line">  invLrt = (float)exp(-inst-&gt;logLrtTimeAvg[i]);</span><br><span class="line">  invLrt = (float)gainPrior * invLrt;</span><br><span class="line">  probSpeechFinal[i] = (float)1.0 / ((float)1.0 + invLrt);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="更新噪声估计（UpdateNoiseEstimate）"><a href="#更新噪声估计（UpdateNoiseEstimate）" class="headerlink" title="更新噪声估计（UpdateNoiseEstimate）"></a>更新噪声估计（UpdateNoiseEstimate）</h3><p>功能：更新噪声估计</p>
+<p>输入：magn、snrLocPrior、snrLocPost</p>
+<p>输出：noise：更新的噪声频谱估计</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/webrtc07015.png" alt="4b66dd46e180ec2a314bd451e1510750.png"><br>的平滑度。这个式子是使用了输入频谱和上次噪声估计的值对噪声进行估计，它的估计方法是这样的：当处于噪声可能性比较大的帧和频率槽的时候，进行更新；如果是语音可能性比较大的时候，就用上一个帧的估计作为噪声估计。<br>噪声估计更新流程受到语音/噪声概率和平滑参数γ控制。对于语音概率超过阈值参数的地方，平滑参数可能会被增加到0.99，以防止语音开始处的噪声水平增加过高。</p>
+<h1 id="处理核心程序（WebRtcNs-ProcessCore）"><a href="#处理核心程序（WebRtcNs-ProcessCore）" class="headerlink" title="处理核心程序（WebRtcNs_ ProcessCore）"></a>处理核心程序（WebRtcNs_ ProcessCore）</h1><ol>
+<li>确定高低频。</li>
+<li>加窗，计算带噪语音数据帧能量，同样若能量为0，那么进行特殊处理。</li>
+<li>进行FFT变换。</li>
+<li>基于引导更新计算维纳滤波器的系数。ComputeDdBasedWienerFilter(self, magn,<br>theFilter);计算公式见公式（1.5）。</li>
+<li>对维纳增益值根据用户设置的降噪等级进行下溢和上溢处理</li>
+<li>进行维纳滤波，然后将频域数据（频率降噪）通过IFFT转为时域数据</li>
+<li>对降噪等级进行判断，如果等级为0，则维纳滤波输出则为最后的降噪结果。否则，到第8步。</li>
+<li>再来计算维纳滤波后每一帧的数据能量，然后与前面的能量做比值得到gain=sqrtf(energy2 /<br>(energy1 + 1.f));</li>
+<li>计算factor1和factor2。</li>
+<li>结合Analyze中的priorSpeechProb计算最终的增益因子：factor = self-&gt;priorSpeechProb <em><br>factor1+(1.f - self-&gt;priorSpeechProb) </em> factor2;</li>
+<li>数据相乘，得到降噪结果：self-&gt;syntBuf[i] += factor * winData[i];</li>
+</ol>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/06/29/machine-learning-chpater-2-model-evaluation-and-selection/" class="next-post btn btn-default" title="机器学习第2章：模型评估和选择（model evaluation and selection）笔记">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">机器学习第2章：模型评估和选择（model evaluation and selection）笔记</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#计算噪声功率谱程序（WebRtcNs-AnalyzeCore）"><span class="toc-text">计算噪声功率谱程序（WebRtcNs_AnalyzeCore）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#计算信噪比（ComputeSnr）"><span class="toc-text">计算信噪比（ComputeSnr）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#特征提取（FeatureUpdate）"><span class="toc-text">特征提取（FeatureUpdate）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#计算频谱平坦度（ComputeSpectralFlatness）"><span class="toc-text">计算频谱平坦度（ComputeSpectralFlatness）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#计算频谱差异度（ComputeSpectralDifference）"><span class="toc-text">计算频谱差异度（ComputeSpectralDifference）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#语音噪声概率更新（SpeechNoiseProb）"><span class="toc-text">语音噪声概率更新（SpeechNoiseProb）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#理论基础"><span class="toc-text">理论基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LRT均值的计算"><span class="toc-text">LRT均值的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#q的计算"><span class="toc-text">q的计算</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新噪声估计（UpdateNoiseEstimate）"><span class="toc-text">更新噪声估计（UpdateNoiseEstimate）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#处理核心程序（WebRtcNs-ProcessCore）"><span class="toc-text">处理核心程序（WebRtcNs_ ProcessCore）</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
