@@ -1,0 +1,317 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Construct binary tree from preorder and inorder traversal题目描述Given preorder and inorder traversal...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>leetcode题目解析（190513） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="leetcode题目解析（190513）">
+            
+	            leetcode题目解析（190513）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/06/12</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Construct-binary-tree-from-preorder-and-inorder-traversal"><a href="#Construct-binary-tree-from-preorder-and-inorder-traversal" class="headerlink" title="Construct binary tree from preorder and inorder traversal"></a>Construct binary tree from preorder and inorder traversal</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given preorder and inorder traversal of a tree, construct the binary tree.<br>Note:<br>You may assume that duplicates do not exist in the tree.</p>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p>关于根据前序和中序如何得到二叉树的结构的计算方式，我就不重复了，之前的程序里面也有，这里就只说说代码里几个参数的思路。<br><strong>一定要做边界条件的判断！</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root-&gt;left = build(preorder, pstart + 1, pstart + i - istart, inorder, istart, i - 1);</span><br><span class="line">root-&gt;right = build(preorder, pstart + i - istart + 1, pend, inorder, i + 1, iend);</span><br></pre></td></tr></table></figure></p>
+<p>对于左子树处理来说，中序遍历所要处理的位置就是根节点左侧的所有数字，所以自然起始位置就是<code>istart</code>，结束位置就是<code>i-1</code>；对于前序遍历来说表示就麻烦一些，起始位置还好，是<code>pstart+1</code>,结束位置是<code>pstart+(i-istart)</code>，其中i-istart是左子树的元素数。<br>对于右子树处理来说，中序遍历所要处理的位置就是根节点右侧的所有数字，所以自然起始位置就是<code>i+1</code>，结束位置就是<code>iend</code>；对于前序遍历来说，就是从左侧子树最后一个元素后面那个数字到最后一个，所以起始位置是<code>pstart + i - istart + 1</code>，结束位置是<code>pend</code>。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">TreeNode *buildTree(vector&lt;int&gt; &amp;preorder, vector&lt;int&gt; &amp;inorder) &#123;</span><br><span class="line">	int presize = preorder.size();</span><br><span class="line">	int insize = inorder.size();</span><br><span class="line">	if (presize == 0 || insize == 0)</span><br><span class="line">	&#123;</span><br><span class="line">		return NULL;</span><br><span class="line">	&#125;</span><br><span class="line">	else if (presize != insize)</span><br><span class="line">		return NULL;</span><br><span class="line">	return build(preorder, 0, presize - 1, inorder, 0, insize - 1);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">TreeNode* build(vector&lt;int&gt;&amp;preorder, int pstart, int pend, vector&lt;int&gt;&amp;inorder, int istart, int iend)</span><br><span class="line">&#123;</span><br><span class="line">	if (pstart &gt; pend || istart &gt; iend)</span><br><span class="line">		return NULL;</span><br><span class="line">	int mid = preorder[pstart];</span><br><span class="line">	TreeNode* root = new TreeNode(mid);</span><br><span class="line">	int i = istart;</span><br><span class="line">	for (; i &lt;= iend; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		if (inorder[i] == mid)</span><br><span class="line">			break;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	root-&gt;left = build(preorder, pstart + 1, pstart + i - istart, inorder, istart, i - 1);</span><br><span class="line">	root-&gt;right = build(preorder, pstart + i - istart + 1, pend, inorder, i + 1, iend);</span><br><span class="line">	return root;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="binary-tree-level-order-traversal-ii"><a href="#binary-tree-level-order-traversal-ii" class="headerlink" title="binary tree level order traversal ii"></a>binary tree level order traversal ii</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given a binary tree, return the bottom-up level order traversal of its nodes’ values. (ie, from left to right, level by level from leaf to root).</p>
+<h2 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h2><h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;vector&lt;int&gt; &gt; levelOrderBottom(TreeNode *root) &#123;</span><br><span class="line">        vector&lt;vector&lt;int&gt; &gt;result;</span><br><span class="line">        if(root==nullptr)</span><br><span class="line">            return result;</span><br><span class="line">        vector&lt;int&gt; temp;</span><br><span class="line">        TreeNode *last=root;</span><br><span class="line">        TreeNode *p;</span><br><span class="line">        queue&lt;TreeNode *&gt;q;</span><br><span class="line">        q.push(root);</span><br><span class="line">        while(!q.empty())</span><br><span class="line">        &#123;</span><br><span class="line">            p=q.front();</span><br><span class="line">            temp.push_back(p-&gt;val);</span><br><span class="line">            q.pop();</span><br><span class="line">            if(p-&gt;left)</span><br><span class="line">                q.push(p-&gt;left);</span><br><span class="line">            if(p-&gt;right)</span><br><span class="line">                q.push(p-&gt;right);</span><br><span class="line">            if(p==last)</span><br><span class="line">            &#123;</span><br><span class="line">                result.push_back(temp);</span><br><span class="line">                temp.clear();</span><br><span class="line">                last=q.back();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        reverse(result.begin(),result.end());</span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Minimum-path-sum"><a href="#Minimum-path-sum" class="headerlink" title="Minimum path sum"></a>Minimum path sum</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right which minimizes the sum of all numbers along its path.Note: You can only move either down or right at any point in time.</p>
+<h2 id="题目解析-1"><a href="#题目解析-1" class="headerlink" title="题目解析"></a>题目解析</h2><h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">int minPathSum(vector&lt;vector&lt;int&gt; &gt; &amp;grid) &#123;</span><br><span class="line">	int row = grid.size();//多少行</span><br><span class="line">	int col = grid[0].size();//多少列</span><br><span class="line">	vector&lt;vector&lt;int&gt; &gt;dp(row, vector&lt;int&gt;(col, 0));</span><br><span class="line">	dp[0][0] = grid[0][0];</span><br><span class="line">	//第一行</span><br><span class="line">	for (int i = 1; i &lt; col; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		dp[0][i] = dp[0][i - 1] + grid[0][i];</span><br><span class="line">	&#125;</span><br><span class="line">	//第一列</span><br><span class="line">	for (int i = 1; i &lt; row; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		dp[i][0] = dp[i - 1][0] + grid[i][0];</span><br><span class="line">	&#125;</span><br><span class="line">	for (int i = 1; i &lt; row; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		for (int j = 1; j &lt; col; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return dp[row-1][col-1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/06/16/nowcoder-choice-review-20190616/" class="pre-post btn btn-default" title="牛客网选择题整理20190616">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">牛客网选择题整理20190616</span>
+        </a>
+    
+    
+        <a href="/2019/06/05/vivo-2020-preexam-jun4th/" class="next-post btn btn-default" title="vivo2020校招提前批开发笔试试题">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">vivo2020校招提前批开发笔试试题</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Construct-binary-tree-from-preorder-and-inorder-traversal"><span class="toc-text">Construct binary tree from preorder and inorder traversal</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#思路"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#binary-tree-level-order-traversal-ii"><span class="toc-text">binary tree level order traversal ii</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Minimum-path-sum"><span class="toc-text">Minimum path sum</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-2"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析-1"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-2"><span class="toc-text">代码实现</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

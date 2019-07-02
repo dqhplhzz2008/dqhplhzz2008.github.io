@@ -1,0 +1,330 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="leetcode9: Palindrome（回文数）题目描述判断一个整数是否是回文数。
+题目解析我们通过观察可以看出，回文数有以下两种类型：ABA和ABBA。所以本质上它们都还是镜像对称的，所以...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>leetcode题目解析（190702） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="leetcode题目解析（190702）">
+            
+	            leetcode题目解析（190702）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/07/02</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="leetcode9-Palindrome（回文数）"><a href="#leetcode9-Palindrome（回文数）" class="headerlink" title="leetcode9: Palindrome（回文数）"></a>leetcode9: Palindrome（回文数）</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>判断一个整数是否是回文数。</p>
+<h2 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h2><p>我们通过观察可以看出，回文数有以下两种类型：ABA和ABBA。所以本质上它们都还是镜像对称的，所以可以想到一个结构，就是队列。我们可以把数字以中间位为对称轴拆成两部分，然后做下面这几步：</p>
+<ol>
+<li>按顺序将对称轴右侧的几位push到一个queue里面（比如上面中的A/BA，剩下的就是AB/AB）。</li>
+<li>然后判断这个数字的长度是奇数还是偶数，若是偶数，直接到下一步，若是奇数，操作<code>x /=10</code>，也就是把对称轴删掉（这样X剩下的就是A/AB了）。</li>
+<li>然后将queue里面的数字按pop的顺序连起来，判断与原来那个数字剩下的几位是否相等，若相等就是回文数。</li>
+</ol>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">    bool isPalindrome(int x) &#123;</span><br><span class="line">	if (x &lt; 0)</span><br><span class="line">		return false;</span><br><span class="line">	queue&lt;int&gt; tmp;</span><br><span class="line">	int len = 0;</span><br><span class="line">	int copy = 0;</span><br><span class="line">	//1.计算数字的长度</span><br><span class="line">	for (int i = x; i; i /= 10)</span><br><span class="line">		++len;</span><br><span class="line">	//2.按顺序将对称轴右侧的push到queue中。</span><br><span class="line">	for (int j = len / 2; j &gt; 0; --j)</span><br><span class="line">	&#123;</span><br><span class="line">		tmp.push(x % 10);</span><br><span class="line">		x /= 10;</span><br><span class="line">	&#125;</span><br><span class="line">	//3.若是奇数，则提取出来对称轴前面的数字</span><br><span class="line">	if (len % 2 == 1)</span><br><span class="line">		x /= 10;</span><br><span class="line">	//4.把pop出来的数字连起来</span><br><span class="line">	for (int j = len / 2; j &gt; 0; j--)</span><br><span class="line">	&#123;</span><br><span class="line">		copy = copy * 10 + tmp.front();</span><br><span class="line">		tmp.pop();</span><br><span class="line">	&#125;</span><br><span class="line">	//5.与x剩下的部分对比</span><br><span class="line">	if (copy == x)</span><br><span class="line">		return true;</span><br><span class="line">	else</span><br><span class="line">		return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Leetcode-1：Two-sum"><a href="#Leetcode-1：Two-sum" class="headerlink" title="Leetcode 1：Two sum"></a>Leetcode 1：Two sum</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>Given an array of integers, find two numbers such that they add up to a specific target number.</p>
+<p>The function twoSum should return indices of the two numbers such that they add up to the target, where index1 must be less than index2. Please note that your returned answers (both index1 and index2) are not zero-based.</p>
+<p>You may assume that each input would have exactly one solution.</p>
+<p>Input: numbers={2, 7, 11, 15}, target=9<br>Output: index1=1, index2=2</p>
+<h2 id="代码解析"><a href="#代码解析" class="headerlink" title="代码解析"></a>代码解析</h2><h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; twoSum(vector&lt;int&gt; &amp;numbers, int target) &#123;</span><br><span class="line">	vector&lt;int&gt;result;</span><br><span class="line">	int nlen = numbers.size();</span><br><span class="line">	if (nlen &lt; 2)</span><br><span class="line">		return result;</span><br><span class="line">	vector&lt;int&gt;num;</span><br><span class="line">	for (int i = 0; i &lt; nlen; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		num.push_back(numbers[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(numbers.begin(), numbers.end());</span><br><span class="line">	int i = 0, j = nlen - 1,tmp1=INT_MIN,tmp2=INT_MIN;</span><br><span class="line">	while (i &lt; j)</span><br><span class="line">	&#123;</span><br><span class="line">		if (numbers[i] + numbers[j] == target)</span><br><span class="line">		&#123;</span><br><span class="line">			tmp1 = numbers[i];</span><br><span class="line">			tmp2 = numbers[j];</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">		else if (numbers[i] + numbers[j] &lt; target)</span><br><span class="line">			++i;</span><br><span class="line">		else if (numbers[i] + numbers[j] &gt; target)</span><br><span class="line">			--j;</span><br><span class="line">	&#125;</span><br><span class="line">	for (int k = 0; k &lt; nlen; k++)</span><br><span class="line">	&#123;</span><br><span class="line">		if (num[k] == tmp1)</span><br><span class="line">		&#123;</span><br><span class="line">			result.push_back(k + 1);</span><br><span class="line">			continue;</span><br><span class="line">		&#125;</span><br><span class="line">			</span><br><span class="line">		if (num[k] == tmp2)</span><br><span class="line">			result.push_back(k+1);</span><br><span class="line">	&#125;</span><br><span class="line">	sort(result.begin(), result.end());</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>代码2：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">vector&lt;int&gt; twoSum(vector&lt;int&gt;&amp; nums, int target) &#123;</span><br><span class="line">    vector&lt;int&gt;res(2,-1);</span><br><span class="line">    map&lt;int,int&gt; tmp;</span><br><span class="line">    for(int i=0;i&lt;nums.size();i++)</span><br><span class="line">    &#123;</span><br><span class="line">        if(tmp.count(target-nums[i]))</span><br><span class="line">        &#123;</span><br><span class="line">            res[0]=tmp[target - nums[i]];</span><br><span class="line">            res[1]=i;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">        tmp[nums[i]]=i;</span><br><span class="line">    &#125;</span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="Leetcode-50：计算x的n次幂"><a href="#Leetcode-50：计算x的n次幂" class="headerlink" title="Leetcode 50：计算x的n次幂"></a>Leetcode 50：计算x的n次幂</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>实现pow(x,n)，即计算x的n次幂函数。</p>
+<h2 id="题目解析-1"><a href="#题目解析-1" class="headerlink" title="题目解析"></a>题目解析</h2><p>在剑指offer之中，我们可以使用二进制移位来实现相应的功能，但实际上，当数字过大的时候，这个方法已经不能使用了。这个时候我们可以用二分法。步骤如下：</p>
+<ol>
+<li>依旧是先判断n是不是小于零，若是，令x等于原来的倒数，n变为原来的绝对值；否则不变，然后进入第2步。</li>
+<li>执行一个fastPow()函数，这个函数是递归调用执行。首先如果此时n=0了，那么自然结果就是1.0；然后递归调用<code>half=fastPow(x,n/2)</code>，这实际上就是计算x的n/2次方的结果，然后这个时候判断n是奇数还是偶数，如果是偶数，那自然x的n次方就等于<strong>x的n/2次方乘x的n/2次方</strong>；如果是奇数，则结果就等于<strong>x的n次方就等于x的n/2次方乘x的n/2次方再乘x</strong>。</li>
+</ol>
+<h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">double fastPow(double x, long long n)</span><br><span class="line">&#123;</span><br><span class="line">	if (n == 0)</span><br><span class="line">		return 1.0;</span><br><span class="line">	double half = fastPow(x, n / 2);</span><br><span class="line">	if (n % 2 == 0)</span><br><span class="line">		return half*half;</span><br><span class="line">	else</span><br><span class="line">		return half*half*x;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">double myPow(double x, int n) &#123;</span><br><span class="line">	if (x == 1.0)</span><br><span class="line">		return x;</span><br><span class="line">	if (n == 0)</span><br><span class="line">		return 1.0;</span><br><span class="line">	long long N = n;</span><br><span class="line">	if (N &lt; 0)</span><br><span class="line">	&#123;</span><br><span class="line">		x = 1 / x;</span><br><span class="line">		N = -N;</span><br><span class="line">	&#125;</span><br><span class="line">	return fastPow(x, N);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="leetcode-69：x的平方根（sqrt-of-x）"><a href="#leetcode-69：x的平方根（sqrt-of-x）" class="headerlink" title="leetcode 69：x的平方根（sqrt of x）"></a>leetcode 69：x的平方根（sqrt of x）</h1><h2 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h2><p>实现<code>int sqrt(int x)</code>函数，计算并返回x的平方根，其中x是非负整数。由于返回类型是整数，所以结果只保留整数部分，将小数部分舍去。</p>
+<h2 id="题目解析-2"><a href="#题目解析-2" class="headerlink" title="题目解析"></a>题目解析</h2><p><a href="http://tech.yushuai.xyz/wzpt/leetcode69.png"><img src="https://i.loli.net/2019/07/02/5d1b63fc727e329616.png" alt></a></p>
+<p>所以我们要做的事情就是让这个x(n+1)不断逼近x。由于只要求保留到整数，所以误差可以选择大一点，比如误差到0.5就可以结束逼近了。所以代码实现如下。</p>
+<h2 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">int mySqrt(int x) &#123;</span><br><span class="line">	if(x&lt;0)</span><br><span class="line">		return -1;</span><br><span class="line">	double res=1.0;</span><br><span class="line">	if(x==0||x==1)</span><br><span class="line">		return x;</span><br><span class="line">	while(fabs(res*res-x)&gt;0.5)</span><br><span class="line">	&#123;</span><br><span class="line">		res=(res+x/res)/2;</span><br><span class="line">	&#125;</span><br><span class="line">	return int(res);</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/07/01/Processing-of-WebRTC-noise-suppression/" class="next-post btn btn-default" title="Processing of WebRTC noise suppression">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Processing of WebRTC noise suppression</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#leetcode9-Palindrome（回文数）"><span class="toc-text">leetcode9: Palindrome（回文数）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-1：Two-sum"><span class="toc-text">Leetcode 1：Two sum</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码解析"><span class="toc-text">代码解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-50：计算x的n次幂"><span class="toc-text">Leetcode 50：计算x的n次幂</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-2"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析-1"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-2"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#leetcode-69：x的平方根（sqrt-of-x）"><span class="toc-text">leetcode 69：x的平方根（sqrt of x）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-3"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析-2"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-3"><span class="toc-text">代码实现</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
