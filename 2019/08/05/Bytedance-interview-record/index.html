@@ -1,0 +1,439 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Bytedance">
+
+
+    <meta name="description" content="字节跳动互娱提前批面试笔记和反思记录7月1日投了字节跳动，然而直到提前批结束都没有收到一面通知，以为是挂了，没想到在7月18日收到了一面通知，然而当时自己很劳累，本来想推迟，结果没想到面试官也因...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>字节跳动互娱提前批面试笔记和反思记录 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="字节跳动互娱提前批面试笔记和反思记录">
+            
+	            字节跳动互娱提前批面试笔记和反思记录
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Bytedance/">Bytedance</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/05</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="字节跳动互娱提前批面试笔记和反思记录"><a href="#字节跳动互娱提前批面试笔记和反思记录" class="headerlink" title="字节跳动互娱提前批面试笔记和反思记录"></a>字节跳动互娱提前批面试笔记和反思记录</h1><p>7月1日投了字节跳动，然而直到提前批结束都没有收到一面通知，以为是挂了，没想到在7月18日收到了一面通知，然而当时自己很劳累，本来想推迟，结果没想到面试官也因为有事所以直接推迟了一面。于是乎实际一面是7月22日，二面是7月26日，三面是7月28日。最后在8月2日晚收到了字节跳动的offer call，收到了秋招的第一个offer。</p>
+<h2 id="字节跳动面试（一面）反思记录（7月22日）"><a href="#字节跳动面试（一面）反思记录（7月22日）" class="headerlink" title="字节跳动面试（一面）反思记录（7月22日）"></a>字节跳动面试（一面）反思记录（7月22日）</h2><h3 id="问题记录"><a href="#问题记录" class="headerlink" title="问题记录"></a>问题记录</h3><ol>
+<li><p>C++中的虚函数是用来干什么的</p>
+</li>
+<li><p>多线程和多进程的区别</p>
+</li>
+<li><p>32位和64位操作系统编程的区别</p>
+</li>
+<li><p>PCM和WAV文件中存储的是啥</p>
+</li>
+<li><p>采样率和采样深度的物理意义</p>
+</li>
+<li><p>C++中malloc/free 和new/delete的区别</p>
+</li>
+<li><p>128点FFT变换，16kHz的音频，可以分为多少个子带？</p>
+</li>
+</ol>
+<p><strong>编程题：</strong></p>
+<p>查找缺失的最小的正整数</p>
+<p><strong>项目：</strong></p>
+<ol>
+<li><p>WebRTC VAD中的GMM模型过程</p>
+</li>
+<li><p>维纳滤波和谱减法的区别</p>
+</li>
+<li><p>时延估计的实现</p>
+</li>
+<li><p>你用的VAD的是做什么用的，原理是什么，遇到突发噪声怎么处理？</p>
+</li>
+<li><p>WebRTC NS中的噪声估计用到的三个特征值是什么？它们分别的定义是什么？</p>
+</li>
+<li><p>有没有了解WebRTC中的回声消除？</p>
+</li>
+<li><p>研究生项目的下一步改进计划</p>
+</li>
+</ol>
+<h3 id="问题点"><a href="#问题点" class="headerlink" title="问题点"></a>问题点</h3><ol>
+<li><strong>对采样深度不懂</strong>。采样位深，音频的位深度决定动态范围。**我们常见的16Bit（16比特），可以记录大概96分贝的动态范围。那么，您可以大概知道，每一个比特大约可以记录6分贝的声音。同理，20Bit可记录的动态范围大概就是120dB；24Bit就大概是144dB。音频位速，也叫码率，或者比特率。位速是指在一个数据流中每秒钟能通过的信息量，也可以理解为：每秒钟用多少比特的数据量去表示。96kbps的WMA音频格式的音质明显要比96kbps的MP3音质好。为什么会这样呢？因为不同的压缩算法，对数据的利用率不同而造成的差异。再举例，假如MP3压缩至48kbps以下，已经惨不忍睹，而如果是AAC音频格式，同样是48kbps的位速下，音质明显比MP3好。</li>
+<li><p>问题7答案继续查找。</p>
+</li>
+<li><p>WebRTC的VAD中GMM模型过程。</p>
+</li>
+<li>LRT均值的定义。</li>
+</ol>
+<h3 id="总结反思"><a href="#总结反思" class="headerlink" title="总结反思"></a>总结反思</h3><ol>
+<li><p>Linux和C++基础必须重新看一遍。这些计划7月份大体完成。</p>
+</li>
+<li><p>WebRTC的VAD、NS部分必须重新回顾，再深入理解，推导，一遍一遍仔细看。</p>
+</li>
+<li><p>对音频的格式问题得有深入了解。</p>
+</li>
+<li><p>陆续对回声消除、AGC部分进行了解。</p>
+</li>
+</ol>
+<h2 id="字节跳动面试（二面）反思记录（7月26日）"><a href="#字节跳动面试（二面）反思记录（7月26日）" class="headerlink" title="字节跳动面试（二面）反思记录（7月26日）"></a>字节跳动面试（二面）反思记录（7月26日）</h2><h3 id="问题记录-1"><a href="#问题记录-1" class="headerlink" title="问题记录"></a>问题记录</h3><ol>
+<li><p>介绍自己的项目。</p>
+</li>
+<li><p>麦克风阵列的物理结构特性有哪些指标？你的麦克风阵列的指标都是怎样的？</p>
+</li>
+<li><p>都用了哪些噪声种类？现在机器学习几百种噪声，为什么用这么少？</p>
+</li>
+<li><p>在哪些噪声环境下语音增强的效果比较差？</p>
+</li>
+<li><p>增强语音的结果的衡量标准是什么？</p>
+</li>
+<li><p>指针和引用的区别</p>
+</li>
+<li><p>多线程（因为知道非计算机专业的，所以提了一下就没有问）</p>
+</li>
+<li><p>TCP和UDP的区别？TCP的拥塞控制策略有哪些？</p>
+</li>
+<li><p>一个绳子切三段，可以组成三角形的概率是多少？</p>
+</li>
+</ol>
+<p><strong>编程题</strong></p>
+<p>寻找第k个数字</p>
+<h3 id="问题点-1"><a href="#问题点-1" class="headerlink" title="问题点"></a>问题点</h3><ol>
+<li><p>对麦克风阵列物理结构了解不够。**由于个人偏向于做算法这一块，所以对麦克风阵列的相关性能指标理解较少，且没有考虑结合物理结构去完成语音增强这一块。</p>
+</li>
+<li><p>结合新技术的东西太少**。应该多阅读最新论文，了解问题的解决方案。</p>
+</li>
+<li><p>仍需要增加噪声种类进行全方位测试。**</p>
+</li>
+<li><p>计算机网络方面仍需要进行了解。**</p>
+</li>
+</ol>
+<h3 id="总结反思-1"><a href="#总结反思-1" class="headerlink" title="总结反思"></a>总结反思</h3><ol>
+<li><p>对麦克风阵列的物理指标进行广泛查询搜集，然后进行整理，确定自己使用的麦克风的参数。</p>
+</li>
+<li><p>广泛阅读最新论文，结合论文对算法进行优化。</p>
+</li>
+<li><p>增加测试噪声。</p>
+</li>
+<li><p>考虑对于多说话人的时候如何实现背景说话人的噪声。</p>
+</li>
+<li><p>对计算机网络的基本知识仍需要进行全方位的了解。</p>
+</li>
+<li><p>接下来对项目仍然需要深挖，以应对各种实际情况，并结合面试官问题，在下一步项目推进的时候做的更完善。</p>
+</li>
+</ol>
+<h2 id="字节跳动面试（三面）反思记录（7月28日）"><a href="#字节跳动面试（三面）反思记录（7月28日）" class="headerlink" title="字节跳动面试（三面）反思记录（7月28日）"></a>字节跳动面试（三面）反思记录（7月28日）</h2><h3 id="问题记录-2"><a href="#问题记录-2" class="headerlink" title="问题记录"></a>问题记录</h3><ol>
+<li><p>你平时是用VS多还是Linux编程多？VS你都是怎么调试？</p>
+</li>
+<li><p>你知道VS下面断点调试的底层原理是什么吗？</p>
+</li>
+<li><p>你项目中的时延估计是做什么的？</p>
+</li>
+</ol>
+<p><strong> 编程题</strong></p>
+<ol>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class B</span><br><span class="line">&#123;</span><br><span class="line">int b;</span><br><span class="line">public:</span><br><span class="line">virtual ~B()&#123;cout &lt;&lt;&quot;B::~B()&quot;&lt;&lt;endl;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">class D:public B</span><br><span class="line">&#123;</span><br><span class="line">int i;</span><br><span class="line">int j;</span><br><span class="line">public:</span><br><span class="line">virtual ~D() &#123; cout &lt;&lt;&quot;D::~D()&quot;&lt;&lt;endl;&#125;</span><br><span class="line">&#125;;</span><br><span class="line">int main(void)</span><br><span class="line">&#123;</span><br><span class="line">B *pb = new D[2];</span><br><span class="line">delete[] pb;</span><br><span class="line">return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>代码可否正确输出？</p>
+<ol start="2">
+<li>递归写出n个数字的子集（包含空集）</li>
+</ol>
+<p>n个数字的子集有多少个？</p>
+<ol start="3">
+<li>二叉树的右视图</li>
+</ol>
+<h3 id="问题点-2"><a href="#问题点-2" class="headerlink" title="问题点"></a>问题点</h3><ol>
+<li><p>对C++虚函数的基本还是有欠缺。**虽然知道代码能够正确输出，但是没有100%的理论确定这一点。</p>
+</li>
+<li><p>对递归编程这个领域熟悉还不够。**</p>
+</li>
+</ol>
+<h3 id="总结反思-2"><a href="#总结反思-2" class="headerlink" title="总结反思"></a>总结反思</h3><p>下一步要做以下工作：</p>
+<ol>
+<li><p>抓住C++基础不放松，特别是虚函数、多态、智能指针等这几个常问的关键点。</p>
+</li>
+<li><p>继续加快LeetCode编程题的学习工作，坚持每天刷3~5道题，把一些基本题型的medium和hard题都要刷且弄明白。</p>
+</li>
+</ol>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/07/02/leetcode190702/" class="next-post btn btn-default" title="leetcode题目解析（190702）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">leetcode题目解析（190702）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#字节跳动互娱提前批面试笔记和反思记录"><span class="toc-text">字节跳动互娱提前批面试笔记和反思记录</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#字节跳动面试（一面）反思记录（7月22日）"><span class="toc-text">字节跳动面试（一面）反思记录（7月22日）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题记录"><span class="toc-text">问题记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题点"><span class="toc-text">问题点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结反思"><span class="toc-text">总结反思</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字节跳动面试（二面）反思记录（7月26日）"><span class="toc-text">字节跳动面试（二面）反思记录（7月26日）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题记录-1"><span class="toc-text">问题记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题点-1"><span class="toc-text">问题点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结反思-1"><span class="toc-text">总结反思</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字节跳动面试（三面）反思记录（7月28日）"><span class="toc-text">字节跳动面试（三面）反思记录（7月28日）</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#问题记录-2"><span class="toc-text">问题记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题点-2"><span class="toc-text">问题点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结反思-2"><span class="toc-text">总结反思</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
