@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,WebRTC">
+
+
+    <meta name="description" content="拖了快一个月了，终于有时间来将所研究的WebRTC中的自动增益控制（AGC）模块的内容进行下系统的整理。目前个人了解的还很初步，有很多东西还没有研究透彻，所以这部分分析整理可能会比较浅薄，后续随...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>WebRTC中AGC模块分析（上） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="WebRTC中AGC模块分析（上）">
+            
+	            WebRTC中AGC模块分析（上）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a> <a class="tag-link" href="/tags/WebRTC/">WebRTC</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/12</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>拖了快一个月了，终于有时间来将所研究的WebRTC中的自动增益控制（AGC）模块的内容进行下系统的整理。目前个人了解的还很初步，有很多东西还没有研究透彻，所以这部分分析整理可能会比较浅薄，后续随着研究的深入，内容会不断完善。</p>
+<p>本次先更新第一部分，包括WebRTC的AGC模块的介绍、框图、函数关系图和函数功能介绍等。下一期更新具体的函数原理内容。</p>
+<h1 id="1-AGC模块的简介和性能结果"><a href="#1-AGC模块的简介和性能结果" class="headerlink" title="1.AGC模块的简介和性能结果"></a>1.AGC模块的简介和性能结果</h1><p>WebRTC的音频处理模块分为语音活动检测（VAD）、降噪（NS和NSX）、回音消除（AEC）、回声控制（AECM）和音频增益（AGC）等5个部分。本次我要介绍的是其中的自动增益控制（AGC）部分，其代码主要位于WebRTC的modules\audio_processing\agc\legacy中。</p>
+<p>什么时候用得到增益控制呢？实际上，当对语音的响度进行调整的需要时，就要做语音自动增益（AGC）算法处理，平时的语音聊天都会用到这个算法。</p>
+<p>最简单的方法就是对所有的音频采样乘上一个增益系数，由于人的听觉对所有频率的感知不是线性的，所以会导致这样处理以后，听起来有的频率增强了、有的频率削弱了，导致了语音失真的方法。所以，要让整个频段听起来响度增益都是相同的，就必须在遵循响度曲线基础上，在响度这个尺度做增益，即按照响度曲线对语音的频率进行加权。</p>
+<p>本工程以10ms为单位对语音进行模拟和数字增益的自适应调整。增益的调整仅在语音活动期间进行，语音的长度必须依照程序中所给的长度（8000Hz时为80个点，16000Hz为160个点，320000Hz为320个点，48000Hz为480个点）。本程序必须在进行回声消除后，在近端麦克风信号进行调用。</p>
+<p>在这里介绍的时候，我以Github上的工程（<a href="https://github.com/cpuimage/WebRTC_AGC" target="_blank" rel="noopener">https://github.com/cpuimage/WebRTC_AGC</a>）为例进行讲解WebRTC中AGC的过程。</p>
+<p>该方法的效果，如图1.1所示。<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu11.jpg" alt="语音效果图"></p>
+<p>图1.1 语音效果图像</p>
+<h1 id="2-AGC的整体框图和函数关系图"><a href="#2-AGC的整体框图和函数关系图" class="headerlink" title="2.AGC的整体框图和函数关系图"></a>2.AGC的整体框图和函数关系图</h1><h2 id="2-1-AGC模块整体框图"><a href="#2-1-AGC模块整体框图" class="headerlink" title="2.1 AGC模块整体框图"></a>2.1 AGC模块整体框图</h2><p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu12.jpg" alt="整体系统框图"></p>
+<p>图2.1 AGC模块整体框图</p>
+<h2 id="2-2-AGC模块函数关系图"><a href="#2-2-AGC模块函数关系图" class="headerlink" title="2.2 AGC模块函数关系图"></a>2.2 AGC模块函数关系图</h2><p>表2.1 AGC模块函数关系图</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcbiao21.jpg" alt="AGC模块函数关系图"></p>
+<h2 id="2-3-AGC模块函数功能解释"><a href="#2-3-AGC模块函数功能解释" class="headerlink" title="2.3 AGC模块函数功能解释"></a>2.3 AGC模块函数功能解释</h2><p>表2.2 AGC模块函数功能解释<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcbiao22.jpg" alt="AGC模块函数功能解释"></p>
+<p>表2.3 其它相关函数功能及解释</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/biao23.jpg" alt="其它相关函数功能及解释"></p>
+<h2 id="2-4-使用到的常量"><a href="#2-4-使用到的常量" class="headerlink" title="2.4 使用到的常量"></a>2.4 使用到的常量</h2><p>1.全通滤波器因子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">static const uint16_t kResampleAllpass1[3] = &#123;3284, 24441, 49528&#125;;</span><br><span class="line">static const uint16_t kResampleAllpass2[3] = &#123;12199, 37471, 60255&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>2.AGC的四种工作模式</p>
+<p>表2.4 AGC的四种工作模式<br><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcbiao24.jpg" alt="AGC的四种工作模式"></p>
+<p>&lt;![endif]–&gt;</p>
+<h2 id="2-5-使用到的结构体"><a href="#2-5-使用到的结构体" class="headerlink" title="2.5 使用到的结构体"></a>2.5 使用到的结构体</h2><p>WebRtcAgc_config是配置targetLevelDbfs和compressionGaindB用于调节agc的动态范围。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">typedef struct &#123;</span><br><span class="line">    int16_t targetLevelDbfs;    // default 3 (-3 dBOv)</span><br><span class="line">    int16_t compressionGaindB;  // default 9 dB</span><br><span class="line">    uint8_t limiterEnable;      // default kAgcTrue (on)</span><br><span class="line">&#125; WebRtcAgcConfig;</span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    int32_t downState[8];</span><br><span class="line">    int16_t HPstate;</span><br><span class="line">    int16_t counter;</span><br><span class="line">    int16_t logRatio;           // log( P(active) / P(inactive) ) (Q10)</span><br><span class="line">    int16_t meanLongTerm;       // Q10</span><br><span class="line">    int32_t varianceLongTerm;   // Q8</span><br><span class="line">    int16_t stdLongTerm;        // Q10</span><br><span class="line">    int16_t meanShortTerm;      // Q10</span><br><span class="line">    int32_t varianceShortTerm;  // Q8</span><br><span class="line">    int16_t stdShortTerm;       // Q10</span><br><span class="line">&#125; AgcVad;  </span><br><span class="line"></span><br><span class="line">typedef struct &#123;</span><br><span class="line">    int32_t capacitorSlow;</span><br><span class="line">    int32_t capacitorFast;</span><br><span class="line">    int32_t gain;</span><br><span class="line">    int32_t gainTable[32];</span><br><span class="line">    int16_t gatePrevious;</span><br><span class="line">    int16_t agcMode;</span><br><span class="line">    AgcVad vadNearend;</span><br><span class="line">    AgcVad vadFarend;</span><br><span class="line">#ifdef WEBRTC_AGC_DEBUG_DUMP</span><br><span class="line">    FILE* logFile;</span><br><span class="line">    int frameCounter;</span><br><span class="line">#endif</span><br><span class="line">&#125; DigitalAgc;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/05/Bytedance-interview-record/" class="next-post btn btn-default" title="字节跳动互娱提前批面试笔记和反思记录">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">字节跳动互娱提前批面试笔记和反思记录</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-AGC模块的简介和性能结果"><span class="toc-text">1.AGC模块的简介和性能结果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-AGC的整体框图和函数关系图"><span class="toc-text">2.AGC的整体框图和函数关系图</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-AGC模块整体框图"><span class="toc-text">2.1 AGC模块整体框图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-AGC模块函数关系图"><span class="toc-text">2.2 AGC模块函数关系图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-AGC模块函数功能解释"><span class="toc-text">2.3 AGC模块函数功能解释</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-使用到的常量"><span class="toc-text">2.4 使用到的常量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-使用到的结构体"><span class="toc-text">2.5 使用到的结构体</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
