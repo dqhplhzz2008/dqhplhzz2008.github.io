@@ -1,0 +1,367 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,WebRTC">
+
+
+    <meta name="description" content="3.AGC的函数介绍3.1 WebRtcAgc_Process()函数这一部分是WebRTC的自动增益控制模块的核心程序，如图3.1所示，主要分为以下5个步骤：
+首先要判断采样点数是否符合规定的...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>WebRTC中AGC模块分析（下） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="WebRTC中AGC模块分析（下）">
+            
+	            WebRTC中AGC模块分析（下）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a> <a class="tag-link" href="/tags/WebRTC/">WebRTC</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/08/13</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="3-AGC的函数介绍"><a href="#3-AGC的函数介绍" class="headerlink" title="3.AGC的函数介绍"></a>3.AGC的函数介绍</h1><h2 id="3-1-WebRtcAgc-Process-函数"><a href="#3-1-WebRtcAgc-Process-函数" class="headerlink" title="3.1 WebRtcAgc_Process()函数"></a>3.1 WebRtcAgc_Process()函数</h2><p>这一部分是WebRTC的自动增益控制模块的核心程序，如图3.1所示，主要分为以下5个步骤：</p>
+<p>首先要判断采样点数是否符合规定的要求。即若采样率为8000Hz，则一帧长度必须为80个点；若采样率为16000Hz或32kHz或48kHz，则长度必须为160个点。否则就会返回错误退出。</p>
+<p>其次要初始化saturationWarning为0，初始化输出的语音的麦克风级别为输入的语音的麦克风级别。</p>
+<p>然后执行WebRtcAgc_ProcessDigital()函数，它是AGC的核心函数，无论什么模式都要调用到，具体功能在后续会进行介绍。该函数返回值取值为0或-1，若为-1则代表出错，返回，否则为正确。</p>
+<p>再然后需要判断是否符合条件1。条件1的内容如下：</p>
+<p>stt-&gt;agcMode &lt; kAgcModeFixedDigital &amp;&amp; (stt-&gt;lowLevelSignal == 0 || stt-&gt;agcMode != kAgcModeAdaptiveDigital</p>
+<p>也就是说必须要同时符合两个条件：</p>
+<p>①agcMode为kAgcModeUnchanged、kAgcModeAdaptiveAnalog或kAgcModeAdaptiveDigital。</p>
+<p>②lowLevelSignal为0，或者agcMode不是kAgcModeAdaptiveDigital。</p>
+<p>符合以上两个条件的话，就去执行WebRtcAgc_ProcessAnalog()，该函数的功能是根据能量的大小、饱和标志（WebRtcAgc_StaturationCtrl）、零状态(WebRtcAgc_ZeroCtrl)，和近端语音活度(WebRtcAgc_SpeakerInactiveCtrl)的结果，来初步控制输入语音的大小。具体介绍后续会有。</p>
+<p>最后，完成上述操作以后，更新inQueue。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu31.jpg" alt="Process函数流程图"></p>
+<p>图3.1 Process函数的流程图</p>
+<h2 id="3-2-WebRtcAgc-ProcessDigital-函数"><a href="#3-2-WebRtcAgc-ProcessDigital-函数" class="headerlink" title="3.2 WebRtcAgc_ProcessDigital()函数"></a>3.2 WebRtcAgc_ProcessDigital()函数</h2><p>WebRtcAgc_ProcessDigital()是WebRTC中AGC模块的核心函数，任何模式都要调用到它。该函数在采样率为8kHz时处理80个点的数据，16kHz、32kHz等都是处理160个点。</p>
+<p>由于该函数流程过长，所以这里我会将流程图分为多块，然后逐块进行分析讲解。</p>
+<p>如图3.2所示，第一部分首先要计算近端信号的VAD结果，并且当远端信号超过10帧（100ms）之后，使用远端的VAD结果来修正近端VAD，具体的修正公式如下：</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcgs1.jpg" alt="AGC公式"></p>
+<p>接着就是使用V来计算出衰减decay，其计算公式为</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcgs2.jpg" alt="AGC公式"></p>
+<p>然后接下来的具体操作在图中都有，就不再叙述。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu32.jpg" alt="ProcessDigital()函数流程图1"><br>图3.2 ProcessDigital()函数流程图1</p>
+<p>第二部分如图3.3中的蓝色部分。该部分通过快、慢包络和增益计算每个子帧的增益数组gain。首先计算了快慢包络，如下所示</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcgs3.jpg" alt="AGC公式"></p>
+<p>然后取两个包络的最大值作为level。最后使用对数的分段线性函数把cur_level转换成gain。对数函数的整数部分是cur_level前面0的个数，如果0越少，说明数值越大，最多是31个0，最少1个0（有符号数）。小数部分用线性差值的方法，找到gain[zeros]，gain[zeros-1]中间的量。</p>
+<p>第三部分如图3.3中的橘色部分，是来计算门限gate。gate意味着衰减原来的增益。gate的计算可以看成两部分，第一部分是基于快慢包络计算出的似然比，相当于快包络与慢包络能量的倍数。第二部分是近端信号的短时方差。然后计算门限</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcgs4.jpg" alt="AGC公式"></p>
+<p> 在计算完gate之后，确定gate是否小于0，若小于，则gatePrevious=0，否则就平滑门限。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agcgs5.jpg" alt="AGC公式"></p>
+<p>平滑后，把门限转换成gain_adj。当gate最小的时候为0（语音），gain_adj取到最大，此时不使用gainTable[0]的值作为参考；当gate最大的时候为2500（噪声），gain_adj取到最小，此时g[k+1]要取到相对于gainTable[0]的值的70%；当gate处于最大最小值之间，g[k+1]在gainTable[0]和g[k+1]确定的这条直线上移动。这一部分如图3.4所示。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu33.jpg" alt="ProcessDigital()函数流程图2"></p>
+<p>图3.3 ProcessDigital()函数流程图2</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu34.jpg" alt="ProcessDigital()函数流程图3"></p>
+<p>图3.4 ProcessDigital()函数流程图3</p>
+<p>最后一部分就是gain与语音进行处理，如图3.5所示，图中描述已经非常清楚。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu35.jpg" alt="ProcessDigital()函数流程图4"></p>
+<p>图3.5 ProcessDigital()函数流程图4</p>
+<h2 id="3-3-WebRtcAgc-ProcessAnalog-函数"><a href="#3-3-WebRtcAgc-ProcessAnalog-函数" class="headerlink" title="3.3 WebRtcAgc_ProcessAnalog()函数"></a>3.3 WebRtcAgc_ProcessAnalog()函数</h2><p>该函数的作用就是根据输入信号的能量大小、饱和标志（WebRtcAgc_StaturationCtrl()函数）、零状态（WebRtcAgc_ZeroCtrl()）和近端语音活度（WebRtcAgc_SpeakerInactiveCtrl()）来初步调整和控制语音幅度的大小。主要有以下几个部分。</p>
+<h3 id="3-3-1对麦克风音量进行预处理"><a href="#3-3-1对麦克风音量进行预处理" class="headerlink" title="3.3.1对麦克风音量进行预处理"></a>3.3.1对麦克风音量进行预处理</h3><p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu36.jpg" alt="ProcessAnalog()函数框图第一部分"></p>
+<p>图3.6 ProcessAnalog()函数框图第一部分</p>
+<p>这一部分是对micVol进行处理。micVol的大小决定了模拟初步调节的音量。要注意一点，在在kAgcModeAdaptiveAnalog模式下，不调用AddVirtualMic()函数；同时在kAgcModeAdaptiveDigital()下，micVol只是一个第一步粗调节的中间变量，起到了一个初步调节的作用。</p>
+<h3 id="3-3-2-判断信号是否饱和"><a href="#3-3-2-判断信号是否饱和" class="headerlink" title="3.3.2 判断信号是否饱和"></a>3.3.2 判断信号是否饱和</h3><p>该部分是基于信号的包络计算信号是否饱和，使用的是WebRtcAgc_SaturationCtrl()函数。</p>
+<p>实际上系统在Webrtc_AddMic()函数中计算了包络env的值。对于16kHz的数据来说，10ms的数据是160个采样点，要分成10块，这样每一块是就是16个采样点，然后对求每块16个点求平方，值最大的点作为包络。</p>
+<p>如图3.7所示，当有一块值大于875的时候，就为将envSum累加一次tmpW16。循环完之后，如果没有累计超过25000，则算饱和，将saturated设置为1，然后将envSum清零。如果envSum没有大于25000，则按照0.99的值衰减envSum。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu37.jpg" alt="ProcessAnalog()函数框图第二部分"></p>
+<p>图3.7 ProcessAnalog()函数框图第二部分</p>
+<p>若信号饱和，则执行如图3.8中橘色部分所示的操作，具体在图中已经详细叙述，不再累述。</p>
+<p>若信号不饱和（或信号饱和后执行的操作完成），则进行零信号检查和近端语音活度检查，如图3.8中蓝色的框图。</p>
+<h3 id="3-3-3-零信号检查"><a href="#3-3-3-零信号检查" class="headerlink" title="3.3.3 零信号检查"></a>3.3.3 零信号检查</h3><p>WebRtcAgc_ZeroCtrl()该函数用来计算信号的大小，并且用msZero来记录，用来控制语音活度（actgiveSpeech）和块低频能量最大值（Rxx16_LPw32Max），这两个变量后续影响计算低频能量Rxx160_LPw32。</p>
+<h3 id="3-3-4-近端语音活度检查"><a href="#3-3-4-近端语音活度检查" class="headerlink" title="3.3.4 近端语音活度检查"></a>3.3.4 近端语音活度检查</h3><p>该部分使用的函数名称为WebRtcAgc_SpeakerInactiveCtrl()。检查近端扬声器是否处于非活动状态。如果是这种情况，由于VAD语音模型在长时间静音后对任何声音更敏感，因此VAD阈值增加。该部分较为简单，不再累述。代码如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">void WebRtcAgc_SpeakerInactiveCtrl(LegacyAgc *stt) &#123;</span><br><span class="line">    int32_t tmp32;</span><br><span class="line">    int16_t vadThresh;</span><br><span class="line"></span><br><span class="line">    if (stt-&gt;vadMic.stdLongTerm &lt; 2500) &#123;</span><br><span class="line">        stt-&gt;vadThreshold = 1500;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        vadThresh = kNormalVadThreshold;</span><br><span class="line">        if (stt-&gt;vadMic.stdLongTerm &lt; 4500) &#123;</span><br><span class="line">            /* Scale between min and max threshold */</span><br><span class="line">            vadThresh += (4500 - stt-&gt;vadMic.stdLongTerm) / 2;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        /* stt-&gt;vadThreshold = (31 * stt-&gt;vadThreshold + vadThresh) / 32; */</span><br><span class="line">        tmp32 = vadThresh + 31 * stt-&gt;vadThreshold;</span><br><span class="line">        stt-&gt;vadThreshold = (int16_t) (tmp32 &gt;&gt; 5);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/agctu38.jpg" alt="ProcessAnalog()函数框图第三部分"></p>
+<p>图3.8 ProcessAnalog()函数框图第三部分</p>
+<h3 id="3-3-5-计算子带能量和总能量"><a href="#3-3-5-计算子带能量和总能量" class="headerlink" title="3.3.5 计算子带能量和总能量"></a>3.3.5 计算子带能量和总能量</h3><p>计算子带能量和总能量如图3.8中粉红色部分所示。流程图中叙述非常清晰，不再描述。</p>
+<h3 id="3-3-6-根据vadMic-logRatio判断是否进入条件流程"><a href="#3-3-6-根据vadMic-logRatio判断是否进入条件流程" class="headerlink" title="3.3.6 根据vadMic.logRatio判断是否进入条件流程"></a>3.3.6 根据vadMic.logRatio判断是否进入条件流程</h3><p>然后根据vadMic.logRatio判断是否进入调节流程，若是，则进行进一步处理，否则继续返回计算能量部分。如图3.8紫色部分所示。</p>
+<h3 id="3-3-7-调节流程"><a href="#3-3-7-调节流程" class="headerlink" title="3.3.7 调节流程"></a>3.3.7 调节流程</h3><p>在前面计算完全帧能量Rxx160LPw32之后，该变量会根据4个阈值划分为5个范围。四个阈值分别是：</p>
+<p>①upperSecondaryLimit</p>
+<p>②upperLimit</p>
+<p>③lowerLimit</p>
+<p>④lowerSecondaryLimit</p>
+<p>该四个阈值由上到下递减。该部分核心是对micVol进行调整，保证一个帧的能量在[upperLimit, lowerLimit]之间。</p>
+<h3 id="3-3-8-检查回声等最后处理步骤"><a href="#3-3-8-检查回声等最后处理步骤" class="headerlink" title="3.3.8 检查回声等最后处理步骤"></a>3.3.8 检查回声等最后处理步骤</h3><p>该部分保证回声状态和零状态下不会被放大，同时限制增益在一定范围之内，限制音量最大值，如图3.8中白色部分。</p>
+<p>部分内容是我阅读<a href="https://blog.csdn.net/ssdzdk/" target="_blank" rel="noopener">https://blog.csdn.net/ssdzdk/</a>中的学习笔记整理而得到的，在此感谢原作者。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/12/introduction-of-AGC-in-WebRTC-1/" class="next-post btn btn-default" title="WebRTC中AGC模块分析（上）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">WebRTC中AGC模块分析（上）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-AGC的函数介绍"><span class="toc-text">3.AGC的函数介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-WebRtcAgc-Process-函数"><span class="toc-text">3.1 WebRtcAgc_Process()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-WebRtcAgc-ProcessDigital-函数"><span class="toc-text">3.2 WebRtcAgc_ProcessDigital()函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-WebRtcAgc-ProcessAnalog-函数"><span class="toc-text">3.3 WebRtcAgc_ProcessAnalog()函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1对麦克风音量进行预处理"><span class="toc-text">3.3.1对麦克风音量进行预处理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-判断信号是否饱和"><span class="toc-text">3.3.2 判断信号是否饱和</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-零信号检查"><span class="toc-text">3.3.3 零信号检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-4-近端语音活度检查"><span class="toc-text">3.3.4 近端语音活度检查</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-5-计算子带能量和总能量"><span class="toc-text">3.3.5 计算子带能量和总能量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-6-根据vadMic-logRatio判断是否进入条件流程"><span class="toc-text">3.3.6 根据vadMic.logRatio判断是否进入条件流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-7-调节流程"><span class="toc-text">3.3.7 调节流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-8-检查回声等最后处理步骤"><span class="toc-text">3.3.8 检查回声等最后处理步骤</span></a></li></ol></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
