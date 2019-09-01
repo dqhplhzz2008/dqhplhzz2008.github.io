@@ -1,0 +1,435 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,WebRTC">
+
+
+    <meta name="description" content="WebRTC Noise Suppression工程主页&amp;下载地址：http://tech.yushuai.xyz/WebRTC_deNoise/
+这是一个基于WebRTC的单通道语音增...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>基于WebRTC的噪声消除系统发布第二个版本 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="基于WebRTC的噪声消除系统发布第二个版本">
+            
+	            基于WebRTC的噪声消除系统发布第二个版本
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a> <a class="tag-link" href="/tags/WebRTC/">WebRTC</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/09/01</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="WebRTC-Noise-Suppression"><a href="#WebRTC-Noise-Suppression" class="headerlink" title="WebRTC Noise Suppression"></a>WebRTC Noise Suppression</h1><p>工程主页&amp;下载地址：<a href="http://www.yushuai.xyz/2019/05/19/4342.html" target="_blank" rel="noopener">http://tech.yushuai.xyz/WebRTC_deNoise/</a></p>
+<p>这是一个基于WebRTC的单通道语音增强系统，其为浮点版本。</p>
+<p>该工程包括:</p>
+<ol>
+<li><strong>common_audio</strong>：处理音频所需要的文件在的文件夹。</li>
+<li><strong>ns</strong>：Noise Suppression处理的核心文件在的文件夹</li>
+<li><strong>dr_wav.h</strong>：读取和解析wav文件。</li>
+<li><strong>main.c</strong>：整个程序的主程序，系统的入口。</li>
+<li><strong>timing.h</strong>：计时使用的头文件。</li>
+</ol>
+<p>本工程具体算法流程图及函数解释详见<a href="http://www.yushuai.xyz/2019/05/19/4342.html" target="_blank" rel="noopener">链接1</a>和<a href="http://www.yushuai.xyz/2019/07/01/4396.html" target="_blank" rel="noopener">链接2</a>。</p>
+<h2 id="Directory-description"><a href="#Directory-description" class="headerlink" title="Directory description"></a>Directory description</h2><table>
+<thead>
+<tr>
+<th>目录</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WebRTC_NS-GCC</td>
+<td>GCC版本的程序</td>
+</tr>
+<tr>
+<td>WebRTC_NS-VS</td>
+<td>VS版本的程序</td>
+</tr>
+</tbody>
+</table>
+<p>以上文件夹各自目录下的工程名称解释如下：</p>
+<blockquote>
+<p>v**_mm</p>
+</blockquote>
+<p>其中：</p>
+<ul>
+<li>**表示版本号。如20表示2.0版本。</li>
+<li>mm表示浮点或顶点，其中float表示浮点版本，fixed表示定点版本。</li>
+</ul>
+<h2 id="Development-Environment"><a href="#Development-Environment" class="headerlink" title="Development Environment"></a>Development Environment</h2><h3 id="v2-0版本"><a href="#v2-0版本" class="headerlink" title="v2.0版本"></a>v2.0版本</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作系统（VS环境）</td>
+<td>Windows 10 x64</td>
+</tr>
+<tr>
+<td>VS版本</td>
+<td>Microsoft Visual Studio 2019</td>
+</tr>
+<tr>
+<td>操作系统（GCC环境）</td>
+<td>Cent OS6.4</td>
+</tr>
+<tr>
+<td>操作系统（GCC）</td>
+<td>GCC 4.8</td>
+</tr>
+</tbody>
+</table>
+<h3 id="v1-0版本"><a href="#v1-0版本" class="headerlink" title="v1.0版本"></a>v1.0版本</h3><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作系统（VS）</td>
+<td>Windows 10 x64</td>
+</tr>
+<tr>
+<td>VS版本</td>
+<td>Microsoft Visual Studio 2015</td>
+</tr>
+<tr>
+<td>操作系统（GCC环境）</td>
+<td>Cent OS6.4</td>
+</tr>
+<tr>
+<td>操作系统（GCC）</td>
+<td>GCC 4.8</td>
+</tr>
+</tbody>
+</table>
+<h2 id="ChangeLog"><a href="#ChangeLog" class="headerlink" title="ChangeLog"></a>ChangeLog</h2><h3 id="v2-0-2019-9-1"><a href="#v2-0-2019-9-1" class="headerlink" title="v2.0(2019.9.1)"></a>v2.0(2019.9.1)</h3><ul>
+<li>将原来参考的程序文件全部替换为从WebRTC中提取的文件，更加忠实于原工程版本。</li>
+<li>将程序中所有使用C++类的部分、使用函数模板的部分等全部替换为了C语言中的实现。</li>
+<li>将音频文件读取的函数整合到了主程序之中。</li>
+<li>2.0版本暂未提供GCC下工程，请暂时参考VS2019工程和1.0版本的GCC下工程，自行修改CMakeList.txt并进行编译。</li>
+</ul>
+<h3 id="v1-0-2019-7-18"><a href="#v1-0-2019-7-18" class="headerlink" title="v1.0(2019.7.18)"></a>v1.0(2019.7.18)</h3><ul>
+<li>参考<a href="https://github.com/cpuimage/WebRTC_NS" target="_blank" rel="noopener">cpuimage</a>的程序实现了WebRTC_NS的功能。</li>
+</ul>
+<h2 id="Install"><a href="#Install" class="headerlink" title="Install"></a>Install</h2><p>Linux下请确认是否安装GCC，确认方式，输入</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -v</span><br></pre></td></tr></table></figure>
+<p>若返回相应的GCC版本信息，则代表安装完成。<br>具体按照GCC方法请Google即可。              </p>
+<h2 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h2><p>对于VS版本来说，你可以直接打开VS工程进行调试或者生成测试。</p>
+<p>对于Linux下版本来说，请在工程目录下执行<br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir build</span><br><span class="line">$ <span class="built_in">cd</span> ./build</span><br><span class="line">$ cmake ..</span><br><span class="line">$ make</span><br></pre></td></tr></table></figure></p>
+<p>即可编译链接完成，运行的时候，运行下面的命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ ./ns &lt;input&gt; &lt;output&gt;</span><br></pre></td></tr></table></figure>
+<p>在使用的时候，若文件目录中已存在与输出文件名同名的文件，则系统提示该文件已经存在，需要判断是否覆盖，若键入<strong>N</strong>或<strong>n</strong>，则拒绝覆盖，程序报错退出；若键入<strong>Y</strong>或<strong>y</strong>，则覆盖。</p>
+<h2 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h2><ul>
+<li>Time domain image</li>
+</ul>
+<p><img src="https://github.com/dqhplhzz2008/WebRTC_Noise_Suppression/raw/master/img/timedomain1.jpg" alt></p>
+<p><img src="https://github.com/dqhplhzz2008/WebRTC_Noise_Suppression/raw/master/img/timedomain2.jpg" alt></p>
+<ul>
+<li>Frequency domain image</li>
+</ul>
+<p><img src="https://github.com/dqhplhzz2008/WebRTC_Noise_Suppression/raw/master/img/ypt1.jpg" alt></p>
+<p><img src="https://github.com/dqhplhzz2008/WebRTC_Noise_Suppression/raw/master/img/ypt2.jpg" alt></p>
+<p><img src="https://github.com/dqhplhzz2008/WebRTC_Noise_Suppression/raw/master/img/ypt3.jpg" alt></p>
+<ul>
+<li>SNR &amp; PESQ</li>
+</ul>
+<p><img src="https://github.com/dqhplhzz2008/WebRTC_Noise_Suppression/raw/master/img/pesqsnr.jpg" alt></p>
+<h2 id="Related-Efforts"><a href="#Related-Efforts" class="headerlink" title="Related Efforts"></a>Related Efforts</h2><p>To be continued</p>
+<h2 id="Maintainers"><a href="#Maintainers" class="headerlink" title="Maintainers"></a>Maintainers</h2><p><a href="https://github.com/dqhplhzz2008" target="_blank" rel="noopener">@dqhplhzz2008</a>.</p>
+<h2 id="Contact-Me"><a href="#Contact-Me" class="headerlink" title="Contact Me"></a>Contact Me</h2><p>If you have any questions, please <a href="https://github.com/dqhplhzz2008/WebRTC_Noise_Suppression/issues/new" target="_blank" rel="noopener">submit</a> a message.</p>
+<h3 id="Contributors"><a href="#Contributors" class="headerlink" title="Contributors"></a>Contributors</h3><p>You can focus on my WeChat Official Account<br></p>
+<p><img src="https://github.com/dqhplhzz2008/dqhplhzz2008.github.io/raw/master/weixingongzhonghao.jpg" alt>  <br></p>
+<p>At same time, welcome to <a href="http://www.yushuai.xyz" target="_blank" rel="noopener">My blog[Simplified Chinese]</a>!</p>
+<h2 id="License"><a href="#License" class="headerlink" title="License"></a>License</h2><p><a href="LICENSE">GPL-3.0</a> © Yushuai Zhang</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/08/13/introduction-of-AGC-in-WebRTC-2/" class="next-post btn btn-default" title="WebRTC中AGC模块分析（下）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">WebRTC中AGC模块分析（下）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#WebRTC-Noise-Suppression"><span class="toc-text">WebRTC Noise Suppression</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Directory-description"><span class="toc-text">Directory description</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Development-Environment"><span class="toc-text">Development Environment</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v2-0版本"><span class="toc-text">v2.0版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v1-0版本"><span class="toc-text">v1.0版本</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ChangeLog"><span class="toc-text">ChangeLog</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v2-0-2019-9-1"><span class="toc-text">v2.0(2019.9.1)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v1-0-2019-7-18"><span class="toc-text">v1.0(2019.7.18)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install"><span class="toc-text">Install</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Usage"><span class="toc-text">Usage</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Result"><span class="toc-text">Result</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Related-Efforts"><span class="toc-text">Related Efforts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maintainers"><span class="toc-text">Maintainers</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Contact-Me"><span class="toc-text">Contact Me</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Contributors"><span class="toc-text">Contributors</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#License"><span class="toc-text">License</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
