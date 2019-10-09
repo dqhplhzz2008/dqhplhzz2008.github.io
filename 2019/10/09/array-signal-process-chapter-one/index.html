@@ -1,0 +1,384 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,Optimal Array Signal Process">
+
+
+    <meta name="description" content="随着项目的进行，越发发现自己缺乏了太多波束形成的基础知识，而这些知识就在阵列信号处理这一门课程中学习，但是当初自己选择了自适应信号处理，并没有选择《阵列信号处理》。所以从前几天起一直在找阵列信号...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>《优化阵列信号处理》学习笔记（第一章） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="《优化阵列信号处理》学习笔记（第一章）">
+            
+	            《优化阵列信号处理》学习笔记（第一章）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Optimal-Array-Signal-Process/">Optimal Array Signal Process</a> <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/10/09</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>随着项目的进行，越发发现自己缺乏了太多波束形成的基础知识，而这些知识就在阵列信号处理这一门课程中学习，但是当初自己选择了自适应信号处理，并没有选择《阵列信号处理》。所以从前几天起一直在找阵列信号处理领域比较优秀的书籍，然后看到了鄢社锋编写的《优化阵列信号处理》一书，总体感觉还很不错，问了声学所的同学也说他的书写的不错，故想自己开始对这方面研究一下，整理一些笔记。</p>
+<p>今天发布的是第一章的笔记。第一章是绪论，只要是一些概括性的知识，包括分类、发展历史、方法总体优缺点等，没有深入的知识。</p>
+<h2 id="第一章：绪论"><a href="#第一章：绪论" class="headerlink" title="第一章：绪论"></a>第一章：绪论</h2><p>1.波束形成是阵列信号处理的一个非常重要的任务，它采用空间分布的传感器阵列采集包含期望信号与噪声的物理场数据，然后对所采集的阵列数据进行线性加权组合处理得到一个标量波束输出。</p>
+<p>2.波束形成的功能：①形成基阵接收系统的方向性；②进行空域滤波，抑制空间干扰与环境噪声，提高信噪比；③估计信号到达放心，进行多目标分辨；④为信号源定位创造条件；⑤为目标识别提供信息等。通过波束形成处理，可以实现对<strong>目标的检测与定位</strong>。</p>
+<p>3.根据频带宽度划分可以划分为<strong>窄带波束形成器</strong>和<strong>宽带波束形成器</strong>。窄带波束形成器中，各阵元数据进行加权求和得到输出，通过设计合适的加权值，可以有选择性地增强来自某一指定方向的信号，抑制其它方向的到达信号，提高输出信噪比。这一点与FIR滤波器系数，有选择性地使某些频率成分通过、抑制其它频率成分的处理过程相似。</p>
+<p>4.传感器阵列的空域滤波性能由其<strong>结构形状</strong>、<strong>阵元数目</strong>及<strong>处理算法</strong>等因素确决定。</p>
+<p>5.<strong>加权值</strong>决定了波束形成器的空间滤波特性。根据加权值的选择可以分为<strong>数据独立波束形成器</strong>和<strong>统计最优的波束形成器</strong>。数据独立波束形成器加权值是固定的，不随接收数据的变化而变化，对接受数据提供固定的响应，包括常规（时延求和）波束形成器和部分旁瓣控制波束形成器（如Chebyshev）；统计最优波束形成器基于接受数据的统计特性对加权值进行优化。</p>
+<p>6.波束形成器的性能参数：</p>
+<p>（1）主瓣宽度；</p>
+<p>（2）旁瓣级；</p>
+<p>（3）阵列增益；</p>
+<p>（4）主瓣响应；</p>
+<p>（5）频率响应。</p>
+<p>低旁瓣可以有效抑制来自旁瓣区域的干扰，降低目标检测的虚警概率；窄的主瓣宽度可以提高目标方向的辨别能力；高的阵列增益可以提高系统对弱目标的检测能力；高稳健性使波束形成的性能受各种失配影响减小。波束优化设计的目的就是<strong>使波束形成器的这些性能最优</strong>。</p>
+<p>Capon波束形成器（MVDR）使理想阵增益最高；Cox波束形成器是一种提高基阵波束形成器对基阵误差稳健性的波束形成器。</p>
+<p><strong>7.MVDR波束形成方法的阵列增益与稳健性</strong></p>
+<p>MVDR波束形成器：MVDR波束形成器在保证对感兴趣方位的信号无失真输出的条件下，使基阵的输出功率最小，最大限度地提高输出信噪比，或者说最大限度地提高阵列增益，<strong>具有很好的干扰抑制能力</strong>。它可以解释为<strong>协方差矩阵拟合问题</strong>，具有很好的方位分辨能力。但是MVDR波束形成方法是建立在阵列对期望信号的响应<strong>精确已知</strong>的基础之上，对基阵的误差非常敏感。要获得更好的性能，需要精确知道期望信号<strong>导向矢量</strong>和<strong>噪声（包括干扰）协方差矩阵</strong>。而这两者都存在误差，造成性能下降严重。</p>
+<p>首先，阵列对期望信号的假想响应与真实响应适配。造成这种适配的原因主要有：观察方向误差、阵型标定误差、未知波前扭曲与信号衰减、近场模型失配、局部散射、环境非平稳造成信号和噪声幅度与相位起伏等。传统的自适应算法对这些类型的失配哪怕十分轻微也会特别敏感，因为这些失真条件并不是恰好针对实际期望信号的，会把实际期望信号当作干扰而形成零陷，导致信号自消，这样MVDR算法性能就会比标准波束形成器性能下降严重。</p>
+<p>其次，噪声协方差矩阵一般是未知的，我们往往采用自适应方法估计的数据协方差矩阵来代替。一方面，采用有限样本估计的数据协方差矩阵与真实数据方差矩阵间存在误差，训练样本越少，误差越大；另一方面，传统的自适应波束形成方法假设在训练数据中不包括期望信号成分，但是在大多数情况下，观察数据中一般含有期望信号成分。【<strong>麦克风阵列中虽然使用了VAD，但无法保证VAD结果一定准确，所以可能会在噪声混杂在训练数据中，也就会产生信号“自消”现象</strong>】</p>
+<p>使用样本数据协方差矩阵代替噪声协方差矩阵对自适应波束形成造成的影响是<strong>旁瓣升高、阵列增益减小</strong>。在训练数据中不包括期望信号成分时，自适应波束形成算法对导向向量误差与较少训练样本还具有一定的稳健性，但是当训练数据中包含期望信号，传统的自适应波束形成方法就会产生信号“自消”，此时波束性能和收敛速率就会严重下降。即使导向向量精确已知，但训练样本有限时也是如此。</p>
+<p>由于训练样本较少产生的协方差矩阵误差对MVDR波束形成性能影响可以看作是号线由于<strong>导向矢量误差引起</strong>的，<strong>输入信噪比越高，性能下降程度越剧烈</strong>。在高信噪比情况下，即使很小随机误差都会使基阵增益严重下降，甚至比常规波束形成器还差。</p>
+<p>高增益和稳健性是一对矛盾。</p>
+<p>为了解决这一问题，有很多方法被提出。例如，线性约束最小方差（LCMV），包括<strong>点约束</strong>和<strong>微分约束</strong>，但是他们只适用于观察方向失配情况，对其它类型导向矢量失配等并不能提供足够的稳健性，而且它会减小波束形成器的自由度，降低其干扰抑制能力。【<strong>这一段话非常重要，解释了LCMV在我使用的时候为什么效果还比MVDR差。</strong>】</p>
+<p>在能够部分解决任意导向矢量失配问题的方法中，最常用的是<strong>二次约束方法</strong>和<strong>基于特征空间的波束形成方法</strong>。</p>
+<p>二次约束方法对权向量的Euclidean范数施加一个二次约束。早期由于加权向量范数约束方法难以直接实现，所以一般采用样本协方差矩阵对角加载波束形成方法【<strong>师兄使用的就是该方法</strong>】来实现，这些方法及其改进方法能够提供信号导向向量失配与样本协方差矩阵存在误差情况下的稳健波束形成。不过这种方法的缺点是：<strong>无法根据失配的程度获得优化的对角加载量</strong>。</p>
+<p>基于子空间的方法要求知道噪声协方差矩阵的信息，不仅对导向向量误差敏感，而且对噪声协方差矩阵的不精确性也非常敏感，而且在低信噪比情况或当信号加干扰子空间维数较高的时候失效。</p>
+<p>可以看一下Gershman等、Li等、Boyd等提出的能够根据导向向量不确定范围来选取参数的稳健波束形成方法。这些方法属于对角加载类型算法，但是他们明确利用了导向向量误差信息，能够根据导向向量误差椭圆不确定集来精确计算对角加载量。Kim后续将这一类方法进一步发展，能够处理更灵活的导向向量和协方差矩阵模型不确定性问题。</p>
+<p>【参考文献】</p>
+<p>[1] Vorobyov S A, Gershman A B, Luo Z Q. Robust adaptivebeamforming using worst-case performance optimization: a solution to the signalmismatch problem[J]. IEEE Transactions on Signal Processing, 2003,51(2):313-324.</p>
+<p>[2] Stoica P , Wang Z , Li J . Robust CaponBeamforming[C]// Conference on Signals, Systems &amp; Computers. IEEE, 2006.</p>
+<p>[3] Li J , Stoica P , Wang Z . On robust Caponbeamforming and diagonal loading[J]. IEEE Transactions on Signal Processing,2003, 51(7):1702-1715.</p>
+<p>[4] Li J , Stoica P , Wang Z . Doubly constrained robustcapon beamformer[J]. IEEE Transactions on Signal Processing, 2005, 52(9):2407-2423.</p>
+<p>[5] Lorenz R G , Boyd S P . Robust minimum variancebeamforming[J]. IEEE Transactions on Signal Processing, 2005, 53(5):1684-1696.</p>
+<p>[6] Kim S J , Magnani A , Mutapcic A , et al. RobustBeamforming via Worst-Case SINR Maximization[J]. IEEE Transactions on SignalProcessing, 2008, 56(4):1539-1547.</p>
+<p><strong>8.波束图优化设计</strong></p>
+<p>波束图形状设计包括两个方面：<strong>控制波束旁瓣</strong>；<strong>设计波束主瓣响应</strong>。波束图综合主要指期望响应波束设计问题。</p>
+<p>首先考虑旁瓣控制波束设计问题。单个传感器可能不是各向同性，各个传感器的灵敏度也可能不太相同，这些都可能使旁瓣进一步升高。另外，在之前统计最优波束形成器中，为了追求高增益而造成波束旁瓣升高，有时会达到难以忍受的程度。Dolph-Chebyshev方法能产生恒定旁瓣级，对于半波长间隔均匀线阵列，该方法在给定主瓣宽度下能获得最低的旁瓣级，或在给定旁瓣级条件下能够得到最小主瓣宽度。Riblet-Chebyshev方法对于半波长间隔均匀线列阵与上面相同，但当阵元间距小于半波长，且阵元数为不小于7的奇数时，Riblet-Chebyshev能获得更窄的主瓣。但是上面两个只能是<strong>各向同性阵元组成的均匀线列阵</strong>。Taylor提出了适用于圆面阵的旁瓣约束方法，该方法<strong>约束最大旁瓣高度，并获得远离主瓣方向逐渐下降的旁瓣</strong>。这个方法适用于圆形阵，要求各阵元各向同性，对于其它任意几何形状阵列、阵元本身具有指向性，或组成基阵各阵元灵敏度存在差异的时候，就不能获得理想的期望旁瓣。</p>
+<p>【参考文献】</p>
+<p>[7] Taylor T . Design of circular apertures for narrowbeamwidth and low sidelobes[J]. IRE Transactions on Antennas and Propagation,2003, 8(1):17-22.</p>
+<p>基于自适应阵原理的旁瓣控制方法适用于任意结构阵列。在存在干扰的情况下，自适应波束形成器能够在干扰方向自动形成一个“凹槽”。Olen等于1990年提出了一种静态波束图的数字综合方法，它对旁瓣区域内噪声源的自适应调整做了进一步讨论，通过反复迭代过程，可以获得给定主瓣宽度条件下的最低均匀旁瓣级。这一类方法缺点是：采用自适应或迭代方法实现，并不能保证完全收敛，不能保证旁瓣得到严格控制，误差比较大。而且迭代过程中对于主瓣宽度没有约束，容易造成主瓣较快增宽。或者说，<strong>在给定旁瓣级条件下并不能保证获得最窄的主瓣</strong>。</p>
+<p>在给定波束主瓣宽度情况下，波束能获得的最低旁瓣是有限的。当干扰功率太大时，即使从波束旁瓣方位入射，仍旧会对主瓣入射的期望信号产生较大的干扰，我们可以在干扰方向形成凹槽或零点来抑制，但是当目标运动的时候，自适应方法可能很难快速跟踪，这个时候可以使用<strong>零点展宽技术</strong>。使得波束旁瓣区域形成一个交款的凹槽，保证干扰方向始终位于凹槽内。</p>
+<p>【参考文献】</p>
+<p>[8] Zhou P Y , Ingram M A , Anderson P D . Synthesis ofminimax sidelobes for arbitrary arrays[J]. IEEE Transactions on Antennas andPropagation, 1998, 46(11):1759-1760.</p>
+<p>除了旁瓣控制以外，期望响应设计也是一个研究方向。二次规划方法适用于任意结构基阵的期望响应波束设计方法，原理就是使<strong>设计的波束与期望波束的均方误差（或l2的范数）最小</strong>。二次规划方法的一个主要缺点是：它只使用了误差的l2范数逼近准则，相当于使设计波束在全方位（包括主瓣和旁瓣）同时逼近于期望波束，而我们感兴趣的是波束主瓣，这些方法相当于在旁瓣区域增加了多余的约束，必然造成设计波束与参考波束主瓣区域拟合误差增大。事实上，<strong>对于旁瓣区域，我们往往更希望控制最高旁瓣峰，即控制旁瓣与零电平之间的最大误差（**</strong>l<strong>**无穷范数），这是二次规划方法无法实现的。</strong></p>
+<p>以上的方法都是只考虑主瓣或者旁瓣，没有考虑到稳健性和阵增益，而这些指标是相互关联的，单纯优化其中一两个指标，另外的性能往往就会变差。</p>
+<p>二阶锥规划（Second-order Cone Programming, SOCP）方法是一种兼顾多个性能指标的波束形成器优化设计方法，包括<strong>稳健低旁瓣高增益波束设计</strong>和<strong>稳健低旁瓣期望主瓣响应波束设计</strong>。前者采用Minimax准则控制波束旁瓣，可以在任意阵型、且考虑阵元方向性，更重要的是该方法能够通过对加权向量范数施加约束来提高波束形成器的稳健性。对于后者，采用混合范数准则，让主瓣响应与旁瓣按不同的准则逼近期望值（让误差l2或l无穷范数最小），能满足多样化的设计需求，且能提高波束稳健性。</p>
+<p>如果只考虑波束幅度响应而不考虑相位响应，则这种问题称为<strong>期望幅度响应波束设计问题</strong>。对于这种问题，期望响应（包括幅度和相位）波束只是一个次优解。如果不考虑相位响应，期望幅度响应波束形成器应该能获得更高的主瓣幅度逼近精度。</p>
+<p><strong>9.恒定主瓣响应波束设计</strong></p>
+<p>在很多情况下，宽带波束形成器在频域实现，通过傅里叶变换将数据从时域转换到频域的多个子带，每个子带满足窄带条件，用前面的窄带波束设计方法可以直接使用。</p>
+<p>对于常规波束形成器来说，其<strong>主瓣宽度随频率降低而增宽</strong>。此时只有当信号源从波束所指方向（主轴）入射时，才能保证信号通过波束形成器后，输出频谱保持不变；否则，若信号从主瓣非主轴方向入射，信号频谱就会发生畸变，类似于进行了低通滤波。所以在子带波束设计问题中，恒定主瓣响应波束形成器是研究较多的一种波束设计问题，它的重要特性就是<strong>保证从主瓣区域入射信号的波束输出频谱不发生畸变</strong>，即只要信号从主瓣扇面区域入射，就能保证工作频带内的频谱不发生畸变。</p>
+<p><strong>10.波束形成器的实现</strong></p>
+<p>波束形成器的实现包括<strong>频域实现</strong>和<strong>时域实现</strong>两种。</p>
+<p>对于窄带波束形成器，频域实现就是直接将窄带阵列快拍数据【<strong>快拍数据就是全部阵元在时域的一次采样</strong>。如果阵元数为M，那么通常用X(t)来表示一次采样，维数是M*1】进行复数加权求和、得到波束输出，但要求阵列快拍数据也是复数形式，如果阵列数据是实数模型，则需要将数据在基带进行正交解调，然后对两个正交分量分别于加权向量的实部和虚部进行加权求和。时域实现就是直接对个阵列数据进行时延加权求和。由于窄带数据时延等效为相移，所以也可以采用相移加权求和来实现。</p>
+<p>宽带信号可以获得更比窄带信号丰富的目标信息，有利于目标检测。</p>
+<p>对于宽带波束形成，<strong>频域处理方法</strong>为：首先使用FFT变换将阵列数据分解为若干子带，每个子带满足窄带条件，然后针对每个子带进行窄带波束形成，最后对各子带输出进行IFFT得到宽带波束输出时间序列，这种称为DFT波束形成器。<strong>时域处理方法</strong>为：首先将各个阵元数据进行适当的延时，然后分别通过一个对应的FIR滤波器，再将每个滤波器输出相加，得到宽带波束输出序列，这种时域处理器称为FIR波束形成器。</p>
+<p>DFT波束形成器是分块处理，不具有实时性，而且DFT处理相当于在频域进行了加窗处理，使得变换到时域时数据块前后不符存在误差。将各块波束输出时域数据组合成连续信号后出现块间“缝合”不流畅，相当于引入了周期性的干扰。如果对数据采用重叠分段处理，这种误差可以减小。时域是实时连续处理，可以解决波束输出不连贯的问题。【<strong>频域不能实时处理，且帧与帧之间可能会引入误差；时域处理是实时处理，解决输出不连贯问题</strong>】</p>
+<p>1972年Frost提出的LCMV方法是早期比较著名的FIR波束形成法，它采用<strong>约束最小均方方法</strong>使FIR波束形成器对已知方向的期望信号产生响应，但该方法要求<strong>期望信号到达各FIR滤波器第1节拍时是同相位的</strong>。如果相位不相同，需要各通道先进行延迟实现同相位。Griffiths和Jim提出的GSC算法同样假设期望信号到达各FIR滤波器第一节拍是同相位的，并指出当预延迟存在误差时造成波束形成器性能下降，高信噪比时尤其严重。</p>
+<p>对于自适应阵来说，<strong>当FIR处理器中的节拍数与DFT处理器中样本长度相等时他们能获得相同的输出信噪比</strong>。</p>
+<p>期望响应FIR滤波器设计与期望响应波束设计问题类似，可以通过构造不同的设计准则与选择合适的求解计算技术来实现。鄢社锋和马远良提出了一种通用的FIR滤波器优化设计方法，采用二阶锥规划方法求解，设计精度高，并将该FIR滤波器设计与波束优化设计相结合，提高了FIR波束形成器“分步设计法”的精度。</p>
+<p>分步设计法设计简便，计算量小，虽然采用二阶锥规划法在两个步骤都能获得单独设计问题的最优解，但不能保证最终综合的结果是全局最优的。例如：FIR滤波器阻带衰减量难以确定；在阻带与过渡带的波束旁瓣难以控制；FIR滤波器不可避免的设计误差会导致FIR波束形成器的旁瓣升高，自适应方法中干扰方向的凹槽深度变浅等。鄢社锋提出了一种恒定主瓣响应FIR波束形成器，其设计思想是：将FIR波束形成器的宽带波束响应表达成滤波器系数的函数，构造优化问题，直接针对优化问题求解对应于所有通道的滤波器系数，可以获得满足约束条件的全局最优解。该方法能够严格控制FIR波束形成器的旁瓣，还能够控制过渡带与阻带区域的波束相应幅度（频域旁瓣）。相对于分部设计法来说，社京都更高，但是计算量更大。此外，通过增加滤波器系数范数约束，可以提高FIR波束形成器的稳健性。</p>
+<p>该方法和前面所有恒定主瓣响应波束形成器设计都有一个共同点——首先<strong>选择一个期望波束响应，然后使各子带波束响应逼近于该期望响应，从而使宽带波束具有近似恒定的主瓣响应</strong>。如何选择一个最优期望响应是一个关键。鄢社锋针对这个问题提出了基于最小主瓣差异的波束设计方法，如参考文献10，该方法不需要预先选择参考波束，仅仅让各频率波束主瓣响应间的误差最小化。</p>
+<p>【参考文献】</p>
+<p>[9] Yan S , Ma Y . A unified framework for designing FIRfilters with arbitrary magnitude and phase response[J]. Digital SignalProcessing, 2004, 14(6):510-522.</p>
+<p>[10] Yan S , Ma Y , Hou C . Optimal array patternsynthesis for broadband arrays[J]. The Journal of the Acoustical Society ofAmerica, 2007, 122(5):2686.</p>
+<p><strong>11.模态阵列信号处理（与球面、圆面麦克风阵列相关）</strong></p>
+<p>前面的方法都是直接对各阵元接受数据进行波束形成，称为<strong>阵元域波束形成</strong>。模态阵列信号处理方法基于傅里叶声学原理，将球面阵、圆环阵等阵列接收的声场分解成若干阶正交的模态，于是可提取各阶模态进行声场重构，这类方法将声场传播、散射规律与信号处理紧密结合起来。</p>
+<p>【傅里叶声学参考文献】</p>
+<p>[11] Williams E G , Mann J A . Fourier Acoustics: SoundRadiation and Nearfield Acoustical Holography[J]. The Journal of the AcousticalSociety of America, 2000, 108(4):1373-1373.</p>
+<p>圆环阵也可以采用模态阵列信号处理方法，即将圆环阵接收声场分解为若干阶圆谐波，然后进行圆谐波域处理。Mathews和Zoltowski利用均匀圆环阵进行相位模式波束形成估计目标方位，见文献12。</p>
+<p>高阶圆谐波相位模式处理在低频时稳健性较差，降低使用的圆谐波结束可以提高稳健性，但这将降低其阵增益。</p>
+<p>鄢社锋提出了圆谐波域优化波束形成方法。他采用圆谐波变换将圆环阵阵元域数据变换到圆谐波域，然后在圆谐波域进行波束形成。他利用圆谐波域与阵元域波束形成的等效性关系，推导了波束形成器的各性能参数在圆谐波域的表示，将阵元域波束优化设计方法推广应用到圆谐波域。基于该框架发现：圆环阵阵相位模式阵列处理等效于平面各向同性噪声场中的圆谐波域MVDR波束形成器，如参考文献13。</p>
+<p>具体内容可以参加本书第11章和第12章。</p>
+<p>【参考文献】</p>
+<p>[12] Mathews C P , Zoltowski, M.D. Eigenstructuretechniques for 2-D angle estimation with uniform circular arrays[J]. IEEETransactions on Signal Processing, 1994, 42(9):2395-2407.</p>
+<p>[13] Yan, Shefeng. Optimal design of modal beamformersfor circular arrays[J]. The Journal of the Acoustical Society of America, 2015,138(4):2140-2151.</p>
+<p><strong>12.目标方向估计</strong></p>
+<p>瑞利准则：对于位于基阵远场的两个点源，仅当它们的夹角大于基阵孔径倒数的时候，它们才能被分辨。</p>
+<p>MUSIC、ESPRIT算法和加权子空间拟合算法等，从理论上克服了方位分辨的瑞利准则，获得了超过常规方法的方位分辨能力。</p>
+<p>早期的信号子空间处理方法是为窄带信号模型提出的。对于宽带数据，先将其分解为多个窄带分量，再针对各窄带数据进行子空间方位估计，最后对各窄带估计结果进行简单组合得到宽带方位估计，这便是非相干信号子空间（Incoherent Signal Subspace, ISS）方位估计方法。但是，ISS方法不能够处理相干信号源问题。Wang和Kaveh提出了相干信号子空间（coherent signal subspace,CSS）处理方法来处理相干源问题。该方法先将信号宽带数据分解为多个窄带分量，通过寻找聚焦矩阵，将各频率分量聚焦到参考频率，从而可以采用只爱带子空间处理方法进行方位估计。CSS方法相对于ISS方法具有脚底的检测与分辨信噪比门限和较小的方位估计均方根误差。但是CSS方法设计聚焦矩阵需要在真实目标附近预先估计目标方位，预估计方位偏差影响CSS方法的方位估计性能。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/09/01/the-second-version-of-webrtc-noise-suppression/" class="next-post btn btn-default" title="基于WebRTC的噪声消除系统发布第二个版本">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">基于WebRTC的噪声消除系统发布第二个版本</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第一章：绪论"><span class="toc-text">第一章：绪论</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
