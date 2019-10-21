@@ -1,0 +1,323 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Leetcode 494：目标和题目描述给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>leetcode题目解析（191018） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="leetcode题目解析（191018）">
+            
+	            leetcode题目解析（191018）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/10/21</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Leetcode-494：目标和"><a href="#Leetcode-494：目标和" class="headerlink" title="Leetcode 494：目标和"></a>Leetcode 494：目标和</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个非负整数数组，a1, a2, …, an, 和一个目标数，S。现在你有两个符号 + 和 -。对于数组中的任意一个整数，你都可以从 + 或 -中选择一个符号添加在前面。</p>
+<p>返回可以使最终数组和为目标数 S 的所有添加符号的方法数。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>输入: nums: [1, 1, 1, 1, 1], S: 3<br>输出: 5<br>解释:<br>-1+1+1+1+1 = 3<br>+1-1+1+1+1 = 3<br>+1+1-1+1+1 = 3<br>+1+1+1-1+1 = 3<br>+1+1+1+1-1 = 3</p>
+<p>一共有5种方法让最终目标和为3。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这个题本质上是一个背包问题。但是如果不进行一些推导，我们很难看出这是一个背包问题。所以这真的是很考察人的逻辑思维能力。</p>
+<p>由题目可知，数组里面的数字要么为加上的数字要么为减去的数字，所以我们可以将这两组数字分为两组，一组为要加上的数字，我们命名为P，它的和为sum(P)；一组为要减去的数字，我们命名为N，它的和为sum(N)。另外我们将数组中所有和命名为sum(nums)。那么可以得到sum(P)-sum(N)=target。</p>
+<p>进一步推导，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum(nums)+sum(P)-sum(N)=target+sum(nums)</span><br><span class="line">==&gt;sum(P)+sum(N)+sum(P)-sum(N)=target+sum(nums)</span><br><span class="line">==&gt;2*sum(P)=target+sum(nums)</span><br><span class="line">==&gt;sum(P)=(target+sum(nums))/2</span><br></pre></td></tr></table></figure></p>
+<p>那么这个问题就转化为了：<strong>在nums数组中选择哪些数字，使它们的和为(target+sum(nums))/2</strong>。这个问题，我们就可以使用0-1背包来解决。</p>
+<p>其实从这个新的问题我们就可以看出，若sum(P)为奇数，那么就不存在相应的组合。</p>
+<p>0-1背包问题，我们可以使用动态规划的思想来解决。我们新建一个dp数组，大小为target+1。对于数组中每一个元素来说，其下标代表着和为当前数的方案数（例如dp[4]=9代表和为4有9种情况）。<br>代码中for循环的意思，其实是针对前i个数的情况下，和的值为相应下标有多少种情况（例如在对于第3个1的情况下dp[4]就是代表着<strong>加入这个数组只有前3个数字，那么就在这三个数字情况下和为4有多少种情况</strong>）。其实这是一个动态更新的过程。</p>
+<p>我们知道对于0-1背包问题来说，当前物品有两种情况，一为选择二为不选择。所以对于0-1背包问题来说，目标值=<strong>当前物品不选择且前一步骤达到目标值的情况</strong>+<strong>前一步骤没有达到目标值且加上当前物品恰好达到目标值的情况</strong>。<br>那么对于<code>dp[i]=dp[i]+dp[i-num]</code>来说，等号后面的dp[i]的值是上一步计算出来的<strong>和为i的情况数</strong>，也就是说我们在上一步选择完成之后已经达到了我们的target，那么当前数字肯定不选择，所以dp[i]就是代表了这种情况。</p>
+<p>对于后面的dp[i-num]来说，就是<strong>前一步骤没有达到目标值且加上当前物品恰好达到目标值的情况</strong>。其实dp[i-num]就是到目前为止和为i-num有多少种选择，所以这也就等价于<strong>前一步骤没有达到目标值且加上当前物品恰好达到目标值的情况</strong>。</p>
+<p>故这就是整个题目的思路。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">findTargetSumWays</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="keyword">int</span> S)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> times = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> n : nums)</span><br><span class="line">	&#123;</span><br><span class="line">		sum += n;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">if</span> (sum &lt; S||(sum+S)%<span class="number">2</span>==<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	S = (S + sum) / <span class="number">2</span>;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;dp(S + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">	dp[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> num : nums)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = S;i &gt;= num;i--)</span><br><span class="line">			dp[i] += dp[i - num];</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp[S];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Leetcode-538：把二叉搜索树转换成累加树"><a href="#Leetcode-538：把二叉搜索树转换成累加树" class="headerlink" title="Leetcode 538：把二叉搜索树转换成累加树"></a>Leetcode 538：把二叉搜索树转换成累加树</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉搜索树（Binary Search Tree），把它转换成为累加树（Greater Tree)，使得每个节点的值是原来的节点值加上所有大于它的节点值之和。</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><p>输入: 二叉搜索树:<br>              5<br>            /   \<br>           2     13</p>
+<p>输出: 转换为累加树:<br>             18<br>            /   \<br>          20     13</p>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>这个题其实就是一个变相的中序遍历，所以按照中序遍历进行处理即可。具体看代码。</p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line"><span class="function">TreeNode* <span class="title">convertBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(root!=<span class="literal">nullptr</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        convertBST(root-&gt;right);</span><br><span class="line">        root-&gt;val=root-&gt;val+num;</span><br><span class="line">        num=root-&gt;val;</span><br><span class="line">        convertBST(root-&gt;left);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/10/21/array-signal-process-chapter-four/" class="next-post btn btn-default" title="《优化阵列信号处理》学习笔记（第四章）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">《优化阵列信号处理》学习笔记（第四章）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-494：目标和"><span class="toc-text">Leetcode 494：目标和</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-538：把二叉搜索树转换成累加树"><span class="toc-text">Leetcode 538：把二叉搜索树转换成累加树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-1"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-1"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>

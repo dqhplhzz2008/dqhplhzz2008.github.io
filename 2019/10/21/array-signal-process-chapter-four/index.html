@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,Optimal Array Signal Process">
+
+
+    <meta name="description" content="注：目前因系统问题，故将本文中的公式全部删除，具体请见pdf版本或访问：http://www.yushuai.xyz/2019/10/16/4442.html
+第四章：波束稳健性分析在实际中，由...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>《优化阵列信号处理》学习笔记（第四章） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="《优化阵列信号处理》学习笔记（第四章）">
+            
+	            《优化阵列信号处理》学习笔记（第四章）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Optimal-Array-Signal-Process/">Optimal Array Signal Process</a> <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/10/21</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>注：目前因系统问题，故将本文中的公式全部删除，具体请见pdf版本或访问：<a href="http://www.yushuai.xyz/2019/10/16/4442.html" target="_blank" rel="noopener">http://www.yushuai.xyz/2019/10/16/4442.html</a></p>
+<h2 id="第四章：波束稳健性分析"><a href="#第四章：波束稳健性分析" class="headerlink" title="第四章：波束稳健性分析"></a>第四章：波束稳健性分析</h2><p>在实际中，由于各种误差（如观察方向误差、阵型标定误差、通道幅度与相位误差等）的影响，造成导向向量存在误差；另外，由于接收数据协方差矩阵无法精确计算，只能通过接受数据进行估计，也不可避免的存在估计误差。导向向量与接受数据互谱矩阵误差都势必影响最佳波束形成器的输出信噪比性能。</p>
+<h3 id="4-1-最佳波束形成器稳健性影响因素"><a href="#4-1-最佳波束形成器稳健性影响因素" class="headerlink" title="4.1 最佳波束形成器稳健性影响因素"></a>4.1 最佳波束形成器稳健性影响因素</h3><p>无论是MVDR还是MMSE，亦或是MSNR波束形成器，其加权向量其实统一可以写为</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/optimalarraysp/beamformingch41.jpg" alt></p>
+<p>造成导向向量失配的原因有方向失配与阵元接收响应误差等。其中阵元接收响应误差包括通道幅相误差、阵元位置误差、阵元各向异性与不一致性引起的响应灵敏度误差等。</p>
+<p>造成数据协方差矩阵误差的原因主要是：我们一般采用有限长度数据快拍估计得到数据协方差矩阵，估计值与实际值存在误差。</p>
+<h3 id="4-2-导向向量失配对波束性能的影响"><a href="#4-2-导向向量失配对波束性能的影响" class="headerlink" title="4.2 导向向量失配对波束性能的影响"></a>4.2 导向向量失配对波束性能的影响</h3><p>我们知道MVDR的阵增益是</p>
+<p>将上式进行处理可以得到</p>
+<p>根据上式分析导向向量误差、输入信噪比对MVDR波束形成器的阵增益的影响：</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/optimalarraysp/beamformingch42.jpg" alt></p>
+<h3 id="4-3-协方差矩阵失配对波束性能的影响"><a href="#4-3-协方差矩阵失配对波束性能的影响" class="headerlink" title="4.3 协方差矩阵失配对波束性能的影响"></a>4.3 协方差矩阵失配对波束性能的影响</h3><p><strong>4.3.1 样本协方差矩阵求逆波束形成</strong></p>
+<p>接下来，我们对协方差矩阵统一用R来表示，于是MVDR波束形成器加权向量又可以表示为</p>
+<p>式中</p>
+<p> 它不影响波束形成器的阵增益性能，只是为了满足无失真约束。</p>
+<p> <strong>一个自适应波束形成器处于白噪声环境下的波束</strong>称为静态波束（quiescent pattern），对应的加权向量称为静态波束加权向量。对于式所示的MVDR对应的静态波束为常规时延求和波束。但是，<strong>其它自适应波束形成算法对应的静态波束不一定是常规波束</strong>。</p>
+<p> 在实际中，也包括自己编写的程序中，协方差矩阵都是通过一段数据快拍样本（长度为N）的空间相关矩阵来估计（当然实际中只是第一帧是如此估计），也就是</p>
+<p> 为了保证<strong>R ^</strong> 可逆，快拍数需要满足N≥M。当N无穷大的时候，<strong>R ^</strong>逼近于真实协方差矩阵<strong>R</strong>。权向量也就变成了</p>
+<p>这种方法就是<strong>自适应波束形成</strong>。上面所示的直接对数据样本协方差矩阵求逆来实现MVDR波束形成器的方法称为<strong>样本协方差矩阵求逆（Sample Matrix Inversion, SMI）</strong>方法。在计算式的时候，主要计算量来源于对样本协方差矩阵进行特征分解，其计算复杂度为</p>
+<p><strong>4.3.2 样本协方差矩阵求逆法波束性能</strong></p>
+<p>在假设观察数据中不包含期望信号（β=0）的条件下分析SMI方法，归一化输出信干噪比定义如下</p>
+<p>式中，分母表示在精确制导数据协方差矩阵与导向向量情况下的最优输出信干噪比。在采用N个快拍估计数据协方差矩阵时，归一化输出信干噪比的均值为</p>
+<p>上式表明，为了保证SMI波束形成的平均输出SINR比最有情况下损失在3dB以内，要求</p>
+<p>在快拍数有限的时候，SMI波束旁瓣升高，它除了高于静态波束【<strong>一个自适应波束形成器处于白噪声环境下的波束</strong>】之外，平均旁瓣与样本数目的关系大约为</p>
+<p>在式中，SLL表示旁瓣级。</p>
+<p>当数据样本中包含期望信号的时候（β=1），SMI波束形成的性能会收到更严重的影响。这就是信号“自消”现象。由于快拍数目有限，用样本协方差矩阵代替理想数值会产生误差，它不能和真实的信号响应向量匹配。因此，SMI波束形成器会误将期望信号视作干扰信号进行零陷，而不是增强。</p>
+<p>如果信噪比较高，为保证SMI波束形成器的平均输出SINR损失在3dB以内，快拍数需要满足</p>
+<p>从上式可以看出，在训练数据包括期望信号的时候，SMI方法<strong>收敛速度更慢，稳健性更差。</strong></p>
+<p>pdf版本下载链接: <a href="https://pan.baidu.com/s/1kR8lqyWiDmygWE27fwVwSQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1kR8lqyWiDmygWE27fwVwSQ</a></p>
+<p>提取码请关注本人公众号，回复“优化阵列学习笔记”获取。</p>
+<p>本人微信公众号为xiaoao_study，也可以扫描下图关注。<br><a href="http://www.yushuai.xyz/zjyt/wxgzh.jpg" target="_blank" rel="noopener"><img src="http://www.yushuai.xyz/zjyt/wxgzh.jpg" alt></a></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/10/21/leetcode191018/" class="pre-post btn btn-default" title="leetcode题目解析（191018）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">leetcode题目解析（191018）</span>
+        </a>
+    
+    
+        <a href="/2019/10/16/leetcode191016/" class="next-post btn btn-default" title="leetcode题目解析（191016）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">leetcode题目解析（191016）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#第四章：波束稳健性分析"><span class="toc-text">第四章：波束稳健性分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-最佳波束形成器稳健性影响因素"><span class="toc-text">4.1 最佳波束形成器稳健性影响因素</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-导向向量失配对波束性能的影响"><span class="toc-text">4.2 导向向量失配对波束性能的影响</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-协方差矩阵失配对波束性能的影响"><span class="toc-text">4.3 协方差矩阵失配对波束性能的影响</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
