@@ -195,7 +195,7 @@
 <p>进一步推导，<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sum(nums)+sum(P)-sum(N)=target+sum(nums)</span><br><span class="line">==&gt;sum(P)+sum(N)+sum(P)-sum(N)=target+sum(nums)</span><br><span class="line">==&gt;2*sum(P)=target+sum(nums)</span><br><span class="line">==&gt;sum(P)=(target+sum(nums))/2</span><br></pre></td></tr></table></figure></p>
 <p>那么这个问题就转化为了：<strong>在nums数组中选择哪些数字，使它们的和为(target+sum(nums))/2</strong>。这个问题，我们就可以使用0-1背包来解决。</p>
 <p>其实从这个新的问题我们就可以看出，若sum(P)为奇数，那么就不存在相应的组合。</p>
-<p>0-1背包问题，我们可以使用动态规划的思想来解决。我们新建一个dp数组，大小为target+1。对于数组中每一个元素来说，其下标代表着和为当前数的方案数（例如dp[4]=9代表和为4有9种情况）。<br>代码中for循环的意思，其实是针对前i个数的情况下，和的值为相应下标有多少种情况（例如在对于第3个1的情况下dp[4]就是代表着<strong>加入这个数组只有前3个数字，那么就在这三个数字情况下和为4有多少种情况</strong>）。其实这是一个动态更新的过程。</p>
+<p>0-1背包问题，我们可以使用动态规划的思想来解决。我们新建一个dp数组，大小为(target+sum(nums))/2+1。对于数组中每一个元素来说，其下标代表着和为当前数的方案数（例如dp[4]=9代表和为4有9种情况）。<br>代码中for循环的意思，其实是针对前i个数的情况下，和的值为相应下标有多少种情况（例如在对于第3个1的情况下dp[4]就是代表着<strong>加入这个数组只有前3个数字，那么就在这三个数字情况下和为4有多少种情况</strong>）。其实这是一个动态更新的过程。</p>
 <p>我们知道对于0-1背包问题来说，当前物品有两种情况，一为选择二为不选择。所以对于0-1背包问题来说，目标值=<strong>当前物品不选择且前一步骤达到目标值的情况</strong>+<strong>前一步骤没有达到目标值且加上当前物品恰好达到目标值的情况</strong>。<br>那么对于<code>dp[i]=dp[i]+dp[i-num]</code>来说，等号后面的dp[i]的值是上一步计算出来的<strong>和为i的情况数</strong>，也就是说我们在上一步选择完成之后已经达到了我们的target，那么当前数字肯定不选择，所以dp[i]就是代表了这种情况。</p>
 <p>对于后面的dp[i-num]来说，就是<strong>前一步骤没有达到目标值且加上当前物品恰好达到目标值的情况</strong>。其实dp[i-num]就是到目前为止和为i-num有多少种选择，所以这也就等价于<strong>前一步骤没有达到目标值且加上当前物品恰好达到目标值的情况</strong>。</p>
 <p>故这就是整个题目的思路。</p>
@@ -245,6 +245,11 @@
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/10/21/leetcode191021/" class="pre-post btn btn-default" title="leetcode题目解析（191021）">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">leetcode题目解析（191021）</span>
+        </a>
     
     
         <a href="/2019/10/21/array-signal-process-chapter-four/" class="next-post btn btn-default" title="《优化阵列信号处理》学习笔记（第四章）">
