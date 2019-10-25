@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,Optimal Array Signal Process">
+
+
+    <meta name="description" content="本次分享是个人阅读《优化阵列信号处理》一书最后一个章节，也是针对该书比较整体的学习笔记的最后一次更新了。
+第十章：圆环阵阵列处理10.1 引言由于直线阵是一维阵，其波束响应围绕该直线轴对称，因此...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>《优化阵列信号处理》学习笔记（第十章） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="《优化阵列信号处理》学习笔记（第十章）">
+            
+	            《优化阵列信号处理》学习笔记（第十章）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Optimal-Array-Signal-Process/">Optimal Array Signal Process</a> <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/10/25</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>本次分享是个人阅读《优化阵列信号处理》一书最后一个章节，也是针对该书比较整体的学习笔记的最后一次更新了。</p>
+<h1 id="第十章：圆环阵阵列处理"><a href="#第十章：圆环阵阵列处理" class="headerlink" title="第十章：圆环阵阵列处理"></a>第十章：圆环阵阵列处理</h1><h2 id="10-1-引言"><a href="#10-1-引言" class="headerlink" title="10.1 引言"></a>10.1 引言</h2><p>由于直线阵是一维阵，其波束响应围绕该直线轴对称，因此它只能估计目标的一维角度，而另一维角度是模糊的，也就出现线阵的<strong>左右舷模糊</strong>缺点。而要解决这一问题就要采用二维阵或者三维阵。</p>
+<p>圆环阵是一种二维阵，它也具有轴对称特性，不过它以垂直于该圆环的直线为轴，这样就可以在其所在平面360°方位具有相同的目标探测与方位估计性能。</p>
+<p>圆环阵由于其对称性，其常规波束形成响应可以表示为一个贝塞尔函数。</p>
+<h2 id="10-2-连续圆环阵"><a href="#10-2-连续圆环阵" class="headerlink" title="10.2 连续圆环阵"></a>10.2 连续圆环阵</h2><h2 id="10-3-均匀圆环阵"><a href="#10-3-均匀圆环阵" class="headerlink" title="10.3 均匀圆环阵"></a>10.3 均匀圆环阵</h2><h3 id="10-2-1-均匀加权连续圆环阵"><a href="#10-2-1-均匀加权连续圆环阵" class="headerlink" title="10.2.1 均匀加权连续圆环阵"></a>10.2.1 均匀加权连续圆环阵</h3><h3 id="10-2-2-圆环阵常规波束形成"><a href="#10-2-2-圆环阵常规波束形成" class="headerlink" title="10.2.2 圆环阵常规波束形成"></a>10.2.2 圆环阵常规波束形成</h3><h3 id="10-2-3-相位模式激励"><a href="#10-2-3-相位模式激励" class="headerlink" title="10.2.3 相位模式激励"></a>10.2.3 相位模式激励</h3><h2 id="10-4-本章小结"><a href="#10-4-本章小结" class="headerlink" title="10.4 本章小结"></a>10.4 本章小结</h2><p>连续圆环阵时延求和波束响应是0阶贝塞尔函数。采用均匀加权时，圆环阵与线阵的波束指向与阵列垂直，当圆环阵直径与线阵长度相等时，两者波束响应函数总量相等。对于同等最大尺度的两种连续阵，随着波束观察方向偏离垂直方向，两者波束响应函数总量也相同。当偏离90°时，前者称为圆环面波束形成，后者称为端射阵波束形成。</p>
+<p>连续圆环阵波束旁瓣高于连续线阵，同等最大尺度时，连续圆环阵时延求和波束的主瓣比连续线阵更窄。</p>
+<p>连续圆环阵波束响应可以表示成相位模式激励级数求和的形式，所以其波束形成也可以理解为圆环谐波域波束形成。</p>
+<p>均匀圆环阵相当于对连续圆环阵进行空间采样，均匀圆环阵在其所在平面的常规时延求和波束形成可以表示为若干阶贝塞尔函数之和的形式，或者说0阶贝塞尔函数加若干阶高阶量。为了保证均匀圆环阵波束响应逼近于连续圆环阵波束响应，应保证<strong>圆环上任意两阵元间弧长不大于半波长</strong>。阵元间距越小，逼近精度越高。</p>
+<p>当在均匀圆环阵所在的平面进行波束形成器设计时，在空间均匀噪声场中的最佳波束形成器的阵增益在低频时远高于时延求和常规波束形成器，即具有<strong>超增益特性</strong>，这与端射线阵最佳波束形成类似。但这种低频超增益波束形成的白噪声增益很小，稳健性很差，在阵列流形向量和噪声协方差矩阵存在误差时阵增益严重下降，甚至低于常规波束形成器。</p>
+<p>……</p>
+<p>受篇幅和格式限制，更多内容，请在百度云盘下载。感谢对我的支持！</p>
+<p>因为我都是把笔记打到word文档中，目前来说在wordpress上写的话公式还需要一个一个调整，如果有可以直接复制过来的方法，欢迎与我分享。谢谢！</p>
+<p>下载链接: <a href="https://pan.baidu.com/s/1hnk9UEKnShrWPS4UgpzURQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1kR8lqyWiDmygWE27fwVwSQ</a></p>
+<p>提取码请关注本人公众号，回复“优化阵列学习笔记”获取。</p>
+<p>本人微信公众号为xiaoao_study，也可以扫描下图关注。</p>
+<p><img src="http://www.yushuai.xyz/zjyt/wxgzh.jpg" alt></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/10/25/array-signal-process-chapter-five/" class="next-post btn btn-default" title="《优化阵列信号处理》学习笔记（第五章）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">《优化阵列信号处理》学习笔记（第五章）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#第十章：圆环阵阵列处理"><span class="toc-text">第十章：圆环阵阵列处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-1-引言"><span class="toc-text">10.1 引言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-2-连续圆环阵"><span class="toc-text">10.2 连续圆环阵</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-3-均匀圆环阵"><span class="toc-text">10.3 均匀圆环阵</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-1-均匀加权连续圆环阵"><span class="toc-text">10.2.1 均匀加权连续圆环阵</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-2-圆环阵常规波束形成"><span class="toc-text">10.2.2 圆环阵常规波束形成</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-2-3-相位模式激励"><span class="toc-text">10.2.3 相位模式激励</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#10-4-本章小结"><span class="toc-text">10.4 本章小结</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
