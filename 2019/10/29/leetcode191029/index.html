@@ -1,0 +1,371 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Leetcode 309：最佳买卖股票时机含冷冻期题目描述给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。
+设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>leetcode题目解析（191029） | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="leetcode题目解析（191029）">
+            
+	            leetcode题目解析（191029）
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/10/29</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Leetcode-309：最佳买卖股票时机含冷冻期"><a href="#Leetcode-309：最佳买卖股票时机含冷冻期" class="headerlink" title="Leetcode 309：最佳买卖股票时机含冷冻期"></a>Leetcode 309：最佳买卖股票时机含冷冻期</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个整数数组，其中第 i 个元素代表了第 i 天的股票价格 。</p>
+<p>设计一个算法计算出最大利润。在满足以下约束条件下，你可以尽可能地完成更多的交易（多次买卖一支股票）:</p>
+<ul>
+<li>你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</li>
+<li>卖出股票后，你无法在第二天买入股票 (即冷冻期为 1 天)。</li>
+</ul>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>输入: [1,2,3,0,2]<br>输出: 3<br>解释: 对应的交易状态为: [买入, 卖出, 冷冻期, 买入, 卖出]</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这又是一个动态规划问题，我们思考该题的状态图。一共可能有三个状态：</p>
+<ul>
+<li>Hold：购入股票；</li>
+<li>Sold：卖出股票；</li>
+<li>Rest：持有股票什么都不做。</li>
+</ul>
+<p>那么如何能得到这三个状态呢？</p>
+<p>对于Hold来说：</p>
+<ul>
+<li>前一天持有，当日Rest；</li>
+<li>前一天Rest，当日买入股票。</li>
+</ul>
+<p>对于Sold来说：</p>
+<ul>
+<li>前一日Hold股票，当日卖出。</li>
+</ul>
+<p>对于Rest来说：</p>
+<ul>
+<li>前一日Sold了，当日必须Rest；</li>
+<li>也可以前一天Rest，当日继续Rest。</li>
+</ul>
+<p>所以说状态转换图如下：</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode309structure.jpg" alt="复杂度配图"></p>
+<p>由上面的状态转换图我们可以得到：<br>（以下i表示第i天，i-1代表前一天）</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sold[i]=hold[i<span class="number">-1</span>]+price[i];</span><br><span class="line">hold[i]=max(hold[i<span class="number">-1</span>],rest[i<span class="number">-1</span>]-price[i]);</span><br><span class="line">rest[i]=max(rest[i<span class="number">-1</span>],sold[i<span class="number">-1</span>]);</span><br></pre></td></tr></table></figure>
+<p>那么对于最后一天来说，最大值存在两种情况：什么都不做；卖出股票。所以为<code>max(sold,rest)</code>。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sold=<span class="number">0</span>,hold=INT_MIN,rest=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> price:prices)&#123;</span><br><span class="line">            <span class="keyword">int</span> pre_sold=sold;</span><br><span class="line">            sold=hold+price;</span><br><span class="line">            hold=max(hold,rest-price);</span><br><span class="line">            rest=max(rest,pre_sold);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> max(sold,rest);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p>时间复杂度：O(n)</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode309result.jpg" alt="复杂度配图"></p>
+<h1 id="LeetCode-312：戳气球"><a href="#LeetCode-312：戳气球" class="headerlink" title="LeetCode 312：戳气球"></a>LeetCode 312：戳气球</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p> n 个气球，编号为0 到 n-1，每个气球上都标有一个数字，这些数字存在数组 nums 中。</p>
+<p>现在要求你戳破所有的气球。每当你戳破一个气球 i 时，你可以获得 nums[left] <em> nums[i] </em> nums[right] 个硬币。 这里的 left 和 right 代表和 i 相邻的两个气球的序号。注意当你戳破了气球 i 后，气球 left 和气球 right 就变成了相邻的气球。</p>
+<p>求所能获得硬币的最大数量。</p>
+<h2 id="说明"><a href="#说明" class="headerlink" title="说明:"></a>说明:</h2><p>你可以假设 nums[-1] = nums[n] = 1，但注意它们不是真实存在的所以并不能被戳破。<br>0 ≤ n ≤ 500, 0 ≤ nums[i] ≤ 100</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><p>输入: [3,1,5,8]<br>输出: 167<br>解释: nums = [3,1,5,8] –&gt; [3,5,8] –&gt;   [3,8]   –&gt;  [8]  –&gt; []<br>     coins =  3<em>1</em>5      +  3<em>5</em>8    +  1<em>3</em>8      + 1<em>8</em>1   = 167</p>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>这个题类似于游艇租赁问题，游艇租赁问题就是找分隔点，而本题也是类似的。这种动态规划问题和我们前面遇到的是不太一样的。</p>
+<p>动态规划问题就是将一个大问题分隔成多个独立的小问题。在这个问题上，就是我们可以将大的区间分隔为独立的小区间，然后先戳爆小区间，也就是先算小区间，再组合出大区间。</p>
+<p>对于本题的示例[3,1,5,8]来说，步骤如下：</p>
+<p>第一步：计算长度为1的区间，分别戳3,1,5,8。</p>
+<p>第二步：计算长度为2的区间，分别算[3,1],[1,5],[5,8]：<br>对于3,1:3最后戳，1已经算出；同样1最后戳，3也算出；<br>对于1,5:1最后戳，5已经算出；同样5最后戳，1也算出；<br>对于5,8:5最后戳，8已经算出；同样8最后戳，5也算出。</p>
+<p>第三步，计算长度为3的区间，分别计算[3,1,5]和[1,5,8]：<br>对于3,1,5来说，3最后戳，1/5已经计算出来；1最后戳，3/5已经计算出来；5最后戳，3,1已经计算出来；<br>对于1,5,8来说，1最后戳，5/8已经计算出来；5最后戳，1/8已经计算出来；8最后戳，1,5已经计算出来。</p>
+<p>第四步，计算长度为4的区间，即[3,1,5,8]：3最后戳，1，5，8已经算出。1最后戳3和5，8已经算出。5最后戳，3，1和8已经算出。8最后戳，3，1，5已经算出。</p>
+<p>简单来说，写一个伪代码：<br>序列为<code>num</code>，<code>[i,j]</code>为区间，<code>dp[i][j]</code>为dp数组；<code>c</code>为区间长度，则</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">for(c in [1,N])&#123;</span><br><span class="line">	for(i in [1,N-c+1])//区间起始点在[1,N-c+1]这个区间里面</span><br><span class="line">	&#123;</span><br><span class="line">		j=i+c-1;//区间长度为c-1，即代表分别计算1,2,...,N的长度区间</span><br><span class="line">		for(k in [i,j])&#123;</span><br><span class="line">			dp[i][j]=max(num[i-1]*num[k]*num[j+1])+dp[i][k-1]+dp[k+1][j]);</span><br><span class="line">			//当前戳中的值+其左侧戳中的值+其右侧戳中的值</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>解析参考自：<br><a href="https://leetcode-cn.com/problems/burst-balloons/solution/san-chong-jie-fa-by-jason-2-6/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/burst-balloons/solution/san-chong-jie-fa-by-jason-2-6/</a></p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxCoins</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> N;</span><br><span class="line">	N = nums.size();</span><br><span class="line">	nums.insert(nums.begin(), <span class="number">1</span>);</span><br><span class="line">	nums.push_back(<span class="number">1</span>);<span class="comment">//在开头和结尾插入1，因为题目说-1和最后一个位置当做1</span></span><br><span class="line">	<span class="keyword">const</span> <span class="keyword">int</span> len = nums.size();</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(len, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;(len, <span class="number">0</span>));</span><br><span class="line"></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= N; ++i) &#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j + i - <span class="number">1</span> &lt;= N; ++j) &#123;</span><br><span class="line">			<span class="keyword">const</span> <span class="keyword">int</span> k = j + i - <span class="number">1</span>;</span><br><span class="line">			<span class="keyword">int</span>&amp; ans = dp[j][k];</span><br><span class="line">			<span class="keyword">for</span> (<span class="keyword">int</span> m = j; m &lt;= k; ++m) &#123;</span><br><span class="line">				ans = max(ans, nums[j - <span class="number">1</span>] * nums[m] * nums[k + <span class="number">1</span>] + dp[j][m - <span class="number">1</span>] + dp[m + <span class="number">1</span>][k]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dp[<span class="number">1</span>][N];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析-1"><a href="#复杂度分析-1" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode312result.jpg" alt="复杂度配图"></p>
+<h1 id="Leetcode-338：比特位计数"><a href="#Leetcode-338：比特位计数" class="headerlink" title="Leetcode 338：比特位计数"></a>Leetcode 338：比特位计数</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个非负整数 num。对于 0 ≤ i ≤ num 范围中的每个数字 i ，计算其二进制数中的 1 的数目并将它们作为数组返回。要求时间复杂度为O(n)</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h2><p>示例1：<br>输入: 2<br>输出: [0,1,1]</p>
+<p>示例2：<br>输入: 5<br>输出: [0,1,1,2,1,2]</p>
+<h2 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h2><p>最简单的思路，就是对每一个数字进行右移然后与1相与然后计算结果，但是这样的复杂度是O(n*sizeof(integer))。</p>
+<p>我们要求是O(n)，可以想到要实现线性时间的话，只能当前结果依赖前面的结果才可以实现。顺着这个思路我们可以发现十进制数字所对应的二进制数字的两条规律：</p>
+<ul>
+<li>对于奇数来说，其一定是前一个偶数在最低位上的数字为1，因为1的0次方是1，所以实际上是前一个偶数多一个1。所以<code>result[i] = result[i - 1] + 1</code>;</li>
+<li>对于偶数来说，因为我们知道一个数字左移1位相当于扩大为原来的2倍，但是左移1位之后补上的是0，所以说扩大前后1的个数不变，所以偶数m的1的个数一定是m/2的个数，所以<code>result[i] = result[i &gt;&gt; 1]</code>。</li>
+</ul>
+<h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; countBits(<span class="keyword">int</span> num) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;result(num + <span class="number">1</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= num; i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> ((i &amp; <span class="number">1</span>))</span><br><span class="line">		    &#123;</span><br><span class="line">			    result[i] = result[i - <span class="number">1</span>] + <span class="number">1</span>;</span><br><span class="line">		    &#125;</span><br><span class="line">		    <span class="keyword">else</span></span><br><span class="line">		    &#123;</span><br><span class="line">			    result[i] = result[i &gt;&gt; <span class="number">1</span>];</span><br><span class="line">		    &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">	    <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析-2"><a href="#复杂度分析-2" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode338result.jpg" alt="复杂度配图"></p>
+<p>时间复杂度：O(n)</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/10/28/leetcode191028/" class="next-post btn btn-default" title="leetcode题目解析（191028）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">leetcode题目解析（191028）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-309：最佳买卖股票时机含冷冻期"><span class="toc-text">Leetcode 309：最佳买卖股票时机含冷冻期</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#LeetCode-312：戳气球"><span class="toc-text">LeetCode 312：戳气球</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说明"><span class="toc-text">说明:</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-1"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-1"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析-1"><span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-338：比特位计数"><span class="toc-text">Leetcode 338：比特位计数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-2"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-2"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-2"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-2"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析-2"><span class="toc-text">复杂度分析</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
