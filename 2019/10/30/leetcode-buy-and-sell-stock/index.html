@@ -1,0 +1,356 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="题目描述题目1： 买卖股票的最佳时机 I。给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Leetcode：股票系列题 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行！ </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Leetcode：股票系列题">
+            
+	            Leetcode：股票系列题
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/10/30</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p><strong>题目1：</strong> 买卖股票的最佳时机 I。给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。如果你最多只允许完成一笔交易（即买入和卖出一支股票），设计一个算法来计算你所能获取的最大利润。注意你不能在买入股票前卖出股票。</p>
+<p><strong>题目2：</strong> 买卖股票的最佳时机 II。给定一个数组，它的第 i 个元素是一支给定股票第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你可以尽可能地完成更多的交易（多次买卖一支股票）。注意：你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p><strong>题目3：</strong> 买卖股票的最佳时机 III。给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你最多可以完成<strong>两笔</strong>交易。注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p><strong>题目4：</strong> 买卖股票的最佳时机 IV。给定一个数组，它的第 i 个元素是一支给定的股票在第 i 天的价格。设计一个算法来计算你所能获取的最大利润。你最多可以完成<strong>k</strong>笔交易。注意: 你不能同时参与多笔交易（你必须在再次购买前出售掉之前的股票）。</p>
+<p><strong>题目5：</strong> 买卖股票的最佳时机含手续费。给定一个整数数组 prices，其中第 i 个元素代表了第 i 天的股票价格 ；非负整数 fee 代表了交易股票的手续费用。你可以无限次地完成交易，但是你每次交易都需要付手续费。如果你已经购买了一个股票，在卖出它之前你就不能再继续购买股票了。返回获得利润的最大值。</p>
+<h2 id="基础解析"><a href="#基础解析" class="headerlink" title="基础解析"></a>基础解析</h2><p>通过对</p>
+<p><a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/solution/yi-ge-tong-yong-fang-fa-tuan-mie-6-dao-gu-piao-w-5/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/solution/yi-ge-tong-yong-fang-fa-tuan-mie-6-dao-gu-piao-w-5/</a><br>的阅读，自己理解了，写下自己的理解。</p>
+<p>其实这6道题（因为含有冷冻期的那道题昨天已经整理了，故今天没有整理，所以本文中只有5个题）看似不同，但其实都是反映了同一种思路。以第四题为基本，因为第四题其实是一种泛化形式的题目。</p>
+<p>第一题只是第四题中当k=1的特例；第二题实际相当于当k=infinity时候的特例；第三题相当于当k=2的时候的特例；第五题和第六题相当于第二题的特例。</p>
+<p>我们发现在这个题里面存在三个主动变量（也就是原解析中提到的<strong>状态</strong>一词），即：<strong>第i天价格</strong>、<strong>第k次交易</strong>、<strong>持有或卖出（1或0）</strong>，所以实际上这个dp数组可以写为<code>dp[i][k][0]</code>或<code>dp[i][k][1]</code>。我们想要的答案肯定是<code>dp[i][k][0]</code>，因为当第三个状态为1的时候，说明我们还有股票，只有卖出才能有收益。</p>
+<p>下面画出状态转移图</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcodegupiao.png" alt="状态转移图"></p>
+<p>通过这个图，我们可以很容易的写出状态转移方程的形式：</p>
+<p>dp[i][k][0]=max(dp[i-1][k][0],dp[i-1][k][1]+prices[i])</p>
+<p>这个式子的含义是，如果今天我没有持有股票，那么只有两种可能：</p>
+<ul>
+<li>昨天的时候我就没有股票，那么铁定至迟在昨天的时候就已经完成了k次交易，所以是<code>dp[i-1][k][0]</code>。</li>
+<li>昨天我持有股票，今天我把它卖了，由于买一次和卖一次算一次交易，所以昨天也是第k次交易，所以是<code>dp[i-1][k][1]+prices[i]</code>。</li>
+</ul>
+<p>dp[i][k][1]=max(dp[i-1][k][1]mdp[i-1][k-1][0]-prices[i])</p>
+<p>这个式子的含义是，今天我持有股票，那么又是有两种可能：</p>
+<ul>
+<li>昨天我持有股票，今天我不卖；</li>
+<li>昨天我没有持有，今天我买了，所以今天我进行了第k次交易，故昨天是第k-1的状态。</li>
+</ul>
+<p>至此，解决这6个问题的核心已经解决了。接下来就是一些边界问题。</p>
+<p><code>dp[-1][k][0] = 0</code><br>解释：因为 i 是从 0 开始的，所以 i = -1 意味着还没有开始，这时候的利润当然是 0 。</p>
+<p><code>dp[-1][k][1] = -infinity</code><br>解释：还没开始的时候，是不可能持有股票的，用负无穷表示这种不可能。</p>
+<p><code>dp[i][0][0] = 0</code><br>解释：因为 k 是从 1 开始的，所以 k = 0 意味着根本不允许交易，这时候利润当然是 0 。</p>
+<p><code>dp[i][0][1] = -infinity</code><br>解释：不允许交易的情况下，是不可能持有股票的，用负无穷表示这种不可能。</p>
+<h2 id="第一题解析及代码实现"><a href="#第一题解析及代码实现" class="headerlink" title="第一题解析及代码实现"></a>第一题解析及代码实现</h2><p>对于第一题来说，实际上就是<code>k=1</code>的情况，那我们可以将dp数组简化为二维数组，即省略k这一项。写为<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][<span class="number">0</span>] = max(dp[i<span class="number">-1</span>][<span class="number">0</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>] + prices[i])</span><br><span class="line">dp[i][<span class="number">1</span>] = max(dp[i<span class="number">-1</span>][<span class="number">1</span>], -prices[i])</span><br></pre></td></tr></table></figure></p>
+<p>为什么第二个式子max的第二项是-prices[i]呢，因为：<br><code>dp[i][1]=max(dp[-1][1],dp[-1][0]-prices[i])=max(-infinity, 0-prices[i])=-prices[i]</code>。</p>
+<p>考虑到一个新的状态只与相邻一个状态有关系，我们可以继续节省空间复杂度，将数组用变量来表示，即<code>dp_i_0</code>相当于原来的<code>dp[i][0]</code>,<code>dp_i_1</code>相当于原来的<code>dp[i][1]</code>。</p>
+<p>代码实现如下：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = prices.size();</span><br><span class="line">	<span class="keyword">if</span> (len &lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> dp_i_0 = <span class="number">0</span>, dp_i_1 = INT_MIN;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		dp_i_0 = max(dp_i_0, dp_i_1 + prices[i]);</span><br><span class="line">		dp_i_1 = max(dp_i_1, -prices[i]);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dp_i_0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第二题解析及代码实现"><a href="#第二题解析及代码实现" class="headerlink" title="第二题解析及代码实现"></a>第二题解析及代码实现</h2><p>当k为无穷的时候，实际上k和k-1已经可以看做是一样的，然后继续省略k这一项。这个时候写出来的状态转移方程是</p>
+<p>dp[i][0] = max(dp[i-1][0], dp[i-1][1] + prices[i])<br>dp[i][1] = max(dp[i-1][1], dp[i-1][0] - prices[i])</p>
+<p>与第一题同理，修改为变量进行更新。但是注意，由于此时k并不是1了，而是可以任意数字了，所以<code>dp[i-1][k-1][0]</code>还是要专门写出来，由于在第一个式子中<code>dp_i_0</code>已经更新为当前这一步的结果，所以在<code>dp_i_0</code>更新之前需要将它的值缓存在t中以便<code>dp_i_1</code>更新时使用。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = prices.size();</span><br><span class="line">	<span class="keyword">if</span> (len &lt;= <span class="number">1</span>) </span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> dp_i_0 = <span class="number">0</span>, dp_i_1 = INT_MIN;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> t = dp_i_0;</span><br><span class="line">		dp_i_0 = max(dp_i_0, dp_i_1 + prices[i]);</span><br><span class="line">		dp_i_1 = max(dp_i_1, t - prices[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp_i_0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第三题解析及代码实现"><a href="#第三题解析及代码实现" class="headerlink" title="第三题解析及代码实现"></a>第三题解析及代码实现</h2><p>k之前都被化简掉了，但是这里k不能做被忽略，所以必须要对k进行穷举。但是由于k在本题只有1和2两种状态，所以实际也可以将其写为变量的形式，即</p>
+<p>dp_i_2_0 = max(dp_i_2_0, dp_i_2_1 + price);<br>dp_i_2_1 = max(dp_i_2_1, dp_i_1_0 - price);<br>dp_i_1_0 = max(dp_i_1_0, dp_i_1_1 + price);<br>dp_i_1_1 = max(dp_i_1_1, -price);</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = prices.size();</span><br><span class="line">	<span class="keyword">if</span> (len &lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> dp_i_1_0 = <span class="number">0</span>, dp_i_1_1 = INT_MIN;</span><br><span class="line">	<span class="keyword">int</span> dp_i_2_0 = <span class="number">0</span>, dp_i_2_1 = INT_MIN;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> price : prices)</span><br><span class="line">	&#123;</span><br><span class="line">		dp_i_2_0 = max(dp_i_2_0, dp_i_2_1 + price);</span><br><span class="line">		dp_i_2_1 = max(dp_i_2_1, dp_i_1_0 - price);</span><br><span class="line"></span><br><span class="line">		dp_i_1_0 = max(dp_i_1_0, dp_i_1_1 + price);</span><br><span class="line">		dp_i_1_1 = max(dp_i_1_1, -price);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp_i_2_0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第四题解析及代码实现"><a href="#第四题解析及代码实现" class="headerlink" title="第四题解析及代码实现"></a>第四题解析及代码实现</h2><p>当k等于任意可能数字的时候，k就有可能大于所给天数的长度，此时就要进行特殊处理。也就是说，此时直接将所有坡度加起来就好了。</p>
+<p>而当k小于的时候，就可以正常更新了。因为i只依赖于i-1的情况，所以我们可以省略i这个状态，用二维数组进行更新即可。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="keyword">int</span> k, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = prices.size();</span><br><span class="line">	<span class="keyword">if</span> (len &lt;= <span class="number">1</span>||k&lt;<span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="comment">//处理k&gt;len/2的情况</span></span><br><span class="line">	<span class="keyword">if</span> (k &gt;= len / <span class="number">2</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; len; i++) &#123;</span><br><span class="line">			<span class="keyword">if</span> (prices[i] &gt; prices[i - <span class="number">1</span>])</span><br><span class="line">				res += (prices[i] - prices[i - <span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> res;<span class="comment">//只要后一天比前一天高就卖</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//省略i的表达式，节省空间</span></span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; dp(k + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&#123; <span class="number">0</span>,INT_MIN &#125;);</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> price:prices)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">int</span> j = k; j &gt; <span class="number">0</span>; j--)</span><br><span class="line">		&#123;</span><br><span class="line">			dp[j][<span class="number">0</span>] = max(dp[j][<span class="number">0</span>], dp[j][<span class="number">1</span>] + price);</span><br><span class="line">			dp[j][<span class="number">1</span>] = max(dp[j][<span class="number">1</span>], dp[j - <span class="number">1</span>][<span class="number">0</span>] - price);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> dp[k][<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="第五题解析及代码实现"><a href="#第五题解析及代码实现" class="headerlink" title="第五题解析及代码实现"></a>第五题解析及代码实现</h2><p>一次交易一个手续费，所以只需要把手续费从利润中减去即可。也就是</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][<span class="number">0</span>] = max(dp[i<span class="number">-1</span>][<span class="number">0</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>] + prices[i])</span><br><span class="line">dp[i][<span class="number">1</span>] = max(dp[i<span class="number">-1</span>][<span class="number">1</span>], dp[i<span class="number">-1</span>][<span class="number">0</span>] - prices[i] - fee)</span><br></pre></td></tr></table></figure>
+<p>当然fee费用也可以写到第一个数字里，但是此时对于<code>dp[i][1]</code>的初始化应为<code>INT_MIN+fee</code>，不然可能会超出范围导致出错。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">int</span> <span class="title">maxProfit</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; prices, <span class="keyword">int</span> fee)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> len = prices.size();</span><br><span class="line">	<span class="keyword">if</span> (len &lt;= <span class="number">1</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> dp_i_0 = <span class="number">0</span>, dp_i_1 = INT_MIN;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> dp_temp = dp_i_0;</span><br><span class="line">		dp_i_0 = max(dp_i_0, dp_i_1 + prices[i]);</span><br><span class="line">		dp_i_1 = max(dp_i_1, dp_temp-prices[i] - fee);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> dp_i_0;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="有冷冻期的题目的解析"><a href="#有冷冻期的题目的解析" class="headerlink" title="有冷冻期的题目的解析"></a>有冷冻期的题目的解析</h2><p>由于有一天冷冻期，所以唯一不同点在于所依赖的不是前一天而是前两天，即将<code>i-1</code>改为<code>i-2</code>。即</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][<span class="number">0</span>] = max(dp[i<span class="number">-1</span>][<span class="number">0</span>], dp[i<span class="number">-1</span>][<span class="number">1</span>] + prices[i])</span><br><span class="line">dp[i][<span class="number">1</span>] = max(dp[i<span class="number">-1</span>][<span class="number">1</span>], dp[i<span class="number">-2</span>][<span class="number">0</span>] - prices[i])</span><br></pre></td></tr></table></figure>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>云闪付打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/10/29/leetcode191029/" class="next-post btn btn-default" title="leetcode题目解析（191029）">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">leetcode题目解析（191029）</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#基础解析"><span class="toc-text">基础解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第一题解析及代码实现"><span class="toc-text">第一题解析及代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第二题解析及代码实现"><span class="toc-text">第二题解析及代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第三题解析及代码实现"><span class="toc-text">第三题解析及代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第四题解析及代码实现"><span class="toc-text">第四题解析及代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#第五题解析及代码实现"><span class="toc-text">第五题解析及代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#有冷冻期的题目的解析"><span class="toc-text">有冷冻期的题目的解析</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
