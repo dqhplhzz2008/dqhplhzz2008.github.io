@@ -16,7 +16,7 @@
     <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
     <!--SEO-->
 
-    <meta name="keywords" content="null">
+    <meta name="keywords" content>
 
 
     <meta name="description" content="life | c++ | python | java">
@@ -85,7 +85,7 @@
         <div class="branding">
 
             
-                <h2> 不忘初心，奋力前行！ </h2>
+                <h2> 做一个奋斗的人，而不是混日子的人！ </h2>
             
     	</div>
     </div>
@@ -128,7 +128,7 @@
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
                             </li>
                         
                             <li role="presentation" class="text-center">
@@ -161,18 +161,23 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2019/03/10/e3-80-8a-e5-89-91-e6bc-8812-ef-bc-89/">《剑指Offer》题目解析（12）</a>
+                    <a href="/2019/03/05/e3-80-8a-e5-89-91-e6e-90-ef-bc-886-ef-bc-89/">《剑指Offer》题目解析（6）</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime title>
-                        2019年03月10日
+                        2019年03月05日
                     </time>
                 </div>
             </div>
             <p class="brief">
                 
-                    题目1 序列化二叉树题目描述请实现两个函数，分别用来序列化和反序列化二叉树
-题目解析序列化二叉树可以使用前序遍历来进行，这样的话响应的反序列化在根节点的数值读出来的时候就可以开始了。如果二叉树读的时候遇到NULL，就输出一个“\$ ”...
+                    题目1 二叉树的镜像题目描述操作给定的二叉树，将其变换为源二叉树的镜像。
+题目解析一定要考虑到两种特殊情况：
+
+二叉树为空
+二叉树的左子树为空且二叉树的右子树为空
+
+设计代码的时候一定要考虑代码的鲁棒性。所以需要设计到两个if语句，如...
                 
             </p>
         </div>
@@ -183,18 +188,18 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2019/03/08/e3-80-8a-e5-89-91-e6-8c--ef-bc-8811-ef-bc-89/">《剑指Offer》题目解析（11）</a>
+                    <a href="/2019/03/04/e3-80-8a-e5-87-a3-e6-9e-90-ef-bc-885-ef-bc-89/">《剑指Offer》题目解析（5）</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime title>
-                        2019年03月08日
+                        2019年03月04日
                     </time>
                 </div>
             </div>
             <p class="brief">
                 
-                    题目4 和为S的两个数字题目描述输入一个递增排序的数组和一个数字S，在数组中查找两个数，使得他们的和正好是S，如果有多对数字的和等于S，输出两个数的乘积最小的。
-题目解析我们知道，两个数字，距离越远，乘积越小，距离越近乘积越大。所以我...
+                    题目7 链表倒数第k个结点题目描述输入一个链表，输出该链表中倒数第k个结点。
+题目解析我们很容易可以想到，由于这是一个单向链表，所以我们可以第一遍先遍历这个链表，看有多少个结点（假设为n），然后计算出pos=n-k+1，然后我们只需要...
                 
             </p>
         </div>
@@ -205,18 +210,20 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2019/03/08/e3-80-8a-e5-89-9190-ef-bc-8810-ef-bc-89/">《剑指Offer》题目解析（10）</a>
+                    <a href="/2019/03/04/e3-80-8a-e5a7-a3-e6-9e-90-ef-bc-884-ef-bc-89/">《剑指Offer》题目解析（4）</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime title>
-                        2019年03月08日
+                        2019年03月04日
                     </time>
                 </div>
             </div>
             <p class="brief">
                 
-                    题目1 二叉树的深度题目描述输入一棵二叉树，求该树的深度。从根结点到叶结点依次经过的结点（含根、叶结点）形成树的一条路径，最长路径的长度为树的深度。
-题目解析如果一棵树只有一个结点，那么深度为1.如果根节点只有左子树而没有右子树，那么...
+                    题目1 斐波那契数列题目描述大家都知道斐波那契数列，现在要求输入一个整数n，请你输出斐波那契数列的第n项（从0开始，第0项为0）。n&amp;lt;=39
+代码递归方法：
+int Fibonacci(int n) {
+    if(n==0)...
                 
             </p>
         </div>
@@ -227,18 +234,17 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2019/03/07/e3-80-8a-e5-89-91-e6-8c-e-90-ef-bc-889-ef-bc-89/">《剑指Offer》题目解析（9）</a>
+                    <a href="/2019/03/04/e3-80-8a-e5-89-91-e6-8c-8e-90-ef-bc-883-ef-bc-89/">《剑指Offer》题目解析（3）</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime title>
-                        2019年03月07日
+                        2019年03月04日
                     </time>
                 </div>
             </div>
             <p class="brief">
                 
-                    题目6 第一次只出现一次的字符题目描述在一个字符串(0&amp;lt;=字符串长度&amp;lt;=10000，全部由字母组成)中找到第一个只出现一次的字符,并返回它的位置, 如果没有则返回 -1（需要区分大小写）。
-题目解析只要这种问题，就可以想到...
+                    题目1：机器人的运动范围题目描述 地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格...
                 
             </p>
         </div>
@@ -249,17 +255,39 @@
         <div class="post-content">
             <div class="post-head home-post-head">
                 <h1 class="post-title">
-                    <a href="/2019/03/07/e3-80-8a-e5-89-9a3-e6-9e-90-ef-bc-888-ef-bc-89/">《剑指Offer》题目解析（8）</a>
+                    <a href="/2019/03/01/e6-b5-8b-e8-af-95-e6-96-87-e4-bb-b6-trashed/">测试文件</a>
                 </h1>
                 <div class="post-meta">  &bull;
                     <time class="post-date" datetime title>
-                        2019年03月07日
+                        2019年03月01日
                     </time>
                 </div>
             </div>
             <p class="brief">
                 
-                    题目1 数组中出现次数超过一半的数字题目描述数组中有一个数字出现的次数超过数组长度的一半，请找出这个数字。例如输入一个长度为9的数组{1,2,3,2,2,2,5,4,2}。由于数字2在数组中出现了5次，超过数组长度的一半，因此输出2。...
+                    最优工程布线问题问题描述在3×3的方格阵列，灰色表示封锁，不能通过。将每个方格抽象为一个结点，方格和相邻4个方向（上下左右）中能通过的方格用一条线连接起来，不能通过的方格不连线。这样，可以把问题的解空间定义为一个图，如下图所示。   ...
+                
+            </p>
+        </div>
+    </article>
+ 
+    <article class="post">
+        
+        <div class="post-content">
+            <div class="post-head home-post-head">
+                <h1 class="post-title">
+                    <a href="/2019/02/26/e3-80-8a-e5-89-91-e-90-ef-bc-881-ef-bc-89/">《剑指Offer》题目解析（1）</a>
+                </h1>
+                <div class="post-meta">  &bull;
+                    <time class="post-date" datetime title>
+                        2019年02月26日
+                    </time>
+                </div>
+            </div>
+            <p class="brief">
+                
+                    题目1 二维数组中的查找题目描述在一个二维数组中（每个一维数组的长度相同），每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。
+题目解析...
                 
             </p>
         </div>
@@ -269,7 +297,7 @@
 
     <nav class="pagination" role="navigation">
         <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/categories/C-C/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/C-C/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/C-C/page/6/">6</a><a class="page-number" href="/categories/C-C/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/categories/C-C/page/9/">9</a><a class="page-number" href="/categories/C-C/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/categories/C-C/page/17/">17</a><a class="extend next" rel="next" href="/categories/C-C/page/9/"><i class="fa fa-angle-right"></i></a>
+            <a class="extend prev" rel="prev" href="/categories/C-C/page/7/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/categories/C-C/">1</a><span class="space">&hellip;</span><a class="page-number" href="/categories/C-C/page/6/">6</a><a class="page-number" href="/categories/C-C/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/categories/C-C/page/9/">9</a><a class="page-number" href="/categories/C-C/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/categories/C-C/page/14/">14</a><a class="extend next" rel="next" href="/categories/C-C/page/9/"><i class="fa fa-angle-right"></i></a>
         </div>
     </nav>
 
@@ -287,39 +315,10 @@
         
         
     <div class="widget">
-        <h3 class="title">搜索</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
-                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
-                
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
-        
-        
-    <div class="widget">
         <h3 class="title">网站公告</h3>
         <div class="notification">
             <p>
-    欢迎来到我的博客~我关注于C++、C、语音增强、麦克风阵列波束形成等领域。
+    欢迎来到我的博客~我关注于语音增强、WebRTC、VAD、AGC、麦克风阵列波束形成等领域。
 </p>
         </div>
     </div>
@@ -357,6 +356,37 @@
         </div>
     </div>
 
+
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+                    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="http://tech.yushuai.xyz"></form>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
 
         
         

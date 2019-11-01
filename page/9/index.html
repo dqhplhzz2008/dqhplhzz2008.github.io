@@ -16,7 +16,7 @@
     <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
     <!--SEO-->
 
-    <meta name="keywords" content="null">
+    <meta name="keywords" content>
 
 
     <meta name="description" content="life | c++ | python | java">
@@ -85,7 +85,7 @@
         <div class="branding">
 
             
-                <h2> 不忘初心，奋力前行！ </h2>
+                <h2> 做一个奋斗的人，而不是混日子的人！ </h2>
             
     	</div>
     </div>
@@ -128,7 +128,7 @@
                             </li>
                         
                             <li role="presentation" class="text-center">
-                                <a href="/archives/"><i class="fa "></i>Time Line</a>
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
                             </li>
                         
                             <li role="presentation" class="text-center">
@@ -152,21 +152,45 @@
 
 <article class="post">
     
+        <div class="post-media">
+            <a href="/2019/05/08/Linuxday6-process/">
+                <img class="img-ajax" src="/img/loading.gif" data-src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/linuxclasses/day6/linuxday6cpu.png" alt="Linux第六天：进程（上）">
+            </a>
+        </div>
+    
     <div class="post-content">
         <div class="post-head home-post-head">
             <h1 class="post-title">
-                <a href="/2019/05/31/linux-day-7-exercise1/">day7练习1：使用管道实现父子进程间通信，完成：ls | wc –l。</a>
+                <a href="/2019/05/08/Linuxday6-process/">Linux第六天：进程（上）</a>
             </h1>
             <div class="post-meta">  &bull;
                 <time class="post-date" datetime title>
-                    2019年05月31日
+                    2019年05月08日
                 </time>
             </div>
         </div>
         <p class="brief">
             
-                day7练习1题目说明使用管道实现父子进程间通信，完成：ls | wc –l。假定父进程实现ls，子进程实现wc
-题目解析题目还是为了巩固我们对于pipe()以及fork()的使用，以及如何使用dup2()函数。这里面我就重点说一下p...
+                Linux第六天：进程（上）课程知识点框架本部分课程的知识体系：
+
+进程相关的概念  
+
+并发
+单道程序设计
+多道程序设计
+cpu/mmu
+进程控制块-进程状态
+
+
+环境变量
+
+常用的环境变量/作用
+函数（了解）
+
+
+进程控制原语
+
+...
             
         </p>
     </div>
@@ -197,7 +221,7 @@
             </div>
 
             <div class="post-permalink">
-                <a href="/2019/05/31/linux-day-7-exercise1/" class="btn btn-default">阅读全文</a>
+                <a href="/2019/05/08/Linuxday6-process/" class="btn btn-default">阅读全文</a>
             </div>
         </footer>
     
@@ -207,25 +231,26 @@
 <article class="post">
     
         <div class="post-media">
-            <a href="/2019/05/31/linux-day-7-exec/">
-                <img class="img-ajax" src="/img/loading.gif" data-src="http://tech.yushuai.xyz/wzpt/linuxstudy/day75.png" alt="Linux第七天：exec、回收子进程和进程间通信">
+            <a href="/2019/05/06/di-gui-du-mu-lu-wen-jian-ge-shu/">
+                <img class="img-ajax" src="/img/loading.gif" data-src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/dgdmlhqptwjgs.png" alt="递归读目录获取普通文件个数">
             </a>
         </div>
     
     <div class="post-content">
         <div class="post-head home-post-head">
             <h1 class="post-title">
-                <a href="/2019/05/31/linux-day-7-exec/">Linux第七天：exec、回收子进程和进程间通信</a>
+                <a href="/2019/05/06/di-gui-du-mu-lu-wen-jian-ge-shu/">递归读目录获取普通文件个数</a>
             </h1>
             <div class="post-meta">  &bull;
                 <time class="post-date" datetime title>
-                    2019年05月31日
+                    2019年05月06日
                 </time>
             </div>
         </div>
         <p class="brief">
             
-                Linux第七天：exec、回收子进程和进程间通信exec函数族fork创建子进程后执行的是和父进程相同的程序（但有可能执行不同的代码分支），子进程往往要调用一种exec函数以执行另一个程序。当进程调用一种exec函数时，该进程的用户...
+                递归读目录获取普通文件个数功能说明递归进入当前目录及其子目录，遇到普通文件就对计数加1，遇到目录就进入目录，但并不做加1操作，最后输出普通文件个数。
+使用的函数1.opendir()函数：打开一个目录2.readdir()函数：读目录...
             
         </p>
     </div>
@@ -256,7 +281,7 @@
             </div>
 
             <div class="post-permalink">
-                <a href="/2019/05/31/linux-day-7-exec/" class="btn btn-default">阅读全文</a>
+                <a href="/2019/05/06/di-gui-du-mu-lu-wen-jian-ge-shu/" class="btn btn-default">阅读全文</a>
             </div>
         </footer>
     
@@ -266,25 +291,205 @@
 <article class="post">
     
         <div class="post-media">
-            <a href="/2019/05/24/leetcode190524/">
-                <img class="img-ajax" src="/img/loading.gif" data-src="http://tech.yushuai.xyz/wzpt/largestrectangle.png" alt="leetcode题目解析（190524）">
+            <a href="/2019/05/05/ls-lfilenamebystat/">
+                <img class="img-ajax" src="/img/loading.gif" data-src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/statls1.png" alt="利用stat函数实现ls- l filename功能">
             </a>
         </div>
     
     <div class="post-content">
         <div class="post-head home-post-head">
             <h1 class="post-title">
-                <a href="/2019/05/24/leetcode190524/">leetcode题目解析（190524）</a>
+                <a href="/2019/05/05/ls-lfilenamebystat/">利用stat函数实现ls- l filename功能</a>
             </h1>
             <div class="post-meta">  &bull;
                 <time class="post-date" datetime title>
-                    2019年05月24日
+                    2019年05月05日
                 </time>
             </div>
         </div>
         <p class="brief">
             
-                valid sudoku题目描述Determine if a Sudoku is valid, according to: Sudoku Puzzles - The Rules.The Sudoku board could be pa...
+                利用stat函数实现ls- l filename功能功能&amp;amp;函数介绍在我们使用 ls -l 命令的时候，会输出下面的结果：
+
+在这里，我使用stat函数来实现这一功能。我们知道，stat函数提供了一个结构体，其内容为：
+1234...
+            
+        </p>
+    </div>
+    
+        <footer class="post-footer clearfix">
+            <div class="pull-left tag-list">
+                <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/centos/">centos</a> <a class="tag-link" href="/tags/linux/">linux</a>
+                
+            </span>
+        </span>
+    
+
+    
+</div>
+            </div>
+
+            <div class="post-permalink">
+                <a href="/2019/05/05/ls-lfilenamebystat/" class="btn btn-default">阅读全文</a>
+            </div>
+        </footer>
+    
+</article>
+
+
+<article class="post">
+    
+        <div class="post-media">
+            <a href="/2019/05/05/linuxfundamentalday4/">
+                <img class="img-ajax" src="/img/loading.gif" data-src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/openceshizhixing.png" alt="Linux基础学习第四天：C库函数和系统函数">
+            </a>
+        </div>
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
+                <a href="/2019/05/05/linuxfundamentalday4/">Linux基础学习第四天：C库函数和系统函数</a>
+            </h1>
+            <div class="post-meta">  &bull;
+                <time class="post-date" datetime title>
+                    2019年05月05日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            
+                Linux第四天之C库函数和系统函数
+FILE其实本质上是一个结构体，它里面有：
+
+文件描述符（整型值）。索引到对应的磁盘文件。
+文件读写位置指针：读写文件过程中指针的实际位置。
+I/O缓冲区（内存地址）：通过寻址找到对应的内存块。大...
+            
+        </p>
+    </div>
+    
+        <footer class="post-footer clearfix">
+            <div class="pull-left tag-list">
+                <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/centos/">centos</a> <a class="tag-link" href="/tags/linux/">linux</a>
+                
+            </span>
+        </span>
+    
+
+    
+</div>
+            </div>
+
+            <div class="post-permalink">
+                <a href="/2019/05/05/linuxfundamentalday4/" class="btn btn-default">阅读全文</a>
+            </div>
+        </footer>
+    
+</article>
+
+
+<article class="post">
+    
+        <div class="post-media">
+            <a href="/2019/04/28/vimtocppide/">
+                <img class="img-ajax" src="/img/loading.gif" data-src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/linux/asset/minibufexplorer.png" alt="把CentOS7中的vim打造成C++IDE">
+            </a>
+        </div>
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
+                <a href="/2019/04/28/vimtocppide/">把CentOS7中的vim打造成C++IDE</a>
+            </h1>
+            <div class="post-meta">  &bull;
+                <time class="post-date" datetime title>
+                    2019年04月28日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            
+                把CentOS7中的vim打造成C++IDE由于我个人平时常使用C/C++进行编程，所以我决定把CentOS下面的VIM这个强大的编辑器改造成一个强大的C++的IDE。下面是具体的步骤。
+安装pathogen该插件地址为：https:...
+            
+        </p>
+    </div>
+    
+        <footer class="post-footer clearfix">
+            <div class="pull-left tag-list">
+                <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/centos/">centos</a> <a class="tag-link" href="/tags/vim/">vim</a>
+                
+            </span>
+        </span>
+    
+
+    
+</div>
+            </div>
+
+            <div class="post-permalink">
+                <a href="/2019/04/28/vimtocppide/" class="btn btn-default">阅读全文</a>
+            </div>
+        </footer>
+    
+</article>
+
+
+<article class="post">
+    
+    <div class="post-content">
+        <div class="post-head home-post-head">
+            <h1 class="post-title">
+                <a href="/2019/04/25/leetcode190425/">leetcode题目解析（190425）</a>
+            </h1>
+            <div class="post-meta">  &bull;
+                <time class="post-date" datetime title>
+                    2019年04月25日
+                </time>
+            </div>
+        </div>
+        <p class="brief">
+            
+                Remove Duplicates from sorted Array II题目描述Follow up for “Remove Duplicates”:What if duplicates are allowed at most tw...
             
         </p>
     </div>
@@ -315,126 +520,7 @@
             </div>
 
             <div class="post-permalink">
-                <a href="/2019/05/24/leetcode190524/" class="btn btn-default">阅读全文</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-        <div class="post-media">
-            <a href="/2019/05/21/paperreadnotes190521/">
-                <img class="img-ajax" src="/img/loading.gif" data-src="http://tech.yushuai.xyz/wzpt/mvdrsp2.png" alt="论文阅读笔记20190521">
-            </a>
-        </div>
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/05/21/paperreadnotes190521/">论文阅读笔记20190521</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime title>
-                    2019年05月21日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                Multi-channel signal enhancement with speech and noise covariance estimates computed by a probabilistic localization ...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-                    <a class="tag-link" href="/tags/MVDR/">MVDR</a> <a class="tag-link" href="/tags/Spatio-temporal-speech-probability-map/">Spatio-temporal speech probability map</a> <a class="tag-link" href="/tags/noise-covariance-estimation/">noise covariance estimation</a> <a class="tag-link" href="/tags/论文阅读笔记/">论文阅读笔记</a>
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/05/21/paperreadnotes190521/" class="btn btn-default">阅读全文</a>
-            </div>
-        </footer>
-    
-</article>
-
-
-<article class="post">
-    
-        <div class="post-media">
-            <a href="/2019/05/19/nowcodermonimay/">
-                <img class="img-ajax" src="/img/loading.gif" data-src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/leetcode/assets/nowcodermay1.png" alt="2019年牛客网校招全国同一模拟笔试（5月场）部分题目解析">
-            </a>
-        </div>
-    
-    <div class="post-content">
-        <div class="post-head home-post-head">
-            <h1 class="post-title">
-                <a href="/2019/05/19/nowcodermonimay/">2019年牛客网校招全国同一模拟笔试（5月场）部分题目解析</a>
-            </h1>
-            <div class="post-meta">  &bull;
-                <time class="post-date" datetime title>
-                    2019年05月19日
-                </time>
-            </div>
-        </div>
-        <p class="brief">
-            
-                2019年牛客网校招全国同一模拟笔试（5月场）部分题目解析一、选择题部分1.有关多线程，多进程的描述错误的是
-A.子进程获得父进程的数据空间，堆和栈的复制品B.线程可以与同进程的其他线程共享数据，但是它拥有自己的栈空间且拥有独立的执行...
-            
-        </p>
-    </div>
-    
-        <footer class="post-footer clearfix">
-            <div class="pull-left tag-list">
-                <div class="post-meta">
-    
-        <span class="categories-meta fa-wrap">
-            <i class="fa fa-folder-open-o"></i>
-            <a class="category-link" href="/categories/Learning-Notes/">Learning Notes</a>
-        </span>
-    
-
-    
-        <span class="fa-wrap">
-            <i class="fa fa-tags"></i>
-            <span class="tags-meta">
-                
-                    <a class="tag-link" href="/tags/C/">C++</a> <a class="tag-link" href="/tags/模拟笔试/">模拟笔试</a>
-                
-            </span>
-        </span>
-    
-
-    
-</div>
-            </div>
-
-            <div class="post-permalink">
-                <a href="/2019/05/19/nowcodermonimay/" class="btn btn-default">阅读全文</a>
+                <a href="/2019/04/25/leetcode190425/" class="btn btn-default">阅读全文</a>
             </div>
         </footer>
     
@@ -445,7 +531,7 @@ A.子进程获得父进程的数据空间，堆和栈的复制品B.线程可以�
 
     <nav class="pagination" role="navigation">
         <div id="page-nav">
-            <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/28/">28</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
+            <a class="extend prev" rel="prev" href="/page/8/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/">10</a><a class="page-number" href="/page/11/">11</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/10/"><i class="fa fa-angle-right"></i></a>
         </div>
     </nav>
 
@@ -458,39 +544,10 @@ A.子进程获得父进程的数据空间，堆和栈的复制品B.线程可以�
         
         
     <div class="widget">
-        <h3 class="title">搜索</h3>
-        <div id="search-form">
-            <div id="result-mask" class="hide"></div>
-            <div class="search-area">
-                
-                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
-                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
-                
-                
-            </div>
-            <div id="result-wrap" class="hide">
-                <div id="search-result"></div>
-            </div>
-            <div class="hide">
-                <template id="search-tpl">
-                    <div class="item">
-                        <a href="/{path}" title="{title}">
-                            <div class="title">{title}</div>
-                            <div class="content">{content}</div>
-                        </a>
-                    </div>
-                </template>
-            </div>
-        </div>
-    </div>
-
-        
-        
-    <div class="widget">
         <h3 class="title">网站公告</h3>
         <div class="notification">
             <p>
-    欢迎来到我的博客~我关注于C++、C、语音增强、麦克风阵列波束形成等领域。
+    欢迎来到我的博客~我关注于语音增强、WebRTC、VAD、AGC、麦克风阵列波束形成等领域。
 </p>
         </div>
     </div>
@@ -528,6 +585,37 @@ A.子进程获得父进程的数据空间，堆和栈的复制品B.线程可以�
         </div>
     </div>
 
+
+        
+        
+    <div class="widget">
+        <h3 class="title">搜索</h3>
+        <div id="search-form">
+            <div id="result-mask" class="hide"></div>
+            <div class="search-area">
+                
+                    <input id="search-key" type="search" autocomplete="off" placeholder="搜点什么呢？">
+                    <button type="button" class="search-form-submit" id="search-local">站内搜索</button>
+                
+                
+                    <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Google Search"><button type="submit" class="search-form-submit">谷歌搜索</button><input type="hidden" name="sitesearch" value="http://tech.yushuai.xyz"></form>
+                
+            </div>
+            <div id="result-wrap" class="hide">
+                <div id="search-result"></div>
+            </div>
+            <div class="hide">
+                <template id="search-tpl">
+                    <div class="item">
+                        <a href="/{path}" title="{title}">
+                            <div class="title">{title}</div>
+                            <div class="content">{content}</div>
+                        </a>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </div>
 
         
         
