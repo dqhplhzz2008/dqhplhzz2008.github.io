@@ -1,0 +1,372 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Leetcode 207：课程表题目描述现在你总共有 n 门课需要选，记为 0 到 n-1。
+在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Leetcode题目解析（191111）：207&amp;2018 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Leetcode题目解析（191111）：207&amp;2018">
+            
+	            Leetcode题目解析（191111）：207&amp;2018
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/11/11</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Leetcode-207：课程表"><a href="#Leetcode-207：课程表" class="headerlink" title="Leetcode 207：课程表"></a>Leetcode 207：课程表</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>现在你总共有 n 门课需要选，记为 0 到 n-1。</p>
+<p>在选修某些课程之前需要一些先修课程。 例如，想要学习课程 0 ，你需要先完成课程 1 ，我们用一个匹配来表示他们: [0,1]</p>
+<p>给定课程总量以及它们的先决条件，判断是否可能完成所有课程的学习？</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>这个题目是一个图的问题，所给的示例是用边缘列表来表示的图。也即假如边缘列表表示如下</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>节点1</th>
+<th>节点2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>所表示的图为</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode207youhuantu.jpg" alt="图"></p>
+<p>可以发现上图就是一个无法实现课程的图，这类的特点是它是一个<strong>有向有环图</strong>。</p>
+<p>所以这个问题可以转换为另一个问题：<strong>如何判断一个图是有向无环图？</strong></p>
+<p>使用拓扑排序如下：</p>
+<ul>
+<li>首先新建一个入度表<code>indegrees</code>，用于记录每个节点的入度。</li>
+<li>新建一个队列<code>que</code>，用于存储入度为0的节点。</li>
+<li>当queue非空，一次将首节点出队，在图中删除此节点pre，并将<code>--numCourses</code>。当然，我们不是真正从邻接表中删除pre，而是将indegrees[cur]-=1；当入度-1邻接节点cur的入度为0的时候，说明cur所有前驱结点已经删除，可以入队。</li>
+<li>若是有向无环图，则所有节点一定入队并且出队过，即若存在环的话，一定有节点入度始终不为0，即numCourses大于0。所以判断<code>numCourses==0</code>即可判断出是否是有向无环图。</li>
+</ul>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">canFinish</span><span class="params">(<span class="keyword">int</span> numCourses, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; prerequisites)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(prerequisites.empty()) </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">	<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; indegrees(numCourses, <span class="number">0</span>);<span class="comment">//新建入度表</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; prerequisites.size();i++)</span><br><span class="line">	&#123;</span><br><span class="line">		++indegrees[prerequisites[i][<span class="number">0</span>]];</span><br><span class="line">	&#125;<span class="comment">//统计每一个节点入度</span></span><br><span class="line">	<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt; que;<span class="comment">//新建一个队列，用于存储入度为0的节点</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numCourses; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (indegrees[i] == <span class="number">0</span>)</span><br><span class="line">			que.push(i);</span><br><span class="line">	&#125;<span class="comment">//借助一个队列，将入度为0的节点入队</span></span><br><span class="line">	<span class="keyword">while</span> (!que.empty())</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">int</span> pre = que.front();</span><br><span class="line">		que.pop();</span><br><span class="line">		--numCourses;<span class="comment">//在每次pre出队的时候，执行--numCourses</span></span><br><span class="line">		<span class="comment">//当queue非空，一次将首节点出队，在图中删除此节点pre</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">auto</span> req : prerequisites)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (req[<span class="number">1</span>] != pre)</span><br><span class="line">				<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span> (--indegrees[req[<span class="number">0</span>]] == <span class="number">0</span>)</span><br><span class="line">				que.push(req[<span class="number">0</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="comment">//并不是真正从邻接表中删除pre，而是将indegrees[cur]-=1</span></span><br><span class="line">		<span class="comment">//当入度-1邻接节点cur的入度为0的时候，说明cur所有前驱结点已经删除，可以入队。</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">//若是有向无环图，则所有节点一定入队并且出队过，即若存在环的话，一定有节点入度始终不为0，即numCourses大于0</span></span><br><span class="line">	<span class="comment">//所以判断numCourses==0即可</span></span><br><span class="line">	<span class="keyword">return</span> numCourses == <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode207result.jpg" alt="运行时间"><br>复杂度挺高的</p>
+<h1 id="Leetcode-208：实现Trie（前缀树）"><a href="#Leetcode-208：实现Trie（前缀树）" class="headerlink" title="Leetcode 208：实现Trie（前缀树）"></a>Leetcode 208：实现Trie（前缀树）</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>实现一个 Trie (前缀树)，包含<code>insert</code>, <code>search</code>, 和 <code>startsWith</code> 这三个操作。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Trie trie = <span class="keyword">new</span> Trie();</span><br><span class="line"></span><br><span class="line">trie.insert(<span class="string">"apple"</span>);</span><br><span class="line">trie.search(<span class="string">"apple"</span>);   <span class="comment">// 返回 true</span></span><br><span class="line">trie.search(<span class="string">"app"</span>);     <span class="comment">// 返回 false</span></span><br><span class="line">trie.startsWith(<span class="string">"app"</span>); <span class="comment">// 返回 true</span></span><br><span class="line">trie.insert(<span class="string">"app"</span>);   </span><br><span class="line">trie.search(<span class="string">"app"</span>);     <span class="comment">// 返回 true</span></span><br></pre></td></tr></table></figure>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>Trie树的结点结构<br>Trie树是一个有根的树，其结点具有以下字段：。</p>
+<p>最多 R个指向子结点的链接，其中每个链接对应字母表数据集中的一个字母。<br>本文中假定 R为26，小写拉丁字母的数量。布尔字段，以指定节点是对应键的结尾还是只是键前缀。</p>
+<h3 id="向Trial插入字符串"><a href="#向Trial插入字符串" class="headerlink" title="向Trial插入字符串"></a>向Trial插入字符串</h3><p>我们通过搜索 Trie 树来插入一个键。我们从根开始搜索它对应于第一个键字符的链接。有两种情况：</p>
+<ul>
+<li>如果链接已经存在。那么沿着链接移动到树的下一个子层。算法继续搜索下一个键字符。</li>
+<li>如果链接不存在。创建一个新的节点，并将它与父节点的链接相连，该链接与当前的键字符相匹配。</li>
+</ul>
+<p>重复以上步骤，直到到达键的最后一个字符，然后将当前节点标记为结束节点，算法完成。</p>
+<p><strong>时间复杂度</strong>：O(m)，其中m为键长。在算法的每次迭代中，我们要么检查要么创建一个节点，直到到达键尾。只需要 m次操作。</p>
+<p><strong>空间复杂度</strong>：O(m)。最坏的情况下，新插入的键和 Trie 树中已有的键没有公共前缀。此时需要添加 m 个结点，使用 O(m)空间。</p>
+<h3 id="查找Trial中的字符串"><a href="#查找Trial中的字符串" class="headerlink" title="查找Trial中的字符串"></a>查找Trial中的字符串</h3><p>这个思路很简单。每个键在Trie树种都表示从根到内部结点或者叶的路径。我们用第一个键字符开始，检查当前结点与建字符对应的链接，其有两种情况：</p>
+<ul>
+<li>存在链接。继续往下一个结点走，如此循环。</li>
+<li>没有链接。再看isStr是否是True，是则返回true，否则就返回false。</li>
+</ul>
+<p>时间复杂度：O(m)，空间复杂度O(1)。</p>
+<h3 id="查找Trie中的键前缀"><a href="#查找Trie中的键前缀" class="headerlink" title="查找Trie中的键前缀"></a>查找Trie中的键前缀</h3><p>类似于前面的方法，但是到达键前缀的末尾时，总是返回true。理由也很简单，我们只是为了寻找与键前缀相匹配的字符串而已，并不是完全相等的字符串。</p>
+<p>时间复杂度：O(m)，空间复杂度O(1)。</p>
+<p>参考：<a href="https://leetcode-cn.com/problems/implement-trie-prefix-tree/solution/shi-xian-trie-qian-zhui-shu-by-leetcode/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/implement-trie-prefix-tree/solution/shi-xian-trie-qian-zhui-shu-by-leetcode/</a></p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAXN = <span class="number">26</span>;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Trie</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">	<span class="keyword">bool</span> isStr;<span class="comment">//当前结点是否为一个完整的字符串</span></span><br><span class="line">	Trie* next[MAXN];</span><br><span class="line">	<span class="comment">/** Initialize your data structure here. */</span></span><br><span class="line">	Trie() &#123;</span><br><span class="line">		isStr = <span class="literal">NULL</span>;</span><br><span class="line">		<span class="built_in">memset</span>(next, <span class="number">0</span>, <span class="keyword">sizeof</span>(next));</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Inserts a word into the trie. */</span></span><br><span class="line">	<span class="function"><span class="keyword">void</span> <span class="title">insert</span><span class="params">(<span class="built_in">string</span> word)</span> </span>&#123;</span><br><span class="line">		Trie* cur = <span class="keyword">this</span>;<span class="comment">//cur初始化为根节点指针</span></span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">char</span> w : word) &#123;<span class="comment">//遍历word中每一个字符</span></span><br><span class="line">			<span class="keyword">if</span> (cur-&gt;next[w - <span class="string">'a'</span>] == <span class="literal">NULL</span>)<span class="comment">//下一个结点不存在，新增一个结点</span></span><br><span class="line">			&#123;</span><br><span class="line">				Trie* nnode = <span class="keyword">new</span> Trie();</span><br><span class="line">				cur-&gt;next[w - <span class="string">'a'</span>] = nnode;</span><br><span class="line">			&#125;</span><br><span class="line">			cur = cur-&gt;next[w - <span class="string">'a'</span>];</span><br><span class="line">		&#125;</span><br><span class="line">		cur-&gt;isStr = <span class="literal">true</span>;<span class="comment">//当前结点已经是一个完整的字符串</span></span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Returns if the word is in the trie. */</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">search</span><span class="params">(<span class="built_in">string</span> word)</span> </span>&#123;</span><br><span class="line">		Trie* cur = <span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">char</span> w : word) &#123;</span><br><span class="line">			<span class="keyword">if</span> (cur != <span class="literal">NULL</span>)</span><br><span class="line">				cur = cur-&gt;next[w - <span class="string">'a'</span>];<span class="comment">//更新cr指针的指向，指向下一个结点</span></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> (cur != <span class="literal">NULL</span> &amp;&amp; cur-&gt;isStr);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/** Returns if there is any word in the trie that starts with the given prefix. */</span></span><br><span class="line">	<span class="function"><span class="keyword">bool</span> <span class="title">startsWith</span><span class="params">(<span class="built_in">string</span> prefix)</span> </span>&#123;</span><br><span class="line">		Trie* cur = <span class="keyword">this</span>;</span><br><span class="line">		<span class="keyword">for</span> (<span class="keyword">char</span> w : prefix) &#123;</span><br><span class="line">			<span class="keyword">if</span> (cur != <span class="literal">NULL</span>)</span><br><span class="line">				cur = cur-&gt;next[w - <span class="string">'a'</span>];<span class="comment">//同上</span></span><br><span class="line"></span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> (cur != <span class="literal">NULL</span>);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode208result.jpg" alt="运行时间"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/11/08/leetcode191108/" class="next-post btn btn-default" title="Leetcode题目解析（191108）：215及221">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191108）：215及221</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-207：课程表"><span class="toc-text">Leetcode 207：课程表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-208：实现Trie（前缀树）"><span class="toc-text">Leetcode 208：实现Trie（前缀树）</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-1"><span class="toc-text">解题思路</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#向Trial插入字符串"><span class="toc-text">向Trial插入字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查找Trial中的字符串"><span class="toc-text">查找Trial中的字符串</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#查找Trie中的键前缀"><span class="toc-text">查找Trie中的键前缀</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
