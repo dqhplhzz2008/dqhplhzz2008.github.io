@@ -331,7 +331,7 @@ void initial_parameter(double W, int n)
     }
     cout &lt;&lt; endl;
 }
-</code></pre><h3 id="算法复杂度和改进"><a href="#算法复杂度和改进" class="headerlink" title="算法复杂度和改进"></a>算法复杂度和改进</h3><p>1.算法复杂度<br>（1）时间复杂度：O(1<em>2<sup>n</sup>+n </em> 2<sup>n</sup>)=O(n * 2<sup>n</sup>)。<br>（2）空间复杂度：O(n)。<br>2.算法优化<br>实际上，经常我们在计算bound()函数的时候对于rp多算太多了，因为很有可能rp到某一步就超过了购物车的中梁，所以我们可以缩小上界，从而加快剪枝速度，提高搜索效率。<br>上界函数bound()：当前价值cp+剩余容量可容纳的剩余物品的最大价值brp（为了能装最大价值，所以在计算上界函数的时候可以对商品分割，<strong>但实际的时候不允许</strong>），即修改为</p>
+</code></pre><h3 id="算法复杂度和改进"><a href="#算法复杂度和改进" class="headerlink" title="算法复杂度和改进"></a>算法复杂度和改进</h3><p>1.算法复杂度<br>（1）时间复杂度：O(1<em>2<sup>n</sup>+n </em> 2<sup>n</sup>)=O(n <em> 2<sup>n</sup>)。<br>（2）空间复杂度：O(n)。<br>2.算法优化<br>实际上，经常我们在计算bound()函数的时候对于rp多算太多了，因为很有可能rp到某一步就超过了购物车的中梁，所以我们可以缩小上界，从而加快剪枝速度，提高搜索效率。<br>上界函数bound()：当前价值cp+剩余容量可容纳的剩余物品的最大价值brp（为了能装最大价值，所以在计算上界函数的时候可以对商品分割，<em>*但实际的时候不允许</em></em>），即修改为</p>
 <pre><code>double bound(int i)
 {
     //剩余物品为第i~n种物品
@@ -1018,6 +1018,7 @@ void print()
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

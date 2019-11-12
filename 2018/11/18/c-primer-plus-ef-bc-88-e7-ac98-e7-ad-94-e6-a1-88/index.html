@@ -186,7 +186,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>357</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
+                本文于<strong>358</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
             </p>
         
     </div>
@@ -200,8 +200,8 @@
 <p>#include<iostream></iostream></p>
 <p>#include<string></string></p>
 <p>#include<cstring></cstring></p>
-<p>#include”bankacc.h”<br>using namespace std;<br>Bank::Bank() {<br>    strcpy(name, “no name”);<br>    name[30] = ‘\0’;<br>    strcpy(account, “100000”);<br>    account[6] = ‘\0’;<br>    debt = 0.0;<br>}<br>Bank::Bank(const char *co, const char *ac, double db)<br>{<br>    strncpy(name, co, 29);<br>    strncpy(account, ac,6);<br>    name[30] = ‘\0’;<br>    account[6] = ‘\0’;<br>    debt = db;</p>
-<p>}<br>Bank::~Bank() {<br>    cout &lt;&lt; “Your account has been deleted.Thank your for using our service.\n”;<br>}<br>void Bank::show() const<br>{<br>    cout &lt;&lt; “Account Name: “ &lt;&lt; name &lt;&lt; endl;<br>    cout &lt;&lt; “Account ID: “ &lt;&lt; account &lt;&lt; endl;<br>    cout &lt;&lt; “Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>}<br>void Bank::deposit(const double money)<br>{<br>    debt += money;<br>    cout &lt;&lt; “Your Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>    cout &lt;&lt; “Thank you for using deposit service.Bye~\n”;</p>
+<p>#include”bankacc.h”<br>using namespace std;<br>Bank::Bank() {<br>    strcpy(name, “no name”);<br>    name[30] = ‘\\0’;<br>    strcpy(account, “100000”);<br>    account[6] = ‘\\0’;<br>    debt = 0.0;<br>}<br>Bank::Bank(const char *co, const char *ac, double db)<br>{<br>    strncpy(name, co, 29);<br>    strncpy(account, ac,6);<br>    name[30] = ‘\\0’;<br>    account[6] = ‘\\0’;<br>    debt = db;</p>
+<p>}<br>Bank::~Bank() {<br>    cout &lt;&lt; “Your account has been deleted.Thank your for using our service.\\n”;<br>}<br>void Bank::show() const<br>{<br>    cout &lt;&lt; “Account Name: “ &lt;&lt; name &lt;&lt; endl;<br>    cout &lt;&lt; “Account ID: “ &lt;&lt; account &lt;&lt; endl;<br>    cout &lt;&lt; “Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>}<br>void Bank::deposit(const double money)<br>{<br>    debt += money;<br>    cout &lt;&lt; “Your Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>    cout &lt;&lt; “Thank you for using deposit service.Bye~\\n”;</p>
 <p>}<br>void Bank::withdrawal(const double money) {<br>    if (money &lt;= debt)<br>    {<br>        debt -= money;<br>        cout &lt;&lt; “Your Debt: $” &lt;&lt; debt &lt;&lt; endl;<br>    }</p>
 <pre><code>else
     cout &lt;&lt; &quot;Error, you do not have enough money.\\n&quot;;
@@ -219,8 +219,8 @@ return 0;
 <p><strong>2.下面是一个非常简单的类定义：</strong> <strong>（……代码省略……）</strong> <strong>通过提供未定义的方法来完成这个类的实现。然后，编写一个使用这个类的程序，它使用了几种可能的构造函数调用（没有参数、一个参数和两个参数）以及两种显示方法。</strong> person.cpp</p>
 <p>#include<iostream></iostream></p>
 <p>#include<string></string></p>
-<p>#include<cstring><br>using namespace std;<br>const int LIMIT = 25;<br>class Person {<br>private:<br>    string lname;<br>    char fname[LIMIT];<br>public:<br>    Person();<br>    Person(const string &amp;ln, const char*fn = “Heyyou”);<br>    void Show() const;<br>    void FormalShow() const;<br>};<br>Person::Person()<br>{<br>    lname = “”;<br>    fname[0] = ‘\0’;</cstring></p>
-<p>}<br>Person::Person(const string &amp; ln, const char *fn) {<br>    lname = ln;<br>    strncpy(fname, fn, LIMIT-1);<br>    fname[LIMIT - 1] = ‘\0’;</p>
+<p>#include<cstring><br>using namespace std;<br>const int LIMIT = 25;<br>class Person {<br>private:<br>    string lname;<br>    char fname[LIMIT];<br>public:<br>    Person();<br>    Person(const string &amp;ln, const char*fn = “Heyyou”);<br>    void Show() const;<br>    void FormalShow() const;<br>};<br>Person::Person()<br>{<br>    lname = “”;<br>    fname[0] = ‘\\0’;</cstring></p>
+<p>}<br>Person::Person(const string &amp; ln, const char *fn) {<br>    lname = ln;<br>    strncpy(fname, fn, LIMIT-1);<br>    fname[LIMIT - 1] = ‘\\0’;</p>
 <p>}<br>void Person::Show()const {<br>    cout &lt;&lt; fname &lt;&lt; “ “ &lt;&lt; lname &lt;&lt; endl;</p>
 <p>}</p>
 <p>void Person::FormalShow() const {<br>    cout &lt;&lt; lname &lt;&lt; “ “ &lt;&lt; fname &lt;&lt; endl;</p>
@@ -233,7 +233,7 @@ return 0;
 <p>#include <iostream></iostream></p>
 <p>#include <cstring></cstring></p>
 <p>#include “golf.h”<br>using namespace std;</p>
-<p>Golf::Golf(const char * name, int hc)<br>{<br>    strncpy(fullname, name, 40);<br>    fullname[39] = ‘\0’;<br>    handicap = hc;<br>}</p>
+<p>Golf::Golf(const char * name, int hc)<br>{<br>    strncpy(fullname, name, 40);<br>    fullname[39] = ‘\\0’;<br>    handicap = hc;<br>}</p>
 <p>Golf::~Golf()<br>{<br>    cout &lt;&lt; “Bye!” &lt;&lt; endl;<br>}</p>
 <p>bool Golf::setGolf()<br>{<br>    char fullname[Len];<br>    int handicap;</p>
 <pre><code>cout &lt;&lt; &quot;Please input the name of the golf player: &quot;;
@@ -250,7 +250,7 @@ else
     return false;
 </code></pre><p>}</p>
 <p>void Golf::sethandicap(int hc)<br>{<br>    handicap = hc;<br>}</p>
-<p>void Golf::showGolf()const<br>{<br>    std::cout &lt;&lt; “hullname: “ &lt;&lt; fullname &lt;&lt; “, \thandicap: “ &lt;&lt; handicap &lt;&lt; std::endl;<br>}</p>
+<p>void Golf::showGolf()const<br>{<br>    std::cout &lt;&lt; “hullname: “ &lt;&lt; fullname &lt;&lt; “, \\thandicap: “ &lt;&lt; handicap &lt;&lt; std::endl;<br>}</p>
 <p>main.cpp</p>
 <p>#include <iostream></iostream></p>
 <p>#include “golf.h”<br>using namespace std;<br>int main()<br>{<br>    Golf one;<br>    Golf two;<br>    Golf three;</p>
@@ -276,7 +276,7 @@ return 0;
 <p>static.cpp</p>
 <p>#include <iostream></iostream></p>
 <p>#include “stack.h”<br>using namespace std;<br>Stack::Stack()<br>{<br>    top = 0;<br>    total = 0;<br>}</p>
-<p>Stack::~Stack()<br>{<br>    cout &lt;&lt; “Bye!\n”;<br>}</p>
+<p>Stack::~Stack()<br>{<br>    cout &lt;&lt; “Bye!\\n”;<br>}</p>
 <p>bool Stack::isempty()const<br>{<br>    return top == 0;<br>}</p>
 <p>bool Stack::isfull()const<br>{<br>    return top == MAX;<br>}</p>
 <p>bool Stack::push(const Item &amp; item)<br>{<br>    if (top &lt; MAX)<br>    {<br>        items[top++] = item;<br>        return true;<br>    }<br>    else<br>        return false;<br>}</p>
@@ -285,11 +285,11 @@ return 0;
 <p>#include <iostream></iostream></p>
 <p>#include <cctype></cctype></p>
 <p>#include “stack.h”</p>
-<p>int main()<br>{<br>    using namespace std;<br>    Stack st;   // create an empty stack<br>    char ch;<br>    CUSTOMER po;<br>    cout &lt;&lt; “Please enter A to add a purchase order.\n”<br>        &lt;&lt; “P to process a PO,or Q to quit.\n”;<br>    while (cin &gt;&gt; ch &amp;&amp; toupper(ch) != ‘Q’)<br>    {<br>        while (cin.get() != ‘\n’)<br>            continue;<br>        if (!isalpha(ch))<br>        {<br>            cout &lt;&lt; ‘\a’;<br>            continue;<br>        }<br>        switch (ch)<br>        {<br>        case ‘A’:<br>        case ‘a’:<br>            cout &lt;&lt; “Enter a PO fullname to add:\t”;<br>            cin.getline(po.fullname, 35);<br>            cout &lt;&lt; “Enter a PO payment to add:\t”;<br>            cin &gt;&gt; po.payment;<br>            if (st.isfull())<br>                cout &lt;&lt; “stack already full\n”;<br>            else<br>                st.push(po);<br>            break;<br>        case ‘P’:<br>        case ‘p’:if (st.isempty())<br>            cout &lt;&lt; “Stack already empty\n”;<br>                 else<br>                     st.pop(po);<br>            break;<br>        }<br>        cout &lt;&lt; “Please enter A to add a purchase order,\n”<br>            &lt;&lt; “P to process a PO, or Q to quit.\n”;<br>    }<br>    cout &lt;&lt; “Bye\n”;<br>    return 0;<br>}</p>
+<p>int main()<br>{<br>    using namespace std;<br>    Stack st;   // create an empty stack<br>    char ch;<br>    CUSTOMER po;<br>    cout &lt;&lt; “Please enter A to add a purchase order.\\n”<br>        &lt;&lt; “P to process a PO,or Q to quit.\\n”;<br>    while (cin &gt;&gt; ch &amp;&amp; toupper(ch) != ‘Q’)<br>    {<br>        while (cin.get() != ‘\\n’)<br>            continue;<br>        if (!isalpha(ch))<br>        {<br>            cout &lt;&lt; ‘\\a’;<br>            continue;<br>        }<br>        switch (ch)<br>        {<br>        case ‘A’:<br>        case ‘a’:<br>            cout &lt;&lt; “Enter a PO fullname to add:\\t”;<br>            cin.getline(po.fullname, 35);<br>            cout &lt;&lt; “Enter a PO payment to add:\\t”;<br>            cin &gt;&gt; po.payment;<br>            if (st.isfull())<br>                cout &lt;&lt; “stack already full\\n”;<br>            else<br>                st.push(po);<br>            break;<br>        case ‘P’:<br>        case ‘p’:if (st.isempty())<br>            cout &lt;&lt; “Stack already empty\\n”;<br>                 else<br>                     st.pop(po);<br>            break;<br>        }<br>        cout &lt;&lt; “Please enter A to add a purchase order,\\n”<br>            &lt;&lt; “P to process a PO, or Q to quit.\\n”;<br>    }<br>    cout &lt;&lt; “Bye\\n”;<br>    return 0;<br>}</p>
 <p><strong>6. 根据类声明，提供成员函数的定义和测试这个类的程序。</strong></p>
 <p>#include<iostream><br>using namespace std;<br>class Move<br>{<br>private:<br>    double x;<br>    double y;<br>public:<br>    Move(double a = 0, double b = 0);<br>    void showmove()const;<br>    Move add(const Move &amp;m)const;<br>    void reset(double a = 0, double b = 0);<br>};<br>Move::Move(double a, double b)<br>{<br>    x = a;<br>    y = b;<br>}<br>void Move::showmove()const {<br>    cout &lt;&lt; “x= “ &lt;&lt; x &lt;&lt; endl;<br>    cout &lt;&lt; “y= “ &lt;&lt; y &lt;&lt; endl;<br>}<br>Move Move::add(const Move &amp; m) const {<br>    return Move(x + m.x, y + m.y);</iostream></p>
 <p>}<br>void Move::reset(double a, double b)<br>{<br>    x = a;<br>    y = b;<br>}</p>
-<p>int main() {<br>    Move move1;<br>    cout &lt;&lt; “Move1:\n”;<br>    move1.showmove();<br>    Move move2 = Move(2.3, 1.9);<br>    cout &lt;&lt; “Move2:\n”;<br>    move2.showmove();<br>    move1 = move1.add(move2);<br>    cout &lt;&lt; “Move1 after adding move2:\n”;<br>    move1.showmove();<br>    move1.reset();<br>    move2.reset();<br>    cout &lt;&lt; “Reset Move1:\n”;<br>    move1.showmove();<br>    cout &lt;&lt; “Reset Move2:\n”;<br>    move2.showmove();<br>    system(“pause”);<br>    return 0;</p>
+<p>int main() {<br>    Move move1;<br>    cout &lt;&lt; “Move1:\\n”;<br>    move1.showmove();<br>    Move move2 = Move(2.3, 1.9);<br>    cout &lt;&lt; “Move2:\\n”;<br>    move2.showmove();<br>    move1 = move1.add(move2);<br>    cout &lt;&lt; “Move1 after adding move2:\\n”;<br>    move1.showmove();<br>    move1.reset();<br>    move2.reset();<br>    cout &lt;&lt; “Reset Move1:\\n”;<br>    move1.showmove();<br>    cout &lt;&lt; “Reset Move2:\\n”;<br>    move2.showmove();<br>    system(“pause”);<br>    return 0;</p>
 <p>}</p>
 <p>备注： 操作系统：Windows 10 x64(1803) 编译器：Microsoft Visual Studio 2015</p>
 
@@ -377,6 +377,7 @@ return 0;
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

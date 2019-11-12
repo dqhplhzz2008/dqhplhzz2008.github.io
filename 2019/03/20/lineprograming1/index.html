@@ -634,7 +634,7 @@ void DCXA()
 <h3 id="增广路算法（Ford-Fulkerson算法）"><a href="#增广路算法（Ford-Fulkerson算法）" class="headerlink" title="增广路算法（Ford-Fulkerson算法）"></a>增广路算法（Ford-Fulkerson算法）</h3><p><strong>基本概念</strong></p>
 <ol>
 <li>实流网络：实际流量的网络。</li>
-<li>残余网络：每个网络G及其上的一个流flow，都对应一个残余网络G<sup><em></em></sup>。G<sup></sup>和G结点集相同，而网络G中的每条边对应G<sup>*</sup>中的一条边或两条边。<strong>在残余网络中，与网络边对应的同向边是可增量（即还可以增加多少），反向边是实际流量。</strong></li>
+<li>残余网络：每个网络G及其上的一个流flow，都对应一个残余网络G<sup><em></em></sup>。G<sup></sup>和G结点集相同，而网络G中的每条边对应G<sup><em></em></sup>中的一条边或两条边。<em>*在残余网络中，与网络边对应的同向边是可增量（即还可以增加多少），反向边是实际流量。</em></li>
 <li><strong>可增广路</strong>是残余网络G<sup>*</sup>中一条从源点s到汇点t的简单路径。</li>
 <li><strong>可增广量</strong>是指在可增广路p上每条边可以增加的流量最小值。</li>
 </ol>
@@ -1612,6 +1612,7 @@ cout&lt;&lt;endl;
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

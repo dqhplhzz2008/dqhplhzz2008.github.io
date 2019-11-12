@@ -185,7 +185,7 @@ KMP算法的基本原理假设字符串S=BBC ABCDAB ABCDABCDA...">
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>348</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
+                本文于<strong>349</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
             </p>
         
     </div>
@@ -408,7 +408,7 @@ KMP算法的基本原理假设字符串S=BBC ABCDAB ABCDABCDA...">
 <p>nextval[i] = s[next[i]]==s[i]?nextval[s[next[i]]]:next[i]</p>
 <h2 id="KMP算法的代码"><a href="#KMP算法的代码" class="headerlink" title="KMP算法的代码"></a>KMP算法的代码</h2><p><strong>KMP**</strong>算法：可以实现复杂度为<strong>**O(m+n)</strong></p>
 <p>#include&lt;stdio.h&gt;</p>
-<p>#include&lt;string.h&gt;<br>void getNext(const char P[], int next[])<br>{<br>    int q, k;<br>    int m = strlen(P);<br>    next[0] = 0;<br>    for (q = 1, k = 0; q &lt; m; ++q)<br>    {<br>        while (k &gt; 0 &amp;&amp; P[q] != P[k])<br>            k = next[k - 1];<br>        if (P[q] == P[k])<br>        {<br>            k++;<br>        }<br>        next[q] = k;<br>    }<br>}<br>int kmp(const char T[], const char P[], int next[])<br>{<br>    int n, m;<br>    int i, q;<br>    n = strlen(T);<br>    m = strlen(P);<br>    getNext(P, next);<br>    for (i = 0, q = 0; i &lt; n; ++i)<br>    {<br>        while (q &gt; 0 &amp;&amp; P[q] != T[i])<br>            q = next[q - 1];<br>        if (P[q] == T[i])<br>        {<br>            q++;<br>        }<br>        if (q == m) // 输出找到的位置  还可以判断i == n - 1 未找到<br>        {<br>            printf(“Pattern occurs with shift:%d\n”, (i - m + 1));<br>        }<br>    }<br>}</p>
+<p>#include&lt;string.h&gt;<br>void getNext(const char P[], int next[])<br>{<br>    int q, k;<br>    int m = strlen(P);<br>    next[0] = 0;<br>    for (q = 1, k = 0; q &lt; m; ++q)<br>    {<br>        while (k &gt; 0 &amp;&amp; P[q] != P[k])<br>            k = next[k - 1];<br>        if (P[q] == P[k])<br>        {<br>            k++;<br>        }<br>        next[q] = k;<br>    }<br>}<br>int kmp(const char T[], const char P[], int next[])<br>{<br>    int n, m;<br>    int i, q;<br>    n = strlen(T);<br>    m = strlen(P);<br>    getNext(P, next);<br>    for (i = 0, q = 0; i &lt; n; ++i)<br>    {<br>        while (q &gt; 0 &amp;&amp; P[q] != T[i])<br>            q = next[q - 1];<br>        if (P[q] == T[i])<br>        {<br>            q++;<br>        }<br>        if (q == m) // 输出找到的位置  还可以判断i == n - 1 未找到<br>        {<br>            printf(“Pattern occurs with shift:%d\\n”, (i - m + 1));<br>        }<br>    }<br>}</p>
 <p>int main()<br>{<br>    int i;<br>    int next[100] = { 0 };<br>    char T[20], P[20];<br>    scanf(“%s%s”, T, P);</p>
 <pre><code>printf(&quot;%s\\n&quot;, T);
 printf(&quot;%s\\n&quot;, P);
@@ -505,6 +505,7 @@ return 0;
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

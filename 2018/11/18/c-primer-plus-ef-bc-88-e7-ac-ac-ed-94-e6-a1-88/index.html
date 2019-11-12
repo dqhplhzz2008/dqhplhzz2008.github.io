@@ -185,7 +185,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>357</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
+                本文于<strong>358</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
             </p>
         
     </div>
@@ -196,7 +196,7 @@
 <p>#include <cstdlib></cstdlib></p>
 <p>#include <ctime></ctime></p>
 <p>#include <fstream></fstream></p>
-<p>#include “vector.h”<br>using namespace std;<br>using VECTOR::Vector;<br>int main() {<br>    ofstream outFile;<br>    outFile.open(“exercise1.txt”);<br>    srand(time(0));<br>    double direction;<br>    Vector step;<br>    Vector result(0.0, 0.0);<br>    unsigned long steps = 0;<br>    double target;<br>    double dstep;<br>    cout &lt;&lt; “Enter target distance(q to quit): “;<br>    while (cin &gt;&gt; target)<br>    {<br>        cout &lt;&lt; “Enter step length: “;<br>        if (!(cin &gt;&gt; dstep))<br>            break;<br>        outFile &lt;&lt; “Target Distance: “ &lt;&lt; target &lt;&lt; “, Step Size: “ &lt;&lt; dstep &lt;&lt; endl;<br>        while (result.magval() &lt; target)<br>        {<br>            direction = rand() % 360;<br>            step.set(dstep, direction, ‘p’);<br>            result = result + step;<br>            outFile &lt;&lt; steps &lt;&lt; “: (x,y) = “ &lt;&lt; “(“ &lt;&lt; step.xval() &lt;&lt; “, “ &lt;&lt; step.yval() &lt;&lt; “)” &lt;&lt; endl;<br>            steps++;<br>        }<br>        outFile &lt;&lt; “After “ &lt;&lt; steps &lt;&lt; “ steps, the subject “<br>            “has the following location:\n”;<br>        outFile &lt;&lt; “(x,y)=” &lt;&lt; result &lt;&lt; endl;<br>        result.polar_mode();<br>        outFile &lt;&lt; “ or\n” &lt;&lt; result &lt;&lt; endl;<br>        outFile &lt;&lt; “Average outward distance per step = “<br>            &lt;&lt; result.magval() / steps &lt;&lt; endl;<br>        outFile &lt;&lt; “====================================================”&lt;&lt;endl;<br>                outFile &lt;&lt; “COPYRIGHT 2018 WWW.YUSHUAI.XYZ” &lt;&lt; endl;<br>        steps = 0;<br>        result.set(0.0, 0.0);<br>        cout &lt;&lt; “Enter target distance (q to quit): “;<br>    }<br>    outFile.close();<br>    cout &lt;&lt; “Bye~” &lt;&lt; endl;<br>    system(“pause”);<br>    return 0;<br>}</p>
+<p>#include “vector.h”<br>using namespace std;<br>using VECTOR::Vector;<br>int main() {<br>    ofstream outFile;<br>    outFile.open(“exercise1.txt”);<br>    srand(time(0));<br>    double direction;<br>    Vector step;<br>    Vector result(0.0, 0.0);<br>    unsigned long steps = 0;<br>    double target;<br>    double dstep;<br>    cout &lt;&lt; “Enter target distance(q to quit): “;<br>    while (cin &gt;&gt; target)<br>    {<br>        cout &lt;&lt; “Enter step length: “;<br>        if (!(cin &gt;&gt; dstep))<br>            break;<br>        outFile &lt;&lt; “Target Distance: “ &lt;&lt; target &lt;&lt; “, Step Size: “ &lt;&lt; dstep &lt;&lt; endl;<br>        while (result.magval() &lt; target)<br>        {<br>            direction = rand() % 360;<br>            step.set(dstep, direction, ‘p’);<br>            result = result + step;<br>            outFile &lt;&lt; steps &lt;&lt; “: (x,y) = “ &lt;&lt; “(“ &lt;&lt; step.xval() &lt;&lt; “, “ &lt;&lt; step.yval() &lt;&lt; “)” &lt;&lt; endl;<br>            steps++;<br>        }<br>        outFile &lt;&lt; “After “ &lt;&lt; steps &lt;&lt; “ steps, the subject “<br>            “has the following location:\\n”;<br>        outFile &lt;&lt; “(x,y)=” &lt;&lt; result &lt;&lt; endl;<br>        result.polar_mode();<br>        outFile &lt;&lt; “ or\\n” &lt;&lt; result &lt;&lt; endl;<br>        outFile &lt;&lt; “Average outward distance per step = “<br>            &lt;&lt; result.magval() / steps &lt;&lt; endl;<br>        outFile &lt;&lt; “====================================================”&lt;&lt;endl;<br>                outFile &lt;&lt; “COPYRIGHT 2018 WWW.YUSHUAI.XYZ” &lt;&lt; endl;<br>        steps = 0;<br>        result.set(0.0, 0.0);<br>        cout &lt;&lt; “Enter target distance (q to quit): “;<br>    }<br>    outFile.close();<br>    cout &lt;&lt; “Bye~” &lt;&lt; endl;<br>    system(“pause”);<br>    return 0;<br>}</p>
 <p><strong>2.对Vector类的头文件（程序清单11.13）和实现文件（程序清单11.14）进行修改，使其不再存储矢量的长度和角度，而是在magval()和angval()被调用时计算它们。</strong> <strong>应保留公有接口不变（公有方法及其参数不变），但对私有部分（包括一些私有方法）和方法实现进行修改。然后，使用程序清单11.15对修改后的版本进行测试，结果应该与以前相同，因为Vector类的公有接口与原来相同。</strong> vector.h</p>
 <p>// vect.h – Vector class with &lt;&lt;, mode state</p>
 <p>#ifndef VECTOR_H_</p>
@@ -377,7 +377,7 @@ std::ostream &amp; operator&lt;&lt;(std::ostream &amp; os, const Vector &amp; v)
 <p>ostream &amp; operator&lt;&lt;(ostream &amp; os, const Time &amp; t) {<br>    os &lt;&lt; t.hours &lt;&lt; “ Hours, “ &lt;&lt; t.minutes &lt;&lt; “ minutes.”;<br>    return os;<br>}</p>
 <p>usetime3.cpp</p>
 <p>#include<iostream></iostream></p>
-<p>#include”mytime3.h”<br>using namespace std;<br>int main() {<br>    Time aida(3, 35);<br>    Time tosca(2, 48);<br>    Time temp;<br>    cout &lt;&lt; “Aida and Tosca:\n”;<br>    cout &lt;&lt; aida &lt;&lt; “;” &lt;&lt; tosca &lt;&lt; endl;<br>    temp = aida + tosca;<br>    temp = aida<em>1.17;<br>    cout &lt;&lt; “Aida</em>1.17: “ &lt;&lt; temp &lt;&lt; endl;<br>    cout &lt;&lt; “10*Tosca: “ &lt;&lt; 10 * tosca &lt;&lt; endl;</p>
+<p>#include”mytime3.h”<br>using namespace std;<br>int main() {<br>    Time aida(3, 35);<br>    Time tosca(2, 48);<br>    Time temp;<br>    cout &lt;&lt; “Aida and Tosca:\\n”;<br>    cout &lt;&lt; aida &lt;&lt; “;” &lt;&lt; tosca &lt;&lt; endl;<br>    temp = aida + tosca;<br>    temp = aida<em>1.17;<br>    cout &lt;&lt; “Aida</em>1.17: “ &lt;&lt; temp &lt;&lt; endl;<br>    cout &lt;&lt; “10*Tosca: “ &lt;&lt; 10 * tosca &lt;&lt; endl;</p>
 <pre><code>system(&quot;pause&quot;);
 return 0;
 </code></pre><p>}</p>
@@ -394,8 +394,8 @@ return 0;
 <p>// construct Stonewt object from stone, double values<br>Stonewt::Stonewt(int stn, double lbs)<br>{<br>    stone = stn;<br>    pds_left = lbs;<br>    pounds =  stn * Lbs_per_stn +lbs;<br>}</p>
 <p>Stonewt::Stonewt()          // default constructor, wt = 0<br>{<br>    stone = pounds = pds_left = 0;<br>}</p>
 <p>Stonewt::~Stonewt()         // destructor<br>{<br>}</p>
-<p>// show weight in stones<br>void Stonewt::show_stn() const<br>{<br>    cout &lt;&lt; stone &lt;&lt; “ stone, “ &lt;&lt; pds_left &lt;&lt; “ pounds\n”;<br>}</p>
-<p>// show weight in pounds<br>void Stonewt::show_lbs() const<br>{<br>    cout &lt;&lt; pounds &lt;&lt; “ pounds\n”;<br>}</p>
+<p>// show weight in stones<br>void Stonewt::show_stn() const<br>{<br>    cout &lt;&lt; stone &lt;&lt; “ stone, “ &lt;&lt; pds_left &lt;&lt; “ pounds\\n”;<br>}</p>
+<p>// show weight in pounds<br>void Stonewt::show_lbs() const<br>{<br>    cout &lt;&lt; pounds &lt;&lt; “ pounds\\n”;<br>}</p>
 <p>stone.cpp</p>
 <p>// stone.cpp – user-defined conversions<br>// compile with stonewt.cpp</p>
 <p>#include <iostream><br>using std::cout;</iostream></p>
@@ -527,6 +527,7 @@ return sum;
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

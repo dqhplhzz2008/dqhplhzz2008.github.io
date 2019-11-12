@@ -185,7 +185,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>546</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
+                本文于<strong>547</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
             </p>
         
     </div>
@@ -194,7 +194,7 @@
         <h1 id="第十讲：排序（下）"><a href="#第十讲：排序（下）" class="headerlink" title="第十讲：排序（下）"></a>第十讲：排序（下）</h1><h2 id="10-1-快速排序"><a href="#10-1-快速排序" class="headerlink" title="10.1 快速排序"></a>10.1 快速排序</h2><h3 id="10-1-1-算法概述"><a href="#10-1-1-算法概述" class="headerlink" title="10.1.1 算法概述"></a>10.1.1 算法概述</h3><p>策略：分而治之。</p>
 <p>下面举个例子，假如一组数为13/81/92/43/65/31/57/26/75/0，我们对其进行排序。那么首先选择出一个主元，这里我们选择为65，那么将这组数的其他成员分为了两组，一组是小于主元的13/43/31/57/26/0，一组是大于主元的81/92/75.然后将其递归处理，两边各选一个主元再进行分组……倒数第二步的时候，我们在第一步选择出来的主元左侧已经排好了顺序，右侧也排好了顺序，这样将它们放在同一个数组中，就完成了排序。</p>
 <p>以下是上面这段话的伪码描述：</p>
-<p>void QuickSort(ElementType A[], int N)<br>{<br>       if(N&lt;2)<br>              return;<br>       pivot = 从A[]中选一个主元;<br>       将S={A[]\PIVOT}分成2个独立子集：<br>       A1={a∈S|a≤piovt}和<br>       A2={a∈S|a≥piovt}<br>       A[]=Quic_Sort(A1,N1)∪(pivot)∪QuickSort(A2,N2);<br>}</p>
+<p>void QuickSort(ElementType A[], int N)<br>{<br>       if(N&lt;2)<br>              return;<br>       pivot = 从A[]中选一个主元;<br>       将S={A[]\\PIVOT}分成2个独立子集：<br>       A1={a∈S|a≤piovt}和<br>       A2={a∈S|a≥piovt}<br>       A[]=Quic_Sort(A1,N1)∪(pivot)∪QuickSort(A2,N2);<br>}</p>
 <p>这个方法的关键在于<strong>主元的选取</strong>（选取不好，快速算法会很慢）和<strong>子集划分</strong>（这个过程也是耗费时间的一个地方）。</p>
 <p>快速排序算法的最好情况就是<strong>每次正好中分</strong>，<strong>T(N)=O(NlogN)</strong>。</p>
 <h3 id="10-1-2-选主元"><a href="#10-1-2-选主元" class="headerlink" title="10.1.2 选主元"></a>10.1.2 选主元</h3><p>选取头、中、尾的中位数，也可以选取5个、7个等数字的中位数。例如8/12/3的中位数就是8。伪码描述如下：</p>
@@ -638,6 +638,7 @@ for (Di=0; Di&lt;Radix; Di++) { /* 对于每个桶 */
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

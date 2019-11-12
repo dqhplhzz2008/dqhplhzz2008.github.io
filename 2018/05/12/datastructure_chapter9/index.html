@@ -229,7 +229,7 @@
 <p><strong>插入排序</strong>时间复杂度：<strong>T(N,I)=O(N+I)</strong>。这里面N是元素个数，I是逆序对个数。这个可以这样理解，时间复杂度最低为元素个数N，即逆序对为0，也就是顺序排列情况下；然后随着多一个逆序对，复杂度加1。</p>
 <p>如果序列<strong>基本有序</strong>，那么<strong>插入排序</strong>简单且高效。</p>
 <p><strong>2.定理1：任意N个不同元素组成的序列平均具有N(N-1)/4个逆序对。</strong></p>
-<p><strong>3.定理2：任何仅以交换相邻两元素来排序的算法，其平均时间复杂度为Ω（N2）。（</strong><em>注意：Ω是下界，O是上界）</em></p>
+<p><strong>3.定理2：任何仅以交换相邻两元素来排序的算法，其平均时间复杂度为Ω（N2）。（</strong>_注意：Ω是下界，O是上界）_</p>
 <pre><code>这意味着，要提高算法效率，我们必须：每次消去不止1个逆序对！每次交换相隔较远的2个元素！
 </code></pre><h2 id="9-3-希尔排序"><a href="#9-3-希尔排序" class="headerlink" title="9.3 希尔排序"></a>9.3 希尔排序</h2><p><strong>1.简单举例</strong></p>
 <p>它利用了插入排序的简单，同时克服了交换每次只交换相邻两个元素的缺点。</p>
@@ -583,6 +583,7 @@ else printf( &quot;空间不足&quot; );
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

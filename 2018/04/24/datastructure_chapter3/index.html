@@ -411,7 +411,7 @@
 <p>（2）访问该元素所指结点；</p>
 <p>（3）若钙元素所指结点的左、右孩子结点费控，则将其左、右孩子的指针顺序入队。</p>
 <p>不断执行这三步操作，直到队列为空，再无元素可取，二叉树的层序遍历就完成了。其代码如下所示：</p>
-<p>void LevelOrderTraversal(BinTree BT)<br>{<br>       BinTree T;<br>       Queue Q;<br>       if(!BT) return;/<em>空树直接返回</em>/<br>       Q = CreatQueue(MaxSize);<br>       AddQ(Q,BT);<br>       while(!IsEmptyQ(Q)){<br>              T = DeleteQ(Q);<br>              printf(“%d\n”,T-&gt;Data); /<em>访问取出队列的结点</em>/<br>              if(T-&gt;Left)<br>                     AddQ(Q,T-&gt;Left);<br>              if(T-&gt;Right)<br>                     AddQ(Q,T-&gt;Right);<br>       }<br>}</p>
+<p>void LevelOrderTraversal(BinTree BT)<br>{<br>       BinTree T;<br>       Queue Q;<br>       if(!BT) return;/<em>空树直接返回</em>/<br>       Q = CreatQueue(MaxSize);<br>       AddQ(Q,BT);<br>       while(!IsEmptyQ(Q)){<br>              T = DeleteQ(Q);<br>              printf(“%d\\n”,T-&gt;Data); /<em>访问取出队列的结点</em>/<br>              if(T-&gt;Left)<br>                     AddQ(Q,T-&gt;Left);<br>              if(T-&gt;Right)<br>                     AddQ(Q,T-&gt;Right);<br>       }<br>}</p>
 <p><strong>8.遍历应用的例子</strong></p>
 <p>【例1】遍历二叉树的应用：输出二叉树中的叶子结点。</p>
 <p>void PreOrderTraversal(BinTree BT)<br>{<br>       if(BT){<br>              if(!BT-&gt;Left &amp;&amp;!BT-&gt;Right)<br>                     printf(“%d”,BT-&gt;Data);<br>              PreOrderTraversal(BT-&gt;Left);<br>              PreOrderTraversal(BT-&gt;Right);<br>       }<br>}</p>
@@ -519,6 +519,7 @@
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

@@ -216,9 +216,9 @@
 <p>（3）<strong>简单图</strong>（Simple Graphs）:没有重边和自回路的图。</p>
 <p>（4）<strong>邻接点</strong>: 如果（v, w）或 &lt; v, w &gt;是图中任意一条边，那么称v和w互为“邻接点（Adjacent Vertices）”。</p>
 <p>（5）<strong>路径、简单路径、回路、无环图</strong>：</p>
-<p>图G中从<em>vp 到 vq</em> 的路径 = { _vp_, _vi_1, _vi_2, ×××, <em>vin</em>, _vq_ } 使得( _vp_, _vi_1 ), ( _vi_1, _vi_2 ), ×××, ( <em>vin</em>, _vq_ ) 或 &lt; _vp_, _vi_1 &gt;, ×××, &lt; <em>vin</em>, _vq_ > 都属于E( G )。</p>
+<p>图G中从_vp 到 vq_ 的路径 = { _vp_, _vi_1, _vi_2, ×××, _vin_, _vq_ } 使得( _vp_, _vi_1 ), ( _vi_1, _vi_2 ), ×××, ( _vin_, _vq_ ) 或 &lt; _vp_, _vi_1 &gt;, ×××, &lt; _vin_, _vq_ > 都属于E( G )。</p>
 <p>路径长度：路径中边的数量。</p>
-<p>简单路径：_vi_1, _vi_2, ×××, <em>vin</em> 都是不同顶点。</p>
+<p>简单路径：_vi_1, _vi_2, ×××, _vin_ 都是不同顶点。</p>
 <p>回路：起点和终点相同（_vp_ = _vq_ ）的路径。</p>
 <p>无环图：不存在任何回路的图。</p>
 <p>有向无环图：不存在回路的有向图，也称DAG（Directed Acyclic Graph）。</p>
@@ -227,8 +227,8 @@
 <p>（8）<strong>稠密图、稀疏图</strong>：是否满足 |E| &gt; |V|log2|V|，作为稠密图和稀疏图的分界条件。</p>
 <p>（9）<strong>权（Cost） 、网络（Network）</strong>。</p>
 <p>（10）<strong>图G的子图 G’ ： V( G’ )</strong> <strong>Í V( G )  &amp;&amp;  E( G’ )</strong> <strong>Í E( G )。</strong></p>
-<p>（11）无向图的顶点连通、连通图、连通分量：如果无向图从一个顶点_vi_到另一个顶点<em>vj (i≠j)</em>有路径，则称顶点_vi_和vj是“连通的（Connected）”；无向图中任意两顶点都是连通的，则称该图是“连通图（Connected Graph）”；无向图的极大连通子图称为“连通分量（Connected Component）”。连通分量的概念包含以下4个要点：<em>子图、连通、极大顶点数、极大边数</em></p>
-<p>（12）有向图的强连通图、连通分量：有向图中任意一对顶点_vi_ 和<em>vj (i≠j)</em>均既有从_vi_到_vj_的路径，也有从_vj_到_vi_的路径，则称该有向图是“强连通图（Strongly Connected Graph）”。有向图的极大强连通子图称为“强连通分量（Strongly Connected Component）”。连通分量的概念也包含前面4个要点。</p>
+<p>（11）无向图的顶点连通、连通图、连通分量：如果无向图从一个顶点_vi_到另一个顶点_vj (i≠j)_有路径，则称顶点_vi_和vj是“连通的（Connected）”；无向图中任意两顶点都是连通的，则称该图是“连通图（Connected Graph）”；无向图的极大连通子图称为“连通分量（Connected Component）”。连通分量的概念包含以下4个要点：_子图、连通、极大顶点数、极大边数_</p>
+<p>（12）有向图的强连通图、连通分量：有向图中任意一对顶点_vi_ 和_vj (i≠j)_均既有从_vi_到_vj_的路径，也有从_vj_到_vi_的路径，则称该有向图是“强连通图（Strongly Connected Graph）”。有向图的极大强连通子图称为“强连通分量（Strongly Connected Component）”。连通分量的概念也包含前面4个要点。</p>
 <p>（13）树、生成树：树是图的特例：无环的无向图。</p>
 <p>所谓连通图G的“生成树（Spanning Tree）”，是G的包含其全部n 个顶点的一个极小连通子图。它必定包含且仅包含G的n-1条边。</p>
 <p>生成树有可能不唯一。</p>
@@ -427,6 +427,7 @@ Graph-&gt;G\[E-&gt;V2\].FirstEdge = NewNode;
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

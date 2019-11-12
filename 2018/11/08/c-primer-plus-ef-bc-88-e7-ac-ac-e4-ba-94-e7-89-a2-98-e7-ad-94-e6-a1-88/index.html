@@ -184,7 +184,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>367</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
+                本文于<strong>368</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
             </p>
         
     </div>
@@ -228,15 +228,15 @@ return 0;
 <p>#include<iostream><br>using namespace std;<br>template<typename t><br>T maxn(T <em>a, const int n);<br>template&lt;&gt; const char</em> maxn(const char **a, const int n);</typename></iostream></p>
 <p>int main()<br>{<br>    int a[6] = {3,6,1,8,2,9 };<br>    double b[4] = { 9.8,8.56,193.1,4.3 };<br>    const char *c[5] = { “HAHAHA”, “BALABALA”, “XIAOMOXIAN”, “hengli”, “very good” };<br>    cout &lt;&lt; maxn(a, 6) &lt;&lt; endl;<br>    cout &lt;&lt; maxn(b, 4) &lt;&lt; endl;<br>    cout &lt;&lt; maxn(c, 5) &lt;&lt; endl;<br>    system(“pause”);<br>    return 0;<br>}</p>
 <p>template<typename t><br>T maxn(T *a, const int n)<br>{<br>    for (int i = 0; i &lt; n; i++)<br>        if (a[i] &gt; a[0]) a[0] = a[i];<br>    return a[0];<br>}</typename></p>
-<p>template&lt;&gt; const char* maxn(const char **a, const int n)<br>{<br>    int i, j = 0;<br>    for (i = 0; i&lt;n; i++)<br>        if (strlen(a[i])&gt;strlen(a[j])) j = i;<br>    return a[j];</p>
+<p>template&lt;&gt; const char<em> maxn(const char *</em>a, const int n)<br>{<br>    int i, j = 0;<br>    for (i = 0; i&lt;n; i++)<br>        if (strlen(a[i])&gt;strlen(a[j])) j = i;<br>    return a[j];</p>
 <p>}</p>
 <p>  <strong>7.修改程序清单8.14，使其使用两个名为SumArray()的模板函数来返回数组元素的总和，而不是显示数组的内容</strong>。程序应显示thing的总和以及所有debt的总和。</p>
 <p>//C++ Primer Plus Edition 5<br>//Chapter 8 Homework 7</p>
 <p>#include<iostream><br>using namespace std;<br>template<typename t><br>T ShowArray(T arr[], int n);</typename></iostream></p>
 <p>template<typename t><br>T ShowArray(T <em> arr[], int n);<br>struct debts {<br>    char name[50];<br>    double amount;<br>};<br>int main(void) {<br>    int things[6] = { 13,31,103,301,310,130 };<br>    struct debts mr_E[3] =<br>    {<br>        { “Ima Wolfe”,2400.0 },<br>        { “Ura Foxe”,1300.0 },<br>        { “Iby Stout”,1800.0 }<br>    };<br>    double </em>pd[3];<br>    for (int i = 0; i &lt; 3; i++)<br>        pd[i] = &amp;mr_E[i].amount;<br>    cout &lt;&lt; “Listing Mr.E’s counts of things:”;<br>    int ans_int = ShowArray(things, 6);<br>    cout &lt;&lt; ans_int &lt;&lt; endl;<br>    cout &lt;&lt; “Listing Mr.E’s  debts:”;<br>    double ans_dou= ShowArray(pd, 3);<br>    cout &lt;&lt; ans_dou &lt;&lt; endl;<br>    system(“pause”);<br>    return 0;<br>}</typename></p>
 <p>template<typename t></typename></p>
-<p>T ShowArray(T arr[], int n) {<br>    T ans = arr[0];<br>    cout &lt;&lt; “Template A\n”;<br>    for (int i = 1; i &lt; n; i++)<br>        ans+=arr[i];<br>    return ans;<br>}</p>
-<p>template<typename t><br>T ShowArray(T<em>arr[], int n)<br>{<br>    T ans=</em>arr[0];<br>    cout &lt;&lt; “Template B\n”;<br>    for (int i = 1; i &lt; n; i++)<br>        ans += *arr[i];<br>    return ans;<br>}</typename></p>
+<p>T ShowArray(T arr[], int n) {<br>    T ans = arr[0];<br>    cout &lt;&lt; “Template A\\n”;<br>    for (int i = 1; i &lt; n; i++)<br>        ans+=arr[i];<br>    return ans;<br>}</p>
+<p>template<typename t><br>T ShowArray(T<em>arr[], int n)<br>{<br>    T ans=</em>arr[0];<br>    cout &lt;&lt; “Template B\\n”;<br>    for (int i = 1; i &lt; n; i++)<br>        ans += *arr[i];<br>    return ans;<br>}</typename></p>
 
     </div>
     
@@ -322,6 +322,7 @@ return 0;
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

@@ -272,7 +272,7 @@
 <p>删除区间中连续相等的元素，只留下一个(可自定义比较器)</p>
 <p><strong>unique_copy</strong></p>
 <p>拷贝区间到另一个区间。连续相等的元素，只拷贝第一个到目标区间 (可自定义比较器)</p>
-<p>算法复杂度均为<strong>O(n)</strong>。 我们具体来看： （1）unique template<class fwdit> FwdIt  unique(FwdIt first, FwdIt last); 用 == 比较是否等 template<class fwdit, class pred> FwdIt  unique(FwdIt first, FwdIt last, Pred pr);用 pr 比较是否等 返回值是迭代器，指向元素删除后的区间的最后一个元素的后面。 int main() { int a[5] = {1,2,3,2,5}; int b[6] = {1,2,3,2,5,6}; ostream_iterator<int> oit(cout,”,”); int * p = remove(a,a+5,2); //输出语句，输出1,3,2,5 cout&lt;&lt;”2)”&lt;&lt;p-a&lt;&lt;endl;//输出2)3。是指的元素中剩余的有效元素还有3个，删除了首地址的元素。 vector<int> v(b,b+6); remove(v.begin().v.end(),2); //输出语句，结果为1,3,5,6,5,6 return 0; } 之所以第一次输出的结果为1,3,2,5是因为，当我们删除第一个2的时候，后面的3移过来，然后后面的2页被删了，再后面的5移过来，这样最后面空了2个位置，则这两个位置的原来的值保持不变。 <strong>4.**</strong>变序算法<strong> 变序算法改变容器中元素的顺序，但是不改变元素的值。</strong>变序算法不适用于关联容器**。此类算法复杂度都是O(n)的。 表5.4 变序算法的算法</int></int></class></class></p>
+<p>算法复杂度均为<strong>O(n)</strong>。 我们具体来看： （1）unique template<class fwdit> FwdIt  unique(FwdIt first, FwdIt last); 用 == 比较是否等 template<class fwdit, class pred> FwdIt  unique(FwdIt first, FwdIt last, Pred pr);用 pr 比较是否等 返回值是迭代器，指向元素删除后的区间的最后一个元素的后面。 int main() { int a[5] = {1,2,3,2,5}; int b[6] = {1,2,3,2,5,6}; ostream_iterator<int> oit(cout,”,”); int <em> p = remove(a,a+5,2); //输出语句，输出1,3,2,5 cout&lt;&lt;”2)”&lt;&lt;p-a&lt;&lt;endl;//输出2)3。是指的元素中剩余的有效元素还有3个，删除了首地址的元素。 vector<int> v(b,b+6); remove(v.begin().v.end(),2); //输出语句，结果为1,3,5,6,5,6 return 0; } 之所以第一次输出的结果为1,3,2,5是因为，当我们删除第一个2的时候，后面的3移过来，然后后面的2页被删了，再后面的5移过来，这样最后面空了2个位置，则这两个位置的原来的值保持不变。 <strong>4.**</strong>变序算法<strong> 变序算法改变容器中元素的顺序，但是不改变元素的值。</strong>变序算法不适用于关联容器*</int></em>。此类算法复杂度都是O(n)的。 表5.4 变序算法的算法</int></class></class></p>
 <p><strong>算法名称</strong></p>
 <p><strong>算法功能</strong></p>
 <p><strong>reverse</strong></p>
@@ -427,6 +427,7 @@
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

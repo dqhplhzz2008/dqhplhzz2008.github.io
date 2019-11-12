@@ -186,7 +186,7 @@
     </div>
     
     <div class="post-body post-content">
-        <h2 id="题目1：机器人的运动范围"><a href="#题目1：机器人的运动范围" class="headerlink" title="题目1：机器人的运动范围"></a>题目1：机器人的运动范围</h2><p><strong>题目描述</strong> 地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？ <strong>题目解析</strong> 这个题可以看做是广度搜索优先（BFS）的一个拓展或者说是改编。如果说没有“不<strong>能进入行坐标和列坐标的数位之和大于****k****的格子</strong>”这个条件，那么它就是一个纯粹的BFS问题，设置上这个，就基本上就相当于只是多了一个条件。所以我们需要做的就是以下几个工作： 1.设置标志位。bool _flags=new bool[rows_cols]。 2.将移动一步单独设置为一个子函数，在这个函数里面，原始的判断条件只是： if(i&gt;=0 &amp;&amp; i&lt; rows &amp;&amp; j &gt;=0 &amp;&amp; j<cols && flags\[i*cols+j\]="=false)" 而现在则变成了： if(i>=0 &amp;&amp; i&lt; rows &amp;&amp; j &gt;=0 &amp;&amp; j&lt;cols &amp;&amp; <strong>(gssum(i) + gssum(j) &lt;= threshold)</strong> &amp;&amp; flags[i*cols+j]==false) <strong>代码</strong></cols></p>
+        <h2 id="题目1：机器人的运动范围"><a href="#题目1：机器人的运动范围" class="headerlink" title="题目1：机器人的运动范围"></a>题目1：机器人的运动范围</h2><p><strong>题目描述</strong> 地上有一个m行和n列的方格。一个机器人从坐标0,0的格子开始移动，每一次只能向左，右，上，下四个方向移动一格，但是不能进入行坐标和列坐标的数位之和大于k的格子。 例如，当k为18时，机器人能够进入方格（35,37），因为3+5+3+7 = 18。但是，它不能进入方格（35,38），因为3+5+3+8 = 19。请问该机器人能够达到多少个格子？ <strong>题目解析</strong> 这个题可以看做是广度搜索优先（BFS）的一个拓展或者说是改编。如果说没有“不<strong>能进入行坐标和列坐标的数位之和大于****k****的格子</strong>”这个条件，那么它就是一个纯粹的BFS问题，设置上这个，就基本上就相当于只是多了一个条件。所以我们需要做的就是以下几个工作： 1.设置标志位。bool _flags=new bool[rows_cols]。 2.将移动一步单独设置为一个子函数，在这个函数里面，原始的判断条件只是： if(i&gt;=0 &amp;&amp; i&lt; rows &amp;&amp; j &gt;=0 &amp;&amp; j<cols && flags\[i*cols+j\]="=false)" 而现在则变成了： if(i>=0 &amp;&amp; i&lt; rows &amp;&amp; j &gt;=0 &amp;&amp; j&lt;cols &amp;&amp; <strong>(gssum(i) + gssum(j) &lt;= threshold)</strong> &amp;&amp; flags[i<em>cols+j]==false) <em>*代码</em></em></cols></p>
 <pre><code>int movingCount(int threshold, int rows, int cols)
     {
         bool *flags=new bool[rows*cols];//所有格子的标志位默认设置为false
@@ -455,7 +455,7 @@ public:
 
         return str;
     }
-</code></pre><h2 id="题目9：扑克牌顺子"><a href="#题目9：扑克牌顺子" class="headerlink" title="题目9：扑克牌顺子"></a>题目9：扑克牌顺子</h2><p><strong>题目描述</strong> LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有2个大王,2个小王(一副牌原本是54张^_^)…他随机从中抽出了5张牌,想测测自己的手气,看看能不能抽到顺子,如果抽到的话,他决定去买体育彩票,嘿嘿！！“红心A,黑桃3,小王,大王,方片5”,“Oh My God!”不是顺子…..LL不高兴了,他想了想,决定大\小 王可以看成任何数字,并且A看作1,J为11,Q为12,K为13。上面的5张牌就可以变成“1,2,3,4,5”(大小王分别看作2和4),“So Lucky!”。LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们LL的运气如何， 如果牌能组成顺子就输出true，否则就输出false。为了方便起见,你可以认为大小王是0。 <strong>题目解析</strong> 顺子要求： 1.牌面不重复； 2.牌面是连续的。 为了满足以上条件，所以做了以下两个步骤： 1.设置flag。只要不重复，很多都会用到flag，由于扑克牌里面有14种牌，所以flag数组长度为14，默认为0，有重复就加1。 2.寻找最大最小值，计算它们的差值，判断结果。由于牌面不重复，又由于只有五张，所以max-min&lt;5的时候（其实就是为4的时候），肯定是连续的，若大了，肯定不连续。 <strong>代码</strong></p>
+</code></pre><h2 id="题目9：扑克牌顺子"><a href="#题目9：扑克牌顺子" class="headerlink" title="题目9：扑克牌顺子"></a>题目9：扑克牌顺子</h2><p><strong>题目描述</strong> LL今天心情特别好,因为他去买了一副扑克牌,发现里面居然有2个大王,2个小王(一副牌原本是54张^_^)…他随机从中抽出了5张牌,想测测自己的手气,看看能不能抽到顺子,如果抽到的话,他决定去买体育彩票,嘿嘿！！“红心A,黑桃3,小王,大王,方片5”,“Oh My God!”不是顺子…..LL不高兴了,他想了想,决定大\\小 王可以看成任何数字,并且A看作1,J为11,Q为12,K为13。上面的5张牌就可以变成“1,2,3,4,5”(大小王分别看作2和4),“So Lucky!”。LL决定去买体育彩票啦。 现在,要求你使用这幅牌模拟上面的过程,然后告诉我们LL的运气如何， 如果牌能组成顺子就输出true，否则就输出false。为了方便起见,你可以认为大小王是0。 <strong>题目解析</strong> 顺子要求： 1.牌面不重复； 2.牌面是连续的。 为了满足以上条件，所以做了以下两个步骤： 1.设置flag。只要不重复，很多都会用到flag，由于扑克牌里面有14种牌，所以flag数组长度为14，默认为0，有重复就加1。 2.寻找最大最小值，计算它们的差值，判断结果。由于牌面不重复，又由于只有五张，所以max-min&lt;5的时候（其实就是为4的时候），肯定是连续的，若大了，肯定不连续。 <strong>代码</strong></p>
 <pre><code>bool IsContinuous( vector&lt;int&gt; numbers ) {
        if(numbers.empty())
            return false;
@@ -599,6 +599,7 @@ public:
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

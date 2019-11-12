@@ -186,7 +186,7 @@ void PrintN(...">
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>586</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
+                本文于<strong>587</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
             </p>
         
     </div>
@@ -194,9 +194,9 @@ void PrintN(...">
     <div class="post-body post-content">
         <h1 id="第一节：数据结构基本知识"><a href="#第一节：数据结构基本知识" class="headerlink" title="第一节：数据结构基本知识"></a>第一节：数据结构基本知识</h1><h2 id="1-1-什么是数据结构"><a href="#1-1-什么是数据结构" class="headerlink" title="1.1 什么是数据结构"></a>1.1 什么是数据结构</h2><p><strong>例：写程序实现一个函数PrintN，使得传入一个正整数位N的参数后，能顺序打印从1道N的全部正整数。</strong></p>
 <p>代码1（循环实现）：</p>
-<p>void PrintN(int N){<br>       int i;<br>       for(i =1; i&lt;=N; i++)<br>       {<br>              printf(“%d\n”,i);<br>       }<br>       return;<br>}</p>
+<p>void PrintN(int N){<br>       int i;<br>       for(i =1; i&lt;=N; i++)<br>       {<br>              printf(“%d\\n”,i);<br>       }<br>       return;<br>}</p>
 <p>代码2（递归实现）：</p>
-<p>void PrintN(int N){<br>       if(N){<br>              PrintN(N-1);<br>              printf(“%d\n”,N);<br>       }<br>       return;<br>}</p>
+<p>void PrintN(int N){<br>       if(N){<br>              PrintN(N-1);<br>              printf(“%d\\n”,N);<br>       }<br>       return;<br>}</p>
 <p><strong>结论：解决问题方法的效率，跟空间的利用率有关。</strong></p>
 <p><strong>例3：写程序计算给定多项式在给定点x处的值</strong></p>
 <p>代码：</p>
@@ -269,29 +269,29 @@ void PrintN(...">
 <p>_4_</p>
 <p>_16_</p>
 <p>_64_</p>
-<p><em>256</em></p>
-<p><em>1024</em></p>
+<p>_256_</p>
+<p>_1024_</p>
 <p><strong>_n3_</strong></p>
 <p>_1_</p>
 <p>_8_</p>
 <p>_64_</p>
-<p><em>512</em></p>
-<p><em>4096</em></p>
-<p><em>32768</em></p>
+<p>_512_</p>
+<p>_4096_</p>
+<p>_32768_</p>
 <p><strong>_2n_</strong></p>
 <p>_1_</p>
 <p>_4_</p>
 <p>_16_</p>
-<p><em>256</em></p>
-<p><em>65536</em></p>
-<p><em>4294967296</em></p>
+<p>_256_</p>
+<p>_65536_</p>
+<p>_4294967296_</p>
 <p><strong>_n!_</strong></p>
 <p>_1_</p>
 <p>_2_</p>
 <p>_24_</p>
-<p><em>40326</em></p>
-<p><em>2092278988000</em></p>
-<p><em>26313*1033</em></p>
+<p>_40326_</p>
+<p>_2092278988000_</p>
+<p>_26313*1033_</p>
 <p>如果复杂度为灰色斜体的部份，要想办法尽可能降到黑色部分。</p>
 <p>复杂度分析小窍门：</p>
 <p>（1）若两段算法分别有复杂度T1(n)=O(f1(n))和T2(n)=O(f2(n))，则</p>
@@ -456,6 +456,7 @@ void PrintN(...">
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

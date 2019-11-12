@@ -188,7 +188,7 @@
             
             
             <p class="fa fa-exclamation-triangle warning">
-                本文于<strong>545</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
+                本文于<strong>546</strong>天之前发表，文中内容可能已经过时，如有问题，请联系我。
             </p>
         
     </div>
@@ -274,12 +274,12 @@
 <p>图1</p>
 <p>利用一个二维数组，为例1中所提到的冲突提供了一个解决方案。可以将相同的两个元素放到多个槽中。</p>
 <p>考虑到这些都是单词，我们在设计散列函数的时候可以以首字母为基准进行，比如设计为：</p>
-<p><strong><em>h(key) = key[0] – ‘a’</em></strong></p>
+<p><strong>_h(key) = key[0] – ‘a’_</strong></p>
 <pre><code>如图2所示，当放到clock和ctime的时候，发现产生了冲突，如图2所示。
 </code></pre><p><img src="/wp-content/uploads/image/20180514/1526312380118344.jpg" alt="1526312380118344.jpg" title="1526312380118344.jpg"></p>
 <p>图2</p>
 <p>如果没有溢出，则</p>
-<p><strong>_T_**</strong>_查询<em><strong> </strong></em>= T_<strong>**_插入_</strong> <strong><em>= T</em>**</strong>_删除<em><strong> </strong></em>=_<strong> </strong>O( 1 )**</p>
+<p><strong>_T_**</strong>_查询_<strong> </strong>_= T_<strong>**_插入_</strong> <strong>_= T_**</strong>_删除_<strong> </strong>_=_<strong> </strong>O( 1 )**</p>
 <p>总结一下：</p>
 <p>“散列（Hashing）” 的基本思想是：以数据对象的关键字key为自变量，通过一个确定的函数关系 h，计算出对应的函数值h(key)，把这个值解释为数据对象的存储地址，并按此存放，即“存储位置 = h（key）”。</p>
 <p>散列方法中使用的计算函数称为“散列函数” （也称哈希函数），按这个思想构造的表称为“散列表”，所以它也是一种存储方法。</p>
@@ -308,7 +308,7 @@
 </code></pre><p><img src="/wp-content/uploads/image/20180514/1526312403132274.jpg" alt="1526312403132274.jpg" title="1526312403132274.jpg"> </p>
 <p>图3</p>
 <p>在实际应用这个公式的时候，我们可以考虑在第一节的时候计算多项式的那个简便方法。代码如下：</p>
-<p>Index Hash ( const char <em>Key, int TableSize )<br>{<br>    unsigned int h = 0;     /</em> 散列函数值，初始化为0 <em>/<br>    while ( \</em>Key != ‘\0’)  /* 位移映射 <em>/<br>        h = ( h &lt;&lt; 5 ) + </em>Key++;<br>    return  h % TableSize;<br>}</p>
+<p>Index Hash ( const char <em>Key, int TableSize )<br>{<br>    unsigned int h = 0;     /</em> 散列函数值，初始化为0 <em>/<br>    while ( \</em>Key != ‘\\0’)  /* 位移映射 <em>/<br>        h = ( h &lt;&lt; 5 ) + </em>Key++;<br>    return  h % TableSize;<br>}</p>
 <h2 id="11-3-冲突处理方法"><a href="#11-3-冲突处理方法" class="headerlink" title="11.3 冲突处理方法"></a>11.3 冲突处理方法</h2><p>常用处理冲突的思路：</p>
 <pre><code>（1）换个位置：开放地址法；
 </code></pre><p>（2）同一位置的冲突对象组织在一起：链地址法。</p>
@@ -458,7 +458,7 @@
 <p>分析：</p>
 <p><strong>ASLs</strong>： （1+1+1+1+1+2+5+3）/8=15/8≈<strong>1.87</strong></p>
 <p>ASLu：根据H(key)值分为26种情况，H值为0,1,2…,25，则</p>
-<p><strong>ASLu</strong>=(9+8+7+6+5+4+3+2+1*18)/26=62/26≈<strong>2.38</strong></p>
+<p><strong>ASLu</strong>=(9+8+7+6+5+4+3+2+1<em>18)/26=62/26≈<em>*2.38</em></em></p>
 <h3 id="11-3-4-平方探测法（二次探测）"><a href="#11-3-4-平方探测法（二次探测）" class="headerlink" title="11.3.4 平方探测法（二次探测）"></a>11.3.4 平方探测法（二次探测）</h3><p>即平方探测法以增量序列12，-12，22，-22，…，q2，-q2且q ≤ ëTableSize/2û 循环试探下一个存储地址。</p>
 <p><strong>【例】设关键词序列为 {47，7，29，11，9，84，54，20，30}</strong></p>
 <p>（1）散列表表长TableSize = 11（即满足4×2+3形式的素数）</p>
@@ -639,7 +639,7 @@
 <p>成功查找的期望ASLs=1+1/2=1.5次。</p>
 <p><strong>我们发现：随着α增大，ASLu增加很慢；而ASLs线性增长。</strong></p>
 <p><strong>总结一下散列查找：</strong></p>
-<p>1.选择合适的 h(key) ，散列法的查找效率期望是常数<em>O(1)，</em>它几乎与关键字的空间的大小n无关！</p>
+<p>1.选择合适的 h(key) ，散列法的查找效率期望是常数_O(1)，_它几乎与关键字的空间的大小n无关！</p>
 <p>2.它是以较小的α为前提。因此，散列方法是一个以空间换时间的成功范例。</p>
 <p>3.散列方法的存储对关键字是随机的，不便于顺序查找关键字，也不适合于范围查找，或最大值最小值查找。</p>
 <p><strong>再来总结下开放地址法和分离链接法：</strong></p>
@@ -656,7 +656,7 @@
 </code></pre><p><strong>【分析】</strong>解决这个问题的最基本的工作、也是大量的工作是不断对新读入的单词在已有单词表中查找，如果已经存在，则将该单词的词频加1，如果不存在，则插入该单词并记词频为1。</p>
 <p>使用<strong>散列表</strong>设计该单词表的数据结构可以进行快速地查找和插入</p>
 <p><strong>【解决方案】</strong>代码如下：</p>
-<p>  int main() {<br>/<em> 1 </em>/  int  TableSize = 10000； /<em> 散列表的估计大小 </em>/<br>        int wordcount = 0,  length;<br>            HashTable H;<br>            ElementType word;<br>            FILE <em>fp;<br>/</em> 2 <em>/   char document[30]= “HarryPotter.txt“; /</em> 要被统计词频的文件名 <em>/<br>/</em> 3 <em>/   H = InitializeTable( TableSize ); /</em> 建立散列表 <em>/<br>/</em> 4 <em>/   if(( fp = fopen(document, “r” ))==NULL)  FatalError(“无法打开文件!\n” );<br>             while( !feof( fp ) ){<br>/</em> 5 <em>/        length = GetAWord( fp, word ); /</em> 从文件中读取一个单词 <em>/<br>/</em> 6 <em>/        if(length &gt; 3){       /</em> 只考虑适当长度的单词 <em>/<br>/</em> 7 <em>/              wordcount++;<br>/</em>查找散列表，若存在，则将该单词的词频加1，若不存在，则插入。<em>/<br>/</em> 8 <em>/              InsertAndCount( word, H );<br>                  }<br>              }<br>              fclose( fp );<br>/</em> 9 <em>/    printf(“该文档共出现 %d 个有效单词，”, wordcount);<br>/</em>根据散列表，输出最频繁出现的给定百分比（10%）的单词。<em>/<br>/</em> 10 <em>/   Show( H ，10.0/100 );  /</em> 显示词频前10%的所有单词 <em>/<br>/</em> 11 <em>/   DestroyTable( H );        /</em> 销毁散列表 */<br>               return 0;<br>}</p>
+<p>  int main() {<br>/<em> 1 </em>/  int  TableSize = 10000； /<em> 散列表的估计大小 </em>/<br>        int wordcount = 0,  length;<br>            HashTable H;<br>            ElementType word;<br>            FILE <em>fp;<br>/</em> 2 <em>/   char document[30]= “HarryPotter.txt“; /</em> 要被统计词频的文件名 <em>/<br>/</em> 3 <em>/   H = InitializeTable( TableSize ); /</em> 建立散列表 <em>/<br>/</em> 4 <em>/   if(( fp = fopen(document, “r” ))==NULL)  FatalError(“无法打开文件!\\n” );<br>             while( !feof( fp ) ){<br>/</em> 5 <em>/        length = GetAWord( fp, word ); /</em> 从文件中读取一个单词 <em>/<br>/</em> 6 <em>/        if(length &gt; 3){       /</em> 只考虑适当长度的单词 <em>/<br>/</em> 7 <em>/              wordcount++;<br>/</em>查找散列表，若存在，则将该单词的词频加1，若不存在，则插入。<em>/<br>/</em> 8 <em>/              InsertAndCount( word, H );<br>                  }<br>              }<br>              fclose( fp );<br>/</em> 9 <em>/    printf(“该文档共出现 %d 个有效单词，”, wordcount);<br>/</em>根据散列表，输出最频繁出现的给定百分比（10%）的单词。<em>/<br>/</em> 10 <em>/   Show( H ，10.0/100 );  /</em> 显示词频前10%的所有单词 <em>/<br>/</em> 11 <em>/   DestroyTable( H );        /</em> 销毁散列表 */<br>               return 0;<br>}</p>
 
     </div>
     
@@ -742,6 +742,7 @@
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

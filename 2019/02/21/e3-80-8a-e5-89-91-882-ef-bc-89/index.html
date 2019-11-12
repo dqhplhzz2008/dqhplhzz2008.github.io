@@ -256,7 +256,7 @@ public:
 
     }
 </code></pre><h2 id="题目4-字符流中第一个不重复的字符"><a href="#题目4-字符流中第一个不重复的字符" class="headerlink" title="题目4 字符流中第一个不重复的字符"></a>题目4 字符流中第一个不重复的字符</h2><h3 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h3><p>请实现一个函数用来找出字符流中第一个只出现一次的字符。例如，当从字符流中只读出前两个字符”go”时，第一个只出现一次的字符是”g”。当从该字符流中读出前六个字符“google”时，第一个只出现一次的字符是”l”。</p>
-<h3 id="题目解析-3"><a href="#题目解析-3" class="headerlink" title="题目解析"></a>题目解析</h3><p>只要这种题，就想到用一个数组，然后字符减去’\0’（或者其他的起始位）作为数组中元素的序号，每一个元素的大小代表这个字符流中的字符出现的次数，然后判断就可以了。 Insert()函数的就是每插入一个字符，就对该字符对应的数组元素进行加1，然后看这个时候这个字符是否是第一次插入呢，如果是就送入到character这个队列里面。 那自然，随着字符流不断输入，肯定有字符个数超过一个。这个时候就要使用char FirstAppearingOnce()来进行判断了。这个函数就是判断若character没空，并且数组元素大于1，即字符出现多次，那么久把字符从队列里面删除，直到剩下的最后一个返回；如果character空了，就代表没有只出现一次的字符，返回一个“#”。</p>
+<h3 id="题目解析-3"><a href="#题目解析-3" class="headerlink" title="题目解析"></a>题目解析</h3><p>只要这种题，就想到用一个数组，然后字符减去’\\0’（或者其他的起始位）作为数组中元素的序号，每一个元素的大小代表这个字符流中的字符出现的次数，然后判断就可以了。 Insert()函数的就是每插入一个字符，就对该字符对应的数组元素进行加1，然后看这个时候这个字符是否是第一次插入呢，如果是就送入到character这个队列里面。 那自然，随着字符流不断输入，肯定有字符个数超过一个。这个时候就要使用char FirstAppearingOnce()来进行判断了。这个函数就是判断若character没空，并且数组元素大于1，即字符出现多次，那么久把字符从队列里面删除，直到剩下的最后一个返回；如果character空了，就代表没有只出现一次的字符，返回一个“#”。</p>
 <h3 id="代码-3"><a href="#代码-3" class="headerlink" title="代码"></a>代码</h3><pre><code>class Solution
 {
 public:
@@ -309,8 +309,8 @@ public:
         }  
     }
 };
-</code></pre><h2 id="题目6-构建乘积数组"><a href="#题目6-构建乘积数组" class="headerlink" title="题目6 构建乘积数组"></a>题目6 构建乘积数组</h2><h3 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个数组A[0,1,…,n-1],请构建一个数组B[0,1,…,n-1],其中B中的元素B[i]=A[0]<em>A[1]</em>…_A[i-1]<em>A[i+1]</em>…_A[n-1]。不能使用除法。</p>
-<h3 id="题目解析-5"><a href="#题目解析-5" class="headerlink" title="题目解析"></a>题目解析</h3><p>将B分为两个部分，B0和B1，B0计算A[0]<em>A[1]</em>…<em>A[i-1]；B1计算A[i+1]</em>…_A[n-1]。然后将B0_B1得到结果。</p>
+</code></pre><h2 id="题目6-构建乘积数组"><a href="#题目6-构建乘积数组" class="headerlink" title="题目6 构建乘积数组"></a>题目6 构建乘积数组</h2><h3 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h3><p>给定一个数组A[0,1,…,n-1],请构建一个数组B[0,1,…,n-1],其中B中的元素B[i]=A[0]_A[1]_…_A[i-1]_A[i+1]_…_A[n-1]。不能使用除法。</p>
+<h3 id="题目解析-5"><a href="#题目解析-5" class="headerlink" title="题目解析"></a>题目解析</h3><p>将B分为两个部分，B0和B1，B0计算A[0]_A[1]_…_A[i-1]；B1计算A[i+1]_…_A[n-1]。然后将B0_B1得到结果。</p>
 <h3 id="代码-5"><a href="#代码-5" class="headerlink" title="代码"></a>代码</h3><pre><code>    vector&lt;int&gt; multiply(const vector&lt;int&gt;&amp; A) {
 int n = A.size();
     vector&lt;int&gt; B0(n, 1);
@@ -415,6 +415,7 @@ int n = A.size();
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 

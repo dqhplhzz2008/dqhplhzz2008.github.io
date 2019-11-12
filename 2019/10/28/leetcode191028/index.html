@@ -199,7 +199,7 @@
 <p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode322result.jpg" alt="复杂度配图"></p>
 <h1 id="Leetcode-337：打家劫舍（3）"><a href="#Leetcode-337：打家劫舍（3）" class="headerlink" title="Leetcode 337：打家劫舍（3）"></a>Leetcode 337：打家劫舍（3）</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>小偷发现了一个可行窃的地区。这个地区只有一个入口，我们称之为“根”。 除了“根”之外，每栋房子有且只有一个“父“房子与之相连。一番侦察之后，聪明的小偷意识到“这个地方的所有房屋的排列类似于一棵二叉树”。 如果两个直接相连的房子在同一天晚上被打劫，房屋将自动报警。</p>
 <p>计算在不触动警报的情况下，小偷一晚能够盗取的最高金额。</p>
-<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道升级版的树状动态规划问题也可以由一维的dp延伸来，只是情况稍微复杂一些，每一个节点的dp值与三层二叉树的结点dp值相关。对于下图所示的一棵三层满二叉树来说：<br>      1<br>    /   \<br>   2     3<br>  / \   / \<br> 4   5 6   7</p>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>这道升级版的树状动态规划问题也可以由一维的dp延伸来，只是情况稍微复杂一些，每一个节点的dp值与三层二叉树的结点dp值相关。对于下图所示的一棵三层满二叉树来说：<br>      1<br>    /   \<br>   2     3<br>  /    /  <br> 4   5 6   7</p>
 <p>在每个结点的金额非负的情况下，且要保证取值结点不相邻，只可能有四种最大的取值方式：</p>
 <ol>
 <li>结点2 + 结点3</li>
@@ -300,6 +300,7 @@
 <a id="back-to-top" class="icon-btn hide">
 	<i class="fa fa-chevron-up"></i>
 </a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
 
 
 
