@@ -1,0 +1,377 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="标签1,标签2">
+
+
+    <meta name="description" content="参考自：https://www.cnblogs.com/wangxin37/p/8185688.html
+在主题中手动添加js安装mathjax。类似所有第三方js插件，js加载方式有两种：
+
+...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>how to use mathjax in hexo | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="how to use mathjax in hexo">
+            
+	            how to use mathjax in hexo
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/分类1/">分类1</a> <a class="category-link" href="/categories/分类1/分类2/">分类2</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/标签1/">标签1</a> <a class="tag-link" href="/tags/标签2/">标签2</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/11/12</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>参考自：<a href="https://www.cnblogs.com/wangxin37/p/8185688.html" target="_blank" rel="noopener">https://www.cnblogs.com/wangxin37/p/8185688.html</a></p>
+<h2 id="在主题中手动添加js安装mathjax。"><a href="#在主题中手动添加js安装mathjax。" class="headerlink" title="在主题中手动添加js安装mathjax。"></a>在主题中手动添加js安装mathjax。</h2><p>类似所有第三方js插件，js加载方式有两种：</p>
+<ul>
+<li>第一种，通过连接CDN加载js代码。好处是省了本地配置js代码，并且每次加载都是最新的，缺点是一旦连接的CDN出问题，可能卡住页面的js加载。</li>
+<li>第二种，将js代码下载下来，放到主题的js文件夹中，通过本地相对目录加载。优缺点和第一种方法正相反。</li>
+</ul>
+<p>在themes/snippet/layout/_partial 目录中新建mathjax.ejs，填入如下js代码：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- MathJax配置，可通过单美元符号书写行内公式等 --&gt;</span><br><span class="line">&lt;script type=<span class="string">"text/x-mathjax-config"</span>&gt;</span><br><span class="line">    MathJax.Hub.Config(&#123;</span><br><span class="line">    <span class="string">"HTML-CSS"</span>: &#123; </span><br><span class="line">        preferredFont: <span class="string">"TeX"</span>, </span><br><span class="line">        availableFonts: [<span class="string">"STIX"</span>,<span class="string">"TeX"</span>], </span><br><span class="line">        linebreaks: &#123; <span class="attr">automatic</span>:<span class="literal">true</span> &#125;, </span><br><span class="line">        EqnChunk: (MathJax.Hub.Browser.isMobile ? <span class="number">10</span> : <span class="number">50</span>) </span><br><span class="line">    &#125;,</span><br><span class="line">    tex2jax: &#123; </span><br><span class="line">        inlineMath: [ [<span class="string">"$"</span>, <span class="string">"$"</span>], [<span class="string">"\\("</span>,<span class="string">"\\)"</span>] ], </span><br><span class="line">        processEscapes: <span class="literal">true</span>, </span><br><span class="line">        ignoreClass: <span class="string">"tex2jax_ignore|dno"</span>,</span><br><span class="line">        skipTags: [<span class="string">'script'</span>, <span class="string">'noscript'</span>, <span class="string">'style'</span>, <span class="string">'textarea'</span>, <span class="string">'pre'</span>, <span class="string">'code'</span>]</span><br><span class="line">    &#125;,</span><br><span class="line">    TeX: &#123;  </span><br><span class="line">        equationNumbers: &#123; <span class="attr">autoNumber</span>: <span class="string">"AMS"</span> &#125;,</span><br><span class="line">        noUndefined: &#123; <span class="attr">attributes</span>: &#123; <span class="attr">mathcolor</span>: <span class="string">"red"</span>, <span class="attr">mathbackground</span>: <span class="string">"#FFEEEE"</span>, <span class="attr">mathsize</span>: <span class="string">"90%"</span> &#125; &#125;, </span><br><span class="line">        Macros: &#123; <span class="attr">href</span>: <span class="string">"&#123;&#125;"</span> &#125; </span><br><span class="line">    &#125;,</span><br><span class="line">    messageStyle: <span class="string">"none"</span></span><br><span class="line">    &#125;); </span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br><span class="line"><span class="regexp">&lt;!-- 给MathJax元素添加has-jax class --&gt;</span></span><br><span class="line"><span class="regexp">&lt;script type="text/</span>x-mathjax-config<span class="string">"&gt;</span></span><br><span class="line"><span class="string">    MathJax.Hub.Queue(function() &#123;</span></span><br><span class="line"><span class="string">        var all = MathJax.Hub.getAllJax(), i;</span></span><br><span class="line"><span class="string">        for(i=0; i &lt; all.length; i += 1) &#123;</span></span><br><span class="line"><span class="string">            all[i].SourceElement().parentNode.className += ' has-jax';</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">    &#125;);</span></span><br><span class="line"><span class="string">&lt;/script&gt;</span></span><br><span class="line"><span class="string">&lt;!-- 通过连接CDN加载MathJax的js代码 --&gt;</span></span><br><span class="line"><span class="string">&lt;script type="</span>text/javascript<span class="string">" async</span></span><br><span class="line"><span class="string">  src="</span>https:<span class="comment">//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"&gt;</span></span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="只在有公式的页面才加载MathJax"><a href="#只在有公式的页面才加载MathJax" class="headerlink" title="只在有公式的页面才加载MathJax"></a>只在有公式的页面才加载MathJax</h2><p>有公式才加载MathJax，这点比较重要，没有公式仍然加载js渲染公式，会影响页面加载速度。在所有有公式的文章的front-matter中增加一项配置 mathjax: true，位置是<code>scaffolds</code>目录下的三个md文件。例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Leetcode题目解析（191112）：200&amp;206</span><br><span class="line">categories:</span><br><span class="line">  - C/C++</span><br><span class="line">tags:</span><br><span class="line">  - Leetcode</span><br><span class="line">  - 算法</span><br><span class="line">comments: false</span><br><span class="line">mathjax: true</span><br><span class="line">date: 2019-11-12 10:39:05</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
+<p>然后在themes/snippet/layout/_partial/footer.ejs 中通过此配置变量决定是否加载mathjax.ejs ：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 根据页面mathjax变量决定是否加载MathJax数学公式js --&gt;</span><br><span class="line">&lt;% <span class="keyword">if</span> (page.mathjax)&#123; %&gt;</span><br><span class="line">&lt;%- partial(<span class="string">'mathjax'</span>) %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="解决MarkDown与MathJax渲染冲突"><a href="#解决MarkDown与MathJax渲染冲突" class="headerlink" title="解决MarkDown与MathJax渲染冲突"></a>解决MarkDown与MathJax渲染冲突</h2><p>Hexo默认的MarkDown渲染引擎hexo-renderer-marked会调用marked模块的marked.js脚本进行最终的解释，这个脚本在Hexo安装后的node_modules\marked\lib\目录中。<br>有两点修改：</p>
+<p>针对下划线的问题，取消_作为斜体转义，因为marked.js中<em>也是斜体的意思，所以取消掉_的转义并不影响使用markdown，我平时一般不用斜体，就是用也更习惯用</em>作为斜体标记。<br>针对marked.js与Mathjax对于个别字符二次转义的问题，我们只要不让marked.js去转义\\,\{,\}在MathJax中有特殊用途的字符就行了。<br>编辑node_modules\marked\lib\marked.js 脚本：</p>
+<p>【第一步】<br>将451行的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: /^\\([\\`*&#123;&#125;\[\]()# +\-.!_&gt;])/,</span><br></pre></td></tr></table></figure>
+<p>替换为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">escape: /^\\([`*\[\]()# +\-.!_&gt;])/,</span><br></pre></td></tr></table></figure></p>
+<p>这一步取消了对\\,\{,\}的转义(escape)</p>
+<p>【第二步】<br>将459行的<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em: /^\b_((?:[^_]|__)+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br></pre></td></tr></table></figure></p>
+<p>替换为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">em:/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span><br></pre></td></tr></table></figure></p>
+<p>这一步取消了对斜体标记_的转义。</p>
+<p>这样带来一个问题就是，以后每次更换电脑，在新电脑上安装完Hexo环境后，都要手动修改marked.js文件。</p>
+<h2 id="MathJax公式书写"><a href="#MathJax公式书写" class="headerlink" title="MathJax公式书写"></a>MathJax公式书写</h2><p>MathJax公式书写参考<br><a href="http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference" target="_blank" rel="noopener">http://meta.math.stackexchange.com/questions/5020/mathjax-basic-tutorial-and-quick-reference</a></p>
+<h3 id="行内公式"><a href="#行内公式" class="headerlink" title="行内公式"></a>行内公式</h3><p>含下划线_的公式$x_mu$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">希腊字符$\sigma$</span><br><span class="line">```$\sigma$</span><br></pre></td></tr></table></figure></p>
+<p>行内公式$\cos 2\theta = \cos^2 \theta - \sin^2 \theta = 2 \cos^2 \theta$</p>
+<figure class="highlight plain"><figcaption><span>2\theta </span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### MathJax大括号右多行赋值</span><br><span class="line"></span><br><span class="line">$$ f(n) = \begin&#123;cases&#125; n/2, &amp; \text&#123;if  $n$ is even&#125; \\ 3n+1, &amp; \text&#123;if  $n$ is odd&#125; \end&#123;cases&#125; $$</span><br></pre></td></tr></table></figure>
+<p>$$ f(n) = \begin{cases} n/2, &amp; \text{if  $n$ is even} \ 3n+1, &amp; \text{if  $n$ is odd} \end{cases} $$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">双\\公式内换行，cases实现大括号右多行赋值，&amp;用来对齐。</span><br><span class="line"></span><br><span class="line">### MathJax公式自动编号</span><br><span class="line"></span><br><span class="line">上面mathjax.ejs脚本中已加入公式编号的配置。  </span><br><span class="line">书写时只要使用begin&#123;equation&#125;环境就会自动编号：</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\begin{equation}<br>\end{equation}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">注意此时会自动将文档内的所有begin&#123;equation&#125;公式连续编号，例如：</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\begin{equation}<br>\sum_{i=0}^n F_i \cdot \phi (H, p_i) - \sum_{i=1}^n a_i \cdot ( \tilde{x_i}, \tilde{y_i}) + b_i \cdot ( \tilde{x_i}^2 , \tilde{y_i}^2 )<br>\end{equation}<br>$$<br>$$<br>\begin{equation}<br>\beta^*(D) = \mathop{argmin} \limits_{\beta} \lambda {||\beta||}^2 + \sum_{i=1}^n max(0, 1 - y_i f_{\beta}(x_i))<br>\end{equation}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$$</span><br><span class="line">\begin&#123;equation&#125;</span><br><span class="line">\sum_&#123;i=0&#125;^n F_i \cdot \phi (H, p_i) - \sum_&#123;i=1&#125;^n a_i \cdot ( \tilde&#123;x_i&#125;, \tilde&#123;y_i&#125;) + b_i \cdot ( \tilde&#123;x_i&#125;^2 , \tilde&#123;y_i&#125;^2 )</span><br><span class="line">\end&#123;equation&#125;</span><br><span class="line">$$</span><br><span class="line">$$</span><br><span class="line">\begin&#123;equation&#125;</span><br><span class="line">\beta^*(D) = \mathop&#123;argmin&#125; \limits_&#123;\beta&#125; \lambda &#123;||\beta||&#125;^2 + \sum_&#123;i=1&#125;^n max(0, 1 - y_i f_&#123;\beta&#125;(x_i)) </span><br><span class="line">\end&#123;equation&#125;</span><br><span class="line">$$</span><br><span class="line"></span><br><span class="line">### 禁止自动编号</span><br><span class="line">在end&#123;equation&#125;前加\nonumber可禁止对此公式自动编号，例如：</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\begin{equation}<br>\sum_{i=0}^n F_i \cdot \phi (H, p_i) - \sum_{i=1}^n a_i \cdot ( \tilde{x_i}, \tilde{y_i}) + b_i \cdot ( \tilde{x_i}^2 , \tilde{y_i}^2 )<br>\nonumber<br>\end{equation}<br>$$<br>$$<br>\begin{equation}<br>\beta^*(D) = \mathop{argmin} \limits_{\beta} \lambda {||\beta||}^2 + \sum_{i=1}^n max(0, 1 - y_i f_{\beta}(x_i))<br>\end{equation}<br>$$<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### MathJax公式手动编号</span><br><span class="line"></span><br><span class="line">可以在公式书写时使用\tag&#123;手动编号&#125;添加手动编号，例如：</span><br></pre></td></tr></table></figure></p>
+<p>$$<br>\begin{equation}<br>\sum_{i=0}^n F_i \cdot \phi (H, p_i) - \sum_{i=1}^n a_i \cdot ( \tilde{x_i}, \tilde{y_i}) + b_i \cdot ( \tilde{x_i}^2 , \tilde{y_i}^2 ) \tag{1.2.3}<br>\end{equation}<br>$$<br><code>`</code></p>
+<p>$$<br>\begin{equation}<br>\sum_{i=0}^n F_i \cdot \phi (H, p_i) - \sum_{i=1}^n a_i \cdot ( \tilde{x_i}, \tilde{y_i}) + b_i \cdot ( \tilde{x_i}^2 , \tilde{y_i}^2 ) \tag{1.2.3}<br>\end{equation}<br>$$<br>其它详见参考原文</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/11/12/leetcode191112/" class="next-post btn btn-default" title="Leetcode题目解析（191112）：200&206">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191112）：200&206</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#在主题中手动添加js安装mathjax。"><span class="toc-text">在主题中手动添加js安装mathjax。</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#只在有公式的页面才加载MathJax"><span class="toc-text">只在有公式的页面才加载MathJax</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解决MarkDown与MathJax渲染冲突"><span class="toc-text">解决MarkDown与MathJax渲染冲突</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MathJax公式书写"><span class="toc-text">MathJax公式书写</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#行内公式"><span class="toc-text">行内公式</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+<!-- MathJax配置，可通过单美元符号书写行内公式等 -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+    "HTML-CSS": { 
+        preferredFont: "TeX", 
+        availableFonts: ["STIX","TeX"], 
+        linebreaks: { automatic:true }, 
+        EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50) 
+    },
+    tex2jax: { 
+        inlineMath: [ ["$", "$"], ["\\(","\\)"] ], 
+        processEscapes: true, 
+        ignoreClass: "tex2jax_ignore|dno",
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {  
+        equationNumbers: { autoNumber: "AMS" },
+        noUndefined: { attributes: { mathcolor: "red", mathbackground: "#FFEEEE", mathsize: "90%" } }, 
+        Macros: { href: "{}" } 
+    },
+    messageStyle: "none"
+    }); 
+</script>
+<!-- 给MathJax元素添加has-jax class -->
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+<!-- 通过连接CDN加载MathJax的js代码 -->
+<script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
