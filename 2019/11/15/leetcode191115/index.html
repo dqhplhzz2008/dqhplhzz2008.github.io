@@ -194,7 +194,7 @@
 <p>归并排序的顺序是“二分”和“合并”。那么对于链表来说，由于我们不能使用递归，所以我们可以使用迭代来进行处理。首先是二分的步骤，其过程如下图所示。</p>
 <p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode148cut.jpg" alt="cut"></p>
 <p>对于<code>cut</code>这个过程，我们要做的就是，首先记录下链表的长度n，其实每一次划分，其划分出来的长度都是<code>n&gt;&gt;2</code>，也就是二分之n，所以我们只需要将一个指针从头走<code>n/2</code>次即可，然后将该指针的<code>next</code>指向空，记录下一个节点的地址为<code>right</code>，并返回。这样我们就记录了两个子链表的开始地址<code>left</code>和<code>right</code>，如下图所示。</p>
-<p>leetcode148cut1.jpg</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode148cut1.jpg" alt="cut1"></p>
 <p>代码实现如下的cut函数所示。</p>
 <p>在cut完成之后，就需要开始“合并”。合并这个工序可以参见之前做过的合并有序链表即可，其过程不再重述，如下图所示。</p>
 <p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode148merge.jpg" alt="merge"></p>
