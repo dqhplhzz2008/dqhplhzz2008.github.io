@@ -1,0 +1,332 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Leetcode 142：环形链表2题目描述给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。
+为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Leetcode题目解析（191118）：142&amp;146 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Leetcode题目解析（191118）：142&amp;146">
+            
+	            Leetcode题目解析（191118）：142&amp;146
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/11/18</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Leetcode-142：环形链表2"><a href="#Leetcode-142：环形链表2" class="headerlink" title="Leetcode 142：环形链表2"></a>Leetcode 142：环形链表2</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个链表，返回链表开始入环的第一个节点。 如果链表无环，则返回 null。</p>
+<p>为了表示给定链表中的环，我们使用整数 pos 来表示链表尾连接到链表中的位置（索引从 0 开始）。 如果 pos 是 -1，则在该链表中没有环。</p>
+<p>说明：不允许修改给定的链表。</p>
+<h2 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h2><p>《剑指offer》中也有此题，所以直接复制过来予以说明。</p>
+<p>其实我的思路是把每个访问过的结点做标记，然后不断往下走后，遇到的第一个标记过的点，就是还的入口结点，如果没有遇到，则就不存在环，返回null。但是这种方法比较复杂，而且很难找到标志每个结点的特点在哪里。</p>
+<p>所以可以这样考虑。如图4.1所示。<br><img src="https://raw.githubusercontent.com/dqhplhzz2008/Study-notes/master/jianzhioffer/images/lianbiaohuanrukou.jpg" alt="约束条件"></p>
+<p>图4.1 示意图</p>
+<p>我们假设x为AB之间的距离，a为从b到c的距离（顺时针移动），c为环的长度。我们可以设置两个指针，一个快一个慢，然后快的是慢的速度的两倍。设快指针为f，慢指针为s，则当快指针和慢指针相遇的时候，s=x+m<em>c+a，f=x+n</em>c+a，m和n为某不同的常数，s=f。所以x=(n-2m)c-a=(n-2m-1)c+c-a。n-2m-1可为0。这里为了处理方便，省略前面这个类似于周期的东西，只留下c-a。c-a是什么？c-a就是图4.1中灰色的这条线。也就是说，AB之间的距离=灰色的线。这样，我们可以再重新将f这个指针（也可以是s）指向A，那么当f和s相遇的时候，所在的结点就是入口结点。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListNode *<span class="title">detectCycle</span><span class="params">(ListNode *head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(head==<span class="literal">nullptr</span>||head-&gt;next==<span class="literal">nullptr</span>||head-&gt;next-&gt;next==<span class="literal">nullptr</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *slow=head-&gt;next;</span><br><span class="line">        ListNode *fast=head-&gt;next-&gt;next;</span><br><span class="line">        <span class="keyword">while</span>(fast!=slow)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>((fast-&gt;next!=<span class="literal">nullptr</span>)&amp;&amp;(fast-&gt;next-&gt;next!=<span class="literal">nullptr</span>))&#123;</span><br><span class="line">                fast=fast-&gt;next-&gt;next;</span><br><span class="line">                slow=slow-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        fast=head;</span><br><span class="line">        <span class="keyword">while</span>(fast!=slow)</span><br><span class="line">        &#123;</span><br><span class="line">            fast=fast-&gt;next;</span><br><span class="line">            slow=slow-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> slow;   </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode142result.jpg" alt="运行时间"></p>
+<p>时间复杂度O(n)，空间复杂度O(1)。</p>
+<p>其它题目详见Leetcode 141（环形链表），是本题的阉割版本。</p>
+<h1 id="Leetcode-146：LRU缓存机制"><a href="#Leetcode-146：LRU缓存机制" class="headerlink" title="Leetcode 146：LRU缓存机制"></a>Leetcode 146：LRU缓存机制</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>运用你所掌握的数据结构，设计和实现一个LRU (最近最少使用)缓存机制。它应该支持以下操作： 获取数据 <code>get</code> 和 写入数据 <code>put</code> 。</p>
+<p>获取数据 <code>get(key)</code> - 如果密钥 (key) 存在于缓存中，则获取密钥的值（总是正数），否则返回 -1。<br>写入数据 <code>put(key, value)</code>- 如果密钥不存在，则写入其数据值。当缓存容量达到上限时，它应该在写入新数据之前删除最近最少使用的数据值，从而为新的数据值留出空间。</p>
+<p><strong>进阶</strong></p>
+<p>你是否可以在 O(1) 时间复杂度内完成这两种操作？</p>
+<h2 id="示例："><a href="#示例：" class="headerlink" title="示例："></a>示例：</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">LRUCache* cache = <span class="keyword">new</span> LRUCache(<span class="number">2</span>);</span><br><span class="line">cache-&gt;put(<span class="number">1</span>, <span class="number">1</span>);</span><br><span class="line">cache-&gt;put(<span class="number">2</span>, <span class="number">2</span>);</span><br><span class="line"><span class="keyword">int</span> result1 = cache-&gt;get(<span class="number">1</span>);<span class="comment">//return 1</span></span><br><span class="line">cache-&gt;put(<span class="number">3</span>, <span class="number">3</span>);<span class="comment">//make (2,2) invalid</span></span><br><span class="line"><span class="keyword">int</span> result2 = cache-&gt;get(<span class="number">2</span>);<span class="comment">//return -1</span></span><br><span class="line">cache-&gt;put(<span class="number">4</span>, <span class="number">4</span>);<span class="comment">//make (1,1) invalid</span></span><br><span class="line"><span class="keyword">int</span> result3 = cache-&gt;get(<span class="number">1</span>);<span class="comment">//return -1</span></span><br><span class="line"><span class="keyword">int</span> result4 = cache-&gt;get(<span class="number">3</span>);<span class="comment">//return 3</span></span><br><span class="line"><span class="keyword">int</span> result5 = cache-&gt;get(<span class="number">4</span>);<span class="comment">//return 4</span></span><br></pre></td></tr></table></figure>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>LRU就是这样一个数据结构：其内部含有一个容量为<code>cap</code>的结构，也就是说里面有<code>cap</code>个元素，每一个元素是一个键值对。这个数据结构插入（put）和寻找（get）有以下特点：对于插入来说，如果这个键值对不存在，那么插入到这个元组里面，并放置在开头，如果存在则更新这个元组并放置在开头；对于寻找来说，如果没有找到，则返回-1，否则返回这个键值对的value，然后将这个键值对放在元组开头。</p>
+<p>通过以上的功能，我们可以首先想到的基本数据结构有：哈希表（键值对）、栈（先入先出）。但是考虑到我们get之后也需要把这个键值对放在开头，所以使用栈的话操作并不方便，因为栈只能操作一头。所以我们可以使用哈希表。另外因为要求查找的时间复杂度为O(1)，所以更应该使用哈希表。<br>但是另外一点，我们还要求插入时间复杂度为O(1)，那么能实现该复杂度的基本数据结构只有链表。但是链表查找速度慢，那应该怎么操作呢？<br>这里可以考虑采用哈希表和链表相结合的方法进行操作。即对应于hash表每一个key值的value值其实指向了链表中的一个pair，这个pair的key值与hash表中的key值相等。于是无论是get还是put只需要对这个组合数据结构进行操作即可。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode146structure.jpg" alt="total"></p>
+<p>实际上这个类的数据成员一共三个：int类型的容量<code>cap</code>、pair类型的双向链表<code>cache</code>、int和list的unordered_map <code>mymap</code>。<br>所以对于构造函数来说，实际就是记录容量即可。<br>对于get来说，我们要判断是否存在，由于hashmap更适合做查找工作，所以就在hashmap里面查找，如果不存在，则返回-1，否则的返回key对应的value。但是不能直接这么返回，还需要将这个key-value置于mymap的开头，搜易需要做的就是获取到这个键值对，然后在链表list里面删除该键值对，然后将键值对插入到cache的开头，再领map[key]指向这个地址，最后再返回value的值。</p>
+<p>对于put来说，也需要先判断该key是否存在，若存在，则直接更改value值并插入到cache头部，具体步骤与前面思路一致，不再重述；若不存在，则首先判断cache长度是否已经达到容量，若达到了，则删除链表cache中最后一个元素，并获取相应key值在mymap中予以删除，这样就空出来了空间。若还有空间，则直接在cache头部添加，然后在mymap中直接添加即可。</p>
+<p>具体可以见代码。</p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> cap;<span class="comment">//capacity</span></span><br><span class="line">    <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; cache;<span class="comment">//single key-value pair</span></span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">int</span>, <span class="built_in">list</span>&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt;::iterator&gt; mymap;</span><br><span class="line">    <span class="comment">//hash table:key to the position of(key,value) in cache</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    LRUCache(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;cap = capacity;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">auto</span> it = mymap.find(key);</span><br><span class="line">        <span class="comment">//can not find key</span></span><br><span class="line">        <span class="keyword">if</span> (it == mymap.end())</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="comment">//find key and put it in the front of the list</span></span><br><span class="line">        pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt; visited = *mymap[key];</span><br><span class="line">        cache.erase(mymap[key]);</span><br><span class="line">        cache.push_front(visited);</span><br><span class="line">        <span class="comment">// update the position of (key,value) in cache</span></span><br><span class="line">        mymap[key] = cache.begin();</span><br><span class="line">        <span class="keyword">return</span> visited.second;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">put</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//first if existed?</span></span><br><span class="line">        <span class="keyword">auto</span> it = mymap.find(key);</span><br><span class="line">        <span class="comment">//1--no</span></span><br><span class="line">        <span class="keyword">if</span> (it == mymap.end()) &#123;</span><br><span class="line">            <span class="comment">//1.1 no position?</span></span><br><span class="line">            <span class="keyword">if</span> (cache.size() == cap) &#123;</span><br><span class="line">                <span class="keyword">auto</span> lastPair = cache.back();</span><br><span class="line">                <span class="keyword">int</span> lastKey = lastPair.first;</span><br><span class="line">                mymap.erase(lastKey);</span><br><span class="line">                cache.pop_back();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//cache没满（或者已经删了一个位置）则可以直接添加</span></span><br><span class="line">            cache.push_front(make_pair ( key, value));</span><br><span class="line">            mymap[key] = cache.begin();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;<span class="comment">//key存在，则更改key并换到队头</span></span><br><span class="line">            cache.erase(mymap[key]);</span><br><span class="line">            cache.push_front(make_pair(key, value));</span><br><span class="line">            mymap[key] = cache.begin();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode146result.jpg" alt="运行时间"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/11/15/leetcode191115/" class="next-post btn btn-default" title="Leetcode题目解析（191115）：148&152">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191115）：148&152</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-142：环形链表2"><span class="toc-text">Leetcode 142：环形链表2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-146：LRU缓存机制"><span class="toc-text">Leetcode 146：LRU缓存机制</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例："><span class="toc-text">示例：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
