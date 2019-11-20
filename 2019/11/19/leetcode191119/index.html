@@ -218,8 +218,7 @@
 <p>我们可以考虑如何进行动态规划求解。既然是分成两个字符串，实际上就是用两个指针i和j，其中i是当前字符串从头开始的子字符串的长度，j是当前字符串的拆分位置，于是字符串就被拆分为了<code>(0,j)</code>和<code>(j+1,i)</code>的区间。然后设置一个一维dp数组，dp数组中的下标代表着字符串结束的下标。</p>
 <p>我们在求dp的时候，首先初始化<code>dp[0]=true</code>，剩余元素都初始化为false。我们用下标i来考虑所有从当前字符串开始的可能的字符串。对于每一个字符串，我们用j将它们分解为<code>s1</code>和<code>s2</code>，也就是说只有<code>s1</code>和<code>s2</code>都为<code>true</code>才可以，所以等价于，如果想要求<code>dp[i]</code>，就要看<code>dp[j]</code>（<code>dp[j]</code>代表到字符串下标到j的这个子字符串是否是子串，也就是<code>s1</code>是否是子串）和<code>s2</code>的情况。我们首先看<code>dp[j]</code>是否为<code>true</code>，若是则检查<code>s2</code>，<code>s2</code>实际上是下标<code>(j+1,i)</code>，所以只需要执行<code>find(wordDict.begin(), wordDict.end(), s.substr(j, i - j)) != wordDict.end()</code>即可。这样就完成了整个判断操作。最后返回<code>dp[len]</code>就好了。</p>
 <h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">wordBreak</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; wordDict)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = s.size();</span><br><span class="line">    <span class="keyword">if</span> (len == <span class="number">0</span> || wordDict.size() == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt; dp(len + <span class="number">1</span>, <span class="literal">false</span>);</span><br><span class="line">    dp[<span class="number">0</span>] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i - <span class="number">1</span>; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="keyword">if</span> (dp[j] &amp;&amp; find(wordDict.begin(), wordDict.end(), s.substr(j, i - j)) != wordDict.end())</span><br><span class="line">            &#123;</span><br><span class="line">                dp[i] = <span class="literal">true</span>;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> dp[len];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode139result.jpg" alt="运行时间"></p>
-<p>时间复杂度：O(n2)，因为两层for循环。<br>空间复杂度：O(n)，因为使用了长度为n+1的dp数组。</p>
+<h2 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h2><p>时间复杂度：O(n2)，因为两层for循环。<br>空间复杂度：O(n)，因为使用了长度为n+1的dp数组。</p>
 
     </div>
     
@@ -262,10 +261,15 @@
 
 <div class="article-nav prev-next-wrap clearfix">
     
+        <a href="/2019/11/20/leetcode191120/" class="pre-post btn btn-default" title="Leetcode题目解析（191120）：124&128">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191120）：124&128</span>
+        </a>
     
-        <a href="/2019/11/18/leetcode191118/" class="next-post btn btn-default" title="Leetcode题目解析（191118）：142&146">
+    
+        <a href="/2019/11/18/leetcode191118/" class="next-post btn btn-default" title="Leetcode题目解析（191118）：141&142&146">
             <span class="hidden-lg">下一篇</span>
-            <span class="hidden-xs">Leetcode题目解析（191118）：142&146</span><i class="fa fa-angle-right fa-fw"></i>
+            <span class="hidden-xs">Leetcode题目解析（191118）：141&142&146</span><i class="fa fa-angle-right fa-fw"></i>
         </a>
     
 </div>
