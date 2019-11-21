@@ -1,0 +1,393 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Leetcode 105：重建二叉树题目描述根据一棵树的前序遍历与中序遍历构造二叉树。注意:你可以假设树中没有重复的元素。
+示例给出
+前序遍历 preorder = [3,9,20,15,7]中...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Leetcode题目解析（191121）：105&amp;114 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Leetcode题目解析（191121）：105&amp;114">
+            
+	            Leetcode题目解析（191121）：105&amp;114
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/11/21</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Leetcode-105：重建二叉树"><a href="#Leetcode-105：重建二叉树" class="headerlink" title="Leetcode 105：重建二叉树"></a>Leetcode 105：重建二叉树</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>根据一棵树的前序遍历与中序遍历构造二叉树。<br>注意:<br>你可以假设树中没有重复的元素。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>给出</p>
+<p>前序遍历 preorder = [3,9,20,15,7]<br>中序遍历 inorder = [9,3,15,20,7]<br>返回如下的二叉树：</p>
+<pre><code>3
+</code></pre><p>   / \<br>  9  20<br>    /  \<br>   15   7</p>
+<h2 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h2><p>我们根据前序遍历的特点可以发现，前序遍历的第一个数字一定是这个二叉树的根节点；然后根据中序遍历的特点可发现，根节点左侧的数字一定是左子树，右侧一定是右子树。然后将中序遍历以根节点为中心划分成两个部分，这又是两个子树，然后这个子树又可以根据前序遍历找到各个子树的根节点……以此类推，这非常适合有递推来实现。</p>
+<p>就拿这个例子来说。</p>
+<p>前序遍历：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内容</td>
+<td><strong>1</strong></td>
+<td>2</td>
+<td>4</td>
+<td>7</td>
+<td>3</td>
+<td>5</td>
+<td>6</td>
+<td>8</td>
+</tr>
+</tbody>
+</table>
+<p>中序遍历：</p>
+<table>
+<thead>
+<tr>
+<th>序号</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>内容</td>
+<td>4</td>
+<td>7</td>
+<td>2</td>
+<td><strong>1</strong></td>
+<td>5</td>
+<td>3</td>
+<td>8</td>
+<td>6</td>
+</tr>
+</tbody>
+</table>
+<p>这又就把中序遍历分为了4/7/2和5/3/8/6两个部分。然后考虑4/7/2这个部分，前序遍历的第2个数字是划分4/7/2的数字，这样，2是这个子树的根节点，4/7都位于左子树。</p>
+<p>然后再看右子树，也就是3/5/6/8这四个数字。同理可以得出，3是右子树的根节点，然后5在左子树，8/6在右子树。再去8/6这个子树看，根据前序遍历可以看到6为子树的根节点，根据中序遍历可以看到，8为子树的左结点。</p>
+<p>接下来考虑代码实现问题。首先肯定要判断所给的两个数组是不是空，若是空肯定是个空树，否则继续进行。我们可以使用类里面的一个私有函数来进行具体的重建功能，而这个函数的参数自然是<strong>前序遍历结果、起始位置、结束位置、中序遍历结果、起始位置、结束位置。</strong></p>
+<p>当然作为刚开始的时候，起始位置肯定是<strong>0</strong>，结束位置肯定是<strong>length-1</strong>。</p>
+<p><strong>使用这个私有函数进行递归，肯定有停止递归的条件，那就是开始位置大于结束位置的时候，自然就代表迭代结束了。</strong></p>
+<p>然后新建一个TreeNode，第一个节点自然是前序遍历的第一个节点，所以可以：</p>
+<pre><code>TreeNode root=new TreeNode(pre[startPre]);
+</code></pre><p>接下来自然要开始进行判断，寻找前序遍历和中序遍历相等值的位置，由于前序遍历里面的点都可以作为中序遍历里面的根节点，所以我们只需要在中序遍历里面找到与前序遍历中值相等的位置，就是该子树的根节点的位置，就可以根据这个点划分左子树和右子树了。而中序遍历中到的根节点的位置i左侧有几个数字就是左子树有几个元素，右边有几个数字就是右子树有几个元素</p>
+<p>对于左子树来说，左子树的起始位置自然是startPre的下一个位置，而结束是startPre+i-startIn（startPre是位置，i-startIn是从中序遍历中看左子树有几个元素），而中序遍历的开始位置自然是startIn，结束位置是i-1。</p>
+<p>对于右子树来说，中序遍历的起始位置自然是i+1，结束位置是endIn；而对于前序遍历来说，自然是startPre+左子树的元素数+1，而左子树我们知道是i-startIn了，所以起始位置是startPre+i-startIn+1，结束位置自然是endPre。</p>
+<p>于是，完成了这个程序的编写。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">TreeNode* <span class="title">build</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; pre, <span class="keyword">int</span> ps, <span class="keyword">int</span> pe, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; in, <span class="keyword">int</span> is, <span class="keyword">int</span> ie)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (ps &gt; pe || is &gt; ie)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">int</span> mid = pre[ps];<span class="comment">//找到中序遍历的中间结点</span></span><br><span class="line">	TreeNode* root = <span class="keyword">new</span> TreeNode(mid);</span><br><span class="line">	<span class="keyword">int</span> i = is;</span><br><span class="line">	<span class="keyword">for</span> (; i &lt;= ie; ++i)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (in[i] == mid)</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	root-&gt;left = build(pre, ps + <span class="number">1</span>, ps + i - is, in, is, i - <span class="number">1</span>);<span class="comment">//对左子树下手</span></span><br><span class="line">	root-&gt;right = build(pre, ps + i - is + <span class="number">1</span>, pe, in, i + <span class="number">1</span>, ie);<span class="comment">//对右子树下手</span></span><br><span class="line">	<span class="keyword">return</span> root;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function">TreeNode* <span class="title">buildTree</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; preorder, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; inorder)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">int</span> presize = preorder.size();</span><br><span class="line">	<span class="keyword">int</span> insize = inorder.size();</span><br><span class="line">	<span class="keyword">if</span> (presize == <span class="number">0</span> || insize == <span class="number">0</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">else</span> <span class="keyword">if</span> (presize != insize)</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">nullptr</span>;</span><br><span class="line">	<span class="keyword">return</span> build(preorder, <span class="number">0</span>, presize - <span class="number">1</span>, inorder, <span class="number">0</span>, insize - <span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode105result.jpg" alt="运行时间"></p>
+<h1 id="Leetcode-114：二叉树展开为链表"><a href="#Leetcode-114：二叉树展开为链表" class="headerlink" title="Leetcode 114：二叉树展开为链表"></a>Leetcode 114：二叉树展开为链表</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉树，<strong>原地</strong>将它展开为链表。</p>
+<h2 id="题目解析-1"><a href="#题目解析-1" class="headerlink" title="题目解析"></a>题目解析</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode114jiexi1.jpg" alt="示例框架"></p>
+<p>我们以上图来考虑该如何去做。其整个过程如下图所示。首先确定根节点，然后寻找左子树的最右节点，将右子树挂在这个最右节点上，然后把左子树挂在右子树的位置上，最后将左子树置为空。这样便完成了一个循环。</p>
+<p>然后将根结点指针往后移一个节点，继续下一个过程。如果该结点的左子树是空，那么就直接进入下一个过程。如果这个时候当前节点已经是空了，那么代表整个任务已经完成了。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode114jiexi2.jpg" alt="解析"></p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">flatten</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (root != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (root-&gt;left != <span class="literal">nullptr</span>) &#123;</span><br><span class="line">            <span class="keyword">auto</span> mright = root-&gt;left;<span class="comment">//如果左子树非空，找左子树的最右节点</span></span><br><span class="line">            <span class="keyword">while</span> (mright-&gt;right != <span class="literal">nullptr</span>)</span><br><span class="line">                mright = mright-&gt;right;</span><br><span class="line">            <span class="comment">//找完</span></span><br><span class="line">            mright-&gt;right = root-&gt;right;<span class="comment">//把根的右孩子挂载左子树最右节点的右子树上</span></span><br><span class="line">            root-&gt;right = root-&gt;left;<span class="comment">//这个时候根的右孩子可以无视了，把左孩子放到右孩子上</span></span><br><span class="line">            root-&gt;left = <span class="literal">nullptr</span>;<span class="comment">//左子树置空即可</span></span><br><span class="line">        &#125;</span><br><span class="line">        root = root-&gt;right;<span class="comment">//下一步继续进行</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode114result.jpg" alt="运行时间"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/11/20/leetcode191120/" class="next-post btn btn-default" title="Leetcode题目解析（191120）：124&128">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191120）：124&128</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-105：重建二叉树"><span class="toc-text">Leetcode 105：重建二叉树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-114：二叉树展开为链表"><span class="toc-text">Leetcode 114：二叉树展开为链表</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析-1"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度-1"><span class="toc-text">复杂度</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
