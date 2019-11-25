@@ -1,0 +1,327 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Leetcode 96：不同的二叉搜索树题目描述给定一个整数n，求以1…n为节点的二叉搜索树有多少种？
+示例
+解题思路可以使用动态规划解，但是这个题同样也是一个卡塔兰数问题。卡塔兰数的应用主要有...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Leetcode题目解析（191125）：96&amp;98 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Leetcode题目解析（191125）：96&amp;98">
+            
+	            Leetcode题目解析（191125）：96&amp;98
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/11/25</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Leetcode-96：不同的二叉搜索树"><a href="#Leetcode-96：不同的二叉搜索树" class="headerlink" title="Leetcode 96：不同的二叉搜索树"></a>Leetcode 96：不同的二叉搜索树</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个整数n，求以1…n为节点的二叉搜索树有多少种？</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode96shili.jpg" alt="示例"></p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>可以使用动态规划解，但是这个题同样也是一个卡塔兰数问题。卡塔兰数的应用主要有：找零钱问题、三角网格问题、括号排列问题、球盒问题等。卡塔兰数的数学表达式为</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode96gongshi.jpg" alt="示例"></p>
+<p>所以代码只需要实现这个式子即可，时间复杂度为O(n)，空间复杂度为O(1)。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">numTrees</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">long</span> <span class="keyword">long</span> C = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        C = C * <span class="number">2</span> * (<span class="number">2</span> * i + <span class="number">1</span>) / (i + <span class="number">2</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)C;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度分析"><a href="#复杂度分析" class="headerlink" title="复杂度分析"></a>复杂度分析</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode96result.jpg" alt="复杂度分析"></p>
+<p>时间复杂度为O(n)，空间复杂度为O(1)。</p>
+<h1 id="Leetcode-98：验证二叉搜索树"><a href="#Leetcode-98：验证二叉搜索树" class="headerlink" title="Leetcode 98：验证二叉搜索树"></a>Leetcode 98：验证二叉搜索树</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个二叉树，判断其是否是一个有效的二叉搜索树。</p>
+<p>假设一个二叉搜索树具有如下特征：</p>
+<p>节点的左子树只包含小于当前节点的数。<br>节点的右子树只包含大于当前节点的数。<br>所有左子树和右子树自身必须也是二叉搜索树。</p>
+<h2 id="题目解析"><a href="#题目解析" class="headerlink" title="题目解析"></a>题目解析</h2><p>二叉树的题一般比较容易想到的就是用递归去做，在这里我们用一个名为<code>vBST</code>的子函数去做，由于是二叉搜索树，它的特征就是：</p>
+<ul>
+<li>节点的左子树只包含小于当前节点的数；</li>
+<li>节点的右子树只包含大于当前节点的数。</li>
+</ul>
+<p>所以在这个子函数里面我们要传三个参数：当前结点、如果是二叉搜索树时的最小值和最大值。那么对于这三个值，我们分别假设为value、lower和upper。这样就存在三种情况：当前结点为空，那么自然返回true；若lower值存在（若是判断根节点等情况下，lower值可能不存在，所以传递的时候要传递一个可取值的最小值，由于示例中给出了超过int类型的数值，所以这里我们使用了long long类型），那么value小于lower的话，说明当前结点小于其根结点的值，自然不是二叉搜索树，返回false；同理对upper也是如此。如果当前值符合要求，则一层一层递归下去即可。</p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">vBST</span><span class="params">(TreeNode* root, <span class="keyword">long</span> <span class="keyword">long</span> lower, <span class="keyword">long</span> <span class="keyword">long</span> upper)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">int</span> value = root-&gt;val;</span><br><span class="line">    <span class="keyword">if</span> (lower != LLONG_MIN &amp;&amp; value &lt;= lower)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">if</span> (upper !=LLONG_MAX &amp;&amp; value &gt;= upper)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">return</span> (vBST(root-&gt;left, lower, value) &amp;&amp; vBST(root-&gt;right, value, upper));</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">isValidBST</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (root == <span class="literal">nullptr</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">return</span> vBST(root, LLONG_MIN, LLONG_MAX);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="执行用时-amp-内存消耗"><a href="#执行用时-amp-内存消耗" class="headerlink" title="执行用时&amp;内存消耗"></a>执行用时&amp;内存消耗</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode98result.jpg" alt="复杂度分析"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/11/22/leetcode191122/" class="next-post btn btn-default" title="Leetcode题目解析（191122）：101&102&104">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191122）：101&102&104</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-96：不同的二叉搜索树"><span class="toc-text">Leetcode 96：不同的二叉搜索树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度分析"><span class="toc-text">复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-98：验证二叉搜索树"><span class="toc-text">Leetcode 98：验证二叉搜索树</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#题目解析"><span class="toc-text">题目解析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#执行用时-amp-内存消耗"><span class="toc-text">执行用时&amp;内存消耗</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
