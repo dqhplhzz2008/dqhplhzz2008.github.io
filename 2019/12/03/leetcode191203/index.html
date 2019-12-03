@@ -1,0 +1,346 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Leetcode,算法">
+
+
+    <meta name="description" content="Leetcode 11：盛最多水的容器题目描述给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>Leetcode题目解析（191203）：11&amp;15&amp;17&amp;46&amp;49 | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="Leetcode题目解析（191203）：11&amp;15&amp;17&amp;46&amp;49">
+            
+	            Leetcode题目解析（191203）：11&amp;15&amp;17&amp;46&amp;49
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/C-C/">C/C++</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Leetcode/">Leetcode</a> <a class="tag-link" href="/tags/算法/">算法</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2019/12/03</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h1 id="Leetcode-11：盛最多水的容器"><a href="#Leetcode-11：盛最多水的容器" class="headerlink" title="Leetcode 11：盛最多水的容器"></a>Leetcode 11：盛最多水的容器</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
+<p>说明：你不能倾斜容器，且 n 的值至少为 2。</p>
+<p>question_11.jpg</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
+<p>如上图所示，图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>其实这个题的意思就是假设我有两个点（i,ai）和(j,aj)，然后这两个点向下做垂线交x轴于(i,0)和(j,0)点，然后储水量其实就是(i,0)(j,0),(j,aj),(i,ai)四个点围起来的区域的面积。那么我们假设这个面积为res，那么可以得到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res=max(res,(j-i)*min(height[i],height[j]));</span><br></pre></td></tr></table></figure></p>
+<p>然后这其实就是这个题的核心，剩下就是如何求解最大呢？可以用贪婪算法。我们可以令i=0,j=height.size()-1，这样一步一步往中间收缩。收缩方式为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">height[i]&lt;height[j]?i++:j--;</span><br></pre></td></tr></table></figure></p>
+<p>可能会想我们是否会错过最大值呢？其实感性想一想，面积最大也就是i-j和坐标值中的最小值有关系，当然我们希望i-j越大越好，最小值越大越好，所以我们要一边增大最小值，一边收缩，然后不断记录当前的最大值就可以了。</p>
+<h2 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; height)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> len = height.size();</span><br><span class="line">    <span class="keyword">if</span> (len == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (len == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> height[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">int</span> left = <span class="number">0</span>, right = len - <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> maxvalue = <span class="number">0</span>,tmp=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (left &lt;= right)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (height[left] &lt;= height[right])</span><br><span class="line">        &#123;</span><br><span class="line">            tmp = height[left] * (right - left);</span><br><span class="line">            maxvalue = (maxvalue &lt; tmp ? tmp : maxvalue);</span><br><span class="line">            ++left;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (height[left] &gt; height[right])</span><br><span class="line">        &#123;</span><br><span class="line">            tmp = height[right] * (right - left);</span><br><span class="line">            maxvalue = (maxvalue &lt; tmp ? tmp : maxvalue);</span><br><span class="line">            --right;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> maxvalue;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h2><p>时间复杂度：O(n)<br>空间复杂度：O(1)</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode11result.jpg" alt="复杂度分析"></p>
+<h1 id="Leetcode-15：三数之和"><a href="#Leetcode-15：三数之和" class="headerlink" title="Leetcode 15：三数之和"></a>Leetcode 15：三数之和</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><p>给定数组 nums = [-1, 0, 1, 2, -1, -4]，</p>
+<p>满足要求的三元组集合为：<br>[<br>  [-1, 0, 1],<br>  [-1, -1, 2]<br>]</p>
+<h2 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h2><p>首先对数组进行排序，排序后固定一个数nums[i]，再使用左右指针指向nums[i]后面的两端，数字分别为nums[L]和nums[R]，计算三个数的和sum判断是否满足为0，满足则添加进结果如果nums[i]大于0，则三数之和必然无法等于0，结束循环；如果nums[i]==nums[i-1]，则说明该数字重复，会导致结果重复，所以应该跳过；当sum==0时，nums[L]==nums[L+1]则会导致结果重复，应该跳过，L++；当sum==0时，nums[R]==nums[R−1]则会导致结果重复，应该跳过，R−−。</p>
+<p>改编自：<a href="https://leetcode-cn.com/problems/3sum/solution/hua-jie-suan-fa-15-san-shu-zhi-he-by-guanpengchn/" target="_blank" rel="noopener">https://leetcode-cn.com/problems/3sum/solution/hua-jie-suan-fa-15-san-shu-zhi-he-by-guanpengchn/</a></p>
+<h2 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; threeSum(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">    <span class="keyword">int</span> len = nums.size();</span><br><span class="line">    <span class="keyword">if</span> (len &lt; <span class="number">3</span>)</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    sort(nums.begin(), nums.end());</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (nums[i] &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">break</span>;<span class="comment">//如果当前数字大于0，则三数之和一定大于0，所以结束循环</span></span><br><span class="line">        <span class="keyword">if</span> (i &gt; <span class="number">0</span> &amp;&amp; nums[i] == nums[i - <span class="number">1</span>])<span class="comment">//去重</span></span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">int</span> left = i + <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> right = len - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (left &lt; right) &#123;</span><br><span class="line">            <span class="keyword">int</span> sum = nums[i] + nums[left] + nums[right];</span><br><span class="line">            <span class="keyword">if</span> (sum == <span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; tmp&#123; nums[i],nums[left],nums[right] &#125;;</span><br><span class="line">                res.push_back(tmp);</span><br><span class="line">                <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[left] == nums[left + <span class="number">1</span>])</span><br><span class="line">                    left++;<span class="comment">//去重</span></span><br><span class="line">                <span class="keyword">while</span> (left &lt; right &amp;&amp; nums[right] == nums[right - <span class="number">1</span>])</span><br><span class="line">                    right--;<span class="comment">//去重</span></span><br><span class="line">                left++;</span><br><span class="line">                right--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (sum &lt; <span class="number">0</span>)</span><br><span class="line">                left++;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (sum &gt; <span class="number">0</span>)</span><br><span class="line">                right--;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度-1"><a href="#复杂度-1" class="headerlink" title="复杂度"></a>复杂度</h2><p>时间复杂度：O(n^2)，n为数组长度。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode15result.jpg" alt="复杂度分析"></p>
+<h1 id="Leetcode-17：电话号码的字母组合"><a href="#Leetcode-17：电话号码的字母组合" class="headerlink" title="Leetcode 17：电话号码的字母组合"></a>Leetcode 17：电话号码的字母组合</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个仅包含数字 2-9 的字符串，返回所有它能表示的字母组合。给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h2><p>输入：”23”<br>输出：[“ad”, “ae”, “af”, “bd”, “be”, “bf”, “cd”, “ce”, “cf”].</p>
+<h2 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h2><p>这个题可以使用深度优先遍历，也可以使用广度优先遍历。这里讲一下深度优先遍历。其过程可以用下图来表示，我们以“23”为例来进行讲解，递归调用deepfs函数，每次找到stored中存储的字符，调用下一层deepfs函数。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode17tijie.jpg" alt="题解"></p>
+<h2 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">    <span class="built_in">string</span> digits;</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;<span class="keyword">char</span>, <span class="built_in">string</span>&gt; stored;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; letterCombinations(<span class="built_in">string</span> digits) &#123;</span><br><span class="line">        <span class="keyword">if</span> (digits.empty())</span><br><span class="line">            <span class="keyword">return</span> res;</span><br><span class="line">        <span class="keyword">this</span>-&gt;digits = digits;</span><br><span class="line">        stored = &#123; &#123;<span class="string">'2'</span>,<span class="string">"abc"</span>&#125;,&#123;<span class="string">'3'</span>,<span class="string">"def"</span>&#125;,&#123;<span class="string">'4'</span>,<span class="string">"ghi"</span>&#125;,&#123;<span class="string">'5'</span>,<span class="string">"jkl"</span>&#125;,&#123;<span class="string">'6'</span>,<span class="string">"mno"</span>&#125;,&#123;<span class="string">'7'</span>,<span class="string">"pqrs"</span>&#125;,&#123;<span class="string">'8'</span>,<span class="string">"tuv"</span>&#125;,&#123;<span class="string">'9'</span>,<span class="string">"wxyz"</span>&#125; &#125;;</span><br><span class="line">        deepfs(<span class="string">""</span>, <span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">deepfs</span><span class="params">(<span class="built_in">string</span> rstr, <span class="keyword">int</span> ind)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> dsize = <span class="keyword">int</span>(<span class="keyword">this</span>-&gt;digits.size());</span><br><span class="line">        <span class="keyword">if</span> (dsize == ind)</span><br><span class="line">        &#123;</span><br><span class="line">            res.push_back(rstr);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span> targetChar = <span class="keyword">this</span>-&gt;digits[ind];</span><br><span class="line">        <span class="built_in">string</span> targetStr = stored[targetChar];</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">auto</span> tmpChar : targetStr)</span><br><span class="line">        &#123;</span><br><span class="line">            deepfs(rstr + tmpChar, ind + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度-2"><a href="#复杂度-2" class="headerlink" title="复杂度"></a>复杂度</h2><p>时间复杂度：O(3^n+4^m)<br>空间复杂度：O(3^n+4^m)</p>
+<p>n表示三个字母的数字的个数，m表示4个字母的数字的个数。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode17result.jpg" alt="复杂度分析"></p>
+<h1 id="Leetcode-46：全排列"><a href="#Leetcode-46：全排列" class="headerlink" title="Leetcode 46：全排列"></a>Leetcode 46：全排列</h1><h2 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个<strong>没有重复数字</strong>的序列，返回其所有可能的全排列。</p>
+<h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h2><p>输入: [1,2,3]<br>输出:<br>[<br>  [1,2,3],<br>  [1,3,2],<br>  [2,1,3],<br>  [2,3,1],<br>  [3,1,2],<br>  [3,2,1]<br>]</p>
+<h2 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h2><p>这个题其实就是使用回溯法的思路即可解决。回溯法思路在此不再重述。</p>
+<h2 id="代码实现-3"><a href="#代码实现-3" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">permuted</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums, <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; result, <span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (i == nums.size())</span><br><span class="line">    &#123;</span><br><span class="line">        result.push_back(nums);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; nums.size(); j++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (i != j)</span><br><span class="line">            swap(nums[i], nums[j]);</span><br><span class="line">        permuted(nums, result, i + <span class="number">1</span>);</span><br><span class="line">        <span class="keyword">if</span> (i != j)</span><br><span class="line">            swap(nums[i], nums[j]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; permute(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">    permuted(nums, res, <span class="number">0</span>);</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度-3"><a href="#复杂度-3" class="headerlink" title="复杂度"></a>复杂度</h2><p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode46result.jpg" alt="复杂度分析"></p>
+<h1 id="Leetcode-49：字母异位词分组"><a href="#Leetcode-49：字母异位词分组" class="headerlink" title="Leetcode 49：字母异位词分组"></a>Leetcode 49：字母异位词分组</h1><h2 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串数组，将字母异位词组合在一起。字母异位词指字母相同，但排列不同的字符串。</p>
+<p>所有输入均为小写字母。不考虑答案输出的顺序。</p>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h2><p>输入: [“eat”, “tea”, “tan”, “ate”, “nat”, “bat”],<br>输出:<br>[<br>  [“ate”,”eat”,”tea”],<br>  [“nat”,”tan”],<br>  [“bat”]<br>]</p>
+<h2 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h2><p>如图所示，就是利用了异位词是由相同的字母组成这一特点，设置了map的key，然后将单词作为value来储存得到。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode49tijie.jpg" alt="49题解"></p>
+<h2 id="代码实现-4"><a href="#代码实现-4" class="headerlink" title="代码实现"></a>代码实现</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; groupAnagrams(<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&amp; strs) &#123;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; result;</span><br><span class="line">    <span class="keyword">if</span> (strs.empty())</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    <span class="built_in">map</span>&lt;<span class="built_in">string</span>, <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt;&gt; mymap;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> str : strs)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">string</span> tmp = str;</span><br><span class="line">        sort(tmp.begin(), tmp.end());<span class="comment">//把所有的异序字母单词都排成按字母序排列</span></span><br><span class="line">        <span class="comment">//则有相同字母的排序完肯定是一样的，所以作为map的key</span></span><br><span class="line">        mymap[tmp].push_back(str);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span>&amp; mmap : mymap)</span><br><span class="line">    &#123;</span><br><span class="line">        result.push_back(mmap.second);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="复杂度-4"><a href="#复杂度-4" class="headerlink" title="复杂度"></a>复杂度</h2><p>时间复杂度：O(n)。<br>空间复杂度：额外使用了一个map。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/leetcode49result.jpg" alt="复杂度分析"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/12/01/leetcode191201/" class="next-post btn btn-default" title="Leetcode题目解析（191201）：53&55&56">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191201）：53&55&56</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-11：盛最多水的容器"><span class="toc-text">Leetcode 11：盛最多水的容器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度"><span class="toc-text">复杂度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-15：三数之和"><span class="toc-text">Leetcode 15：三数之和</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-1"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-1"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-1"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-1"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度-1"><span class="toc-text">复杂度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-17：电话号码的字母组合"><span class="toc-text">Leetcode 17：电话号码的字母组合</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-2"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-2"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-2"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-2"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度-2"><span class="toc-text">复杂度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-46：全排列"><span class="toc-text">Leetcode 46：全排列</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-3"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-3"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-3"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-3"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度-3"><span class="toc-text">复杂度</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Leetcode-49：字母异位词分组"><span class="toc-text">Leetcode 49：字母异位词分组</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#题目描述-4"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#示例-4"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#解题思路-4"><span class="toc-text">解题思路</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#代码实现-4"><span class="toc-text">代码实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#复杂度-4"><span class="toc-text">复杂度</span></a></li></ol></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
