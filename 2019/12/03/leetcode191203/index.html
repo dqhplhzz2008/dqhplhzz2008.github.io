@@ -188,7 +188,7 @@
     <div class="post-body post-content">
         <h1 id="Leetcode-11：盛最多水的容器"><a href="#Leetcode-11：盛最多水的容器" class="headerlink" title="Leetcode 11：盛最多水的容器"></a>Leetcode 11：盛最多水的容器</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。</p>
 <p>说明：你不能倾斜容器，且 n 的值至少为 2。</p>
-<p>question_11.jpg</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/leetcode/question_11.jpg" alt="示例图"></p>
 <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>输入: [1,8,6,2,5,4,8,3,7]<br>输出: 49</p>
 <p>如上图所示，图中垂直线代表输入数组 [1,8,6,2,5,4,8,3,7]。在此情况下，容器能够容纳水（表示为蓝色部分）的最大值为 49。</p>
 <h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>其实这个题的意思就是假设我有两个点（i,ai）和(j,aj)，然后这两个点向下做垂线交x轴于(i,0)和(j,0)点，然后储水量其实就是(i,0)(j,0),(j,aj),(i,ai)四个点围起来的区域的面积。那么我们假设这个面积为res，那么可以得到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">res=max(res,(j-i)*min(height[i],height[j]));</span><br></pre></td></tr></table></figure></p>
@@ -267,6 +267,11 @@
 </article>
 
 <div class="article-nav prev-next-wrap clearfix">
+    
+        <a href="/2019/12/06/leetcode191206/" class="pre-post btn btn-default" title="Leetcode题目解析（191206）：33&34&39&42">
+            <i class="fa fa-angle-left fa-fw"></i><span class="hidden-lg">上一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191206）：33&34&39&42</span>
+        </a>
     
     
         <a href="/2019/12/01/leetcode191201/" class="next-post btn btn-default" title="Leetcode题目解析（191201）：53&55&56">
