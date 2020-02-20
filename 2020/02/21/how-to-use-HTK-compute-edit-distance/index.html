@@ -1,0 +1,341 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process">
+
+
+    <meta name="description" content="可以使用HTK中的HResults模块来计算WER（字错误率）。下面从HTK安装开始一点点为大家讲解如何使用。
+本文参考网上的各种教程，属于个人原创，如需转载，请标明出处和本文地址。
+本文主要由...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>使用HTK中的HRESULTS计算WER | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="使用HTK中的HRESULTS计算WER">
+            
+	            使用HTK中的HRESULTS计算WER
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/02/21</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <p>可以使用HTK中的HResults模块来计算WER（字错误率）。下面从HTK安装开始一点点为大家讲解如何使用。</p>
+<p>本文参考网上的各种教程，属于个人原创，如需转载，请标明出处和本文地址。</p>
+<p>本文主要由以下部分组成：</p>
+<ul>
+<li>一、HTK在Windows下的编译</li>
+<li>二、使用HResults模块计算WER</li>
+</ul>
+<h2 id="一、HTK在Windows下的编译"><a href="#一、HTK在Windows下的编译" class="headerlink" title="一、HTK在Windows下的编译"></a>一、HTK在Windows下的编译</h2><p>HTK的下载地址为：  <a href="http://htk.eng.cam.ac.uk/download.shtml" target="_blank" rel="noopener">http://htk.eng.cam.ac.uk/download.shtml</a></p>
+<p>请注意，下载的时候需要先注册账号然后进行下载。在安装之前，请务必确定已经安装了Visual Stuio，我使用的是Visual Studio 2019，所以推荐使用2019及以上版本。</p>
+<p>下载完HTK后，将其解压，例如我是解压到了C:\htk目录，所以后续我以此目录来进行讲解。</p>
+<p>在C:\htk目录新建一个文件夹名为  <strong>bin.win32</strong>  。然后打开命令行，切换到PATH中VS的地址，例如我的是D:\Program Files (x86)\Visual Studio 14.0\Common7\Tools，就输入</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">d:  </span><br><span class="line"></span><br><span class="line">cd D:\Program Files (x86)\Visual Studio 14.0\Common7\Tools</span><br></pre></td></tr></table></figure>
+<p>切换目录后，执行：vsvar32。</p>
+<p>然后切换回C:\htk。接下来执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">cd  HTKLib</span><br><span class="line">nmake /f htk_htklib_nt.mkf all </span><br><span class="line">cd ..</span><br><span class="line">cd HTKTools</span><br><span class="line">nmake /f htk_htktools_nt.mkf all</span><br><span class="line">cd ..</span><br><span class="line">cd HLMLib</span><br><span class="line">nmake /f htk_hlmlib_nt.mkf all</span><br><span class="line">cd ..</span><br><span class="line">cd HLMTools</span><br><span class="line">nmake /f htk_hlmtools_nt.mkf al</span><br></pre></td></tr></table></figure>
+<p>把以上所有文件编译完成，HTK就编译完成了，所有的可执行文件（<em>.exe）都保存在了  <em>*bin.win32</em></em>  目录中。</p>
+<p>为了使用方便，可以将<strong>C:\htk\bin.win32</strong>加入PATH变量。</p>
+<h2 id="二、使用HResults模块计算WER"><a href="#二、使用HResults模块计算WER" class="headerlink" title="二、使用HResults模块计算WER"></a>二、使用HResults模块计算WER</h2><p>WER的计算公式为：</p>
+<p>WER = (S + D + I ) / N = (S + D + I ) / (S + D + C) </p>
+<p>其中，S为替换的字数，D为删除的字数，I为插入的字数，C为正确的字数。<br>HResults模块只能用mlf模块，所以需要先想办法将文本转换为mlf格式。需要注意，为了符合格式要求，txt文档必须为ANSI编码格式，且其中的每一段话前面要加上数字序号。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1 山东科技大学</span><br><span class="line">2 西安电子科技大学</span><br></pre></td></tr></table></figure>
+<p>然后使用python编写脚本文件进行转换，脚本文件内容如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">Created on Thu Feb 20 16:34:02 2020</span></span><br><span class="line"><span class="string"> </span></span><br><span class="line"><span class="string">@author: davidcheung</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"> </span><br><span class="line"><span class="comment">#-*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">import</span> os,sys</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">to_mlf</span><span class="params">(xi)</span>:</span></span><br><span class="line">    dx=&#123;</span><br><span class="line">       <span class="string">"0"</span>:<span class="string">"零"</span>,</span><br><span class="line">       <span class="string">"1"</span>:<span class="string">"一"</span>,</span><br><span class="line">       <span class="string">"2"</span>:<span class="string">"二"</span>,</span><br><span class="line">       <span class="string">"3"</span>:<span class="string">"三"</span>,</span><br><span class="line">       <span class="string">"4"</span>:<span class="string">"四"</span>,</span><br><span class="line">       <span class="string">"5"</span>:<span class="string">"五"</span>,</span><br><span class="line">       <span class="string">"6"</span>:<span class="string">"六"</span>,</span><br><span class="line">       <span class="string">"7"</span>:<span class="string">"七"</span>,</span><br><span class="line">       <span class="string">"8"</span>:<span class="string">"八"</span>,</span><br><span class="line">       <span class="string">"9"</span>:<span class="string">"九"</span></span><br><span class="line">    &#125;;</span><br><span class="line">    d=[]</span><br><span class="line">    eng=[]</span><br><span class="line">    tx=[<span class="string">","</span>,<span class="string">"."</span>,<span class="string">"!"</span>,<span class="string">"("</span>,<span class="string">")"</span>,<span class="string">"，"</span>,<span class="string">"。"</span>,<span class="string">"！"</span>,<span class="string">'；'</span>,<span class="string">'、'</span>,<span class="string">'：'</span>,<span class="string">'？'</span>,<span class="string">'“'</span>,<span class="string">'”'</span>];</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> xi:</span><br><span class="line">        u=x.encode(<span class="string">"utf-8"</span>)</span><br><span class="line">        <span class="keyword">if</span> u <span class="keyword">in</span> tx:</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        <span class="keyword">if</span> len(u)==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">if</span> u <span class="keyword">in</span> dx:</span><br><span class="line">                u=dx[u]</span><br><span class="line">            eng.append(str(u, encoding=<span class="string">'utf-8'</span>))</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> len(eng)&gt;<span class="number">0</span>:</span><br><span class="line">                d.append(<span class="string">""</span>.join(eng).upper())</span><br><span class="line">                eng=[]</span><br><span class="line">            d.append(str(u, encoding=<span class="string">'utf-8'</span>))</span><br><span class="line">    <span class="keyword">if</span> len(eng)&gt;<span class="number">0</span>:</span><br><span class="line">            d.append(<span class="string">""</span>.join(eng).upper())</span><br><span class="line">    <span class="keyword">return</span> d</span><br><span class="line"> </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fn_to_lab</span><span class="params">(s)</span>:</span></span><br><span class="line">    x=s.split()</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> x:</span><br><span class="line">        d=to_mlf(i.strip())</span><br><span class="line">        <span class="keyword">if</span> len(d)&gt;<span class="number">0</span>:</span><br><span class="line">            print(<span class="string">"\n"</span>.join(d))</span><br><span class="line">    print(<span class="string">'.'</span>)</span><br><span class="line"> </span><br><span class="line">fn=sys.argv[<span class="number">1</span>]</span><br><span class="line">print(<span class="string">'#!MLF!#'</span>)</span><br><span class="line"><span class="keyword">for</span> l <span class="keyword">in</span> open(fn):</span><br><span class="line">    l=l.strip()</span><br><span class="line">    x=l.split()</span><br><span class="line">    k=x[<span class="number">0</span>].strip()</span><br><span class="line">    v=<span class="string">" "</span>.join(x[<span class="number">1</span>:])</span><br><span class="line">    t=<span class="string">"."</span>.join(k)</span><br><span class="line">    print(<span class="string">'"*No%s.lab" '</span> % t)</span><br><span class="line">    fn_to_lab(v)</span><br></pre></td></tr></table></figure>
+<p>此脚本可以明明为src2mlf.py，该脚本的功能是将正确的结果转化为相应的mlf文件。如果是测试结果，可以将该代码中<code>print(&#39;&quot;*No%s.lab&quot; &#39; % t)</code>的<code>lab</code>修改为<code>rec</code>即可。</p>
+<p>运行的时候执行命令如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">python src2mlf.py src.txt &gt;src.mlf</span><br><span class="line">python rec2mlf.py testResult.txt &gt;testResult.mlf</span><br></pre></td></tr></table></figure>
+<p>然后在命令行中切换到当前mlf目录，然后执行以下命令即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HResults.exe -t -I src.mlf nul testResult.mlf</span><br></pre></td></tr></table></figure>
+<p>当然对于Linux（例如CentOS等）则执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HResults -t -I src.mlf /dev/null testResult.mlf</span><br></pre></td></tr></table></figure>
+<p>下面举一个例子，例子详见原文：<br><a href="http://www.yushuai.xyz/2020/02/20/4541.html" target="_blank" rel="noopener">http://www.yushuai.xyz/2020/02/20/4541.html</a>。</p>
+<p>例子的结果详见下图。</p>
+<p><img src="http://tech.yushuai.xyz/wzpt/speechnotes/zicuowulv20200220.jpg" alt="结果示意图"></p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2019/12/17/leetcode191217/" class="next-post btn btn-default" title="Leetcode题目解析（191217）：20&22&32">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Leetcode题目解析（191217）：20&22&32</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、HTK在Windows下的编译"><span class="toc-text">一、HTK在Windows下的编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、使用HResults模块计算WER"><span class="toc-text">二、使用HResults模块计算WER</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
