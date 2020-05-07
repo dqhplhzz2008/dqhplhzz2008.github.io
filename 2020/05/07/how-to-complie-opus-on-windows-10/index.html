@@ -1,0 +1,368 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+    <!--Setting-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <meta http-equiv="Cache-Control" content="no-transform">
+    <meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta name="apple-mobile-web-app-capable" content="小奥の部落格">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no,email=no,adress=no">
+    <meta name="browsermode" content="application">
+    <meta name="screen-orientation" content="portrait">
+    <link rel="dns-prefetch" href="http://tech.yushuai.xyz">
+    <!--SEO-->
+
+    <meta name="keywords" content="Speech Process,Opus">
+
+
+    <meta name="description" content="Opus库生成将Opus库clone之后，找到目录中的win32文件夹，里面有一个vs2015目录，点击这里面的opus.sln，就会打开Opus的VS工程，如果你的VS版本是2017及以上，会...">
+
+
+
+<meta name="robots" content="all">
+<meta name="google" content="all">
+<meta name="googlebot" content="all">
+<meta name="verify" content="all">
+
+    <!--Title-->
+
+
+<title>在Windows10+VS2019环境下编译Opus | 小奥の部落格</title>
+
+
+    <link rel="alternate" href="/atom.xml" title="小奥の部落格" type="application/atom+xml">
+
+
+    <link rel="icon" href="/favicon.ico">
+
+    
+
+
+
+<link rel="stylesheet" href="/css/bootstrap.min.css?rev=3.3.7">
+<link rel="stylesheet" href="/css/font-awesome.min.css?rev=4.5.0">
+<link rel="stylesheet" href="/css/style.css?rev=@@hash">
+
+
+
+
+    
+	<div class="hide">
+		<script type="text/javascript">
+			var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan class='cnzz_stat_icon_1276822649 hide' %3E%3Cscript%20src%3D%22https%3A%2F%2Fs95.cnzz.com%2Fz_stat.php%3Fweb_id%3D1272564536%22%3E%3C%2Fscript%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s19.cnzz.com/z_stat.php%3Fid%3D1276822649%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));
+		</script>
+	</div>
+
+
+
+
+
+
+    
+
+</head>
+
+</html>
+<!--[if lte IE 8]>
+<style>
+    html{ font-size: 1em }
+</style>
+<![endif]-->
+<!--[if lte IE 9]>
+<div style="ie">你使用的浏览器版本过低，为了你更好的阅读体验，请更新浏览器的版本或者使用其他现代浏览器，比如Chrome、Firefox、Safari等。</div>
+<![endif]-->
+
+<body>
+    <header class="main-header" style="background-image:url(http://snippet.shenliyang.com/img/banner.jpg)">
+    <div class="main-header-box">
+        <a class="header-avatar" href="/" title="小奥">
+            <img src="/img/avatar.jpg" alt="logo头像" class="img-responsive center-block">
+        </a>
+        <div class="branding">
+
+            
+                <h2> 不忘初心，奋力前行 </h2>
+            
+    	</div>
+    </div>
+</header>
+    <nav class="main-navigation">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="navbar-header"><span class="nav-toggle-button collapsed pull-right" data-toggle="collapse" data-target="#main-menu" id="mnav">
+                    <span class="sr-only"></span>
+                        <i class="fa fa-bars"></i>
+                    </span>
+                    <a class="navbar-brand" href="http://tech.yushuai.xyz">小奥の部落格</a>
+                </div>
+                <div class="collapse navbar-collapse" id="main-menu">
+                    <ul class="menu">
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/"><i class="fa "></i>Home</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/algorithm/"><i class="fa "></i>Algorithm</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Speech-Process-Notes/"><i class="fa "></i>Speech Process Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/C-C/"><i class="fa "></i>C/C++</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/数据结构/"><i class="fa "></i>Data Structure</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="/categories/Learning-Notes/"><i class="fa "></i>Learning Notes</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/"><i class="fa "></i>Blog</a>
+                            </li>
+                        
+                            <li role="presentation" class="text-center">
+                                <a href="http://www.yushuai.xyz/cv"><i class="fa "></i>About</a>
+                            </li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+    <section class="content-wrap">
+        <div class="container">
+            <div class="row">
+                <main class="col-md-8 main-content m-post">
+                    <p id="process"></p>
+<article class="post">
+    <div class="post-head">
+        <h1 id="在Windows10+VS2019环境下编译Opus">
+            
+	            在Windows10+VS2019环境下编译Opus
+            
+        </h1>
+        <div class="post-meta">
+    
+        <span class="categories-meta fa-wrap">
+            <i class="fa fa-folder-open-o"></i>
+            <a class="category-link" href="/categories/Speech-Process-Notes/">Speech Process Notes</a>
+        </span>
+    
+
+    
+        <span class="fa-wrap">
+            <i class="fa fa-tags"></i>
+            <span class="tags-meta">
+                
+                    <a class="tag-link" href="/tags/Opus/">Opus</a> <a class="tag-link" href="/tags/Speech-Process/">Speech Process</a>
+                
+            </span>
+        </span>
+    
+
+    
+        
+        <span class="fa-wrap">
+            <i class="fa fa-clock-o"></i>
+            <span class="date-meta">2020/05/07</span>
+        </span>
+        
+    
+</div>
+            
+            
+    </div>
+    
+    <div class="post-body post-content">
+        <h2 id="Opus库生成"><a href="#Opus库生成" class="headerlink" title="Opus库生成"></a>Opus库生成</h2><p>将Opus库clone之后，找到目录中的win32文件夹，里面有一个vs2015目录，点击这里面的opus.sln，就会打开Opus的VS工程，如果你的VS版本是2017及以上，会提示你升级版本，这个时候确认就好了（如下图所示，由于我在编写该文档的时候已经生成了opus库和libopusenc库，所以这里以opusfile库为例）。</p>
+<p><img src="http://img.yushuai.xyz/img/image-20200507174728054.png" alt="image-20200507174728054"></p>
+<p>在打开工程之后，点击“生成-&gt;生成解决方案”。待生成完成以后，会发现在当前目录下有了“Debug”目录，里面有下图的5个文件夹及关键的opus.lib文件，这就代表生成成功了。</p>
+<p><img src="http://img.yushuai.xyz/img/image-20200507174757256.png" alt="image-20200507174757256"></p>
+<h2 id="libopusenc库生成"><a href="#libopusenc库生成" class="headerlink" title="libopusenc库生成"></a>libopusenc库生成</h2><p>同样，打开libopusenc\win32\VS2015，里面有一个opusenc.sln，双击打开之后，就会进入工程界面，如下图所示。</p>
+<p><img src="http://img.yushuai.xyz/img/image-20200507174820713.png" alt="image-20200507174820713"></p>
+<p>然后依旧是点击生成该解决方案，生成成功会显示下面的提示：</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image002.jpg" alt="img"></p>
+<p>生成的目录如下图所示：</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image004.jpg" alt="img"></p>
+<p>注意：</p>
+<p>如下图所示，生成libopusenc库需要依赖于opus库，所以需要先编译生成opus库才可以进行本工程的编译生成。</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image002.jpg" alt="img"></p>
+<h2 id="opusfile库编译生成"><a href="#opusfile库编译生成" class="headerlink" title="opusfile库编译生成"></a>opusfile库编译生成</h2><p>同样是在该工程win32\VS2015下，双击opusfile.sln，打开工程，确认升级。点击生成，会提示出现错误，例如下图</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image002.jpg" alt="img"></p>
+<p>上图提示我们缺少ogg.h文件，实际上我们在进行opus编译的时候需要依赖于ogg和openssl库，因此我们需要下载这个库并进行编译。我们看下图，确定好ogg和openssl的目录必须和opusfile同一级目录。</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image004.jpg" alt="img"></p>
+<h2 id="ogg的生成"><a href="#ogg的生成" class="headerlink" title="ogg的生成"></a>ogg的生成</h2><p>首先把ogg代码clone下来，继续进入win32\VS2015目录中的libogg.sln，打开之后重新生成，结果如下：</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image006.jpg" alt="img"></p>
+<h2 id="openssl编译"><a href="#openssl编译" class="headerlink" title="openssl编译"></a>openssl编译</h2><p>首先需要下载三个部分：</p>
+<p>（1）Perl：<a href="http://www.activestate.com/activeperl/downloads/。" target="_blank" rel="noopener">http://www.activestate.com/activeperl/downloads/。</a></p>
+<p>（2）NASM：<a href="https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win64/（官网为http://www.nasum.us）" target="_blank" rel="noopener">https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/win64/（官网为http://www.nasum.us）</a></p>
+<p>（3）Openssl：<a href="https://www.openssl.org/source/（我下载的是openssl-1.1.1g.tar.gz）" target="_blank" rel="noopener">https://www.openssl.org/source/（我下载的是openssl-1.1.1g.tar.gz）</a></p>
+<p>然后确定是否安装了Visual Studio。这里默认已经安装。</p>
+<p>在上述三部分下载完成后，开始安装。</p>
+<p>首先安装ActivePerl。按照完成后，在cmd输入perl -v确认是否安装成功，若成功则出现下面的界面：</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image008.jpg" alt="img"></p>
+<p>然后安装NASM，直接安装即可。安装完成后，将安装地址（如我的是C:\Program Files\NASM）添加到系统变量Path中。</p>
+<p>然后开始安装OpenSSL，将下载的openssl解压并将目录名修改为openssl。以下开始分步骤介绍：</p>
+<p>（1）初始化编译环境。打开x86_x64 Cross Tools Command Prompt for VS 2019，切换到.\VC\Auxiliary\Build目录下，然后运行vcvars64.bat文件。然后切换目录到openssl目录下，执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">perl Configure VC-WIN64 no-asm --prefix=D:\codestudy\task\opusstudy\openssl</span><br></pre></td></tr></table></figure>
+<p>如果遇到以下提示：</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image010.jpg" alt="img"></p>
+<p>即提示：Can’t locate Win32/Console.pm in @INC (you may need to install the Win32::Console module)</p>
+<p>你需要进入C:\Perl64\lib\ActivePerl（具体目录以你的安装为准）打开Config.pm将392~414行替换为：</p>
+<blockquote>
+<p># Prevent calling Win32::Console::DESTROY on a STDOUT handle<br>#my $console;<br>sub _warn {<br>#  my($msg) = @_;<br>#  unless (-t STDOUT) {<br>#   print “\n$msg\n”;<br>#   return;<br>#  }<br>#  require Win32::Console;<br>#  unless ($console) {<br>#   $console = Win32::Console-&gt;new(Win32::Console::STD_OUTPUT_HANDLE());<br>#  }<br>#  my($col,undef) = $console-&gt;Size;<br>#  print “\n”;<br>#  my $attr = $console-&gt;Attr;<br>#  $console-&gt;Attr($Win32::Console::FG_RED | $Win32::Console::BG_WHITE);<br>#  for (split(/\n/, “$msg”)) {<br>#   $_ .= “ “ while length() &lt; $col-1;<br>#   print “$_\n”;<br>#  }<br>#  $console-&gt;Attr($attr);<br>#  print “\n”;<br>}</p>
+</blockquote>
+<p>这样再继续运行上面的语句即可，成功界面如图：</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image012.jpg" alt="img"></p>
+<p>（2）进行编译安装。注意：以下与网上的大部分教程有所不同。老版本的时候，要求我们执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ms\do_nasm</span><br><span class="line"></span><br><span class="line">ms\do_win64a</span><br></pre></td></tr></table></figure>
+<p>但是新的openssl已经不能这样运行，需要执行的是：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmake</span><br></pre></td></tr></table></figure>
+<p>然后执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmake test</span><br></pre></td></tr></table></figure>
+<p>结果如下：</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image014.jpg" alt="img"></p>
+<p>时间会特别长，完成之后，运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">nmake install</span><br></pre></td></tr></table></figure>
+<p><img src="http://img.yushuai.xyz/img/clip_image016.jpg" alt="img"></p>
+<p>理论上以上就可以了，但是实际上1.1.1版本之后，很多模式都与以前不同了。所以此时我降回来使用1.0.2版本，这时需要执行的命令就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">perl Configure VC-WIN64A</span><br><span class="line">ms\do_win64a</span><br><span class="line">nmake -f ms\ntdll.mak</span><br><span class="line">cd out32dll</span><br><span class="line">..\ms\test</span><br></pre></td></tr></table></figure>
+<p>完成之后是这样的界面</p>
+<p><img src="http://img.yushuai.xyz/img/clip_image018.jpg" alt="img"></p>
+<h2 id="Opustool库生成"><a href="#Opustool库生成" class="headerlink" title="Opustool库生成"></a>Opustool库生成</h2><p>首先clone下flac库，然后进行编译。这里编译要先编译</p>
+<p>libFLAC_dynamec</p>
+<p>libFLAC_static</p>
+<p>libFLAC++_dynamic</p>
+<p>libFLAC++_static</p>
+<p>先编译以上四个目录再往下走。在编译之前，将ogg的工程目录中的Include\ogg目录复制到flac\include中，然后拷贝ogg生成的文件 libogg_static.lib（ogg版本太高的话，名字变为libogg.lib，此时将文件名改名即可）到flac\objs\debug\lib中。</p>
+<p>然后编译以上四个目录，再编译整个工程。</p>
+
+    </div>
+    
+        <div class="reward" ontouchstart>
+    <div class="reward-wrap">赏
+        <div class="reward-box">
+            
+                <span class="reward-type">
+                    <img class="alipay" src="http://www.yushuai.xyz/zjyt/alipay.jpg"><b>支付宝打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/weixin.jpg"><b>微信打赏</b>
+                </span>
+            
+            
+                <span class="reward-type">
+                    <img class="wechat" src="http://www.yushuai.xyz/zjyt/unipay.png"><b>QQ钱包打赏</b>
+                </span>
+            
+        </div>
+    </div>
+    <p class="reward-tip">感觉不错？欢迎给我 打个赏~我将不胜感激！</p>
+</div>
+
+
+    
+    <div class="post-footer">
+        <div>
+            
+                转载声明：商业转载请联系作者获得授权,非商业转载请注明出处 © <a href="http://www.yushuai.xyz" target="_blank">小奥</a>
+            
+        </div>
+        <div>
+            
+        </div>
+    </div>
+</article>
+
+<div class="article-nav prev-next-wrap clearfix">
+    
+    
+        <a href="/2020/04/08/introduction-of-opus-codec/" class="next-post btn btn-default" title="Opus编解码器简介">
+            <span class="hidden-lg">下一篇</span>
+            <span class="hidden-xs">Opus编解码器简介</span><i class="fa fa-angle-right fa-fw"></i>
+        </a>
+    
+</div>
+
+
+
+
+
+
+                </main>
+                
+                    <aside id="article-toc" role="navigation" class="col-md-4">
+    <div class="widget">
+        <h3 class="title">文章目录</h3>
+        
+            <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Opus库生成"><span class="toc-text">Opus库生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#libopusenc库生成"><span class="toc-text">libopusenc库生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#opusfile库编译生成"><span class="toc-text">opusfile库编译生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ogg的生成"><span class="toc-text">ogg的生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#openssl编译"><span class="toc-text">openssl编译</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Opustool库生成"><span class="toc-text">Opustool库生成</span></a></li></ol>
+        
+    </div>
+</aside>
+
+                
+            </div>
+        </div>
+    </section>
+    <footer class="main-footer">
+    <div class="container">
+        <div class="row">
+        </div>
+    </div>
+</footer>
+
+<a id="back-to-top" class="icon-btn hide">
+	<i class="fa fa-chevron-up"></i>
+</a>
+<!-- 根据页面mathjax变量决定是否加载MathJax数学公式js -->
+
+
+
+
+    <div class="copyright">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="busuanzi">
+    
+</div>
+
+            </div>
+            <div class="col-sm-12">
+                <span>Copyright &copy; 2017
+                </span> |
+                <span>
+                    Powered by <a href="//www.yushuai.xyz" class="copyright-links" target="_blank" rel="nofollow">小奥の部落格</a>
+                </span> |
+                <span>
+                    Theme by <a href="//github.com/shenliyang/hexo-theme-snippet.git" class="copyright-links" target="_blank" rel="nofollow">Snippet</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script src="/js/app.js?rev=@@hash"></script>
+
+</body>
+</html>
